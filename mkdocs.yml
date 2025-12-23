@@ -1,0 +1,151 @@
+site_name: Mason Recipes
+site_description: A collection of delicious family recipes
+theme:
+  name: material
+  palette:
+    scheme: default
+    primary: amber
+    accent: orange
+  features:
+    - search.suggest
+    - search.highlight
+    - navigation.tabs
+
+nav:
+  - Home: index.md
+  - Recipes:
+    - Appetizers & Dips:
+      - Air Fried Buffalo Wings: recipes/air_fried_buffalo_wings.md
+      - Beer Cheese: recipes/beer_cheese.md
+      - Buffalo Chicken Dip: recipes/buffalo_chicken_dip.md
+      - Chorizo Queso: recipes/chorizo_queso.md
+      - Cindys Buffalo Ungh Chicken Dip: recipes/cindys_buffalo_ungh_chicken_dip.md
+      - Dill Dip: recipes/dill_dip.md
+      - Feta Bake Dip: recipes/feta_bake_dip.md
+      - Mexican Cream Cheese Dip: recipes/mexican_cream_cheese_dip.md
+      - Spring Rolls: recipes/spring_rolls.md
+      - Tomato Basil Bruschetta: recipes/tomato_basil_bruschetta.md
+      - Tapenade: recipes/tapenade.md
+    - Main Courses:
+      - Buttery Chicken: recipes/buttery_chicken.md
+      - Caribbean Paella: recipes/caribbean_paella.md
+      - Cheesy Keto Chicken Fajita Casserole: recipes/cheesy_keto_chicken_fajita_casserole.md
+      - Chicken Crust Pizza: recipes/chicken_crust_pizza.md
+      - Chicken Curry Casserole: recipes/chicken_curry_casserole.md
+      - Chicken Cutlets: recipes/chicken_cutlets.md
+      - Chicken Tikka Masala: recipes/chicken_tikka_masala.md
+      - Chipotle Fish Tacos: recipes/chipotle_fish_tacos.md
+      - Italian Chorizo Shakshouka: recipes/italian_chorizo_shakshouka.md
+      - Mikes Quick Fajitas: recipes/mikes_quick_fajitas.md
+      - Pork Carnitas: recipes/pork_carnitas.md
+      - Pork Ribs in Slow Cooker: recipes/pork_ribs_in_slow_cooker.md
+      - Salmon with Mango Salsa: recipes/salmon_with_mango_salsa.md
+      - Sausage Mozarella Pizza: recipes/sausage_mozarella_pizza.md
+      - Scotts Pot Roast: recipes/scotts_pot_roast.md
+      - Simple Crockpot Chicken Fajitas: recipes/simple_crockpot_chicken_fajitas.md
+      - Slow Cooked Pork Ribs: recipes/slow_cooked_pork_ribs.md
+      - Smoked Meatloaf: recipes/smoked_meatloaf.md
+      - Smoked Pork Butt: recipes/smoked_pork_butt.md
+      - Steak Tips Au Gratin: recipes/steak_tips_au_gratin.md
+      - Stephanies Super Slow Sloppy Joes: recipes/stephanies_super_slow_sloppy_joes.md
+      - Tacos Al Carbon: recipes/tacos_al_carbon.md
+      - Tatanya with Everything: recipes/tatanya_with_everything.md
+      - Wedding Casserole: recipes/wedding_casserole.md
+      - White Bean Chicken Chili: recipes/white_bean_chicken_chili.md
+    - Sides & Soups:
+      - Baked Zucchini Casserole: recipes/baked_zucchini_casserole.md
+      - Crock Pot Potato Soup: recipes/crock_pot_potato_soup.md
+      - Garlicky Oven Fries: recipes/garlicky_oven_fries.md
+      - Greek Salad: recipes/greek_salad.md
+      - Homemade Noodles: recipes/homemade_noodles.md
+      - Italian Sausage Soup: recipes/italian_sausage_soup.md
+      - Julies Tortilla Soup: recipes/julies_tortilla_soup.md
+      - Kickin Turnip Greens: recipes/kickin_turnip_greens.md
+      - Mikes Mighty Meaty Soup: recipes/mikes_mighty_meaty_soup.md
+      - Potato Kale Soup: recipes/potato_kale_soup.md
+      - Santa Fe Soup: recipes/santa_fe_soup.md
+      - Spicy Brussel Sprouts: recipes/spicy_brussel_sprouts.md
+      - Strawberry Salad: recipes/strawberry_salad.md
+      - Sweet & Sour Cabbage & Barley Soup: recipes/sweet_amp_sour_cabbage_amp_barley_soup.md
+      - Taco Soup Quick and Easy: recipes/taco_soup_quick_and_easy.md
+      - That Good Salad: recipes/that_good_salad.md
+      - Vegetable Beef and Barley Soup: recipes/vegetable_beef_and_barley_soup.md
+      - Wild Rice Salad: recipes/wild_rice_salad.md
+      - Wild Rice Soup: recipes/wild_rice_soup.md
+    - Desserts:
+      - Almond Pistachio Fat Bombs: recipes/almond_pistachio_fat_bombs.md
+      - Beihl Oatmeal Cookies: recipes/beihl_oatmeal_cookies.md
+      - Best White Chocolate Chip Cookies: recipes/best_white_chocolate_chip_cookies.md
+      - Buckeyes: recipes/buckeyes.md
+      - Butterscotch Pie: recipes/butterscotch_pie.md
+      - Chocolate Chip Cookies: recipes/chocolate_chip_cookies.md
+      - Coconut Chocolate Fat Bomb Squares: recipes/coconut_chocolate_fat_bomb_squares_like_mounds.md
+      - Coconut Cupcakes with Cream Cheese Frosting: recipes/coconut_cupcakes_with_a_cream_cheese_buttercream_frosting.md
+      - Fresh Apple Cake with Hot Caramel Sauce: recipes/fresh_apple_cake_with_hot_caramel_sauce.md
+      - Jannys Ginger Cookies: recipes/jannys_ginger_cookies.md
+      - Jans Pie Crust: recipes/jans_pie_crust.md
+      - Katys Banana Pudding: recipes/katys_banana_pudding.md
+      - Keto Chocolate Pudding: recipes/keto_chocolate_pudding.md
+      - Keto Peanut Butter Pie: recipes/keto_peanut_butter_pie.md
+      - Lemon Bars: recipes/lemon_bars.md
+      - Mikes Caramels: recipes/mikes_caramels.md
+      - Never Fail Fudge: recipes/never_fail_fudge.md
+      - Peach Crisp: recipes/peach_crisp.md
+      - Peach Crumb Pie: recipes/peach_crumb_pie.md
+      - Peanut Butter Cups: recipes/peanut_butter_cups.md
+      - Pumpkin Praline Cake: recipes/pumpkin_praline_cake.md
+      - Red Raspberry Pie: recipes/red_raspberry_pie.md
+      - Rhubarb Cookies: recipes/rhubarb_cookies.md
+      - Rum Cake to Die For: recipes/rum_cake_to_die_for.md
+      - Sherrys Cinnamon Rolls: recipes/sherrys_cinnamon_rolls.md
+      - Sherrys Peanut Butter Bars: recipes/sherrys_peanut_butter_bars.md
+      - Sherrys Pumpkin Cake: recipes/sherrys_pumpkin_cake.md
+      - Smores Cookie Bars: recipes/smores_cookie_bars.md
+      - Spicy Banana Cake or Muffins: recipes/spicy_banana_cake_or_muffins.md
+      - Strawberry Cupcakes: recipes/strawberry_cupcakes.md
+      - Strawberry Scones: recipes/strawberry_scones.md
+      - Swedish Gingerbread: recipes/swedish_gingerbread.md
+      - Texas Chocolate Sheet Cake: recipes/texas_chocolate_sheet_cake.md
+      - Toasted Pecan Brown Butter Bites: recipes/toasted_pecan_brown_butter_bites.md
+    - Beverages:
+      - Classic Margarita: recipes/classic_margarita.md
+      - Davids Sangria: recipes/davids_sangria.md
+      - Keto Margarita: recipes/keto_margarita.md
+      - Katys Ranch Water: recipes/katys_ranch_water.md
+      - Mikes Gin Fizzy: recipes/mikes_gin_fizzy.md
+      - Randy Masons Margarita: recipes/randy_masons_margarita.md
+      - Rum Punch: recipes/rum_punch.md
+      - Sherrys Hot Chocolate: recipes/sherrys_hot_chocolate.md
+    - Sauces & Condiments:
+      - Caribbean Jerk Marinade: recipes/caribbean_jerk_marinade.md
+      - Dukes Keto Mayonnaise: recipes/dukes_keto_mayonnaise.md
+      - Fresh Pesto: recipes/fresh_pesto.md
+      - Green Enchilada Sauce: recipes/green_enchilada_sauce.md
+      - Guacamole: recipes/guacamole.md
+      - Harissa Tunisian Hot Sauce: recipes/harissa_tunisian_hot_sauce.md
+      - Mikes Amish Aunts Sausage Gravy: recipes/mikes_amish_aunts_sausage_gravy.md
+      - Spaghetti Sauce: recipes/spaghetti_sauce.md
+      - Taco Seasoning: recipes/taco_seasoning.md
+    - Breakfast:
+      - Cindys Shrimp and Grits: recipes/cindys_shrimp_and_grits.md
+      - Emilys French Toast Casserole: recipes/emilys_french_toast_casserole.md
+      - Sausage Brunch Casserole: recipes/sausage_brunch_casserole.md
+      - Sausage Egg and Spinach Breakfast Bowl: recipes/sausage_egg_and_spinach_breakfast_bowl.md
+      - Sherrys Sunday Roast: recipes/sherrys_sunday_roast.md
+    - Breads & Extras:
+      - Jans Pie Crust: recipes/jans_pie_crust.md
+      - Kristas Tartine Bread: recipes/kristas_tartine_bread.md
+      - My Favorite Casserole: recipes/my_favorite_casserole.md
+      - Oatmeal Bread: recipes/oatmeal_bread.md
+      - Potato Rusks: recipes/potato_rusks.md
+      - Protein Marshmallows: recipes/protein_marshmallows.md
+      - Rosemary Nuts: recipes/rosemary_nuts.md
+  - Contact: recipes/contact.md
+
+plugins:
+  - search
+
+markdown_extensions:
+  - pymdownx.emoji:
+      emoji_index: !!python/name:pymdownx.emoji.twemoji
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
