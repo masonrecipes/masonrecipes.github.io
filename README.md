@@ -29,21 +29,25 @@ We welcome contributions! To add a recipe:
 
 ### Recipe Format
 
-Create a `.md` file with a simple structure:
+1. Create a `.md` file with a simple structure:
 
-```markdown
-# Recipe Name
+    ```markdown
+    # Recipe Name
 
-## Ingredients
+    ## Ingredients
 
-- Ingredient 1
-- Ingredient 2
+    - Ingredient 1
+    - Ingredient 2
 
-## Instructions
+    ## Instructions
 
-1. Step 1
-2. Step 2
-```
+    1. Step 1
+    2. Step 2
+    ```
+
+1. When the file is created, save it.
+1. Navigate to the [mkdocs.yml](mkdocs.yml).
+1. Add the name of your file under the appropriate section, as if it were a pathway to it (see the structure in the file already)
 
 ## Development
 

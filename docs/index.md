@@ -2,10 +2,6 @@
 
 We all have to eat. Why not do it beautifully?
 
-## About
-
-This repository contains a curated collection of family recipes, from appetizers and sides to desserts and drinks. Each recipe is carefully documented with ingredients and instructions.
-
 ## Quick Start
 
 Browse recipes by category using the navigation menu on the left, or use the search bar at the top to find specific recipes by name.

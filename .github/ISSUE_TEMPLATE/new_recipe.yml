@@ -1,0 +1,68 @@
+name: New Recipe Submission
+description: Submit a new recipe to be added to the Mason Recipes collection
+title: "[RECIPE]: "
+labels: ["recipe-submission"]
+body:
+  - type: input
+    id: recipe_name
+    attributes:
+      label: Recipe Name
+      description: What is the name of your recipe?
+      placeholder: e.g., Chocolate Chip Cookies
+    validations:
+      required: true
+
+  - type: textarea
+    id: ingredients
+    attributes:
+      label: Ingredients
+      description: List all ingredients with measurements
+      placeholder: |
+        - 2 cups flour
+        - 1 cup butter
+        - 1 cup sugar
+        - 2 eggs
+    validations:
+      required: true
+
+  - type: textarea
+    id: instructions
+    attributes:
+      label: Instructions
+      description: Step-by-step cooking instructions
+      placeholder: |
+        1. Preheat oven to 350°F
+        2. Mix butter and sugar together
+        3. Add eggs and mix well
+        4. Fold in flour
+        5. Bake for 12-15 minutes
+    validations:
+      required: true
+
+  - type: input
+    id: prep_time
+    attributes:
+      label: Prep Time (optional)
+      description: How long does it take to prepare?
+      placeholder: e.g., 15 minutes
+
+  - type: input
+    id: cook_time
+    attributes:
+      label: Cook Time (optional)
+      description: How long does it take to cook?
+      placeholder: e.g., 20 minutes
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes (optional)
+      description: Any additional notes, tips, or variations
+      placeholder: e.g., Can be made ahead and frozen
+
+  - type: input
+    id: contact
+    attributes:
+      label: Your Name/Contact (optional)
+      description: How can we credit you?
+      placeholder: e.g., John Doe or john@example.com
