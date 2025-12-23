@@ -1,6 +1,6 @@
 # Mason Recipes
 
-Welcome to Mason Recipes! A collection of delicious recipes curated by the Mason family.
+We all have to eat. Why not do it beautifully?
 
 ## About
 
