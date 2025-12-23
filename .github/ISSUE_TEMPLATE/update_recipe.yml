@@ -1,0 +1,68 @@
+name: Update Recipe
+description: Request an update to an existing recipe in the Mason Recipes collection
+title: "[UPDATE] "
+labels: ["recipe-update"]
+body:
+  - type: input
+    id: recipe_name
+    attributes:
+      label: Recipe Name
+      description: Which recipe would you like to update?
+      placeholder: e.g., Chocolate Chip Cookies
+    validations:
+      required: true
+
+  - type: textarea
+    id: reason_for_update
+    attributes:
+      label: Reason for Update
+      description: Why should this recipe be updated?
+      placeholder: e.g., The baking time is incorrect, or I found a typo in the ingredients list
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggested_changes
+    attributes:
+      label: Suggested Changes
+      description: What specifically needs to be changed? Be as detailed as possible.
+      placeholder: |
+        Current: "Bake for 10 minutes"
+        Should be: "Bake for 12-15 minutes"
+    validations:
+      required: true
+
+  - type: textarea
+    id: updated_ingredients
+    attributes:
+      label: Updated Ingredients (optional)
+      description: If the ingredients list needs changes, provide the updated list here
+      placeholder: |
+        - 2 cups flour
+        - 1 cup butter
+        - 1 cup sugar
+        - 2 eggs
+
+  - type: textarea
+    id: updated_instructions
+    attributes:
+      label: Updated Instructions (optional)
+      description: If the instructions need changes, provide the updated steps here
+      placeholder: |
+        1. Preheat oven to 350°F
+        2. Mix butter and sugar together
+        3. Add eggs and mix well
+
+  - type: textarea
+    id: additional_notes
+    attributes:
+      label: Additional Notes (optional)
+      description: Any other context or information
+      placeholder: e.g., Tested and works better this way...
+
+  - type: input
+    id: contact
+    attributes:
+      label: Your Name/Contact (optional)
+      description: How can we credit you?
+      placeholder: e.g., Jane Doe or jane@example.com

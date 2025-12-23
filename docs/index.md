@@ -1,10 +1,6 @@
 # Mason Recipes
 
-Welcome to Mason Recipes! A collection of delicious recipes curated by the Mason family.
-
-## About
-
-This repository contains a curated collection of family recipes, from appetizers and sides to desserts and drinks. Each recipe is carefully documented with ingredients and instructions.
+We all have to eat. Why not do it beautifully?
 
 ## Quick Start
 
