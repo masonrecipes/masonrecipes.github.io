@@ -4,7 +4,7 @@ We all have to eat. Why not do it beautifully?
 
 ## Quick Start
 
-Browse recipes by category using the navigation menu on the left, or use the search bar at the top to find specific recipes by name.
+Navigate to the recipes in the header bar, menu, or search bar.
 
 ## Recipe Categories
 
@@ -19,8 +19,6 @@ Browse recipes by category using the navigation menu on the left, or use the sea
 
 ## Contributing
 
-Have a recipe to add? Feel free to submit a pull request or contact us!
-
----
+Have a recipe to add? Feel free to submit an [issue, recipe, or update here](https://github.com/masonrecipes/masonrecipes.github.io/issues/new/choose). If you are looking to locally contribute, please see [the README](https://github.com/masonrecipes/masonrecipes.github.io/blob/main/README.md).
 
 Happy cooking! 🍳

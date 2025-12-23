@@ -73,3 +73,7 @@ The site is automatically deployed to GitHub Pages whenever changes are pushed t
 ## License
 
 Feel free to use these recipes for personal use and sharing!
+
+## Issues or Requests
+
+For any issues or requests, please navigate to [our issues](https://github.com/masonrecipes/masonrecipes.github.io/issues/new/choose) and fill out the appropriate template.

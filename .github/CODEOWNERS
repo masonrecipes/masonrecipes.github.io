@@ -1,0 +1,12 @@
+# Global code owners - all files
+
+* @dbeihl @masonrecipes
+
+# Docs
+
+/docs/ @dbeihl @masonrecipes
+
+# Configuration files
+
+mkdocs.yml @dbeihl @masonrecipes
+.github/workflows/ @dbeihl @masonrecipes
