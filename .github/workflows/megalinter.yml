@@ -1,0 +1,82 @@
+name: MegaLinter
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+  megalinter:
+    name: MegaLinter
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: MegaLinter
+        id: ml
+        uses: oxsecurity/megalinter@v8
+        env:
+          VALIDATE_ALL_CODEBASE: false
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Enable specific linters
+          ENABLE_LINTERS: MARKDOWN_MARKDOWNLINT,YAML_YAMLLINT,PYTHON_PYLINT,PYTHON_BLACK
+          # Markdown linter configuration
+          MARKDOWN_MARKDOWNLINT_CONFIG_FILE: .markdownlint.json
+          # Disable some rules that might be too strict
+          MARKDOWN_MARKDOWNLINT_FILTER_REGEX_EXCLUDE: (node_modules|site)
+          # Python linting
+          PYTHON_BLACK_ARGUMENTS: --line-length 100
+          # YAML linting
+          YAML_YAMLLINT_FILTER_REGEX_EXCLUDE: (mkdocs.yml)
+          # Apply fixes automatically
+          APPLY_FIXES: all
+
+      - name: Commit and push fixes
+        if: steps.ml.outputs.has_updated_sources == 1
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "style: apply MegaLinter fixes"
+          commit_user_name: megalinter-bot
+          commit_user_email: megalinter-bot@users.noreply.github.com
+
+      - name: Archive production artifacts
+        if: success() || failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: MegaLinter reports
+          path: |
+            megalinter-reports
+            mega-linter.log
+
+      - name: Comment PR
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const reportPath = 'megalinter-reports/megalinter.log';
+
+            if (fs.existsSync(reportPath)) {
+              const report = fs.readFileSync(reportPath, 'utf8');
+              const summary = report.split('\n').slice(0, 50).join('\n');
+
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: `## MegaLinter Report\n\n\`\`\`\n${summary}\n\`\`\`\n\nFull report available in artifacts.`
+              });
+            }
