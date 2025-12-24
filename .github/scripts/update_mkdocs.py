@@ -8,7 +8,7 @@ import sys
 import re
 
 
-def add_recipe_to_nav(mkdocs_path, recipe_file, recipe_title, category):
+def add_recipe_to_nav(mkdocs_path, recipe_file, recipe_title, category, category_folder):
     """Add the new recipe to the appropriate category in mkdocs.yml."""
 
     try:
@@ -70,8 +70,8 @@ def add_recipe_to_nav(mkdocs_path, recipe_file, recipe_title, category):
         if line.strip() and line.startswith('      - '):
             recipes.append((idx, line))
 
-    # Add the new recipe
-    new_recipe_line = f"      - {recipe_title}: recipes/{recipe_file}"
+    # Add the new recipe with category folder path
+    new_recipe_line = f"      - {recipe_title}: recipes/{category_folder}/{recipe_file}"
     recipes.append((None, new_recipe_line))
 
     # Sort recipes alphabetically by title (extract title from "      - Title: path")
@@ -171,6 +171,23 @@ def main():
             print(f"Error: Recipe file '{recipe_file}' should be a filename, not a path", file=sys.stderr)
             sys.exit(1)
 
+        # Map category to folder name
+        category_folders = {
+            'Appetizers & Dips': 'appetizers_and_dips',
+            'Main Courses': 'main_courses',
+            'Sides & Soups': 'sides_and_soups',
+            'Desserts': 'desserts',
+            'Beverages': 'beverages',
+            'Sauces & Condiments': 'sauces_and_condiments',
+            'Breakfast': 'breakfast',
+            'Breads & Extras': 'breads_and_extras'
+        }
+
+        category_folder = category_folders.get(category)
+        if not category_folder:
+            print(f"Error: Unknown category '{category}'", file=sys.stderr)
+            sys.exit(1)
+
         mkdocs_path = 'mkdocs.yml'
 
         if not os.path.exists(mkdocs_path):
@@ -181,8 +198,9 @@ def main():
         print(f"Processing recipe: {recipe_title}")
         print(f"  File: {recipe_file}")
         print(f"  Category: {category}")
+        print(f"  Folder: {category_folder}")
 
-        add_recipe_to_nav(mkdocs_path, recipe_file, recipe_title, category)
+        add_recipe_to_nav(mkdocs_path, recipe_file, recipe_title, category, category_folder)
 
     except Exception as e:
         print(f"Unexpected error: {str(e)}", file=sys.stderr)

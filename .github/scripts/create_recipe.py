@@ -160,25 +160,31 @@ def main():
             sys.exit(1)
 
         # Validate category is one of the allowed categories
-        allowed_categories = [
-            'Appetizers & Dips',
-            'Main Courses',
-            'Sides & Soups',
-            'Desserts',
-            'Beverages',
-            'Sauces & Condiments',
-            'Breakfast',
-            'Breads & Extras'
-        ]
+        allowed_categories = {
+            'Appetizers & Dips': 'appetizers_and_dips',
+            'Main Courses': 'main_courses',
+            'Sides & Soups': 'sides_and_soups',
+            'Desserts': 'desserts',
+            'Beverages': 'beverages',
+            'Sauces & Condiments': 'sauces_and_condiments',
+            'Breakfast': 'breakfast',
+            'Breads & Extras': 'breads_and_extras'
+        }
 
         if fields['category'] not in allowed_categories:
             print(f"Error: Invalid category '{fields['category']}'", file=sys.stderr)
-            print(f"Allowed categories: {allowed_categories}", file=sys.stderr)
+            print(f"Allowed categories: {list(allowed_categories.keys())}", file=sys.stderr)
             sys.exit(1)
+
+        # Get the folder name for the category
+        category_folder = allowed_categories[fields['category']]
 
         # Generate filename
         filename = sanitize_filename(fields['recipe_name'])
-        filepath = f"docs/recipes/{filename}"
+        filepath = f"docs/recipes/{category_folder}/{filename}"
+
+        # Ensure the category directory exists
+        os.makedirs(f"docs/recipes/{category_folder}", exist_ok=True)
 
         # Check if file already exists
         if os.path.exists(filepath):
@@ -186,17 +192,14 @@ def main():
             # Add a number suffix to make it unique
             base_filename = filename[:-3]  # Remove .md
             counter = 1
-            while os.path.exists(f"docs/recipes/{base_filename}_{counter}.md"):
+            while os.path.exists(f"docs/recipes/{category_folder}/{base_filename}_{counter}.md"):
                 counter += 1
             filename = f"{base_filename}_{counter}.md"
-            filepath = f"docs/recipes/{filename}"
+            filepath = f"docs/recipes/{category_folder}/{filename}"
             print(f"Using alternative filename: {filename}", file=sys.stderr)
 
         # Create the recipe markdown
         recipe_content = create_recipe_markdown(fields)
-
-        # Ensure the docs/recipes directory exists
-        os.makedirs("docs/recipes", exist_ok=True)
 
         # Write the file
         with open(filepath, 'w', encoding='utf-8') as f:
