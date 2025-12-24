@@ -2,11 +2,11 @@
 
 * @dbeihl @masonrecipes
 
-# Docs
+## Docs
 
 /docs/ @dbeihl @masonrecipes
 
-# Configuration files
+## Configuration files
 
 mkdocs.yml @dbeihl @masonrecipes
 .github/workflows/ @dbeihl @masonrecipes

@@ -3,11 +3,8 @@
 ## Ingredients
 
 - 1 1/2 oz Tequila
-
 - 1 oz organic lime juice
-
 - Topa Chico Sparkling mineral water
-
 - Ice
 
 ## Instructions
