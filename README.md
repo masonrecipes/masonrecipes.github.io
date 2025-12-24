@@ -8,7 +8,7 @@ This repository contains the source files for the Mason Recipes website, built w
 
 ## Structure
 
-```
+```text
 ├── docs/
 │   ├── index.md           # Site home page
 │   ├── recipes/           # Recipe markdown files (organized by category)
