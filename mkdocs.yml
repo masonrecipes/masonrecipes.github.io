@@ -1,4 +1,5 @@
 site_name: Mason Recipes
+site_author: David Beihl
 site_description: A collection of delicious family recipes
 repo_url: https://github.com/masonrecipes/masonrecipes.github.io
 repo_name: masonrecipes
@@ -20,6 +21,14 @@ theme:
   features:
     - search.suggest
     - search.highlight
+    - content.action.edit
+    - content.action.view
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+    - navigation.footer
+    - navigation.indexes
 
 nav:
   - Home: index.md
@@ -31,7 +40,9 @@ nav:
       - Chorizo Queso: recipes/chorizo_queso.md
       - Dill Dip: recipes/dill_dip.md
       - Feta Bake Dip: recipes/feta_bake_dip.md
+      - Guacamole: recipes/guacamole.md
       - Mexican Cream Cheese Dip: recipes/mexican_cream_cheese_dip.md
+      - Rosemary Nuts: recipes/rosemary_nuts.md
       - Spring Rolls: recipes/spring_rolls.md
       - Tomato Basil Bruschetta: recipes/tomato_basil_bruschetta.md
       - Tapenade: recipes/tapenade.md
@@ -45,11 +56,13 @@ nav:
       - Chipotle Fish Tacos: recipes/chipotle_fish_tacos.md
       - Italian Chorizo Shakshouka: recipes/italian_chorizo_shakshouka.md
       - Mikes Quick Fajitas: recipes/mikes_quick_fajitas.md
+      - My Favorite Casserole: recipes/my_favorite_casserole.md
       - Pork Carnitas: recipes/pork_carnitas.md
       - Pork Ribs in Slow Cooker: recipes/pork_ribs_in_slow_cooker.md
       - Salmon with Mango Salsa: recipes/salmon_with_mango_salsa.md
       - Sausage Mozarella Pizza: recipes/sausage_mozarella_pizza.md
       - Scotts Pot Roast: recipes/scotts_pot_roast.md
+      - Sherrys Sunday Roast: recipes/sherrys_sunday_roast.md
       - Simple Crockpot Chicken Fajitas: recipes/simple_crockpot_chicken_fajitas.md
       - Slow Cooked Pork Ribs: recipes/slow_cooked_pork_ribs.md
       - Smoked Meatloaf: recipes/smoked_meatloaf.md
@@ -128,28 +141,27 @@ nav:
       - Dukes Keto Mayonnaise: recipes/dukes_keto_mayonnaise.md
       - Fresh Pesto: recipes/fresh_pesto.md
       - Green Enchilada Sauce: recipes/green_enchilada_sauce.md
-      - Guacamole: recipes/guacamole.md
       - Harissa Tunisian Hot Sauce: recipes/harissa_tunisian_hot_sauce.md
-      - Mikes Amish Aunts Sausage Gravy: recipes/mikes_amish_aunts_sausage_gravy.md
       - Spaghetti Sauce: recipes/spaghetti_sauce.md
       - Taco Seasoning: recipes/taco_seasoning.md
     - Breakfast:
       - Cindys Shrimp and Grits: recipes/cindys_shrimp_and_grits.md
+      - Mikes Amish Aunts Sausage Gravy: recipes/mikes_amish_aunts_sausage_gravy.md
       - Sausage Brunch Casserole: recipes/sausage_brunch_casserole.md
       - Sausage Egg and Spinach Breakfast Bowl: recipes/sausage_egg_and_spinach_breakfast_bowl.md
-      - Sherrys Sunday Roast: recipes/sherrys_sunday_roast.md
     - Breads & Extras:
       - Jans Pie Crust: recipes/jans_pie_crust.md
       - Kristas Tartine Bread: recipes/kristas_tartine_bread.md
-      - My Favorite Casserole: recipes/my_favorite_casserole.md
       - Oatmeal Bread: recipes/oatmeal_bread.md
       - Potato Rusks: recipes/potato_rusks.md
       - Protein Marshmallows: recipes/protein_marshmallows.md
-      - Rosemary Nuts: recipes/rosemary_nuts.md
   - Contact: recipes/contact.md
 
 plugins:
   - search
+  - git-revision-date-localized:
+      enable_creation_date: true
+  - git-authors
 
 markdown_extensions:
   - pymdownx.emoji:
