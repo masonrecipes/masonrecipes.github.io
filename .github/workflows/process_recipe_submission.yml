@@ -24,9 +24,6 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install PyYAML
-        run: pip install pyyaml
-
       - name: Parse issue and create recipe
         id: create_recipe
         env:
