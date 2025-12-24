@@ -1,3 +1,11 @@
+---
+tags:
+  - sauces
+  - condiments
+author: Sherry Beihl
+source:
+---
+
 # Taco Seasoning
 
 ## Ingredients

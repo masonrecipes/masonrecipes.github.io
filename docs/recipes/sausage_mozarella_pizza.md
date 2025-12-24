@@ -1,3 +1,11 @@
+---
+tags:
+  - main-course
+  - entree
+author: Sherry Beihl, David Beihl
+source:
+---
+
 # Sausage Mozarella Pizza
 
 ![sausage mozarella pizza](../assets/sausage_mozarella_pizza.jpeg)

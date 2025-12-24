@@ -1,3 +1,11 @@
+---
+tags:
+  - sides
+  - soups
+author: Mike Beihl
+source:
+---
+
 # Vegetable Beef and Barley Soup
 
 ## Ingredients

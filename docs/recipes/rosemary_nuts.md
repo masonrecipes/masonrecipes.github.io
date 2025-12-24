@@ -1,3 +1,11 @@
+---
+tags:
+  - appetizers
+  - dips
+author: Sherry Beihl
+source:
+---
+
 # Rosemary Nuts
 
 ## Ingredients

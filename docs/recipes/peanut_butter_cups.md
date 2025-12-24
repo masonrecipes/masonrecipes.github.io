@@ -1,3 +1,11 @@
+---
+tags:
+  - desserts
+  - sweets
+author: Sherry Beihl
+source:
+---
+
 # Peanut Butter Cups
 
 This recipe makes a dozen muffin lined sized peanut butter cups.

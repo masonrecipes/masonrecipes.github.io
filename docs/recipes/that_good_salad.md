@@ -1,3 +1,13 @@
+---
+tags:
+  - sides
+  - soups
+author:
+  - Sherry Beihl
+  - Cindy Gustafson
+source:
+---
+
 # That Good Salad
 
 ## Ingredients

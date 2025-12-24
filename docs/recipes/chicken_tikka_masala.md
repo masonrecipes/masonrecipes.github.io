@@ -1,3 +1,11 @@
+---
+tags:
+  - main-course
+  - entree
+author: Scott Beihl
+source:
+---
+
 # Chicken Tikka Masala
 
 ## Ingredients

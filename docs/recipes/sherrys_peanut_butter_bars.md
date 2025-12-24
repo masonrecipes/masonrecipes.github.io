@@ -1,3 +1,11 @@
+---
+tags:
+  - desserts
+  - sweets
+author: Sherry Beihl
+source:
+---
+
 # Sherry’s Peanut Butter Bars
 
 ![peanut butter bars](../assets/sherrys_peanut_butter_bars.jpeg)

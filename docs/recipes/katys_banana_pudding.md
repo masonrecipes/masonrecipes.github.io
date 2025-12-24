@@ -1,3 +1,11 @@
+---
+tags:
+  - desserts
+  - sweets
+author: Katy Perko
+source:
+---
+
 # Katy’s Banana Pudding
 
 ![banana pudding](../assets/katys_banana_pudding.jpeg)

@@ -1,4 +1,12 @@
-# Mike’s Quick Fajitas
+---
+tags:
+  - main-course
+  - entree
+author: Mike Beihl
+source:
+---
+
+# Mike's Quick Fajitas
 
 ## Ingredients
 

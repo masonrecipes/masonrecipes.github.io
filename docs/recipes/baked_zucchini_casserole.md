@@ -1,3 +1,11 @@
+---
+tags:
+  - sides
+  - soups
+author:
+source:
+---
+
 # Baked Zucchini Casserole
 
 ![](../assets/baked_zucchini_casserole.jpeg)

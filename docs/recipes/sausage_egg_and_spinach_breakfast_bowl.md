@@ -1,3 +1,10 @@
+---
+tags:
+  - breakfast
+author: Mike Beihl
+source:
+---
+
 # Sausage Egg and Spinach Breakfast Bowl
 
 ## Ingredients

@@ -1,3 +1,11 @@
+---
+tags:
+  - desserts
+  - sweets
+author: Scott Beihl
+source:
+---
+
 # Never Fail Fudge
 
 ## Ingredients

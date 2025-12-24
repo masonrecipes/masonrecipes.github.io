@@ -1,3 +1,11 @@
+---
+tags:
+  - desserts
+  - sweets
+author: Sherry Beihl
+source:
+---
+
 # Almond Pistachio Fat Bombs
 
 Servings: 36 squares

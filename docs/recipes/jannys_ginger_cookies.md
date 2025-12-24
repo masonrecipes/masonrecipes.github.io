@@ -1,3 +1,11 @@
+---
+tags:
+  - desserts
+  - sweets
+author: Janet Mason
+source:
+---
+
 # Janny’s Ginger Cookies
 
 ![ginger cookies](../assets/ginger_cookies.jpeg)

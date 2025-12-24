@@ -1,3 +1,11 @@
+---
+tags:
+  - desserts
+  - sweets
+author: Sherry Beihl
+source:
+---
+
 # Sherry’s Pumpkin Cake
 
 ![pumpkin cake](../assets/sherrys_pumpkin_cake.jpeg)

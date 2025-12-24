@@ -21,6 +21,8 @@ def parse_issue_body(body):
         'prep_time': r'### Prep Time \(optional\)\s*\n\s*(.+?)(?=\n###|\Z)',
         'cook_time': r'### Cook Time \(optional\)\s*\n\s*(.+?)(?=\n###|\Z)',
         'notes': r'### Notes \(optional\)\s*\n\s*(.+?)(?=\n###|\Z)',
+        'author': r'### Recipe Author \(optional\)\s*\n\s*(.+?)(?=\n###|\Z)',
+        'source': r'### Recipe Source \(optional\)\s*\n\s*(.+?)(?=\n###|\Z)',
         'contact': r'### Your Name/Contact \(optional\)\s*\n\s*(.+?)(?=\n###|\Z)',
     }
 
@@ -66,9 +68,51 @@ def sanitize_filename(name):
 def create_recipe_markdown(fields):
     """Generate the recipe markdown content."""
     recipe_name = fields.get('recipe_name', 'Untitled Recipe')
+    category = fields.get('category', 'Uncategorized')
+
+    # Start with YAML frontmatter
+    content = "---\n"
+
+    # Add tags based on category
+    category_tags = {
+        'Appetizers & Dips': ['appetizers', 'dips'],
+        'Main Courses': ['main-course', 'entree'],
+        'Sides & Soups': ['sides', 'soups'],
+        'Desserts': ['desserts', 'sweets'],
+        'Beverages': ['beverages', 'drinks'],
+        'Sauces & Condiments': ['sauces', 'condiments'],
+        'Breakfast': ['breakfast'],
+        'Breads & Extras': ['breads', 'baking']
+    }
+
+    tags = category_tags.get(category, ['recipe'])
+    content += "tags:\n"
+    for tag in tags:
+        content += f"  - {tag}\n"
+
+    # Add author from dedicated field
+    if 'author' in fields:
+        content += f"author: {fields['author']}\n"
+    else:
+        content += "author:\n"
+
+    # Add source from dedicated field
+    if 'source' in fields:
+        content += f"source: {fields['source']}\n"
+    else:
+        content += "source:\n"
+
+    # Add prep and cook time if provided
+    if 'prep_time' in fields:
+        content += f"prep_time: {fields['prep_time']}\n"
+
+    if 'cook_time' in fields:
+        content += f"cook_time: {fields['cook_time']}\n"
+
+    content += "---\n\n"
 
     # Start with the recipe title
-    content = f"# {recipe_name}\n\n"
+    content += f"# {recipe_name}\n\n"
 
     # Add ingredients section
     if 'ingredients' in fields:
@@ -80,22 +124,14 @@ def create_recipe_markdown(fields):
         content += "## Instructions\n\n"
         content += f"{fields['instructions']}\n\n"
 
-    # Add prep time if provided
-    if 'prep_time' in fields:
-        content += f"**Prep Time:** {fields['prep_time']}\n\n"
-
-    # Add cook time if provided
-    if 'cook_time' in fields:
-        content += f"**Cook Time:** {fields['cook_time']}\n\n"
-
     # Add notes if provided
     if 'notes' in fields:
         content += "## Notes\n\n"
         content += f"{fields['notes']}\n\n"
 
-    # Add credit if provided
+    # Add submitter credit at the end if provided
     if 'contact' in fields:
-        content += f"*Recipe submitted by: {fields['contact']}*\n"
+        content += f"*Submitted by: {fields['contact']}*\n"
 
     return content
 

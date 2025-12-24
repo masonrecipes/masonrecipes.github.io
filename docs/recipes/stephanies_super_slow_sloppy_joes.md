@@ -1,3 +1,11 @@
+---
+tags:
+  - main-course
+  - entree
+author: Stephanie Smith
+source:
+---
+
 # Stephanies Super Slow Sloppy Joes
 
 ## Ingredients

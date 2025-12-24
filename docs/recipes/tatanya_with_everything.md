@@ -1,3 +1,13 @@
+---
+tags:
+  - main-course
+  - entree
+author:
+  - Sherry Beihl
+  - Mike Beihl
+source:
+---
+
 # Tatanya with Everything
 
 [tatanya](../assets/tatanya_with_everything.jpeg)

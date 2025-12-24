@@ -1,3 +1,11 @@
+---
+tags:
+  - appetizers
+  - dips
+author: Scott Beihl
+source:
+---
+
 # Tomato Basil Bruschetta
 
 ## Ingredients

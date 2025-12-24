@@ -1,3 +1,11 @@
+---
+tags:
+  - desserts
+  - sweets
+author: Sherry Beihl
+source:
+---
+
 # Coconut Chocolate Fat Bomb Squares (Like Mounds)
 
 These are soft, melty, chocolaty bites with a crunchy coconut finish- great for those needing energy, satiety, or craving control.

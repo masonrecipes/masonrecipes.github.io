@@ -1,3 +1,11 @@
+---
+tags:
+  - sides
+  - soups
+author: Scott Beihl
+source:
+---
+
 # Wild Rice Salad
 
 ## Ingredients

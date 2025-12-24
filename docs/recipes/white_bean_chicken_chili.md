@@ -1,3 +1,11 @@
+---
+tags:
+  - main-course
+  - entree
+author: Scott Beihl
+source:
+---
+
 # White Bean Chicken Chili
 
 ## Ingredients

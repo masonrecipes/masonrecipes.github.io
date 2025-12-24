@@ -1,3 +1,11 @@
+---
+tags:
+  - main-course
+  - entree
+author: Stephanie Smith
+source:
+---
+
 # Chicken Cutlets
 
 ## Ingredients

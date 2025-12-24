@@ -1,3 +1,11 @@
+---
+tags:
+  - main-course
+  - entree
+author: Mike Beihl
+source:
+---
+
 # Slow Cooked Pork Ribs
 
 ## Ingredients

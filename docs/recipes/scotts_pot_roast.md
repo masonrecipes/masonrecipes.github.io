@@ -1,4 +1,12 @@
-# Scott’s Pot Roast
+---
+tags:
+  - main-course
+  - entree
+author: Scott Beihl
+source:
+---
+
+# Scott's Pot Roast
 
 ## Ingredients
 

@@ -1,3 +1,11 @@
+---
+tags:
+  - appetizers
+  - dips
+author: David Beihl
+source:
+---
+
 # Air-Fried Buffalo Wings
 
 ![buffalo wings](../assets/chicken_wings.jpeg)

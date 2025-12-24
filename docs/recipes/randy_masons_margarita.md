@@ -1,3 +1,11 @@
+---
+tags:
+  - beverages
+  - drinks
+author: Randy Mason
+source:
+---
+
 # Randy Mason’s Margarita
 
 ## Ingredients

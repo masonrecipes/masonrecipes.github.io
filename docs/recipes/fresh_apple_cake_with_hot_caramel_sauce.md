@@ -1,3 +1,11 @@
+---
+tags:
+  - desserts
+  - sweets
+author: Janet Mason
+source:
+---
+
 # Fresh Apple Cake with Hot Caramel Sauce
 
 ## Ingredients

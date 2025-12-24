@@ -1,3 +1,11 @@
+---
+tags:
+  - desserts
+  - sweets
+author: Brittany Mason
+source:
+---
+
 # Strawberry Cupcakes
 
 ## Ingredients

@@ -1,4 +1,12 @@
-# Sherry’s Sunday Roast
+---
+tags:
+  - main-course
+  - entree
+author: Sherry Beihl
+source:
+---
+
+# Sherry's Sunday Roast
 
 ## Ingredients
 

@@ -1,3 +1,11 @@
+---
+tags:
+  - main-course
+  - entree
+author: Mike Beihl
+source:
+---
+
 # Smoked Pork Butt
 
 ![smoked pork butt](../assets/smoke_pork_butt.jpeg)
