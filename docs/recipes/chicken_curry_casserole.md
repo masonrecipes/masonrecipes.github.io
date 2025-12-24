@@ -1,3 +1,11 @@
+---
+tags:
+  - main-course
+  - entree
+author: Janet Mason
+source:
+---
+
 # Chicken Curry Casserole
 
 ## Ingredients

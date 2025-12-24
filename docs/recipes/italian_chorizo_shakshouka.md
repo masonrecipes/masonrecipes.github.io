@@ -1,3 +1,11 @@
+---
+tags:
+  - main-course
+  - entree
+author: David Beihl
+source:
+---
+
 # Italian Chorizo Shakshouka
 
 ![shakshusa](../assets/sausage_shakshusa.jpeg)

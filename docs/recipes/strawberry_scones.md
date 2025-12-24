@@ -1,3 +1,11 @@
+---
+tags:
+  - desserts
+  - sweets
+author: Krista Rich
+source:
+---
+
 # Strawberry Scones
 
 ## Ingredients

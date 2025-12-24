@@ -1,3 +1,11 @@
+---
+tags:
+  - desserts
+  - sweets
+author: Janet Mason
+source:
+---
+
 # Pumpkin Praline Cake
 
 ## Ingredients

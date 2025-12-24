@@ -1,3 +1,11 @@
+---
+tags:
+  - main-course
+  - entree
+author: Hannah Smith
+source:
+---
+
 # Salmon with Mango Salsa
 
 ![salmon with mango salsa](../assets/salmon_with_mango_salsa.jpeg)

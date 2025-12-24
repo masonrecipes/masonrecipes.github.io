@@ -1,3 +1,11 @@
+---
+tags:
+  - desserts
+  - sweets
+author:
+source:
+---
+
 # Chocolate Chip Cookies
 
 ![chocolate chip cookies](../assets/chocolate_chip_cookies.jpeg)

@@ -1,3 +1,10 @@
+---
+tags:
+  - breakfast
+author: Janet Mason
+source:
+---
+
 # Sausage Brunch Casserole
 
 ## Ingredients

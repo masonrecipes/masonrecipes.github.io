@@ -1,3 +1,11 @@
+---
+tags:
+  - main-course
+  - entree
+author: Krista Rich
+source:
+---
+
 # Wedding Casserole
 
 ![wedding casserole](../assets/wedding_casserole.jpeg)

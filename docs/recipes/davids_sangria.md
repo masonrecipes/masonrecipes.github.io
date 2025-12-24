@@ -1,4 +1,12 @@
-# David’s Sangria
+---
+tags:
+  - beverages
+  - sangria
+author: David Beihl
+source: Family Recipe
+---
+
+# David's Sangria
 
 ## Ingredients
 

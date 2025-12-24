@@ -1,3 +1,11 @@
+---
+tags:
+  - sides
+  - soups
+author: Julie Mason
+source:
+---
+
 # Julie’s Tortilla Soup
 
 ![tortilla soup](../assets/julies_tortilla_soup.jpeg)

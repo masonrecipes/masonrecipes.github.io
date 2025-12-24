@@ -1,3 +1,11 @@
+---
+tags:
+  - desserts
+  - sweets
+author: Katy Perko
+source:
+---
+
 # S’mores Cookie Bars
 
 ![smores](../assets/smore_bars.jpeg)

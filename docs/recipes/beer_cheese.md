@@ -1,3 +1,11 @@
+---
+tags:
+  - appetizers
+  - dips
+author: Scott Beihl
+source:
+---
+
 # Beer Cheese
 
 ## Ingredients

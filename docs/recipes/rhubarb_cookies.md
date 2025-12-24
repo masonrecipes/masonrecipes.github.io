@@ -1,3 +1,11 @@
+---
+tags:
+  - desserts
+  - sweets
+author: Janet Mason
+source:
+---
+
 # Rhubarb Cookies
 
 ![rhubarb cookies](../assets/rhubarb_cookies.jpeg)

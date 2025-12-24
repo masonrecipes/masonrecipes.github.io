@@ -1,3 +1,11 @@
+---
+tags:
+  - breads
+  - baking
+author: Krista Rich
+source:
+---
+
 # Oatmeal Bread
 
 ## Ingredients

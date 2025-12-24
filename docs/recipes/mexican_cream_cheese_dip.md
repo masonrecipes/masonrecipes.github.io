@@ -1,3 +1,11 @@
+---
+tags:
+  - appetizers
+  - dips
+author: Janet Mason
+source:
+---
+
 # Mexican Cream Cheese Dip
 
 ## Ingredients

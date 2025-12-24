@@ -1,3 +1,11 @@
+---
+tags:
+  - appetizers
+  - dips
+author: Cindy Gustafson
+source:
+---
+
 # Feta Bake Dip
 
 ![feta bake dip](../assets/baked_feta_dip.jpeg)

@@ -78,8 +78,22 @@ body:
       placeholder: e.g., Can be made ahead and frozen
 
   - type: input
+    id: author
+    attributes:
+      label: Recipe Author (optional)
+      description: Who created or is known for this recipe?
+      placeholder: e.g., David Beihl, Grandma Mary, Chef Julia
+
+  - type: input
+    id: source
+    attributes:
+      label: Recipe Source (optional)
+      description: Where did this recipe come from?
+      placeholder: e.g., Family Recipe, Published Cookbook, Online Source
+
+  - type: input
     id: contact
     attributes:
       label: Your Name/Contact (optional)
-      description: How can we credit you?
+      description: How can we credit you for submitting?
       placeholder: e.g., John Doe or john@example.com

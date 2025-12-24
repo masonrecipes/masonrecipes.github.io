@@ -1,3 +1,11 @@
+---
+tags:
+  - sides
+  - soups
+author: Sherry Beihl
+source:
+---
+
 # Greek Salad
 
 ![greek salad](../assets/greek_salad.jpeg)

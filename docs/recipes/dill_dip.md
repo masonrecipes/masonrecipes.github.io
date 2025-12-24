@@ -1,3 +1,11 @@
+---
+tags:
+  - appetizers
+  - dips
+author: Stephanie Smith
+source:
+---
+
 # Dill Dip
 
 ## Ingredients

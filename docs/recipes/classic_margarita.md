@@ -1,3 +1,11 @@
+---
+tags:
+  - beverages
+  - drinks
+author: Mike Beihl
+source:
+---
+
 # Classic Margarita
 
 ## Ingredients

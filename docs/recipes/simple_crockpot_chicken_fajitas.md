@@ -1,3 +1,11 @@
+---
+tags:
+  - main-course
+  - entree
+author:
+source:
+---
+
 # Simple Crockpot Chicken Fajitas
 
 ## Ingredients

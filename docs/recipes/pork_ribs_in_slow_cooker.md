@@ -1,3 +1,11 @@
+---
+tags:
+  - main-course
+  - entree
+author: Mike Beihl
+source:
+---
+
 # Pork Ribs in Slow Cooker
 
 ## Ingredients

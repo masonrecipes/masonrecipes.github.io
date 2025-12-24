@@ -1,3 +1,11 @@
+---
+tags:
+  - sauces
+  - condiments
+author: Scott Beihl
+source:
+---
+
 # Harissa Tunisian Hot Sauce
 
 ## Ingredients

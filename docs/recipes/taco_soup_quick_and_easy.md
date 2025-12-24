@@ -1,3 +1,11 @@
+---
+tags:
+  - sides
+  - soups
+author:
+source:
+---
+
 # Taco Soup - Quick and Easy
 
 ## Ingredients

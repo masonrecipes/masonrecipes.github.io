@@ -1,3 +1,11 @@
+---
+tags:
+  - appetizers
+  - dips
+author: Sherry Beihl
+source:
+---
+
 # Guacamole
 
 ![guacamole](../assets/guacamole.jpeg)

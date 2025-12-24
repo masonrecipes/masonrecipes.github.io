@@ -1,3 +1,11 @@
+---
+tags:
+  - beverages
+  - drinks
+author: Sherry Beihl
+source:
+---
+
 # Sherry’s Hot Chocolate
 
 ## Ingredients

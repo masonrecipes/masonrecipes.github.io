@@ -1,3 +1,11 @@
+---
+tags:
+  - sides
+  - soups
+author: Janet Mason
+source:
+---
+
 # Potato Kale Soup
 
 ## Ingredients

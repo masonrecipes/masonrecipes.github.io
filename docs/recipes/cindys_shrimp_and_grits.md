@@ -1,3 +1,10 @@
+---
+tags:
+  - breakfast
+author: Cindy Gustafson
+source:
+---
+
 # Cindy’s Shrimp and Grits
 
 Shrimp and Grits recipe is my super easy go-to dinner at the beach. You can combine all the ingredients, except for the shrimp, in a large Ziploc bag and throw it in your cooler. This recipe serves four people.

@@ -1,4 +1,12 @@
-# Sweet &amp; Sour Cabbage &amp; Barley Soup
+---
+tags:
+  - sides
+  - soups
+author: Janet Mason
+source:
+---
+
+# Sweet and Sour, Cabbage, and Barley Soup
 
 ## Ingredients
 

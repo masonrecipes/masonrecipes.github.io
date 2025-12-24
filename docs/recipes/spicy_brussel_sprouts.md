@@ -1,3 +1,11 @@
+---
+tags:
+  - sides
+  - soups
+author: David Beihl
+source:
+---
+
 # Spicy Brussel Sprouts
 
 ## Ingredients

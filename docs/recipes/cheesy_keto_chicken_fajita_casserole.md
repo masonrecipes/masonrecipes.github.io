@@ -1,3 +1,11 @@
+---
+tags:
+  - main-course
+  - entree
+author: Mike Beihl
+source:
+---
+
 # Cheesy Keto Chicken Fajita Casserole
 
 ![keto fajita casserole](../assets/cheesy_keto_chicken_fajita_casserole.jpeg)

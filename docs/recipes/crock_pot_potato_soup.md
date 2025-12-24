@@ -1,3 +1,11 @@
+---
+tags:
+  - sides
+  - soups
+author: Cindy Gustafson
+source:
+---
+
 # Crock Pot Potato Soup
 
 ## Ingredients

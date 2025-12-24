@@ -1,3 +1,11 @@
+---
+tags:
+  - sides
+  - soups
+author: Mike Beihl
+source:
+---
+
 # Mike’s Mighty Meaty Soup
 
 ## Ingredients
