@@ -3,6 +3,7 @@ site_author: David Beihl
 site_description: A collection of delicious family recipes
 repo_url: https://github.com/masonrecipes/masonrecipes.github.io
 repo_name: masonrecipes
+edit_uri: edit/main/
 theme:
   name: material
   palette:
@@ -113,6 +114,7 @@ nav:
       - Never Fail Fudge: recipes/never_fail_fudge.md
       - Peach Crumb Pie: recipes/peach_crumb_pie.md
       - Peanut Butter Cups: recipes/peanut_butter_cups.md
+      - Protein Marshmallows: recipes/protein_marshmallows.md
       - Pumpkin Praline Cake: recipes/pumpkin_praline_cake.md
       - Red Raspberry Pie: recipes/red_raspberry_pie.md
       - Rhubarb Cookies: recipes/rhubarb_cookies.md
@@ -154,7 +156,6 @@ nav:
       - Kristas Tartine Bread: recipes/kristas_tartine_bread.md
       - Oatmeal Bread: recipes/oatmeal_bread.md
       - Potato Rusks: recipes/potato_rusks.md
-      - Protein Marshmallows: recipes/protein_marshmallows.md
   - Contact: recipes/contact.md
 
 plugins:
