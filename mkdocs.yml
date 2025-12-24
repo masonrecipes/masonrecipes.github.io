@@ -3,7 +3,7 @@ site_author: David Beihl
 site_description: A collection of delicious family recipes
 repo_url: https://github.com/masonrecipes/masonrecipes.github.io
 repo_name: masonrecipes
-edit_uri: edit/main/
+edit_uri: edit/main/docs/
 theme:
   name: material
   palette:
