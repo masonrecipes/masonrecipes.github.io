@@ -1,0 +1,88 @@
+name: Process Recipe Submission
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  process-recipe:
+    # Only run if the issue has the recipe-submission label
+    if: contains(github.event.issue.labels.*.name, 'recipe-submission')
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install PyYAML
+        run: pip install pyyaml
+
+      - name: Parse issue and create recipe
+        id: create_recipe
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: python .github/scripts/create_recipe.py
+
+      - name: Update mkdocs.yml
+        env:
+          RECIPE_FILE: ${{ steps.create_recipe.outputs.recipe_file }}
+          RECIPE_TITLE: ${{ steps.create_recipe.outputs.recipe_title }}
+          CATEGORY: ${{ steps.create_recipe.outputs.category }}
+        run: python .github/scripts/update_mkdocs.py
+
+      - name: Create Pull Request
+        id: create_pr
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Add recipe: ${{ steps.create_recipe.outputs.recipe_title }}"
+          branch: recipe-${{ github.event.issue.number }}
+          delete-branch: true
+          title: "Add recipe: ${{ steps.create_recipe.outputs.recipe_title }}"
+          body: |
+            ## New Recipe Submission
+
+            This PR adds a new recipe submitted via issue #${{ github.event.issue.number }}.
+
+            **Recipe:** ${{ steps.create_recipe.outputs.recipe_title }}
+            **Category:** ${{ steps.create_recipe.outputs.category }}
+
+            Please review the recipe content and navigation placement before merging.
+
+            Closes #${{ github.event.issue.number }}
+          labels: recipe-submission
+
+      - name: Comment on issue with PR link
+        if: steps.create_pr.outputs.pull-request-number
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `✅ Your recipe has been processed! Please review the pull request: #${{ steps.create_pr.outputs.pull-request-number }}`
+            });
+
+      - name: Close issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.update({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'closed'
+            });
