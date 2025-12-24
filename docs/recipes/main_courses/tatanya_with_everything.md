@@ -10,7 +10,7 @@ source:
 
 # Tatanya with Everything
 
-[tatanya](../assets/tatanya_with_everything.jpeg)
+![tatanya](../../assets/tatanya_with_everything.jpeg)
 
 ## Ingredients
 

@@ -162,8 +162,7 @@ plugins:
   - search:
       lang: en
       separator: '[\s\-\.]+'
-  - tags:
-      tags_file: tags.md
+  - tags
   - git-revision-date-localized:
       enable_creation_date: true
   - git-authors
