@@ -1,0 +1,43 @@
+MegaLinter can help you to define the same linter configuration locally
+
+INSTRUCTIONS
+
+- Copy the content of IDE-config folder at the root of your repository
+- if you are using Visual Studio Code, just reopen your project after the copy, and you will be prompted to install recommended extensions
+- If not, you can install extensions manually using the following links.
+
+IDE EXTENSIONS APPLICABLE TO YOUR PROJECT
+
+markdownlint (MARKDOWN)
+  - atom:
+    - linter-node-markdownlint: https://atom.io/packages/linter-node-markdownlint
+  - sublime:
+    - SublimeLinter-contrib-markdownlint: https://packagecontrol.io/packages/SublimeLinter-contrib-markdownlint
+  - vim:
+    - coc-markdownlint: https://github.com/fannheyward/coc-markdownlint
+  - vscode:
+    - vscode-markdownlint: https://marketplace.visualstudio.com/items/DavidAnson.vscode-markdownlint
+
+black (PYTHON)
+  - atom:
+    - python-black: https://atom.io/packages/python-black
+  - emacs:
+    - blacken: https://github.com/pythonic-emacs/blacken
+    - reformatter.el: https://github.com/purcell/reformatter.el
+    - elpy: https://github.com/jorgenschaefer/elpy
+  - idea:
+    - black: https://black.readthedocs.io/en/stable/integrations/editors.html#pycharm-intellij-idea
+  - sublime:
+    - sublack: https://github.com/jgirardet/sublack
+  - vscode:
+    - VSCode Python Extension: https://marketplace.visualstudio.com/items?itemName=ms-python.python
+
+pylint (PYTHON)
+  - eclipse:
+    - PyLint: https://pydev.org/manual_adv_pylint.html
+  - idea:
+    - PyCharm (Native Support): https://www.jetbrains.com/pycharm/
+  - visual_studio:
+    - Native Support: https://docs.microsoft.com/fr-fr/visualstudio/python/linting-python-code?view=vs-2019
+  - vscode:
+    - Native Support: https://code.visualstudio.com/docs/python/linting#_pylint
