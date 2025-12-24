@@ -1,6 +1,6 @@
 # Red Raspberry Pie
 
-![red raspberry pie](../assets/red_raspberry_pie.jpegP)
+![red raspberry pie](../assets/red_raspberry_pie.jpeg)
 
 ## Ingredients
 

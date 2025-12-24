@@ -18,7 +18,6 @@ theme:
   features:
     - search.suggest
     - search.highlight
-    - navigation.tabs
 
 nav:
   - Home: index.md

@@ -1,6 +1,6 @@
 # Rhubarb Cookies
 
-![rhubarb cookies](../assets/rhubarb_cookies.jpegP)
+![rhubarb cookies](../assets/rhubarb_cookies.jpeg)
 
 ## Ingredients
 
