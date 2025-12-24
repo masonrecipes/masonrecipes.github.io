@@ -36,11 +36,30 @@ def parse_issue_body(body):
 
 
 def sanitize_filename(name):
-    """Convert recipe name to a valid filename."""
-    # Remove special characters and convert to lowercase with underscores
-    filename = name.lower()
+    """Convert recipe name to a valid filename.
+
+    Removes special characters, apostrophes, and other problematic characters.
+    Converts spaces and hyphens to underscores.
+    """
+    # Remove apostrophes and other punctuation (David's -> Davids)
+    filename = name.replace("'", "").replace('"', "")
+
+    # Convert to lowercase
+    filename = filename.lower()
+
+    # Remove any characters that aren't alphanumeric, spaces, hyphens, or underscores
     filename = re.sub(r'[^\w\s-]', '', filename)
+
+    # Replace spaces and hyphens with underscores
     filename = re.sub(r'[-\s]+', '_', filename)
+
+    # Remove any leading/trailing underscores
+    filename = filename.strip('_')
+
+    # Ensure we have a valid filename (not empty)
+    if not filename:
+        filename = 'untitled_recipe'
+
     return filename + '.md'
 
 
@@ -82,42 +101,92 @@ def create_recipe_markdown(fields):
 
 
 def main():
-    # Get environment variables
-    issue_body = os.environ.get('ISSUE_BODY', '')
-    issue_title = os.environ.get('ISSUE_TITLE', '')
+    try:
+        # Get environment variables
+        issue_body = os.environ.get('ISSUE_BODY', '')
+        issue_title = os.environ.get('ISSUE_TITLE', '')
 
-    # Parse the issue
-    fields = parse_issue_body(issue_body)
+        if not issue_body:
+            print("Error: ISSUE_BODY environment variable is empty", file=sys.stderr)
+            sys.exit(1)
 
-    if 'recipe_name' not in fields:
-        print("Error: Recipe name not found in issue", file=sys.stderr)
+        # Parse the issue
+        fields = parse_issue_body(issue_body)
+
+        if 'recipe_name' not in fields:
+            print("Error: Recipe name not found in issue", file=sys.stderr)
+            print("Issue body:", issue_body[:500], file=sys.stderr)
+            sys.exit(1)
+
+        if 'category' not in fields:
+            print("Error: Category not found in issue", file=sys.stderr)
+            print("Available fields:", list(fields.keys()), file=sys.stderr)
+            sys.exit(1)
+
+        # Validate category is one of the allowed categories
+        allowed_categories = [
+            'Appetizers & Dips',
+            'Main Courses',
+            'Sides & Soups',
+            'Desserts',
+            'Beverages',
+            'Sauces & Condiments',
+            'Breakfast',
+            'Breads & Extras'
+        ]
+
+        if fields['category'] not in allowed_categories:
+            print(f"Error: Invalid category '{fields['category']}'", file=sys.stderr)
+            print(f"Allowed categories: {allowed_categories}", file=sys.stderr)
+            sys.exit(1)
+
+        # Generate filename
+        filename = sanitize_filename(fields['recipe_name'])
+        filepath = f"docs/recipes/{filename}"
+
+        # Check if file already exists
+        if os.path.exists(filepath):
+            print(f"Warning: Recipe file already exists at {filepath}", file=sys.stderr)
+            # Add a number suffix to make it unique
+            base_filename = filename[:-3]  # Remove .md
+            counter = 1
+            while os.path.exists(f"docs/recipes/{base_filename}_{counter}.md"):
+                counter += 1
+            filename = f"{base_filename}_{counter}.md"
+            filepath = f"docs/recipes/{filename}"
+            print(f"Using alternative filename: {filename}", file=sys.stderr)
+
+        # Create the recipe markdown
+        recipe_content = create_recipe_markdown(fields)
+
+        # Ensure the docs/recipes directory exists
+        os.makedirs("docs/recipes", exist_ok=True)
+
+        # Write the file
+        with open(filepath, 'w', encoding='utf-8') as f:
+            f.write(recipe_content)
+
+        print(f"Created recipe file: {filepath}")
+
+        # Set outputs for GitHub Actions
+        # Remove "[RECIPE]: " prefix from title if present
+        clean_title = re.sub(r'^\[RECIPE\]:\s*', '', fields['recipe_name'])
+
+        github_output = os.environ.get('GITHUB_OUTPUT', '/dev/stdout')
+        with open(github_output, 'a') as f:
+            f.write(f"recipe_file={filename}\n")
+            f.write(f"recipe_title={clean_title}\n")
+            f.write(f"category={fields['category']}\n")
+
+        print(f"✓ Successfully created recipe: {clean_title}")
+        print(f"✓ Category: {fields['category']}")
+        print(f"✓ Filename: {filename}")
+
+    except Exception as e:
+        print(f"Unexpected error: {str(e)}", file=sys.stderr)
+        import traceback
+        traceback.print_exc(file=sys.stderr)
         sys.exit(1)
-
-    if 'category' not in fields:
-        print("Error: Category not found in issue", file=sys.stderr)
-        sys.exit(1)
-
-    # Generate filename
-    filename = sanitize_filename(fields['recipe_name'])
-    filepath = f"docs/recipes/{filename}"
-
-    # Create the recipe markdown
-    recipe_content = create_recipe_markdown(fields)
-
-    # Write the file
-    with open(filepath, 'w', encoding='utf-8') as f:
-        f.write(recipe_content)
-
-    print(f"Created recipe file: {filepath}")
-
-    # Set outputs for GitHub Actions
-    # Remove "[RECIPE]: " prefix from title if present
-    clean_title = re.sub(r'^\[RECIPE\]:\s*', '', fields['recipe_name'])
-
-    with open(os.environ.get('GITHUB_OUTPUT', '/dev/stdout'), 'a') as f:
-        f.write(f"recipe_file={filename}\n")
-        f.write(f"recipe_title={clean_title}\n")
-        f.write(f"category={fields['category']}\n")
 
 
 if __name__ == '__main__':
