@@ -1,5 +1,7 @@
 site_name: Mason Recipes
 site_description: A collection of delicious family recipes
+repo_url: https://github.com/masonrecipes/masonrecipes.github.io
+repo_name: masonrecipes
 theme:
   name: material
   palette:
@@ -18,7 +20,6 @@ theme:
   features:
     - search.suggest
     - search.highlight
-    - navigation.tabs
 
 nav:
   - Home: index.md
