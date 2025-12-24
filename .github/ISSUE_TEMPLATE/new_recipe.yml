@@ -12,6 +12,23 @@ body:
     validations:
       required: true
 
+  - type: dropdown
+    id: category
+    attributes:
+      label: Recipe Category
+      description: Which category does this recipe belong to?
+      options:
+        - Appetizers & Dips
+        - Main Courses
+        - Sides & Soups
+        - Desserts
+        - Beverages
+        - Sauces & Condiments
+        - Breakfast
+        - Breads & Extras
+    validations:
+      required: true
+
   - type: textarea
     id: ingredients
     attributes:
