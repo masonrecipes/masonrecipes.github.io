@@ -8,7 +8,7 @@ source:
 
 # Chocolate Chip Cookies
 
-\![chocolate chip cookies](../../assets/chocolate_chip_cookies.jpeg)
+![chocolate chip cookies](../../assets/chocolate_chip_cookies.jpeg)
 
 ## Ingredients
 

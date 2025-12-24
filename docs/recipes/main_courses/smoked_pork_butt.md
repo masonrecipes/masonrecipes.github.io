@@ -8,7 +8,7 @@ source:
 
 # Smoked Pork Butt
 
-\![smoked pork butt](../../assets/smoke_pork_butt.jpeg)
+![smoked pork butt](../../assets/smoke_pork_butt.jpeg)
 
 ## Ingredients
 

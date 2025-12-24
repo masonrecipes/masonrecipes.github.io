@@ -8,7 +8,7 @@ source:
 
 # Air-Fried Buffalo Wings
 
-\![buffalo wings](../../assets/chicken_wings.jpeg)
+![buffalo wings](../../assets/chicken_wings.jpeg)
 
 ## Ingredients
 

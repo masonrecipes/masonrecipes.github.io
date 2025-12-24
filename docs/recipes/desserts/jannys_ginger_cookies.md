@@ -8,7 +8,7 @@ source:
 
 # Janny’s Ginger Cookies
 
-\![ginger cookies](../../assets/ginger_cookies.jpeg)
+![ginger cookies](../../assets/ginger_cookies.jpeg)
 
 ## Ingredients
 

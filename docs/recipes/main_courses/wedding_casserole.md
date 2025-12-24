@@ -8,7 +8,7 @@ source:
 
 # Wedding Casserole
 
-\![wedding casserole](../../assets/wedding_casserole.jpeg)
+![wedding casserole](../../assets/wedding_casserole.jpeg)
 
 ## Ingredients
 

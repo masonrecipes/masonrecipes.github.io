@@ -8,7 +8,7 @@ source:
 
 # Greek Salad
 
-\![greek salad](../../assets/greek_salad.jpeg)
+![greek salad](../../assets/greek_salad.jpeg)
 
 ## Ingredients
 

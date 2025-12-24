@@ -8,7 +8,7 @@ source:
 
 # Italian Chorizo Shakshouka
 
-\![shakshusa](../../assets/sausage_shakshusa.jpeg)
+![shakshusa](../../assets/sausage_shakshusa.jpeg)
 
 ## Ingredients
 

@@ -8,7 +8,7 @@ source:
 
 # Julie’s Tortilla Soup
 
-\![tortilla soup](../../assets/julies_tortilla_soup.jpeg)
+![tortilla soup](../../assets/julies_tortilla_soup.jpeg)
 
 ## Ingredients
 

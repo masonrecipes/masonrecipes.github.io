@@ -8,7 +8,7 @@ source:
 
 # Rhubarb Cookies
 
-\![rhubarb cookies](../../assets/rhubarb_cookies.jpeg)
+![rhubarb cookies](../../assets/rhubarb_cookies.jpeg)
 
 ## Ingredients
 

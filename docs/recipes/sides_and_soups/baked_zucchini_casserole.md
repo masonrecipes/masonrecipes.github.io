@@ -8,7 +8,7 @@ source:
 
 # Baked Zucchini Casserole
 
-\![](../../assets/baked_zucchini_casserole.jpeg)
+![baked zucchini](../../assets/baked_zucchini_casserole.jpeg)
 
 ## Ingredients
 

@@ -8,7 +8,7 @@ source:
 
 # Jan’s Pie Crust
 
-\![pie crust](../../assets/jans_pie_crust.jpeg)
+![pie crust](../../assets/jans_pie_crust.jpeg)
 
 ## Ingredients
 

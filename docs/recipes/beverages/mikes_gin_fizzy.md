@@ -8,7 +8,7 @@ source:
 
 # Mike’s Gin Fizzy
 
-\![mikes gin fizz](../../assets/mikes_gin_fiz.jpeg)
+![mikes gin fizz](../../assets/mikes_gin_fiz.jpeg)
 
 ## Ingredients
 

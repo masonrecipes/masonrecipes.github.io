@@ -8,7 +8,7 @@ source:
 
 # Sherry’s Pumpkin Cake
 
-\![pumpkin cake](../../assets/sherrys_pumpkin_cake.jpeg)
+![pumpkin cake](../../assets/sherrys_pumpkin_cake.jpeg)
 
 ## Ingredients
 

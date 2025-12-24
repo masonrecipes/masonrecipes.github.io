@@ -8,7 +8,7 @@ source:
 
 # Protein Marshmallows
 
-\![protein marshmallows](../../assets/protein_marshmellows.jpeg)
+![protein marshmallows](../../assets/protein_marshmellows.jpeg)
 
 ## Ingredients
 

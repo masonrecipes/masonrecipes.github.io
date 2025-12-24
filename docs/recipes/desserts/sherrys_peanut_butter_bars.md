@@ -8,7 +8,7 @@ source:
 
 # Sherry’s Peanut Butter Bars
 
-\![peanut butter bars](../../assets/sherrys_peanut_butter_bars.jpeg)
+![peanut butter bars](../../assets/sherrys_peanut_butter_bars.jpeg)
 
 ## Ingredients
 

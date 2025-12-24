@@ -8,7 +8,7 @@ source:
 
 # Sausage Mozarella Pizza
 
-\![sausage mozarella pizza](../../assets/sausage_mozarella_pizza.jpeg)
+![sausage mozarella pizza](../../assets/sausage_mozarella_pizza.jpeg)
 
 ## Ingredients
 

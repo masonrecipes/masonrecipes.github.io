@@ -8,7 +8,7 @@ source:
 
 # Red Raspberry Pie
 
-\![red raspberry pie](../../assets/red_raspberry_pie.jpeg)
+![red raspberry pie](../../assets/red_raspberry_pie.jpeg)
 
 ## Ingredients
 

@@ -8,7 +8,7 @@ source:
 
 # Cheesy Keto Chicken Fajita Casserole
 
-\![keto fajita casserole](../../assets/cheesy_keto_chicken_fajita_casserole.jpeg)
+![keto fajita casserole](../../assets/cheesy_keto_chicken_fajita_casserole.jpeg)
 
 Makes Four Servings
 

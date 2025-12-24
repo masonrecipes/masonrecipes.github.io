@@ -8,7 +8,7 @@ source:
 
 # Guacamole
 
-\![guacamole](../../assets/guacamole.jpeg)
+![guacamole](../../assets/guacamole.jpeg)
 
 ## Ingredients
 

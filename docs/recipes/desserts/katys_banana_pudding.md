@@ -8,7 +8,7 @@ source:
 
 # Katy’s Banana Pudding
 
-\![banana pudding](../../assets/katys_banana_pudding.jpeg)
+![banana pudding](../../assets/katys_banana_pudding.jpeg)
 
 ## Ingredients
 

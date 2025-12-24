@@ -8,7 +8,7 @@ source:
 
 # S’mores Cookie Bars
 
-\![smores](../../assets/smore_bars.jpeg)
+![smores](../../assets/smore_bars.jpeg)
 
 ## Ingredients
 

@@ -8,7 +8,7 @@ source:
 
 # Krista’s Tartine Bread
 
-\![tartine](../../assets/krista_tartine_bread.jpeg)
+![tartine](../../assets/krista_tartine_bread.jpeg)
 
 ## Ingredients
 

@@ -8,7 +8,7 @@ source:
 
 # Keto Margarita
 
-\![keto marg](../../assets/keto_margarita.jpeg)
+![keto marg](../../assets/keto_margarita.jpeg)
 
 ## Ingredients
 

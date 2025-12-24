@@ -8,7 +8,7 @@ source:
 
 # Feta Bake Dip
 
-\![feta bake dip](../../assets/baked_feta_dip.jpeg)
+![feta bake dip](../../assets/baked_feta_dip.jpeg)
 
 ## Ingredients
 

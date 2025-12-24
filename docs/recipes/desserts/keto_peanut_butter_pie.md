@@ -8,7 +8,7 @@ source:
 
 # Keto Peanut Butter Pie
 
-\![peanut butter pie](../../assets/keto_peanut_butter_pie.jpeg)
+![peanut butter pie](../../assets/keto_peanut_butter_pie.jpeg)
 
 ## Ingredients
 
