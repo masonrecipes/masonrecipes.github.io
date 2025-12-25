@@ -59,11 +59,37 @@ We welcome contributions! To add a recipe:
 
 ## Development
 
-To build and preview the site locally:
+To build and preview the site locally, it's recommended to use a virtual environment:
+
+### Using a Virtual Environment (Recommended)
+
+```bash
+# Create a virtual environment
+python -m venv venv
+
+# Activate the virtual environment
+# On Windows:
+.\venv\Scripts\activate
+# On macOS/Linux:
+source venv/bin/activate
+
+# Install dependencies from requirements.txt
+pip install -r requirements.txt
+
+# Preview the site
+mkdocs serve
+
+# Build the site
+mkdocs build
+```
+
+### Manual Installation (Alternative)
+
+If you prefer not to use a virtual environment:
 
 ```bash
 # Install dependencies
-pip install mkdocs mkdocs-material pymdown-extensions
+pip install mkdocs mkdocs-material pymdown-extensions mkdocs-git-revision-date-localized-plugin mkdocs-git-authors-plugin
 
 # Preview the site
 mkdocs serve
