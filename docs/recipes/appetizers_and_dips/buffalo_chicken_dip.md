@@ -2,6 +2,7 @@
 tags:
   - appetizers
   - dips
+  - chicken
 author: Stephanie Smith
 source:
 ---

@@ -6,6 +6,14 @@ A collection of delicious family recipes, beautifully organized and accessible a
 
 This repository contains the source files for the Mason Recipes website, built with [MkDocs](https://www.mkdocs.org/) and the [Material theme](https://squidfunk.github.io/mkdocs-material/). All recipes are stored as markdown files and automatically deployed to GitHub Pages.
 
+## Features
+
+- Clean, modern recipe presentation
+- Organized by category for easy navigation
+- Search functionality to quickly find recipes
+- Responsive design for mobile and desktop
+- Automated deployment via GitHub Actions
+
 ## Structure
 
 ```text
@@ -51,11 +59,37 @@ We welcome contributions! To add a recipe:
 
 ## Development
 
-To build and preview the site locally:
+To build and preview the site locally, it's recommended to use a virtual environment:
+
+### Using a Virtual Environment (Recommended)
+
+```bash
+# Create a virtual environment
+python -m venv venv
+
+# Activate the virtual environment
+# On Windows:
+.\venv\Scripts\activate
+# On macOS/Linux:
+source venv/bin/activate
+
+# Install dependencies from requirements.txt
+pip install -r requirements.txt
+
+# Preview the site
+mkdocs serve
+
+# Build the site
+mkdocs build
+```
+
+### Manual Installation (Alternative)
+
+If you prefer not to use a virtual environment:
 
 ```bash
 # Install dependencies
-pip install mkdocs mkdocs-material pymdown-extensions
+pip install mkdocs mkdocs-material pymdown-extensions mkdocs-git-revision-date-localized-plugin mkdocs-git-authors-plugin
 
 # Preview the site
 mkdocs serve
@@ -72,7 +106,7 @@ The site is automatically deployed to GitHub Pages whenever changes are pushed t
 
 ## License
 
-Feel free to use these recipes for personal use and sharing!
+This project is licensed under a custom license - see the [LICENSE](LICENSE) file for details. The recipes are available for personal, non-commercial use only.
 
 ## Issues or Requests
 

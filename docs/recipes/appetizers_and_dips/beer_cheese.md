@@ -2,6 +2,7 @@
 tags:
   - appetizers
   - dips
+  - cheese
 author: Scott Beihl
 source:
 ---
