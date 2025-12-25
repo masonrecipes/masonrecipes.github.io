@@ -6,6 +6,14 @@ A collection of delicious family recipes, beautifully organized and accessible a
 
 This repository contains the source files for the Mason Recipes website, built with [MkDocs](https://www.mkdocs.org/) and the [Material theme](https://squidfunk.github.io/mkdocs-material/). All recipes are stored as markdown files and automatically deployed to GitHub Pages.
 
+## Features
+
+- Clean, modern recipe presentation
+- Organized by category for easy navigation
+- Search functionality to quickly find recipes
+- Responsive design for mobile and desktop
+- Automated deployment via GitHub Actions
+
 ## Structure
 
 ```text
@@ -72,7 +80,7 @@ The site is automatically deployed to GitHub Pages whenever changes are pushed t
 
 ## License
 
-Feel free to use these recipes for personal use and sharing!
+This project is licensed under a custom license - see the [LICENSE](LICENSE) file for details. The recipes are available for personal, non-commercial use only.
 
 ## Issues or Requests
 
