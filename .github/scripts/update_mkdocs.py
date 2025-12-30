@@ -125,7 +125,7 @@ def add_recipe_to_nav(mkdocs_path, recipe_file, recipe_title, category, category
         # Remove backup if successful
         try:
             os.remove(backup_path)
-        except:
+        except OSError:
             pass  # Ignore errors removing backup
 
     except IOError as e:
@@ -138,7 +138,7 @@ def add_recipe_to_nav(mkdocs_path, recipe_file, recipe_title, category, category
                 with open(mkdocs_path, "w", encoding="utf-8") as f:
                     f.write(backup_content)
                 print("Restored mkdocs.yml from backup", file=sys.stderr)
-            except:
+            except IOError:
                 pass
         sys.exit(1)
 

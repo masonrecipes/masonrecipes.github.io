@@ -43,6 +43,7 @@ jobs:
           YAML_YAMLLINT_FILTER_REGEX_EXCLUDE: (mkdocs.yml)
           # Apply fixes automatically
           APPLY_FIXES: all
+          APPLY_FIXES_MODE: commit
 
       - name: Commit and push fixes
         if: steps.ml.outputs.has_updated_sources == 1

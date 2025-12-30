@@ -39,3 +39,6 @@ build/
 *.tmp
 *.bak
 .cache/
+
+# MegaLinter reports
+megalinter-reports/
