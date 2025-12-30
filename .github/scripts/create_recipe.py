@@ -140,7 +140,6 @@ def main():
     try:
         # Get environment variables
         issue_body = os.environ.get("ISSUE_BODY", "")
-        issue_title = os.environ.get("ISSUE_TITLE", "")
 
         if not issue_body:
             print("Error: ISSUE_BODY environment variable is empty", file=sys.stderr)
