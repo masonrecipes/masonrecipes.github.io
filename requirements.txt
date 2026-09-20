@@ -1,5 +1,1 @@
-mkdocs
-mkdocs-material
-pymdown-extensions
-mkdocs-git-revision-date-localized-plugin
-mkdocs-git-authors-plugin
+zensical==0.0.63
