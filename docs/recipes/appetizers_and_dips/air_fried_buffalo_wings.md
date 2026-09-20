@@ -3,6 +3,7 @@ tags:
   - appetizers
   - dips
   - chicken
+  - By David Beihl
 author: David Beihl
 source:
 ---

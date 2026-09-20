@@ -2,6 +2,7 @@
 tags:
   - appetizers
   - dips
+  - By Stephanie Smith
 author: Stephanie Smith
 source:
 ---

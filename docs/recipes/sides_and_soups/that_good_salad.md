@@ -2,6 +2,8 @@
 tags:
   - sides
   - soups
+  - By Sherry Beihl
+  - By Cindy Gustafson
 author:
   - Sherry Beihl
   - Cindy Gustafson

@@ -3,6 +3,7 @@ tags:
   - appetizers
   - dips
   - cheese
+  - By Scott Beihl
 author: Scott Beihl
 source:
 ---

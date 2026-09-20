@@ -2,6 +2,7 @@
 tags:
   - breads
   - baking
+  - By Krista Rich
 author: Krista Rich
 source:
 ---

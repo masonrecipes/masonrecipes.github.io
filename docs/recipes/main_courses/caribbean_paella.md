@@ -2,6 +2,7 @@
 tags:
   - main-course
   - entree
+  - By Scott Beihl
 author: Scott Beihl
 source:
 ---

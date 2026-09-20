@@ -2,6 +2,7 @@
 tags:
   - sides
   - soups
+  - By Scott Beihl
 author: Scott Beihl
 source:
 ---

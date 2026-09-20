@@ -157,6 +157,8 @@ nav:
       - Kristas Tartine Bread: recipes/breads_and_extras/kristas_tartine_bread.md
       - Oatmeal Bread: recipes/breads_and_extras/oatmeal_bread.md
       - Potato Rusks: recipes/breads_and_extras/potato_rusks.md
+  - Tags: tags.md
+  - Authors: authors.md
   - Contact: recipes/contact.md
 
 plugins:
