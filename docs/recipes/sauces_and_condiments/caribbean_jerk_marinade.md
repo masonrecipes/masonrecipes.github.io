@@ -2,6 +2,7 @@
 tags:
   - sauces
   - condiments
+  - By Scott Beihl
 author: Scott Beihl
 source:
 ---

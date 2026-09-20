@@ -2,6 +2,7 @@
 tags:
   - sides
   - soups
+  - By Logan Brown
 author: Logan Brown
 source:
 ---

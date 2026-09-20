@@ -2,6 +2,9 @@
 tags:
   - desserts
   - sweets
+  - By Sherry Beihl
+  - By Janet Mason
+  - By Mike Beihl
 author:
   - Sherry Beihl
   - Janet Mason

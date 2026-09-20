@@ -3,6 +3,7 @@ tags:
   - appetizers
   - dips
   - chicken
+  - By Stephanie Smith
 author: Stephanie Smith
 source:
 ---

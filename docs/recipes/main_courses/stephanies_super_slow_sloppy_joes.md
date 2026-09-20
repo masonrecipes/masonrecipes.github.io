@@ -2,6 +2,7 @@
 tags:
   - main-course
   - entree
+  - By Stephanie Smith
 author: Stephanie Smith
 source:
 ---

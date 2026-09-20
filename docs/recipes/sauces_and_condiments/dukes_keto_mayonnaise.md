@@ -2,6 +2,8 @@
 tags:
   - sauces
   - condiments
+  - By Sherry Beihl
+  - By Mike Beihl
 author:
   - Sherry Beihl
   - Mike Beihl
