@@ -4,7 +4,7 @@ A collection of delicious family recipes, beautifully organized and accessible a
 
 ## About
 
-This repository contains the source files for the Mason Recipes website, built with [MkDocs](https://www.mkdocs.org/) and the [Material theme](https://squidfunk.github.io/mkdocs-material/). All recipes are stored as markdown files and automatically deployed to GitHub Pages.
+This repository contains the source files for the Mason Recipes website, built with [Zensical](https://zensical.org/), reading the Material-style `mkdocs.yml` configuration. All recipes are stored as markdown files and automatically deployed to GitHub Pages.
 
 ## Features
 
@@ -77,10 +77,10 @@ source venv/bin/activate
 pip install -r requirements.txt
 
 # Preview the site
-mkdocs serve
+zensical serve
 
 # Build the site
-mkdocs build
+zensical build
 ```
 
 ### Manual Installation (Alternative)
@@ -89,20 +89,20 @@ If you prefer not to use a virtual environment:
 
 ```bash
 # Install dependencies
-pip install mkdocs mkdocs-material pymdown-extensions mkdocs-git-revision-date-localized-plugin mkdocs-git-authors-plugin
+pip install zensical==0.0.63
 
 # Preview the site
-mkdocs serve
+zensical serve
 
 # Build the site
-mkdocs build
+zensical build
 ```
 
 The site will be available at `http://localhost:8000`.
 
 ## Deployment
 
-The site is automatically deployed to GitHub Pages whenever changes are pushed to the `main` branch. The GitHub Actions workflow builds the mkdocs site and publishes it to the `gh-pages` branch.
+The site is automatically deployed to GitHub Pages whenever changes are pushed to the `main` branch. The GitHub Actions workflow builds the Zensical site and publishes it to the `gh-pages` branch.
 
 ## License
 
