@@ -30,7 +30,11 @@
       <button class="recipe-submission-send md-button md-button--primary" type="submit">Send recipe</button>
     </form>`;
 
-  document.body.append(button, dialog);
+  // Zensical scopes .md-button and form typography under .md-typeset.
+  const root = document.createElement("div");
+  root.className = "md-typeset";
+  root.append(button, dialog);
+  document.body.append(root);
 
   const form = dialog.querySelector("form");
   const closeButton = dialog.querySelector(".recipe-submission-close");
