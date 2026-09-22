@@ -22,12 +22,9 @@
       <input id="recipe-submission-name" name="recipeName" maxlength="120" required autocomplete="off">
       <label for="recipe-submission-text">Recipe <span aria-hidden="true">*</span></label>
       <textarea id="recipe-submission-text" name="recipeText" maxlength="12000" required rows="12"></textarea>
-      <label for="recipe-submission-submitter">Your name <span class="recipe-submission-optional">(optional)</span></label>
-      <input id="recipe-submission-submitter" name="submitterName" maxlength="80" autocomplete="name">
-      <div class="recipe-submission-honeypot" aria-hidden="true">
-        <label for="recipe-submission-website">Website</label>
-        <input id="recipe-submission-website" name="website" tabindex="-1" autocomplete="off">
-      </div>
+      <label for="recipe-submission-submitter">Your name <span class="recipe-submission-optional">(optional, shown publicly)</span></label>
+      <input id="recipe-submission-submitter" name="submitterName" maxlength="80" autocomplete="name" aria-describedby="recipe-submission-submitter-note">
+      <p id="recipe-submission-submitter-note" class="recipe-submission-optional">If you add your name, it will appear publicly with your recipe.</p>
       <div class="recipe-submission-turnstile" aria-label="Spam check"></div>
       <p class="recipe-submission-status" role="status" aria-live="polite"></p>
       <button class="recipe-submission-send md-button md-button--primary" type="submit">Send recipe</button>
@@ -102,7 +99,6 @@
           recipeText: fields.get("recipeText"),
           submitterName: fields.get("submitterName"),
           turnstileToken,
-          website: fields.get("website"),
         }),
         headers: { "content-type": "application/json" },
         method: "POST",
@@ -114,7 +110,7 @@
       resetTurnstile();
       setStatus("Thank you! Your recipe was sent to the Mason Recipes family.");
     } catch (error) {
-      setStatus(error.message || "We could not send your recipe. Please try again later.");
+      setStatus(error instanceof TypeError || !error.message ? "We could not send your recipe. Please try again later." : error.message);
       resetTurnstile();
     } finally {
       sendButton.disabled = false;

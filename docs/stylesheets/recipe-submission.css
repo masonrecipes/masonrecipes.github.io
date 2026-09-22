@@ -77,14 +77,6 @@
   font-weight: 400;
 }
 
-.recipe-submission-honeypot {
-  height: 0;
-  left: -9999px;
-  overflow: hidden;
-  position: absolute;
-  width: 0;
-}
-
 .recipe-submission-turnstile {
   margin-top: 1rem;
 }

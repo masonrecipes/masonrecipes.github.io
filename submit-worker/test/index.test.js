@@ -27,7 +27,6 @@ function request(body = {}, origin = ORIGIN) {
       recipeText: "Mix, bake, and share.",
       submitterName: "Mason",
       turnstileToken: "valid-turnstile-token",
-      website: "",
       ...body,
     }),
   });
@@ -104,7 +103,7 @@ describe("recipe submission worker", () => {
 
     assert.equal(response.status, 429);
     assert.deepEqual(await response.json(), { error: "Please wait a few minutes before submitting another recipe." });
-    assert.equal(fetchMock.calls.length, 4);
+    assert.equal(fetchMock.calls.length, 5);
   });
 
   it("rejects a submission without the recipe text", async () => {
@@ -134,12 +133,22 @@ describe("recipe submission worker", () => {
     assert.equal(fetchMock.calls.length, 0);
   });
 
-  it("silently accepts a honeypot hit without creating an issue", async () => {
-    const fetchMock = successfulFetch();
-    const response = await createWorker({ fetcher: fetchMock }).fetch(request({ website: "bot.example" }), environment());
+  it("does not count failed spam checks toward the rate limit", async () => {
+    const rateLimiter = limiter();
+    const fetchMock = spy(async () => Response.json({ success: false }));
+    const response = await createWorker({ fetcher: fetchMock }).fetch(request(), environment(rateLimiter));
 
-    assert.equal(response.status, 201);
-    assert.deepEqual(await response.json(), { ok: true });
-    assert.equal(fetchMock.calls.length, 0);
+    assert.equal(response.status, 400);
+    assert.deepEqual(await response.json(), { error: "Please complete the spam check and try again." });
+    assert.equal(rateLimiter.get.calls.length, 0);
+  });
+
+  it("returns a CORS-readable error when an upstream call throws", async () => {
+    const fetchMock = spy(async () => { throw new TypeError("network down"); });
+    const response = await createWorker({ fetcher: fetchMock }).fetch(request(), environment());
+
+    assert.equal(response.status, 502);
+    assert.equal(response.headers.get("access-control-allow-origin"), ORIGIN);
+    assert.deepEqual(await response.json(), { error: "We could not save your recipe right now. Please try again later." });
   });
 });

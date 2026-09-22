@@ -119,10 +119,6 @@ export function createWorker({ fetcher = globalThis.fetch } = {}) {
         return json({ error: "We could not read that recipe. Please try again." }, 400, origin);
       }
 
-      if (text(payload.website)) {
-        return json({ ok: true }, 201, origin);
-      }
-
       const recipeName = titleText(payload.recipeName);
       const recipeText = text(payload.recipeText);
       const submitterName = titleText(payload.submitterName);
@@ -155,34 +151,36 @@ export function createWorker({ fetcher = globalThis.fetch } = {}) {
         return json({ error: "We could not verify your connection. Please try again." }, 400, origin);
       }
 
-      const rateLimitId = env.SUBMISSION_RATE_LIMITER.idFromName(await ipHash(clientIp));
-      const limiter = env.SUBMISSION_RATE_LIMITER.get(rateLimitId);
-      const rateLimitResponse = await limiter.fetch("https://rate-limit/check", { method: "POST" });
-      const { allowed } = await rateLimitResponse.json();
-      if (!allowed) {
-        return json({ error: "Please wait a few minutes before submitting another recipe." }, 429, origin);
-      }
+      try {
+        if (!await verifyTurnstile(turnstileToken, request, env, fetcher)) {
+          return json({ error: "Please complete the spam check and try again." }, 400, origin);
+        }
 
-      if (!await verifyTurnstile(turnstileToken, request, env, fetcher)) {
-        return json({ error: "Please complete the spam check and try again." }, 400, origin);
-      }
+        const rateLimitId = env.SUBMISSION_RATE_LIMITER.idFromName(await ipHash(clientIp));
+        const limiter = env.SUBMISSION_RATE_LIMITER.get(rateLimitId);
+        const rateLimitResponse = await limiter.fetch("https://rate-limit/check", { method: "POST" });
+        const { allowed } = await rateLimitResponse.json();
+        if (!allowed) {
+          return json({ error: "Please wait a few minutes before submitting another recipe." }, 429, origin);
+        }
 
-      const githubResponse = await fetcher(GITHUB_ISSUES_URL, {
-        body: JSON.stringify({
-          body: issueBody({ recipeName, recipeText, submitterName }),
-          labels: ["recipe-submission"],
-          title: `[Website submission] ${recipeName}`,
-        }),
-        headers: {
-          accept: "application/vnd.github+json",
-          authorization: `Bearer ${env.GITHUB_TOKEN}`,
-          "content-type": "application/json",
-          "x-github-api-version": "2022-11-28",
-        },
-        method: "POST",
-      });
+        const githubResponse = await fetcher(GITHUB_ISSUES_URL, {
+          body: JSON.stringify({
+            body: issueBody({ recipeName, recipeText, submitterName }),
+            labels: ["recipe-submission"],
+            title: `[Website submission] ${recipeName}`,
+          }),
+          headers: {
+            accept: "application/vnd.github+json",
+            authorization: `Bearer ${env.GITHUB_TOKEN}`,
+            "content-type": "application/json",
+            "x-github-api-version": "2022-11-28",
+          },
+          method: "POST",
+        });
 
-      if (!githubResponse.ok) {
+        if (!githubResponse.ok) throw new Error(`GitHub returned ${githubResponse.status}`);
+      } catch {
         return json({ error: "We could not save your recipe right now. Please try again later." }, 502, origin);
       }
 
