@@ -174,12 +174,16 @@ export function createWorker({ fetcher = globalThis.fetch } = {}) {
             accept: "application/vnd.github+json",
             authorization: `Bearer ${env.GITHUB_TOKEN}`,
             "content-type": "application/json",
+            "user-agent": "mason-recipe-submissions",
             "x-github-api-version": "2022-11-28",
           },
           method: "POST",
         });
 
-        if (!githubResponse.ok) throw new Error(`GitHub returned ${githubResponse.status}`);
+        if (!githubResponse.ok) {
+          console.error("GitHub issue creation failed:", githubResponse.status, await githubResponse.text());
+          throw new Error(`GitHub returned ${githubResponse.status}`);
+        }
       } catch {
         return json({ error: "We could not save your recipe right now. Please try again later." }, 502, origin);
       }

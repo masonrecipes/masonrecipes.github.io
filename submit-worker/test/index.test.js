@@ -76,6 +76,7 @@ describe("recipe submission worker", () => {
 
     const [, githubRequest] = fetchMock.calls[1];
     assert.equal(githubRequest.headers.authorization, "Bearer token");
+    assert.equal(githubRequest.headers["user-agent"], "mason-recipe-submissions");
     const issue = JSON.parse(githubRequest.body);
     assert.deepEqual(issue.labels, ["recipe-submission"]);
     assert.equal(issue.title, "[Website submission] Grandma's Cookies");
@@ -150,5 +151,28 @@ describe("recipe submission worker", () => {
     assert.equal(response.status, 502);
     assert.equal(response.headers.get("access-control-allow-origin"), ORIGIN);
     assert.deepEqual(await response.json(), { error: "We could not save your recipe right now. Please try again later." });
+  });
+
+  it("logs a rejected GitHub response and returns a CORS-readable error", async (t) => {
+    const githubFailure = "Missing required User-Agent header";
+    const failingFetch = spy(async (url) => {
+      if (url === "https://challenges.cloudflare.com/turnstile/v0/siteverify") {
+        return Response.json({
+          action: "recipe_submit",
+          hostname: "masonrecipes.github.io",
+          success: true,
+        });
+      }
+      return new Response(githubFailure, { status: 403 });
+    });
+    const error = spy(() => {});
+    t.mock.method(console, "error", error);
+
+    const response = await createWorker({ fetcher: failingFetch }).fetch(request(), environment());
+
+    assert.equal(response.status, 502);
+    assert.equal(response.headers.get("access-control-allow-origin"), ORIGIN);
+    assert.deepEqual(await response.json(), { error: "We could not save your recipe right now. Please try again later." });
+    assert.deepEqual(error.calls[0], ["GitHub issue creation failed:", 403, githubFailure]);
   });
 });
