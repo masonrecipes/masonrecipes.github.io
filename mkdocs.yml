@@ -167,9 +167,6 @@ plugins:
       lang: en
       separator: '[\s\-\.]+'
   - tags
-  - git-revision-date-localized:
-      enable_creation_date: true
-  - git-authors
 
 markdown_extensions:
   - pymdownx.emoji:
