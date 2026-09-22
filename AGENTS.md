@@ -6,7 +6,7 @@ This file is the project's committed home for project-intrinsic agent knowledge:
 
 ## Recipe submissions
 
-- The browser form is supplied through the `extra_javascript` and `extra_css` hooks in `mkdocs.yml`; its public endpoint and Turnstile site key stay blank in `docs/javascripts/recipe-submission-config.js` until the Worker has been deployed.
+- The browser form is supplied through the `extra_javascript` and `extra_css` hooks in `mkdocs.yml`; its public endpoint and Turnstile site key live in `docs/javascripts/recipe-submission-config.js`, and the button stays hidden if either is blank.
 - `submit-worker/README.md` is the authoritative deployment and secret-configuration runbook. Website-created issues deliberately remain open for later AI or human recipe formatting; `.github/workflows/process_recipe_submission.yml` continues to process only the richer GitHub issue template submissions.
 
 ## Maintaining this file
