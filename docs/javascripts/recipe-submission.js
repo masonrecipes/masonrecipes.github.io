@@ -20,8 +20,10 @@
       <p>Send us the recipe in whatever form you have it. We will take it from there.</p>
       <label for="recipe-submission-name">Recipe name <span aria-hidden="true">*</span></label>
       <input id="recipe-submission-name" name="recipeName" maxlength="120" required autocomplete="off">
-      <label for="recipe-submission-text">Recipe <span aria-hidden="true">*</span></label>
-      <textarea id="recipe-submission-text" name="recipeText" maxlength="12000" required rows="12"></textarea>
+      <label for="recipe-submission-ingredients">Ingredients <span aria-hidden="true">*</span></label>
+      <textarea id="recipe-submission-ingredients" name="ingredients" maxlength="12000" required rows="8" placeholder="One ingredient per line"></textarea>
+      <label for="recipe-submission-recipe">Recipe <span aria-hidden="true">*</span></label>
+      <textarea id="recipe-submission-recipe" name="recipe" maxlength="12000" required rows="12" placeholder="Describe the steps"></textarea>
       <label for="recipe-submission-submitter">Your name <span class="recipe-submission-optional">(optional, shown publicly)</span></label>
       <input id="recipe-submission-submitter" name="submitterName" maxlength="80" autocomplete="name" aria-describedby="recipe-submission-submitter-note">
       <p id="recipe-submission-submitter-note" class="recipe-submission-optional">If you add your name, it will appear publicly with your recipe.</p>
@@ -100,7 +102,8 @@
       const response = await fetch(config.endpoint, {
         body: JSON.stringify({
           recipeName: fields.get("recipeName"),
-          recipeText: fields.get("recipeText"),
+          ingredients: fields.get("ingredients"),
+          recipe: fields.get("recipe"),
           submitterName: fields.get("submitterName"),
           turnstileToken,
         }),

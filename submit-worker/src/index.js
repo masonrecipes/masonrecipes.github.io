@@ -5,7 +5,8 @@ const LIMIT = 2;
 
 const MAX_LENGTHS = {
   recipeName: 120,
-  recipeText: 12_000,
+  ingredients: 12_000,
+  recipe: 12_000,
   submitterName: 80,
   turnstileToken: 2_048,
 };
@@ -41,7 +42,7 @@ function fenced(value) {
   return `${fence}text\n${value}\n${fence}`;
 }
 
-function issueBody({ recipeName, recipeText, submitterName }) {
+function issueBody({ recipeName, ingredients, recipe, submitterName }) {
   const submitter = submitterName || "Not provided";
   return [
     "## Website recipe submission",
@@ -52,9 +53,13 @@ function issueBody({ recipeName, recipeText, submitterName }) {
     "",
     fenced(recipeName),
     "",
-    "### Recipe Text",
+    "### Ingredients",
     "",
-    fenced(recipeText),
+    fenced(ingredients),
+    "",
+    "### Recipe",
+    "",
+    fenced(recipe),
     "",
     "### Submitted By",
     "",
@@ -120,15 +125,19 @@ export function createWorker({ fetcher = globalThis.fetch } = {}) {
       }
 
       const recipeName = titleText(payload.recipeName);
-      const recipeText = text(payload.recipeText);
+      const ingredients = text(payload.ingredients);
+      const recipe = text(payload.recipe);
       const submitterName = titleText(payload.submitterName);
       const turnstileToken = text(payload.turnstileToken);
 
       if (!recipeName) {
         return json({ error: "Please enter the recipe name." }, 400, origin);
       }
-      if (!recipeText) {
-        return json({ error: "Please enter the recipe details." }, 400, origin);
+      if (!ingredients) {
+        return json({ error: "Please enter the ingredients." }, 400, origin);
+      }
+      if (!recipe) {
+        return json({ error: "Please enter the recipe steps." }, 400, origin);
       }
       if (!turnstileToken) {
         return json({ error: "Please complete the spam check and try again." }, 400, origin);
@@ -138,7 +147,8 @@ export function createWorker({ fetcher = globalThis.fetch } = {}) {
         if (exceedsMaxLength(payload[field], max)) {
           const messages = {
             recipeName: "The recipe name is too long. Please keep it under 120 characters.",
-            recipeText: "The recipe details are too long. Please keep them under 12,000 characters.",
+            ingredients: "The ingredients are too long. Please keep them under 12,000 characters.",
+            recipe: "The recipe steps are too long. Please keep them under 12,000 characters.",
             submitterName: "Your name is too long. Please keep it under 80 characters.",
             turnstileToken: "Please refresh the spam check and try again.",
           };
@@ -166,7 +176,7 @@ export function createWorker({ fetcher = globalThis.fetch } = {}) {
 
         const githubResponse = await fetcher(GITHUB_ISSUES_URL, {
           body: JSON.stringify({
-            body: issueBody({ recipeName, recipeText, submitterName }),
+            body: issueBody({ recipeName, ingredients, recipe, submitterName }),
             labels: ["recipe-submission"],
             title: `[Website submission] ${recipeName}`,
           }),
