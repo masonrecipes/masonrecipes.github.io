@@ -24,7 +24,8 @@ function request(body = {}, origin = ORIGIN) {
     },
     body: JSON.stringify({
       recipeName: "Grandma's Cookies",
-      recipeText: "Mix, bake, and share.",
+      ingredients: "2 cups flour\n1 cup sugar",
+      recipe: "Mix, bake, and share.",
       submitterName: "Mason",
       turnstileToken: "valid-turnstile-token",
       ...body,
@@ -76,10 +77,12 @@ describe("recipe submission worker", () => {
 
     const [, githubRequest] = fetchMock.calls[1];
     assert.equal(githubRequest.headers.authorization, "Bearer token");
+    assert.equal(githubRequest.headers["user-agent"], "mason-recipe-submissions");
     const issue = JSON.parse(githubRequest.body);
     assert.deepEqual(issue.labels, ["recipe-submission"]);
     assert.equal(issue.title, "[Website submission] Grandma's Cookies");
-    assert.match(issue.body, /### Recipe Text\n\n```text\nMix, bake, and share\.\n```/);
+    assert.match(issue.body, /### Ingredients\n\n```text\n2 cups flour\n1 cup sugar\n```/);
+    assert.match(issue.body, /### Recipe\n\n```text\nMix, bake, and share\.\n```/);
   });
 
   it("refuses the third submission in a five-minute window", async () => {
@@ -106,21 +109,30 @@ describe("recipe submission worker", () => {
     assert.equal(fetchMock.calls.length, 5);
   });
 
-  it("rejects a submission without the recipe text", async () => {
+  it("rejects a submission without ingredients", async () => {
     const fetchMock = successfulFetch();
-    const response = await createWorker({ fetcher: fetchMock }).fetch(request({ recipeText: "" }), environment());
+    const response = await createWorker({ fetcher: fetchMock }).fetch(request({ ingredients: "" }), environment());
 
     assert.equal(response.status, 400);
-    assert.deepEqual(await response.json(), { error: "Please enter the recipe details." });
+    assert.deepEqual(await response.json(), { error: "Please enter the ingredients." });
+    assert.equal(fetchMock.calls.length, 0);
+  });
+
+  it("rejects a submission without recipe steps", async () => {
+    const fetchMock = successfulFetch();
+    const response = await createWorker({ fetcher: fetchMock }).fetch(request({ recipe: "" }), environment());
+
+    assert.equal(response.status, 400);
+    assert.deepEqual(await response.json(), { error: "Please enter the recipe steps." });
     assert.equal(fetchMock.calls.length, 0);
   });
 
   it("rejects fields that exceed their length limits", async () => {
     const fetchMock = successfulFetch();
-    const response = await createWorker({ fetcher: fetchMock }).fetch(request({ recipeText: "a".repeat(12_001) }), environment());
+    const response = await createWorker({ fetcher: fetchMock }).fetch(request({ ingredients: "a".repeat(12_001) }), environment());
 
     assert.equal(response.status, 400);
-    assert.deepEqual(await response.json(), { error: "The recipe details are too long. Please keep them under 12,000 characters." });
+    assert.deepEqual(await response.json(), { error: "The ingredients are too long. Please keep them under 12,000 characters." });
     assert.equal(fetchMock.calls.length, 0);
   });
 
@@ -150,5 +162,28 @@ describe("recipe submission worker", () => {
     assert.equal(response.status, 502);
     assert.equal(response.headers.get("access-control-allow-origin"), ORIGIN);
     assert.deepEqual(await response.json(), { error: "We could not save your recipe right now. Please try again later." });
+  });
+
+  it("logs a rejected GitHub response and returns a CORS-readable error", async (t) => {
+    const githubFailure = "Missing required User-Agent header";
+    const failingFetch = spy(async (url) => {
+      if (url === "https://challenges.cloudflare.com/turnstile/v0/siteverify") {
+        return Response.json({
+          action: "recipe_submit",
+          hostname: "masonrecipes.github.io",
+          success: true,
+        });
+      }
+      return new Response(githubFailure, { status: 403 });
+    });
+    const error = spy(() => {});
+    t.mock.method(console, "error", error);
+
+    const response = await createWorker({ fetcher: failingFetch }).fetch(request(), environment());
+
+    assert.equal(response.status, 502);
+    assert.equal(response.headers.get("access-control-allow-origin"), ORIGIN);
+    assert.deepEqual(await response.json(), { error: "We could not save your recipe right now. Please try again later." });
+    assert.deepEqual(error.calls[0], ["GitHub issue creation failed:", 403, githubFailure]);
   });
 });
