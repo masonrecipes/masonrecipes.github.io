@@ -6,8 +6,9 @@ on:
 
 jobs:
   process-recipe:
-    # Only run if the issue has the recipe-submission label
-    if: contains(github.event.issue.labels.*.name, 'recipe-submission')
+    if: >-
+      contains(github.event.issue.labels.*.name, 'recipe-submission') &&
+      !startsWith(github.event.issue.title, '[Website submission]')
     runs-on: ubuntu-latest
 
     permissions:

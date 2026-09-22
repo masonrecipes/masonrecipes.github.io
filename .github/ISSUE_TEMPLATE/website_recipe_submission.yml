@@ -1,0 +1,27 @@
+name: Website Recipe Submission
+description: Record a simple recipe submitted through the Mason Recipes website
+title: "[Website submission] "
+labels: ["recipe-submission"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This form matches the simple recipe form on the Mason Recipes website. Recipe submissions are drafted for later review and formatting.
+  - type: input
+    id: recipe_name
+    attributes:
+      label: Recipe name
+    validations:
+      required: true
+  - type: textarea
+    id: recipe_text
+    attributes:
+      label: Recipe text
+      description: Include ingredients, directions, and any notes in whatever form you have them.
+    validations:
+      required: true
+  - type: input
+    id: submitter_name
+    attributes:
+      label: Your name
+      description: Optional
