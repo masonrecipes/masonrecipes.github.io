@@ -168,6 +168,13 @@ plugins:
       separator: '[\s\-\.]+'
   - tags
 
+extra_javascript:
+  - javascripts/recipe-submission-config.js
+  - javascripts/recipe-submission.js
+
+extra_css:
+  - stylesheets/recipe-submission.css
+
 markdown_extensions:
   - pymdownx.emoji:
       emoji_index: !!python/name:pymdownx.emoji.twemoji

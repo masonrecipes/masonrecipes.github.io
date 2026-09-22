@@ -1,0 +1,23 @@
+{
+  "name": "mason-recipe-submissions",
+  "main": "src/index.js",
+  "compatibility_date": "2026-09-22",
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "SUBMISSION_RATE_LIMITER",
+        "class_name": "SubmissionRateLimiter"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["SubmissionRateLimiter"]
+    }
+  ],
+  "vars": {
+    "ALLOWED_ORIGIN": "https://masonrecipes.github.io",
+    "TURNSTILE_HOSTNAME": "masonrecipes.github.io"
+  }
+}
