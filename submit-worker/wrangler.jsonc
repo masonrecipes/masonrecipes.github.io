@@ -2,6 +2,8 @@
   "name": "mason-recipe-submissions",
   "main": "src/index.js",
   "compatibility_date": "2026-09-22",
+  "workers_dev": true,
+  "preview_urls": false,
   "durable_objects": {
     "bindings": [
       {
