@@ -35,6 +35,7 @@ function titleText(value) {
 
 function isHttpUrl(value) {
   if (!value) return true;
+  if (/\s/.test(value)) return false;
   try {
     const url = new URL(value);
     return url.protocol === "http:" || url.protocol === "https:";

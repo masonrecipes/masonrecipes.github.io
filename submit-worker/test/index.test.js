@@ -99,7 +99,7 @@ describe("recipe submission worker", () => {
   });
 
   it("rejects source links that are not HTTP URLs", async () => {
-    for (const sourceUrl of ["javascript:alert('unsafe')", "Grandma's cookbook"]) {
+    for (const sourceUrl of ["javascript:alert('unsafe')", "Grandma's cookbook", "https://example.com/\nextra text"]) {
       const fetchMock = successfulFetch();
       const response = await createWorker({ fetcher: fetchMock }).fetch(request({ sourceUrl }), environment());
 
