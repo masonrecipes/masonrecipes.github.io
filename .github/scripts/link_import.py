@@ -77,36 +77,33 @@ def check_url(url):
     return parts
 
 
-def _open(conn):
-    sock = socket.create_connection((conn._ip, conn.port), conn.timeout)
-    if conn._on_socket:
-        conn._on_socket(sock)
-    return sock
-
-
 class _PinnedHTTP(http.client.HTTPConnection):
     def __init__(self, host, ip, on_socket=None, **kwargs):
         super().__init__(host, **kwargs)
-        self._ip, self._on_socket = ip, on_socket
+        self._ip, self._on_socket = ip, on_socket or (lambda sock: None)
 
     def connect(self):
-        self.sock = _open(self)
+        self.sock = socket.create_connection((self._ip, self.port), self.timeout)
+        self._on_socket(self.sock)
 
 
 class _PinnedHTTPS(http.client.HTTPSConnection):
     def __init__(self, host, ip, on_socket=None, **kwargs):
         super().__init__(host, context=ssl.create_default_context(), **kwargs)
-        self._ip, self._on_socket = ip, on_socket
+        self._ip, self._on_socket = ip, on_socket or (lambda sock: None)
 
     def connect(self):
-        sock = _open(self)
+        sock = socket.create_connection((self._ip, self.port), self.timeout)
         # Certificate and SNI are checked against the real host name.
-        self.sock = self._context.wrap_socket(sock, server_hostname=self.host)
+        self.sock = self._context.wrap_socket(sock, server_hostname=self.host,
+                                              do_handshake_on_connect=False)
+        self._on_socket(self.sock)
+        self.sock.do_handshake()
 
 
 def send(parts, ip, timeout=TIMEOUT, on_socket=None):
     """GET the URL from the vetted address. Returns an http.client response.
-    `on_socket` receives the raw socket as soon as it is connected."""
+    `on_socket` receives the socket used for I/O as soon as it is connected."""
     cls = _PinnedHTTPS if parts.scheme.lower() == "https" else _PinnedHTTP
     conn = cls(parts.hostname, ip, on_socket=on_socket, port=parts.port, timeout=timeout)
     path = urllib.parse.urlunsplit(("", "", parts.path or "/", parts.query, ""))

@@ -6,6 +6,8 @@ Run: python3 -m unittest discover -s .github/scripts -p 'test_*.py'
 
 import http.server
 import os
+import socket
+import ssl
 import sys
 import threading
 import time
@@ -287,6 +289,45 @@ class SendTest(unittest.TestCase):
         self.assertEqual(str(ctx.exception), "link-fetch-failed")
         self.assertLess(time.monotonic() - start, 2)
 
+    def test_real_socket_tls_header_drip_cannot_outlast_the_deadline(self):
+        # A self-signed certificate for recipe.invalid, used only by this test.
+        cert = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fixtures", "test_only_tls.pem")
+        server_tls = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+        server_tls.load_cert_chain(cert)
+        listener = socket.socket()
+        listener.bind(("127.0.0.1", 0))
+        listener.listen(1)
+        self.addCleanup(listener.close)
+        port = listener.getsockname()[1]
+
+        def header_drip():
+            raw, _ = listener.accept()
+            try:
+                with server_tls.wrap_socket(raw, server_side=True) as conn:
+                    conn.recv(4096)  # the request
+                    conn.sendall(b"HTTP/1.1 200 OK\r\nX-Slow: ")
+                    for _ in range(40):  # one header byte every 0.1 s: never trips the socket timeout
+                        conn.sendall(b"x")
+                        time.sleep(0.1)
+                    conn.sendall(b"\r\nContent-Type: text/html\r\nContent-Length: 9\r\n\r\n<p>ok</p>")
+            except OSError:
+                pass
+
+        threading.Thread(target=header_drip, daemon=True).start()
+
+        def loopback(parts, ip, timeout=li.TIMEOUT, on_socket=None):
+            return li.send(urllib.parse.urlsplit(f"https://recipe.invalid:{port}/"), "127.0.0.1",
+                           timeout, on_socket)
+
+        trusting = ssl.create_default_context(cafile=cert)
+        start = time.monotonic()
+        with mock.patch.object(li, "DEADLINE", 1), mock.patch.object(li, "TIMEOUT", 0.5), \
+                mock.patch.object(li.ssl, "create_default_context", lambda: trusting):
+            with self.assertRaises(li.FetchError) as ctx:
+                li.fetch_page("https://recipes.example/slow",
+                              resolver=resolver({"recipes.example": ["93.184.215.14"]}), sender=loopback)
+        self.assertEqual(str(ctx.exception), "link-fetch-failed")
+        self.assertLess(time.monotonic() - start, 2)
 
 if __name__ == "__main__":
     unittest.main()
