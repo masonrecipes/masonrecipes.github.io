@@ -21,14 +21,14 @@
         <h2 id="recipe-submission-title">Share a recipe</h2>
         <button class="recipe-submission-close" type="button" aria-label="Close recipe form">×</button>
       </div>
-      <p>Send us the recipe in whatever form you have it. We will take it from there.</p>
+      <p>Send us the recipe in whatever form you have it. We will take it from there. Found it online? Paste the link and we can read the ingredients and steps from the page.</p>
       <label for="recipe-submission-name">Recipe name <span aria-hidden="true">*</span></label>
       <input id="recipe-submission-name" name="recipeName" maxlength="120" required autocomplete="off">
       <label for="recipe-submission-source">Inspired by (link) <span class="recipe-submission-optional">(optional)</span></label>
       <input id="recipe-submission-source" name="sourceUrl" type="url" maxlength="2048" autocomplete="url" inputmode="url" placeholder="https://example.com/recipe">
-      <label for="recipe-submission-ingredients">Ingredients <span aria-hidden="true">*</span></label>
+      <label for="recipe-submission-ingredients">Ingredients <span class="recipe-submission-required" aria-hidden="true">*</span></label>
       <textarea id="recipe-submission-ingredients" name="ingredients" maxlength="12000" required rows="8" placeholder="One ingredient per line"></textarea>
-      <label for="recipe-submission-recipe">Recipe <span aria-hidden="true">*</span></label>
+      <label for="recipe-submission-recipe">Recipe <span class="recipe-submission-required" aria-hidden="true">*</span></label>
       <textarea id="recipe-submission-recipe" name="recipe" maxlength="12000" required rows="12" placeholder="Describe the steps"></textarea>
       <label for="recipe-submission-submitter">Your name <span class="recipe-submission-optional">(optional, shown publicly)</span></label>
       <input id="recipe-submission-submitter" name="submitterName" maxlength="80" autocomplete="name" aria-describedby="recipe-submission-submitter-note">
@@ -50,11 +50,20 @@
   header.insertBefore(button, searchToggle ?? null);
 
   const form = dialog.querySelector("form");
+  const sourceInput = dialog.querySelector("#recipe-submission-source");
+  const recipeText = [dialog.querySelector("#recipe-submission-ingredients"), dialog.querySelector("#recipe-submission-recipe")];
   const closeButton = dialog.querySelector(".recipe-submission-close");
   const sendButton = dialog.querySelector(".recipe-submission-send");
   const status = dialog.querySelector(".recipe-submission-status");
   let turnstileToken = "";
   let widgetId;
+
+  // A valid http(s) link lets us read the ingredients and steps from that page.
+  function syncRequired() {
+    const hasLink = sourceInput.validity.valid && /^https?:\/\/\S+$/i.test(sourceInput.value.trim());
+    for (const field of recipeText) field.required = !hasLink;
+    for (const mark of dialog.querySelectorAll(".recipe-submission-required")) mark.hidden = hasLink;
+  }
 
   function setStatus(message) {
     status.textContent = message;
@@ -94,6 +103,7 @@
     dialog.querySelector("#recipe-submission-name").focus();
   }
 
+  sourceInput.addEventListener("input", syncRequired);
   button.addEventListener("click", openDialog);
   closeButton.addEventListener("click", () => dialog.close());
   dialog.addEventListener("close", () => {
@@ -128,6 +138,7 @@
       if (!response.ok || !result.ok) throw new Error(result.error || "We could not send your recipe. Please try again later.");
 
       form.reset();
+      syncRequired();
       resetTurnstile();
       setStatus("Thank you! Your recipe was sent to the Mason Recipes family.");
     } catch (error) {
