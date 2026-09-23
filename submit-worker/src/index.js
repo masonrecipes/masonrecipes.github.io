@@ -8,6 +8,7 @@ const MAX_LENGTHS = {
   ingredients: 12_000,
   recipe: 12_000,
   submitterName: 80,
+  sourceUrl: 2_048,
   turnstileToken: 2_048,
 };
 
@@ -32,6 +33,16 @@ function titleText(value) {
   return text(value).replace(/[\r\n]+/g, " ");
 }
 
+function isHttpUrl(value) {
+  if (!value) return true;
+  try {
+    const url = new URL(value);
+    return url.protocol === "http:" || url.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
 function longestRun(value, character) {
   const matches = value.match(new RegExp(`\\${character}+`, "g"));
   return Math.max(0, ...(matches ?? []).map((match) => match.length));
@@ -42,8 +53,9 @@ function fenced(value) {
   return `${fence}text\n${value}\n${fence}`;
 }
 
-function issueBody({ recipeName, ingredients, recipe, submitterName }) {
+function issueBody({ recipeName, ingredients, recipe, submitterName, sourceUrl }) {
   const submitter = submitterName || "Not provided";
+  const source = sourceUrl || "Not provided";
   return [
     "## Website recipe submission",
     "",
@@ -64,6 +76,10 @@ function issueBody({ recipeName, ingredients, recipe, submitterName }) {
     "### Submitted By",
     "",
     fenced(submitter),
+    "",
+    "### Source link",
+    "",
+    fenced(source),
   ].join("\n");
 }
 
@@ -128,6 +144,7 @@ export function createWorker({ fetcher = globalThis.fetch } = {}) {
       const ingredients = text(payload.ingredients);
       const recipe = text(payload.recipe);
       const submitterName = titleText(payload.submitterName);
+      const sourceUrl = text(payload.sourceUrl);
       const turnstileToken = text(payload.turnstileToken);
 
       if (!recipeName) {
@@ -150,10 +167,15 @@ export function createWorker({ fetcher = globalThis.fetch } = {}) {
             ingredients: "The ingredients are too long. Please keep them under 12,000 characters.",
             recipe: "The recipe steps are too long. Please keep them under 12,000 characters.",
             submitterName: "Your name is too long. Please keep it under 80 characters.",
+            sourceUrl: "The source link is too long. Please keep it under 2,048 characters.",
             turnstileToken: "Please refresh the spam check and try again.",
           };
           return json({ error: messages[field] }, 400, origin);
         }
+      }
+
+      if (!isHttpUrl(sourceUrl)) {
+        return json({ error: "Please enter a valid source link." }, 400, origin);
       }
 
       const clientIp = request.headers.get("CF-Connecting-IP");
@@ -176,7 +198,7 @@ export function createWorker({ fetcher = globalThis.fetch } = {}) {
 
         const githubResponse = await fetcher(GITHUB_ISSUES_URL, {
           body: JSON.stringify({
-            body: issueBody({ recipeName, ingredients, recipe, submitterName }),
+            body: issueBody({ recipeName, ingredients, recipe, submitterName, sourceUrl }),
             labels: ["recipe-submission"],
             title: `[Website submission] ${recipeName}`,
           }),
