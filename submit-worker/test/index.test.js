@@ -744,6 +744,36 @@ describe("fill from link endpoint", () => {
     }
   });
 
+  it("asks the person to paste the recipe when the site answers with a bot challenge", async (t) => {
+    t.mock.method(console, "error", () => {});
+    const challenge = (status, headers = {}) => () => new Response(fixture("cloudflare_challenge.html"), {
+      status,
+      headers: { "content-type": "text/html; charset=UTF-8", ...headers },
+    });
+    const cases = {
+      "403 with cf-mitigated": challenge(403, { "cf-mitigated": "challenge" }),
+      "503 with cf-mitigated": challenge(503, { "cf-mitigated": "challenge" }),
+      "403 challenge page without the header": challenge(403),
+    };
+    for (const [label, page] of Object.entries(cases)) {
+      const env = fillEnvironment();
+      const response = await createWorker({ fetcher: webFetch({ pages: { [PAGE_URL]: page } }) }).fetch(fillRequest(), env);
+
+      assert.equal(response.status, 422, label);
+      assert.equal(response.headers.get("access-control-allow-origin"), ORIGIN, label);
+      assert.deepEqual(await response.json(), {
+        error: "This site blocks automatic reading. Please copy the ingredients and steps into the form.",
+      }, label);
+      assert.equal(env.AI.run.calls.length, 0, label);
+    }
+
+    // A plain 403 is not a challenge: the usual message.
+    const forbidden = webFetch({ pages: { [PAGE_URL]: () => new Response("Forbidden", { status: 403, headers: { "content-type": "text/plain" } }) } });
+    const response = await createWorker({ fetcher: forbidden }).fetch(fillRequest(), fillEnvironment());
+    assert.equal(response.status, 422);
+    assert.deepEqual(await response.json(), { error: "We couldn't read this page. You can still send the link." });
+  });
+
   it("refuses links to private, loopback, link-local and metadata addresses without fetching them", async (t) => {
     t.mock.method(console, "error", () => {});
     const cases = {

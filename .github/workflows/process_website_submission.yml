@@ -113,7 +113,13 @@ jobs:
             exit 0
           fi
           reason="$(tr -cd 'a-z-' < "${INTAKE_OUT_DIR}/failure-reason" 2>/dev/null || true)"
-          if [[ "$reason" == link-* ]]; then
+          site="$(tr -cd 'a-z0-9.-' < "${INTAKE_OUT_DIR}/failure-site" 2>/dev/null || true)"
+          if [[ "$reason" == link-blocked ]]; then
+            # The site answered with a bot challenge that no automatic read gets past.
+            named="The linked site"
+            [[ -n "$site" ]] && named="The linked site, \`${site}\`,"
+            message="${named} blocks automatic reading, so no draft was opened. Please copy the ingredients and steps into a comment here, or send the recipe again through the website with them filled in. This submission stays open for manual formatting."
+          elif [[ "$reason" == link-* ]]; then
             # The linked page could not be fetched safely or held no recipe.
             message="We could not read the ingredients and steps from the linked page (reason: \`${reason}\`), so no draft was opened. Please add the ingredients and recipe steps as text in a comment here, or send the recipe again through the website with them filled in. This submission stays open for manual formatting."
           else

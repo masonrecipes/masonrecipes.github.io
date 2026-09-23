@@ -65,6 +65,8 @@ WORKER_REASONS = {"model-refused", "model-incomplete", "model-invalid-output", "
 class IntakeError(Exception):
     """A submission that must be handled by a person. The message is a fixed reason."""
 
+    site = ""  # the linked page's host, for a failure comment naming it
+
 
 # --- Issue parsing -----------------------------------------------------------
 
@@ -118,7 +120,9 @@ def import_link(fields, fetch):
     try:
         page = fetch(source_link(fields))
     except link_import.FetchError as error:
-        raise IntakeError(str(error)) from None
+        failure = IntakeError(str(error))
+        failure.site = urllib.parse.urlsplit(source_link(fields)).hostname or ""
+        raise failure from None
     found = link_import.recipe_from_json_ld(page)
     if found:
         fields["Ingredients"] = fields["Ingredients"] or found[0]
@@ -493,6 +497,7 @@ def main():
         result = process(issue, lambda fields: call_model(fields, draft_url, token))
     except IntakeError as error:
         (out_dir / "failure-reason").write_text(str(error), encoding="utf-8")
+        (out_dir / "failure-site").write_text(error.site, encoding="utf-8")
         print(f"Intake failed: {error}", file=sys.stderr)
         sys.exit(1)
     # Untrusted-derived text goes to files, never to GITHUB_OUTPUT or the shell.

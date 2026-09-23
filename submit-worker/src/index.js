@@ -342,6 +342,7 @@ async function draftRecipe(request, env) {
 // Ports the rules of .github/scripts/link_import.py (same fixtures in its tests).
 
 const FILL_FAILED = "We couldn't read this page. You can still send the link.";
+const FILL_BLOCKED = "This site blocks automatic reading. Please copy the ingredients and steps into the form.";
 const FILL_LIMIT = 5; // per person, per WINDOW_MS
 const AI_DAILY_LIMIT = 50; // AI fallbacks across the whole site: a cost backstop
 const DAY_MS = 24 * 60 * 60 * 1000;
@@ -541,6 +542,7 @@ const MAX_REDIRECTS = 3;
 const MAX_PAGE_BYTES = 2 * 1024 * 1024;
 const FETCH_TIMEOUT_MS = 10_000; // the whole fetch: every hop, DNS and the body
 const REDIRECTS = [301, 302, 303, 307, 308];
+const CHALLENGE_PAGE = /<title>\s*Just a moment\.\.\.\s*<\/title>|\/cdn-cgi\/challenge-platform\//i;
 const HTML_TYPES = ["text/html", "application/xhtml+xml"];
 
 async function readCapped(response) {
@@ -567,6 +569,18 @@ async function readCapped(response) {
   return decoder.decode(await new Blob(chunks).arrayBuffer());
 }
 
+// Mirrors link_import.is_challenge: a bot wall (Cloudflare's managed challenge and the like)
+// that no plain fetch gets past, so the person is asked to paste the recipe instead.
+async function isChallenge(response) {
+  if (![403, 503].includes(response.status)) return false;
+  if (/challenge/i.test(response.headers.get("cf-mitigated") ?? "")) return true;
+  try {
+    return CHALLENGE_PAGE.test(await readCapped(response));
+  } catch {
+    return false;
+  }
+}
+
 async function fetchPage(value, fetcher) {
   const signal = AbortSignal.timeout(FETCH_TIMEOUT_MS);
   let url = value;
@@ -586,6 +600,7 @@ async function fetchPage(value, fetcher) {
     if (hop === MAX_REDIRECTS || !location) throw new Error("link-too-many-redirects");
     url = new URL(location, target).href;
   }
+  if (await isChallenge(response)) throw new Error("link-blocked");
   if (response.status !== 200) throw new Error("link-fetch-failed");
   const type = (response.headers.get("content-type") ?? "").split(";")[0].trim().toLowerCase();
   if (!HTML_TYPES.includes(type)) throw new Error("link-not-html");
@@ -642,6 +657,7 @@ async function fillFromLink(request, payload, origin, env, fetcher) {
     recipe = await readRecipe(payload, env, fetcher);
   } catch (error) {
     if (error instanceof AiCapReached) return json({ error: AI_CAP_REACHED }, 429, origin);
+    if (error.message === "link-blocked") return json({ error: FILL_BLOCKED }, 422, origin);
     console.error("Fill from link failed:", error.message);
     recipe = null;
   }

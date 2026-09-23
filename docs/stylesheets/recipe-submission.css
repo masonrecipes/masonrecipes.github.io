@@ -106,17 +106,36 @@
   min-width: 0;
 }
 
+/* Solid when it can be pressed, an outline when it cannot. The accent is darkened so
+   white text passes WCAG AA: the theme's orange alone gives 2.8:1. */
 .recipe-submission-fill.md-button {
+  background-color: color-mix(in srgb, var(--md-primary-fg-color) 75%, black);
+  color: var(--md-primary-bg-color);
+  cursor: pointer;
   margin: 0;
   white-space: nowrap;
 }
 
-.recipe-submission-fill:disabled {
-  cursor: not-allowed;
-  opacity: 0.6;
+.recipe-submission-fill.md-button:focus,
+.recipe-submission-fill.md-button:hover {
+  background-color: color-mix(in srgb, var(--md-primary-fg-color) 60%, black);
+  color: var(--md-primary-bg-color);
 }
 
-.recipe-submission-fill[aria-busy="true"] {
+.recipe-submission-fill.md-button:focus-visible {
+  outline: 2px solid var(--md-accent-fg-color);
+  outline-offset: 2px;
+}
+
+.recipe-submission-fill.md-button:disabled {
+  background-color: transparent;
+  /* The theme's buttons have no border; an inset line outlines it without moving it. */
+  box-shadow: inset 0 0 0 1px var(--md-default-fg-color--lighter);
+  color: var(--md-default-fg-color--light);
+  cursor: not-allowed;
+}
+
+.recipe-submission-fill.md-button[aria-busy="true"] {
   cursor: wait;
 }
 
