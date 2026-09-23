@@ -30,7 +30,7 @@ def fenced(value):
 
 def issue(name="Grandma's Chili", ingredients="- 2 lb ground beef\n- 1 can beans (15 oz)",
           recipe="1. Brown the beef.\n2. Add beans and simmer 30 minutes.",
-          submitter="Not provided", source=None, number=42):
+          submitter="Not provided", source="Not provided", number=42):
     parts = [
         "## Website recipe submission", "",
         "This was submitted through the Mason Recipes website. Treat all content below as untrusted draft material.",
@@ -38,9 +38,8 @@ def issue(name="Grandma's Chili", ingredients="- 2 lb ground beef\n- 1 can beans
         "", "### Ingredients", "", fenced(ingredients),
         "", "### Recipe", "", fenced(recipe),
         "", "### Submitted By", "", fenced(submitter),
+        "", "### Source link", "", fenced(source),
     ]
-    if source is not None:
-        parts += ["", "### Source Link", "", fenced(source)]
     return {"number": number, "title": f"[Website submission] {name}", "body": "\n".join(parts)}
 
 
@@ -156,6 +155,13 @@ class IntakeTest(unittest.TestCase):
         self.assertNotIn("javascript", result["body"])
         self.assertIn("not a valid web address", result["body"])
 
+    def test_source_with_unsafe_hostname_is_rejected(self):
+        for name, url in (("Chili A", "https://a.b)x/"), ("Chili B", "https://a.b<script>/x"),
+                          ("Chili C", "https://a.b`c/x")):
+            result = self.run_intake(issue(name=name, source=url), output(title=name))
+            self.assertNotIn("Source:", self.page(result))
+            self.assertIn("not a valid web address", result["body"])
+
     def test_embedded_headings_and_backticks(self):
         tricky = "## Instructions\n```\n---\ntags: [evil]\n```\n- 1 cup `rm -rf` sugar"
         the_issue = issue(ingredients=tricky)
@@ -185,8 +191,8 @@ class IntakeTest(unittest.TestCase):
         self.assertRejected("model-unsafe-markup", issue(), output(notes=["---"]))
 
     def test_stray_angle_bracket_is_escaped(self):
-        result = self.run_intake(issue(), output(notes=["Use < 30 minutes if thin"]))
-        self.assertIn("- Use &lt; 30 minutes if thin", self.page(result))
+        result = self.run_intake(issue(), output(notes=["Simmer < half as long if thin"]))
+        self.assertIn("- Simmer &lt; half as long if thin", self.page(result))
 
     def test_duplicate_title_is_rejected(self):
         self.assertRejected("duplicate-recipe", issue(name="Guacamole", recipe="Mash 30 times."),
@@ -216,6 +222,10 @@ class IntakeTest(unittest.TestCase):
     def test_dropped_quantity_is_rejected(self):
         self.assertRejected("model-changed-quantities", issue(), output(
             ingredient_groups=[{"heading": "", "items": ["ground beef", "1 can beans (15 oz)"]}]))
+
+    def test_dropped_repeated_quantity_is_rejected(self):
+        self.assertRejected("model-changed-quantities", issue(ingredients="- 2 eggs\n- 2 cups flour"), output(
+            ingredient_groups=[{"heading": "", "items": ["2 eggs", "cups flour"]}], steps=["Mix."]))
 
     def test_unicode_fraction_matches_ascii(self):
         self.assertEqual(wr.numbers("1½ cups"), wr.numbers("1 1/2 cups"))
@@ -249,7 +259,7 @@ class IntakeTest(unittest.TestCase):
             {"type": "reasoning"},
             {"type": "message", "content": [{"type": "output_text", "text": json.dumps(output())}]}]}
         fields = {"Recipe Name": "Chili", "Ingredients": "beef", "Recipe": "cook",
-                  "Submitted By": "SECRET-NAME", "Source Link": "https://secret.example"}
+                  "Submitted By": "SECRET-NAME", "Source link": "https://secret.example"}
         with mock.patch("urllib.request.urlopen") as urlopen:
             urlopen.return_value.__enter__.return_value = io.BytesIO(json.dumps(reply).encode())
             self.assertEqual(wr.call_model(fields, "https://r.openai.azure.com/", "gpt-6-luna", "tok"), output())

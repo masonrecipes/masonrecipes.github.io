@@ -9,6 +9,7 @@ the Authors page. Every failure exits non-zero with a fixed reason code so the
 workflow can comment on the issue and leave it open for manual handling.
 """
 
+import collections
 import json
 import os
 import re
@@ -43,10 +44,10 @@ MAX_LENGTHS = {
     "Ingredients": 12_000,
     "Recipe": 12_000,
     "Submitted By": 80,
-    "Source Link": 2_048,
+    "Source link": 2_048,
 }
 REQUIRED = ["Recipe Name", "Ingredients", "Recipe", "Submitted By"]
-OPTIONAL = ["Source Link"]
+OPTIONAL = ["Source link"]
 
 MAX_OUTPUT_TOKENS = 8_000
 
@@ -176,6 +177,7 @@ def check_source(raw, warnings, review_notes):
         and parts.scheme.lower() in ("http", "https")
         and parts.hostname
         and "." in parts.hostname
+        and re.fullmatch(r"[a-z0-9.-]+", parts.hostname)
         and not parts.username
         and not parts.password
         and not re.search(r"[\s\x00-\x1f\x7f]", value)
@@ -284,11 +286,11 @@ NUMBER_RE = re.compile(r"\d+(?:[./]\d+)?")
 
 
 def numbers(text):
-    """Set of numeric tokens, ignoring list numbering and unicode fraction spelling."""
+    """Multiset of numeric tokens, ignoring list numbering and unicode fraction spelling."""
     text = LIST_MARKER_RE.sub("", text)
     text = text.translate(str.maketrans(UNICODE_FRACTIONS))
     text = text.replace("⁄", "/")  # fraction slash
-    return set(NUMBER_RE.findall(text))
+    return collections.Counter(NUMBER_RE.findall(text))
 
 
 def validate_output(output, fields):
@@ -481,7 +483,7 @@ def process(issue, model, root=".", deployment="gpt-6-luna"):
     fields = parse_issue(issue.get("title"), issue.get("body"))
     warnings, review_notes = [], []
     submitter = clean_submitter(fields.get("Submitted By"), warnings)
-    source = check_source(fields.get("Source Link"), warnings, review_notes)
+    source = check_source(fields.get("Source link"), warnings, review_notes)
 
     recipe = validate_output(model(fields), fields)
     warnings += recipe["warnings"]
