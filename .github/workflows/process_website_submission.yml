@@ -1,8 +1,9 @@
 name: Draft Website Recipe Submission
 
 # Turns a website-created recipe-submission issue into a review-only PR.
-# The model runs on Azure AI Foundry; this job signs in with GitHub OIDC, so no
-# Azure key is stored. See "AI drafting for website submissions" in README.md.
+# The model runs on Cloudflare Workers AI behind the submission Worker's /draft
+# endpoint, which accepts only this repository's GitHub OIDC token, so no key is
+# stored. See "AI drafting for website submissions" in README.md.
 
 on:
   issues:
@@ -57,30 +58,22 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Sign in to Azure with OIDC
-        if: steps.existing.outputs.skip != 'true'
-        uses: azure/login@v2
-        with:
-          client-id: ${{ vars.AZURE_CLIENT_ID }}
-          tenant-id: ${{ vars.AZURE_TENANT_ID }}
-          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
-
       # No GitHub token in this step. The issue is read from $GITHUB_EVENT_PATH in code.
+      # The OIDC token proves to the Worker that this is the recipes repository's main
+      # branch; it is short-lived and minted only for the Worker's audience.
       - name: Draft recipe with the model
         if: steps.existing.outputs.skip != 'true'
         env:
-          AZURE_OPENAI_ENDPOINT: ${{ vars.AZURE_OPENAI_ENDPOINT }}
-          AZURE_OPENAI_DEPLOYMENT: ${{ vars.AZURE_OPENAI_DEPLOYMENT }}
+          RECIPE_DRAFT_URL: ${{ vars.RECIPE_DRAFT_URL || 'https://mason-recipe-submissions.david-beihl.workers.dev/draft' }}
           INTAKE_OUT_DIR: ${{ runner.temp }}/intake
         run: |
-          AZURE_OPENAI_TOKEN="$(az account get-access-token --resource https://cognitiveservices.azure.com --query accessToken --output tsv)"
-          echo "::add-mask::${AZURE_OPENAI_TOKEN}"
-          export AZURE_OPENAI_TOKEN
+          set -o pipefail
+          RECIPE_DRAFT_TOKEN="$(curl --fail --silent --show-error \
+            --header "Authorization: bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}" \
+            "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=mason-recipe-submissions" | jq --exit-status --raw-output '.value')"
+          echo "::add-mask::${RECIPE_DRAFT_TOKEN}"
+          export RECIPE_DRAFT_TOKEN
           python .github/scripts/website_recipe.py
-
-      - name: Sign out of Azure
-        if: always() && steps.existing.outputs.skip != 'true'
-        run: az logout || true
 
       - name: Build site
         if: steps.existing.outputs.skip != 'true'

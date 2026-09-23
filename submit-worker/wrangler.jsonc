@@ -4,6 +4,9 @@
   "compatibility_date": "2026-09-22",
   "workers_dev": true,
   "preview_urls": false,
+  "ai": {
+    "binding": "AI"
+  },
   "durable_objects": {
     "bindings": [
       {

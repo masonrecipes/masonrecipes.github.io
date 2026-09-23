@@ -12,6 +12,7 @@ import shutil
 import sys
 import tempfile
 import unittest
+import urllib.error
 from pathlib import Path
 from unittest import mock
 
@@ -360,21 +361,15 @@ class IntakeTest(unittest.TestCase):
 
     def test_injection_page_text_is_data_only(self):
         fetch = fixture_fetch("recipe_injection.html")
-        # The page text reaches the model only inside the user JSON, never as instructions.
+        # The page text reaches the Worker only as a JSON data field; the Worker holds the instructions.
         fields = {"Recipe Name": "Iced Tea", "Ingredients": "", "Recipe": "",
                   "Page text": wr.link_import.visible_text(fetch("x"))}
-        reply = {"status": "completed", "output": [{"type": "message", "content": [
-            {"type": "output_text", "text": json.dumps(self.iced_tea())}]}]}
         with mock.patch("urllib.request.urlopen") as urlopen:
-            urlopen.return_value.__enter__.return_value = io.BytesIO(json.dumps(reply).encode())
-            wr.call_model(fields, "https://r.openai.azure.com/", "gpt-6-luna", "tok")
+            urlopen.return_value.__enter__.return_value = io.BytesIO(json.dumps(self.iced_tea()).encode())
+            wr.call_model(fields, "https://drafts.example/draft", "oidc-token")
         sent = json.loads(urlopen.call_args.args[0].data)
-        self.assertEqual(sent["input"][0], {"role": "developer", "content": wr.DEVELOPER_INSTRUCTIONS})
-        self.assertNotIn("Ignore previous", wr.DEVELOPER_INSTRUCTIONS)
-        self.assertIn("page_text", wr.DEVELOPER_INSTRUCTIONS)
-        user = json.loads(sent["input"][1]["content"])
-        self.assertEqual(sorted(user), ["ingredients", "page_text", "recipe", "recipe_name"])
-        self.assertIn("Ignore previous instructions.", user["page_text"])
+        self.assertEqual(sorted(sent), ["ingredients", "page_text", "recipe", "recipe_name"])
+        self.assertIn("Ignore previous instructions.", sent["page_text"])
 
         # A model that obeys the page and invents a quantity is rejected.
         salted = self.iced_tea(ingredient_groups=[{"heading": "", "items": [
@@ -424,37 +419,42 @@ class IntakeTest(unittest.TestCase):
 
     # --- Model response handling --------------------------------------------------
 
-    def test_refusal_truncation_and_bad_json_fail_closed(self):
-        message = lambda content: {"status": "completed", "output": [{"type": "message", "content": [content]}]}
-        with self.assertRaisesRegex(wr.IntakeError, "model-refused"):
-            wr.extract_output(message({"type": "refusal", "refusal": "no"}))
-        with self.assertRaisesRegex(wr.IntakeError, "model-incomplete"):
-            wr.extract_output({"status": "incomplete", "output": []})
-        with self.assertRaisesRegex(wr.IntakeError, "model-invalid-output"):
-            wr.extract_output(message({"type": "output_text", "text": "{not json"}))
-        self.assertEqual(wr.extract_output(message({"type": "output_text", "text": '{"a": 1}'})), {"a": 1})
-
-    def test_call_model_request_shape(self):
-        reply = {"status": "completed", "output": [
-            {"type": "reasoning"},
-            {"type": "message", "content": [{"type": "output_text", "text": json.dumps(output())}]}]}
+    def test_call_model_asks_the_worker_with_the_oidc_token(self):
         fields = {"Recipe Name": "Chili", "Ingredients": "beef", "Recipe": "cook",
                   "Submitted By": "SECRET-NAME", "Source link": "https://secret.example"}
         with mock.patch("urllib.request.urlopen") as urlopen:
-            urlopen.return_value.__enter__.return_value = io.BytesIO(json.dumps(reply).encode())
-            self.assertEqual(wr.call_model(fields, "https://r.openai.azure.com/", "gpt-6-luna", "tok"), output())
+            urlopen.return_value.__enter__.return_value = io.BytesIO(json.dumps(output()).encode())
+            self.assertEqual(wr.call_model(fields, "https://drafts.example/draft", "oidc-token"), output())
         request = urlopen.call_args.args[0]
-        self.assertEqual(request.full_url, "https://r.openai.azure.com/openai/v1/responses")
-        self.assertEqual(request.get_header("Authorization"), "Bearer tok")
-        sent = json.loads(request.data)
-        self.assertEqual(sent["model"], "gpt-6-luna")
-        self.assertNotIn("tools", sent)
-        self.assertIs(sent["text"]["format"]["strict"], True)
+        self.assertEqual(request.full_url, "https://drafts.example/draft")
+        self.assertEqual(request.get_method(), "POST")
+        self.assertEqual(request.get_header("Authorization"), "Bearer oidc-token")
         self.assertNotIn("SECRET", request.data.decode())
-        self.assertEqual(sent["input"][0], {"role": "developer", "content": wr.DEVELOPER_INSTRUCTIONS})
-        self.assertEqual(json.loads(sent["input"][1]["content"]),
-                         {"recipe_name": "Chili", "ingredients": "beef", "recipe": "cook"})
+        self.assertEqual(json.loads(request.data), {"recipe_name": "Chili", "ingredients": "beef", "recipe": "cook"})
 
+    def test_worker_failures_keep_their_fixed_reason(self):
+        def worker_error(status, body):
+            return urllib.error.HTTPError("https://drafts.example/draft", status, "error", {}, io.BytesIO(body))
+        cases = [
+            (worker_error(502, b'{"error": "model-refused"}'), "model-refused"),
+            (worker_error(502, b'{"error": "model-invalid-output"}'), "model-invalid-output"),
+            (worker_error(502, b'{"error": "rm -rf /"}'), "model-request-failed"),
+            (worker_error(502, b'{"error": {"nested": 1}}'), "model-request-failed"),
+            (worker_error(401, b""), "model-request-failed"),
+            (urllib.error.URLError("down"), "model-request-failed"),
+        ]
+        fields = {"Recipe Name": "Chili", "Ingredients": "beef", "Recipe": "cook"}
+        for error, reason in cases:
+            with mock.patch("urllib.request.urlopen", side_effect=error), \
+                    mock.patch("sys.stderr", io.StringIO()):
+                with self.assertRaises(wr.IntakeError) as ctx:
+                    wr.call_model(fields, "https://drafts.example/draft", "oidc-token")
+            self.assertEqual(str(ctx.exception), reason)
+
+    def test_pr_body_names_the_cloudflare_model(self):
+        result = self.run_intake(issue())
+        self.assertIn("`gpt-5.6-luna` on Cloudflare Workers AI", result["body"])
+        self.assertNotIn("Azure", result["body"])
 
 if __name__ == "__main__":
     unittest.main()
