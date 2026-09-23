@@ -151,11 +151,12 @@ export function createWorker({ fetcher = globalThis.fetch } = {}) {
       if (!recipeName) {
         return json({ error: "Please enter the recipe name." }, 400, origin);
       }
-      if (!ingredients) {
-        return json({ error: "Please enter the ingredients." }, 400, origin);
+      // With a link, ingredients and steps can be read from the linked page later.
+      if (!sourceUrl && !ingredients) {
+        return json({ error: "Please enter the ingredients, or add a recipe link." }, 400, origin);
       }
-      if (!recipe) {
-        return json({ error: "Please enter the recipe steps." }, 400, origin);
+      if (!sourceUrl && !recipe) {
+        return json({ error: "Please enter the recipe steps, or add a recipe link." }, 400, origin);
       }
       if (!turnstileToken) {
         return json({ error: "Please complete the spam check and try again." }, 400, origin);

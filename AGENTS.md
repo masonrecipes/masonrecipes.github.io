@@ -8,7 +8,7 @@ This file is the project's committed home for project-intrinsic agent knowledge:
 
 - The browser form is supplied through the `extra_javascript` and `extra_css` hooks in `mkdocs.yml`; its public endpoint and Turnstile site key live in `docs/javascripts/recipe-submission-config.js`, and the button stays hidden if either is blank.
 - `submit-worker/README.md` is the authoritative deployment and secret-configuration runbook. `.github/workflows/process_recipe_submission.yml` processes only the richer GitHub issue template submissions.
-- Website-created issues are drafted into review-only PRs by `.github/workflows/process_website_submission.yml` (model on Azure AI Foundry via OIDC; setup in README "AI drafting for website submissions"). The model returns strict JSON only; `.github/scripts/website_recipe.py` owns paths, tags, escaping and fail-closed checks. Tests: `python3 -m unittest discover -s .github/scripts -p 'test_*.py'`. The issue body format it parses is defined by `issueBody()` in `submit-worker/src/index.js`; change both together.
+- Website-created issues are drafted into review-only PRs by `.github/workflows/process_website_submission.yml` (model on Azure AI Foundry via OIDC; setup in README "AI drafting for website submissions"). The model returns strict JSON only; `.github/scripts/website_recipe.py` owns paths, tags, escaping and fail-closed checks. Tests: `python3 -m unittest discover -s .github/scripts -p 'test_*.py'`. The issue body format it parses is defined by `issueBody()` in `submit-worker/src/index.js`; change both together. Link-only submissions are fetched and parsed by `.github/scripts/link_import.py` (SSRF-guarded; tests fake DNS and sockets, HTML fixtures live in `.github/scripts/fixtures/`).
 
 ## Maintaining this file
 

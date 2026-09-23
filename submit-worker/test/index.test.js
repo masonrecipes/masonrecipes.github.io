@@ -143,12 +143,50 @@ describe("recipe submission worker", () => {
     assert.equal(fetchMock.calls.length, 5);
   });
 
+  it("accepts a link without ingredients or recipe steps", async () => {
+    const fetchMock = successfulFetch();
+    const response = await createWorker({ fetcher: fetchMock }).fetch(
+      request({ ingredients: "", recipe: "  ", sourceUrl: "https://example.com/recipes/cookies" }),
+      environment(),
+    );
+
+    assert.equal(response.status, 201);
+    const [, githubRequest] = fetchMock.calls[1];
+    const issue = JSON.parse(githubRequest.body);
+    assert.match(issue.body, /### Ingredients\n\n```text\n\n```\n\n### Recipe\n\n```text\n\n```/);
+    assert.match(issue.body, /### Source link\n\n```text\nhttps:\/\/example\.com\/recipes\/cookies\n```/);
+  });
+
+  it("rejects a submission with neither text nor a link", async () => {
+    const fetchMock = successfulFetch();
+    const response = await createWorker({ fetcher: fetchMock }).fetch(
+      request({ ingredients: "", recipe: "", sourceUrl: "" }),
+      environment(),
+    );
+
+    assert.equal(response.status, 400);
+    assert.deepEqual(await response.json(), { error: "Please enter the ingredients, or add a recipe link." });
+    assert.equal(fetchMock.calls.length, 0);
+  });
+
+  it("rejects an invalid link standing in for the recipe text", async () => {
+    const fetchMock = successfulFetch();
+    const response = await createWorker({ fetcher: fetchMock }).fetch(
+      request({ ingredients: "", recipe: "", sourceUrl: "Grandma's cookbook" }),
+      environment(),
+    );
+
+    assert.equal(response.status, 400);
+    assert.deepEqual(await response.json(), { error: "Please enter a valid source link." });
+    assert.equal(fetchMock.calls.length, 0);
+  });
+
   it("rejects a submission without ingredients", async () => {
     const fetchMock = successfulFetch();
     const response = await createWorker({ fetcher: fetchMock }).fetch(request({ ingredients: "" }), environment());
 
     assert.equal(response.status, 400);
-    assert.deepEqual(await response.json(), { error: "Please enter the ingredients." });
+    assert.deepEqual(await response.json(), { error: "Please enter the ingredients, or add a recipe link." });
     assert.equal(fetchMock.calls.length, 0);
   });
 
@@ -157,7 +195,7 @@ describe("recipe submission worker", () => {
     const response = await createWorker({ fetcher: fetchMock }).fetch(request({ recipe: "" }), environment());
 
     assert.equal(response.status, 400);
-    assert.deepEqual(await response.json(), { error: "Please enter the recipe steps." });
+    assert.deepEqual(await response.json(), { error: "Please enter the recipe steps, or add a recipe link." });
     assert.equal(fetchMock.calls.length, 0);
   });
 

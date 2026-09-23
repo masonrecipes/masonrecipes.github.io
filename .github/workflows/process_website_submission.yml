@@ -21,6 +21,7 @@ jobs:
       startsWith(github.event.issue.body, '## Website recipe submission') &&
       (github.event.action == 'opened' || github.event.label.name == 'recipe-submission')
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     permissions:
       contents: write
@@ -119,7 +120,13 @@ jobs:
             exit 0
           fi
           reason="$(tr -cd 'a-z-' < "${INTAKE_OUT_DIR}/failure-reason" 2>/dev/null || true)"
+          if [[ "$reason" == link-* ]]; then
+            # The linked page could not be fetched safely or held no recipe.
+            message="We could not read the ingredients and steps from the linked page (reason: \`${reason}\`), so no draft was opened. Please add the ingredients and recipe steps as text in a comment here, or send the recipe again through the website with them filled in. This submission stays open for manual formatting."
+          else
+            message="The automatic recipe draft could not be created (reason: \`${reason:-workflow-error}\`). This submission stays open for manual formatting. To retry, remove and re-add the \`recipe-submission\` label."
+          fi
           gh issue comment "$ISSUE_NUMBER" --body "${marker}
-          The automatic recipe draft could not be created (reason: \`${reason:-workflow-error}\`). This submission stays open for manual formatting. To retry, remove and re-add the \`recipe-submission\` label.
+          ${message}
 
           Run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
