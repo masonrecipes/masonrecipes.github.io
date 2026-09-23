@@ -110,7 +110,7 @@ A submitter can also send just a recipe name and a link. The workflow then fetch
 
 The workflow does not call the model itself. It asks the recipe submission Worker (`submit-worker/`) to draft the recipe by POSTing the recipe text to the Worker's `/draft` endpoint. It proves who it is with a short-lived GitHub Actions OIDC token minted for the audience `mason-recipe-submissions`. The Worker checks that token's signature against GitHub's published keys and accepts it only from `masonrecipes/masonrecipes.github.io` on `refs/heads/main`. It then calls `openai/gpt-5.6-luna` through its Workers AI binding with the fixed instructions and strict schema, and returns only schema-valid JSON. No API key or cloud credential is stored in GitHub or in the Worker.
 
-The endpoint defaults to `https://mason-recipe-submissions.david-beihl.workers.dev/draft`. To point the workflow elsewhere, set the repository variable `RECIPE_DRAFT_URL` (a variable, not a secret).
+The workflow always calls the fixed endpoint `https://mason-recipe-submissions.david-beihl.workers.dev/draft`, so the token can only go to the recipe helper.
 
 Setup is only a Worker redeploy: after a change to `submit-worker/` merges, run `npx wrangler deploy` from `submit-worker/`. The `AI` binding in `wrangler.jsonc` uses Workers AI on the same Cloudflare account, so there is nothing else to configure.
 

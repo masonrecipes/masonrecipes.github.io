@@ -64,7 +64,7 @@ jobs:
       - name: Draft recipe with the model
         if: steps.existing.outputs.skip != 'true'
         env:
-          RECIPE_DRAFT_URL: ${{ vars.RECIPE_DRAFT_URL || 'https://mason-recipe-submissions.david-beihl.workers.dev/draft' }}
+          RECIPE_DRAFT_URL: https://mason-recipe-submissions.david-beihl.workers.dev/draft
           INTAKE_OUT_DIR: ${{ runner.temp }}/intake
         run: |
           set -o pipefail

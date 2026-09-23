@@ -274,7 +274,7 @@ function isDraftRequest(data) {
   if (data === null || typeof data !== "object" || Array.isArray(data)) return false;
   const keys = Object.keys(data);
   if (!["recipe_name", "ingredients", "recipe"].every((key) => keys.includes(key))) return false;
-  return keys.every((key) => typeof data[key] === "string" && data[key].length <= DRAFT_FIELD_LIMITS[key])
+  return keys.every((key) => typeof data[key] === "string" && [...data[key]].length <= DRAFT_FIELD_LIMITS[key])
     && data.recipe_name.trim() !== ""
     && [data.ingredients, data.recipe, data.page_text ?? ""].some((value) => value.trim() !== "");
 }

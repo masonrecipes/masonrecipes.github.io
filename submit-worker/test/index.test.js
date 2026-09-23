@@ -542,6 +542,17 @@ describe("recipe draft endpoint", () => {
     }
   });
 
+  it("caps page text by code points like the Action does", async () => {
+    const valid = { recipe_name: "Chili", ingredients: "", recipe: "" };
+    for (const [length, status] of [[40_000, 200], [40_001, 400]]) {
+      const ai = aiReturning(completed(JSON.stringify(draftModelOutput())));
+      const page_text = "🌶".repeat(length);
+      const response = await draftWorker().fetch(draftRequest(await oidcToken(), { ...valid, page_text }), { ...environment(), AI: ai });
+
+      assert.equal(response.status, status, String(length));
+    }
+  });
+
   it("leaves the public form at the Worker root unchanged", async () => {
     const fetchMock = successfulFetch();
     const ai = aiReturning(completed(JSON.stringify(draftModelOutput())));
