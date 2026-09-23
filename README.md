@@ -106,6 +106,8 @@ When the website form creates a `recipe-submission` issue, `.github/workflows/pr
 
 A submitter can also send just a recipe name and a link. The workflow then fetches that page from `.github/scripts/link_import.py`, which only allows `http`/`https` on the default ports. It resolves every host (including each redirect hop) and refuses private, loopback, link-local and metadata addresses. It connects to the address it checked, gives up after 5 redirects, 2 MB or 20 seconds, and never runs the page's scripts. If the page has a schema.org `Recipe` block (JSON-LD), its ingredients and steps are copied over as they are. If not, the page's visible text goes to the model as untrusted data, and every number in the draft must appear on that page. When neither works, no PR is opened and the issue gets a comment asking for the ingredients and steps as text.
 
+Before sending, the form's **Fill from link** button can fill the Ingredients and Recipe boxes from the link so the submitter can review them; see `submit-worker/README.md` for how `/fill` reads the page and its limits.
+
 ### How the workflow reaches the model
 
 The workflow does not call the model itself. It asks the recipe submission Worker (`submit-worker/`) to draft the recipe by POSTing the recipe text to the Worker's `/draft` endpoint. It proves who it is with a short-lived GitHub Actions OIDC token minted for the audience `mason-recipe-submissions`. The Worker checks that token's signature against GitHub's published keys and accepts it only from `masonrecipes/masonrecipes.github.io` on `refs/heads/main`. It then calls `openai/gpt-5.6-luna` through its Workers AI binding with the fixed instructions and strict schema, and returns only schema-valid JSON. No API key or cloud credential is stored in GitHub or in the Worker.
@@ -120,7 +122,7 @@ To retry a submission after a failure, remove and re-add the `recipe-submission`
 
 ```bash
 python3 -m unittest discover -s .github/scripts -p 'test_*.py'
-(cd submit-worker && npm test)
+(cd submit-worker && npm ci && npm test)
 ```
 
 ## Deployment
