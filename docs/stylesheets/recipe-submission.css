@@ -1,9 +1,29 @@
-.recipe-submission-trigger {
-  bottom: 1rem;
-  box-shadow: 0 0.2rem 0.5rem rgb(0 0 0 / 25%);
-  position: fixed;
-  right: 1rem;
-  z-index: 5;
+.md-header .recipe-submission-header-trigger {
+  align-items: center;
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  gap: 0.25rem;
+  height: 2.75rem;
+  justify-content: center;
+  margin: 0;
+  min-width: 2.75rem;
+  padding: 0 0.5rem;
+  width: auto;
+}
+
+.recipe-submission-header-trigger .md-icon {
+  fill: currentcolor;
+  height: 1.2rem;
+  width: 1.2rem;
+}
+
+.recipe-submission-header-label {
+  font-size: 0.75rem;
 }
 
 .recipe-submission-dialog {
@@ -91,9 +111,13 @@
 }
 
 @media screen and (max-width: 44.9375em) {
-  .recipe-submission-trigger {
-    bottom: 0.75rem;
-    right: 0.75rem;
+  .md-header .recipe-submission-header-trigger {
+    padding: 0;
+    width: 2.75rem;
+  }
+
+  .recipe-submission-header-label {
+    display: none;
   }
 
   .recipe-submission-form {

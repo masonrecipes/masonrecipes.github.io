@@ -85,6 +85,40 @@ describe("recipe submission worker", () => {
     assert.match(issue.body, /### Recipe\n\n```text\nMix, bake, and share\.\n```/);
   });
 
+  it("includes a valid HTTP source link in the GitHub issue", async () => {
+    const fetchMock = successfulFetch();
+    const response = await createWorker({ fetcher: fetchMock }).fetch(
+      request({ sourceUrl: "https://example.com/recipes/grandmas-cookies" }),
+      environment(),
+    );
+
+    assert.equal(response.status, 201);
+    const [, githubRequest] = fetchMock.calls[1];
+    const issue = JSON.parse(githubRequest.body);
+    assert.match(issue.body, /### Source link\n\n```text\nhttps:\/\/example\.com\/recipes\/grandmas-cookies\n```/);
+  });
+
+  it("rejects source links that are not HTTP URLs", async () => {
+    for (const sourceUrl of ["javascript:alert('unsafe')", "Grandma's cookbook", "https://example.com/\nextra text"]) {
+      const fetchMock = successfulFetch();
+      const response = await createWorker({ fetcher: fetchMock }).fetch(request({ sourceUrl }), environment());
+
+      assert.equal(response.status, 400);
+      assert.deepEqual(await response.json(), { error: "Please enter a valid source link." });
+      assert.equal(fetchMock.calls.length, 0);
+    }
+  });
+
+  it("records an empty source link as not provided", async () => {
+    const fetchMock = successfulFetch();
+    const response = await createWorker({ fetcher: fetchMock }).fetch(request({ sourceUrl: "" }), environment());
+
+    assert.equal(response.status, 201);
+    const [, githubRequest] = fetchMock.calls[1];
+    const issue = JSON.parse(githubRequest.body);
+    assert.match(issue.body, /### Source link\n\n```text\nNot provided\n```/);
+  });
+
   it("refuses the third submission in a five-minute window", async () => {
     const fetchMock = successfulFetch();
     const values = new Map();
@@ -128,12 +162,25 @@ describe("recipe submission worker", () => {
   });
 
   it("rejects fields that exceed their length limits", async () => {
-    const fetchMock = successfulFetch();
-    const response = await createWorker({ fetcher: fetchMock }).fetch(request({ ingredients: "a".repeat(12_001) }), environment());
+    const cases = [
+      [
+        { ingredients: "a".repeat(12_001) },
+        "The ingredients are too long. Please keep them under 12,000 characters.",
+      ],
+      [
+        { sourceUrl: "a".repeat(2_049) },
+        "The source link is too long. Please keep it under 2,048 characters.",
+      ],
+    ];
 
-    assert.equal(response.status, 400);
-    assert.deepEqual(await response.json(), { error: "The ingredients are too long. Please keep them under 12,000 characters." });
-    assert.equal(fetchMock.calls.length, 0);
+    for (const [body, error] of cases) {
+      const fetchMock = successfulFetch();
+      const response = await createWorker({ fetcher: fetchMock }).fetch(request(body), environment());
+
+      assert.equal(response.status, 400);
+      assert.deepEqual(await response.json(), { error });
+      assert.equal(fetchMock.calls.length, 0);
+    }
   });
 
   it("rejects requests from another website", async () => {

@@ -3,10 +3,14 @@
   if (!config?.endpoint || !config?.turnstileSiteKey || !config.endpoint.startsWith("https://")) return;
 
   const button = document.createElement("button");
-  button.className = "recipe-submission-trigger md-button md-button--primary";
+  button.className = "recipe-submission-header-trigger md-header__button";
   button.type = "button";
-  button.textContent = "Submit a recipe";
+  button.title = "Submit a recipe";
   button.setAttribute("aria-haspopup", "dialog");
+  button.setAttribute("aria-label", "Submit a recipe");
+  button.innerHTML = `
+    <svg class="md-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+    <span class="recipe-submission-header-label">Submit a recipe</span>`;
 
   const dialog = document.createElement("dialog");
   dialog.className = "recipe-submission-dialog";
@@ -20,6 +24,8 @@
       <p>Send us the recipe in whatever form you have it. We will take it from there.</p>
       <label for="recipe-submission-name">Recipe name <span aria-hidden="true">*</span></label>
       <input id="recipe-submission-name" name="recipeName" maxlength="120" required autocomplete="off">
+      <label for="recipe-submission-source">Inspired by (link) <span class="recipe-submission-optional">(optional)</span></label>
+      <input id="recipe-submission-source" name="sourceUrl" type="url" maxlength="2048" autocomplete="url" inputmode="url" placeholder="https://example.com/recipe">
       <label for="recipe-submission-ingredients">Ingredients <span aria-hidden="true">*</span></label>
       <textarea id="recipe-submission-ingredients" name="ingredients" maxlength="12000" required rows="8" placeholder="One ingredient per line"></textarea>
       <label for="recipe-submission-recipe">Recipe <span aria-hidden="true">*</span></label>
@@ -32,11 +38,16 @@
       <button class="recipe-submission-send md-button md-button--primary" type="submit">Send recipe</button>
     </form>`;
 
-  // Zensical scopes .md-button and form typography under .md-typeset.
+  // Zensical scopes form typography under .md-typeset.
   const root = document.createElement("div");
   root.className = "md-typeset";
-  root.append(button, dialog);
+  root.append(dialog);
   document.body.append(root);
+
+  const header = document.querySelector("[data-md-component='header'] .md-header__inner");
+  const searchToggle = header?.querySelector("label[for='__search']");
+  if (!header) return;
+  header.insertBefore(button, searchToggle ?? null);
 
   const form = dialog.querySelector("form");
   const closeButton = dialog.querySelector(".recipe-submission-close");
@@ -76,12 +87,14 @@
     document.head.append(script);
   }
 
-  button.addEventListener("click", () => {
+  function openDialog() {
     if (typeof dialog.showModal !== "function") return;
     dialog.showModal();
     renderTurnstile();
     dialog.querySelector("#recipe-submission-name").focus();
-  });
+  }
+
+  button.addEventListener("click", openDialog);
   closeButton.addEventListener("click", () => dialog.close());
   dialog.addEventListener("close", () => {
     button.focus();
@@ -105,6 +118,7 @@
           ingredients: fields.get("ingredients"),
           recipe: fields.get("recipe"),
           submitterName: fields.get("submitterName"),
+          sourceUrl: fields.get("sourceUrl"),
           turnstileToken,
         }),
         headers: { "content-type": "application/json" },
