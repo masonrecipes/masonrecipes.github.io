@@ -93,6 +93,33 @@
   resize: vertical;
 }
 
+.recipe-submission-link-row {
+  align-items: stretch;
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.recipe-submission-form .recipe-submission-link-row input {
+  flex: 1;
+  margin-top: 0;
+  min-width: 0;
+}
+
+.recipe-submission-fill.md-button {
+  margin: 0;
+  white-space: nowrap;
+}
+
+.recipe-submission-fill:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.recipe-submission-fill[aria-busy="true"] {
+  cursor: wait;
+}
+
 .recipe-submission-optional {
   font-weight: 400;
 }

@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import { describe, it } from "node:test";
 
 import { createWorker, SubmissionRateLimiter } from "../src/index.js";
@@ -573,5 +574,359 @@ describe("recipe draft endpoint", () => {
 
     assert.equal(response.status, 401);
     assert.equal(response.headers.get("access-control-allow-origin"), null);
+  });
+});
+
+// --- /fill: read a linked recipe page for the form ------------------------------
+
+const FILL_URL = "https://mason-recipe-submissions.example.workers.dev/fill";
+const PAGE_URL = "https://kitchen.example/recipes/cookies";
+const DOH_URL = "https://cloudflare-dns.com/dns-query";
+const FIXTURES = new URL("../../.github/scripts/fixtures/", import.meta.url);
+
+function fixture(name) {
+  return readFileSync(new URL(name, FIXTURES), "utf8");
+}
+
+function fillRequest(body = {}, origin = ORIGIN, clientIp = "203.0.113.12") {
+  return new Request(FILL_URL, {
+    method: "POST",
+    headers: { "content-type": "application/json", "CF-Connecting-IP": clientIp, origin },
+    body: JSON.stringify({ url: PAGE_URL, turnstileToken: "valid-turnstile-token", ...body }),
+  });
+}
+
+function html(body, headers = {}) {
+  return new Response(body, { headers: { "content-type": "text/html; charset=utf-8", ...headers } });
+}
+
+// The network as the Worker sees it: Turnstile, DNS-over-HTTPS and the linked pages.
+function webFetch({ pages = { [PAGE_URL]: () => html(fixture("recipe_jsonld.html")) }, dns = {} } = {}) {
+  const addresses = { "kitchen.example": ["93.184.215.14"], ...dns };
+  return spy(async (url, init = {}) => {
+    const target = String(url);
+    if (target === "https://challenges.cloudflare.com/turnstile/v0/siteverify") {
+      return Response.json({ action: "recipe_submit", hostname: "masonrecipes.github.io", success: true });
+    }
+    if (target.startsWith(DOH_URL)) {
+      const query = new URL(target).searchParams;
+      const type = query.get("type") === "AAAA" ? 28 : 1;
+      const answers = (addresses[query.get("name")] ?? [])
+        .filter((ip) => (ip.includes(":") ? 28 : 1) === type)
+        .map((data) => ({ name: query.get("name"), type, data }));
+      return Response.json({ Status: 0, Answer: answers });
+    }
+    if (pages[target]) return pages[target](init);
+    throw new Error(`unexpected fetch ${target}`);
+  });
+}
+
+// Calls that reached a linked page, not Turnstile or DNS.
+function pageCalls(fetcher) {
+  return fetcher.calls.map(([url]) => String(url))
+    .filter((url) => !url.startsWith(DOH_URL) && !url.startsWith("https://challenges.cloudflare.com/"));
+}
+
+// A Durable Object namespace of real SubmissionRateLimiters, one per name.
+function durableLimiters() {
+  const objects = new Map();
+  return {
+    idFromName: spy((name) => name),
+    get: spy((id) => {
+      if (!objects.has(id)) {
+        const values = new Map();
+        objects.set(id, new SubmissionRateLimiter({
+          storage: { get: async (key) => values.get(key), put: async (key, value) => values.set(key, value) },
+        }));
+      }
+      return objects.get(id);
+    }),
+  };
+}
+
+function fillEnvironment(overrides = {}) {
+  return { ...environment(), AI: aiReturning(undefined), ...overrides };
+}
+
+describe("fill from link endpoint", () => {
+  it("fills ingredients and steps from the page's schema.org Recipe without the model", async () => {
+    const env = fillEnvironment();
+    const response = await createWorker({ fetcher: webFetch() }).fetch(fillRequest(), env);
+
+    assert.equal(response.status, 200);
+    assert.equal(response.headers.get("access-control-allow-origin"), ORIGIN);
+    assert.deepEqual(await response.json(), {
+      title: "Chewy Chocolate Chip Cookies",
+      ingredients: [
+        "2 1/4 cups all-purpose flour",
+        "1 tsp baking soda",
+        "Salt & pepper",
+        "1 cup butter, softened",
+        "2 large eggs",
+        "2 cups chocolate chips",
+      ],
+      steps: [
+        "Heat oven to 375°F.",
+        "Beat butter and eggs, then stir in flour, soda and salt.",
+        "Fold in chips and bake 10 minutes.",
+      ],
+    });
+    assert.equal(env.AI.run.calls.length, 0);
+  });
+
+  it("finds the Recipe inside an @graph, skipping broken JSON-LD and keeping section names", async () => {
+    const fetcher = webFetch({ pages: { [PAGE_URL]: () => html(fixture("recipe_graph.html")) } });
+    const response = await createWorker({ fetcher }).fetch(fillRequest(), fillEnvironment());
+
+    assert.equal(response.status, 200);
+    assert.deepEqual(await response.json(), {
+      title: "Skillet Cornbread",
+      ingredients: ["1 cup cornmeal", "1 cup buttermilk", "2 eggs"],
+      steps: [
+        "Batter:",
+        "Whisk the cornmeal, buttermilk and eggs.",
+        "Bake:",
+        "Pour into a hot skillet.",
+        "Bake at 425 degrees for 20 minutes.",
+      ],
+    });
+  });
+
+  it("falls back to Luna with the page's visible text as untrusted data when there is no Recipe block", async () => {
+    const fetcher = webFetch({ pages: { [PAGE_URL]: () => html(fixture("recipe_no_jsonld.html")) } });
+    const ai = aiReturning(completed(JSON.stringify(draftModelOutput({
+      title: "Fresh Lemonade",
+      category: "Beverages",
+      ingredient_groups: [
+        { heading: "", items: ["6 lemons", "1 cup sugar", "4 cups water"] },
+        { heading: "Garnish", items: ["Mint"] },
+      ],
+      steps: ["Juice the lemons.", "Stir in sugar and water until dissolved."],
+    }))));
+    const response = await createWorker({ fetcher }).fetch(fillRequest({ recipeName: "Lemonade" }), fillEnvironment({ AI: ai }));
+
+    assert.equal(response.status, 200);
+    assert.deepEqual(await response.json(), {
+      title: "Fresh Lemonade",
+      ingredients: ["6 lemons", "1 cup sugar", "4 cups water", "Garnish:", "Mint"],
+      steps: ["Juice the lemons.", "Stir in sugar and water until dissolved."],
+    });
+
+    assert.equal(ai.run.calls.length, 1);
+    const [model, input] = ai.run.calls[0];
+    assert.equal(model, "openai/gpt-5.6-luna");
+    assert.equal(input.text.format.strict, true);
+    assert.equal(input.input[0].role, "developer");
+    assert.match(input.input[0].content, /untrusted data/);
+    const data = JSON.parse(input.input[1].content);
+    assert.equal(input.input[1].role, "user");
+    assert.equal(data.recipe_name, "Lemonade");
+    assert.match(data.page_text, /^Fresh Lemonade$/m);
+    assert.match(data.page_text, /^6 lemons$/m);
+    // Scripts, styles and noscript content are never page text.
+    assert.doesNotMatch(data.page_text, /777|999|3 more recipes/);
+  });
+
+  it("tells the person they can still send the link when Luna's output fails the schema or finds nothing", async () => {
+    const outputs = {
+      "extra field": completed(JSON.stringify({ ...draftModelOutput(), html: "<b>x</b>" })),
+      "bad JSON": completed("{not json"),
+      refusal: { status: "completed", output: [{ type: "message", content: [{ type: "refusal", refusal: "no" }] }] },
+      "no recipe on the page": completed(JSON.stringify(draftModelOutput({ ingredient_groups: [], steps: [] }))),
+    };
+    for (const [label, output] of Object.entries(outputs)) {
+      const fetcher = webFetch({ pages: { [PAGE_URL]: () => html(fixture("recipe_no_jsonld.html")) } });
+      const response = await createWorker({ fetcher }).fetch(fillRequest(), fillEnvironment({ AI: aiReturning(output) }));
+
+      assert.equal(response.status, 422, label);
+      assert.equal(response.headers.get("access-control-allow-origin"), ORIGIN, label);
+      assert.deepEqual(await response.json(), { error: "We couldn't read this page. You can still send the link." }, label);
+    }
+  });
+
+  it("refuses links to private, loopback, link-local and metadata addresses without fetching them", async (t) => {
+    t.mock.method(console, "error", () => {});
+    const cases = {
+      "http://intranet.example/recipe": ["10.0.0.5"],
+      "http://loopback.example/recipe": ["127.0.0.1"],
+      "http://metadata.example/latest/meta-data": ["169.254.169.254"],
+      "http://shared.example/recipe": ["100.64.0.1"],
+      "http://v6-loopback.example/recipe": ["::1"],
+      "http://v6-private.example/recipe": ["fd00::1"],
+      "http://v6-mapped.example/recipe": ["::ffff:127.0.0.1"],
+      "http://mixed.example/recipe": ["93.184.215.14", "192.168.1.10"],
+      "http://unresolvable.example/recipe": [],
+      "http://127.0.0.1/recipe": null,
+      "http://2130706433/recipe": null,
+      "http://169.254.169.254/latest/meta-data": null,
+      "http://[::1]/recipe": null,
+      "https://kitchen.example:8443/recipe": null,
+      "http://user:pass@kitchen.example/recipe": null,
+    };
+    for (const [url, addresses] of Object.entries(cases)) {
+      const host = new URL(url).hostname;
+      const fetcher = webFetch({ dns: addresses ? { [host]: addresses } : {}, pages: { [new URL(url).href]: () => html(fixture("recipe_jsonld.html")) } });
+      const env = fillEnvironment();
+      const response = await createWorker({ fetcher }).fetch(fillRequest({ url }), env);
+
+      assert.equal(response.status, 422, url);
+      assert.deepEqual(await response.json(), { error: "We couldn't read this page. You can still send the link." }, url);
+      assert.deepEqual(pageCalls(fetcher), [], url);
+      assert.equal(env.AI.run.calls.length, 0, url);
+    }
+  });
+
+  it("still reads pages on public addresses next to the private ranges", async () => {
+    for (const addresses of [["172.32.0.1"], ["100.128.0.1"], ["2606:4700::1111", "93.184.215.14"], ["8.8.8.8"]]) {
+      const fetcher = webFetch({ dns: { "kitchen.example": addresses } });
+      const response = await createWorker({ fetcher }).fetch(fillRequest(), fillEnvironment());
+
+      assert.equal(response.status, 200, addresses.join());
+    }
+  });
+
+  it("re-checks every redirect hop and refuses one that lands on a private address", async (t) => {
+    t.mock.method(console, "error", () => {});
+    const fetcher = webFetch({
+      dns: { "intranet.example": ["10.0.0.5"] },
+      pages: {
+        [PAGE_URL]: () => new Response(null, { status: 302, headers: { location: "/recipes/moved" } }),
+        "https://kitchen.example/recipes/moved": () => new Response(null, { status: 301, headers: { location: "http://intranet.example/admin" } }),
+        "http://intranet.example/admin": () => html(fixture("recipe_jsonld.html")),
+      },
+    });
+    const response = await createWorker({ fetcher }).fetch(fillRequest(), fillEnvironment());
+
+    assert.equal(response.status, 422);
+    assert.deepEqual(pageCalls(fetcher), [PAGE_URL, "https://kitchen.example/recipes/moved"]);
+    // The platform must never follow a redirect on its own.
+    assert.ok(fetcher.calls.filter(([url]) => pageCalls({ calls: [[url]] }).length).every(([, init]) => init.redirect === "manual"));
+  });
+
+  it("follows at most three redirects", async (t) => {
+    t.mock.method(console, "error", () => {});
+    const hop = (n) => `https://kitchen.example/hop/${n}`;
+    const chain = (length) => Object.fromEntries([
+      [PAGE_URL, () => new Response(null, { status: 307, headers: { location: hop(1) } })],
+      ...Array.from({ length }, (_, i) => [hop(i + 1), () => (i + 1 < length
+        ? new Response(null, { status: 308, headers: { location: hop(i + 2) } })
+        : html(fixture("recipe_jsonld.html")))]),
+    ]);
+
+    const three = await createWorker({ fetcher: webFetch({ pages: chain(3) }) }).fetch(fillRequest(), fillEnvironment());
+    assert.equal(three.status, 200);
+
+    const fetcher = webFetch({ pages: chain(4) });
+    const four = await createWorker({ fetcher }).fetch(fillRequest(), fillEnvironment());
+    assert.equal(four.status, 422);
+    assert.equal(pageCalls(fetcher).length, 4);
+  });
+
+  it("refuses pages over 2 MB, whether or not they declare their size", async (t) => {
+    t.mock.method(console, "error", () => {});
+    const recipe = fixture("recipe_jsonld.html");
+    const pages = {
+      declared: () => html(recipe, { "content-length": String(2 * 1024 * 1024 + 1) }),
+      streamed: () => html(recipe + " ".repeat(2 * 1024 * 1024)),
+    };
+    for (const [label, page] of Object.entries(pages)) {
+      const env = fillEnvironment();
+      const response = await createWorker({ fetcher: webFetch({ pages: { [PAGE_URL]: page } }) }).fetch(fillRequest(), env);
+
+      assert.equal(response.status, 422, label);
+      assert.equal(env.AI.run.calls.length, 0, label);
+    }
+  });
+
+  it("needs a passing spam check before it fetches anything", async () => {
+    const failedCheck = () => {
+      const fetcher = webFetch();
+      const wrapped = spy(async (url, init) => (String(url).startsWith("https://challenges.cloudflare.com/")
+        ? Response.json({ success: false })
+        : fetcher(url, init)));
+      return wrapped;
+    };
+    const cases = {
+      "missing token": [{ turnstileToken: "" }, webFetch()],
+      "failed check": [{}, failedCheck()],
+    };
+    for (const [label, [body, fetcher]] of Object.entries(cases)) {
+      const env = fillEnvironment({ SUBMISSION_RATE_LIMITER: limiter() });
+      const response = await createWorker({ fetcher }).fetch(fillRequest(body), env);
+
+      assert.equal(response.status, 400, label);
+      assert.deepEqual(await response.json(), { error: "Please complete the spam check and try again." }, label);
+      assert.deepEqual(fetcher.calls.filter(([url]) => !String(url).startsWith("https://challenges.cloudflare.com/")), [], label);
+      assert.equal(env.SUBMISSION_RATE_LIMITER.get.calls.length, 0, label);
+      assert.equal(env.AI.run.calls.length, 0, label);
+    }
+  });
+
+  it("only answers the Mason Recipes site", async () => {
+    const fetcher = webFetch();
+    const env = fillEnvironment();
+    const response = await createWorker({ fetcher }).fetch(fillRequest({}, "https://evil.example"), env);
+
+    assert.equal(response.status, 403);
+    assert.equal(response.headers.get("access-control-allow-origin"), null);
+    assert.deepEqual(fetcher.calls, []);
+    assert.equal(env.AI.run.calls.length, 0);
+  });
+
+  it("asks for a valid link before checking anything else", async () => {
+    for (const url of ["", "javascript:alert(1)", "Grandma's cookbook", `https://kitchen.example/${"a".repeat(2_048)}`]) {
+      const fetcher = webFetch();
+      const response = await createWorker({ fetcher }).fetch(fillRequest({ url }), fillEnvironment());
+
+      assert.equal(response.status, 400, url);
+      assert.deepEqual(await response.json(), { error: "Please enter a valid source link." }, url);
+      assert.deepEqual(fetcher.calls, [], url);
+    }
+  });
+
+  it("allows five fills per person in five minutes without using up their sends", async () => {
+    const env = fillEnvironment({ SUBMISSION_RATE_LIMITER: durableLimiters() });
+    const worker = createWorker({ fetcher: webFetch() });
+
+    for (let fill = 1; fill <= 5; fill += 1) {
+      assert.equal((await worker.fetch(fillRequest(), env)).status, 200, `fill ${fill}`);
+    }
+    const fetcher = webFetch();
+    const sixth = await createWorker({ fetcher }).fetch(fillRequest(), env);
+    assert.equal(sixth.status, 429);
+    assert.deepEqual(await sixth.json(), { error: "Please wait a few minutes before filling from another link." });
+    assert.deepEqual(pageCalls(fetcher), []);
+
+    const sendFetch = spy(async (url) => (url === "https://challenges.cloudflare.com/turnstile/v0/siteverify"
+      ? Response.json({ action: "recipe_submit", hostname: "masonrecipes.github.io", success: true })
+      : new Response(null, { status: 201 })));
+    assert.equal((await createWorker({ fetcher: sendFetch }).fetch(request(), env)).status, 201);
+  });
+
+  it("stops AI fallbacks after 50 a day across the site, but keeps reading Recipe blocks", async () => {
+    const env = fillEnvironment({ SUBMISSION_RATE_LIMITER: durableLimiters() });
+    const noRecipeBlock = () => webFetch({ pages: { [PAGE_URL]: () => html(fixture("recipe_no_jsonld.html")) } });
+    const person = (n) => `198.51.100.${n}`;
+
+    // Recipe-block fills never count toward the AI cap.
+    for (let fill = 0; fill < 5; fill += 1) {
+      assert.equal((await createWorker({ fetcher: webFetch() }).fetch(fillRequest({}, ORIGIN, person(200)), env)).status, 200);
+    }
+    for (let fill = 0; fill < 50; fill += 1) {
+      const ai = aiReturning(completed(JSON.stringify(draftModelOutput())));
+      const response = await createWorker({ fetcher: noRecipeBlock() }).fetch(fillRequest({}, ORIGIN, person(Math.floor(fill / 5))), { ...env, AI: ai });
+      assert.equal(response.status, 200, `AI fill ${fill + 1}`);
+    }
+
+    const ai = aiReturning(completed(JSON.stringify(draftModelOutput())));
+    const capped = await createWorker({ fetcher: noRecipeBlock() }).fetch(fillRequest({}, ORIGIN, person(100)), { ...env, AI: ai });
+    assert.equal(capped.status, 429);
+    assert.deepEqual(await capped.json(), {
+      error: "We can't read any more pages today. You can still send the link and we'll read it later.",
+    });
+    assert.equal(ai.run.calls.length, 0);
+
+    const recipeBlock = await createWorker({ fetcher: webFetch() }).fetch(fillRequest({}, ORIGIN, person(101)), env);
+    assert.equal(recipeBlock.status, 200);
   });
 });

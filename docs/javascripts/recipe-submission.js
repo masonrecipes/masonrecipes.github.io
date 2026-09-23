@@ -21,11 +21,14 @@
         <h2 id="recipe-submission-title">Share a recipe</h2>
         <button class="recipe-submission-close" type="button" aria-label="Close recipe form">×</button>
       </div>
-      <p>Send us the recipe in whatever form you have it. We will take it from there. Found it online? Paste the link and we can read the ingredients and steps from the page.</p>
+      <p>Send us the recipe in whatever form you have it. We will take it from there. Found it online? Paste the link and press Fill from link to copy the ingredients and steps into the form for you to check, or just send the link and we will read it later.</p>
       <label for="recipe-submission-name">Recipe name <span aria-hidden="true">*</span></label>
       <input id="recipe-submission-name" name="recipeName" maxlength="120" required autocomplete="off">
       <label for="recipe-submission-source">Inspired by (link) <span class="recipe-submission-optional">(optional)</span></label>
-      <input id="recipe-submission-source" name="sourceUrl" type="url" maxlength="2048" autocomplete="url" inputmode="url" placeholder="https://example.com/recipe">
+      <div class="recipe-submission-link-row">
+        <input id="recipe-submission-source" name="sourceUrl" type="url" maxlength="2048" autocomplete="url" inputmode="url" placeholder="https://example.com/recipe">
+        <button class="recipe-submission-fill md-button" type="button" disabled>Fill from link</button>
+      </div>
       <label for="recipe-submission-ingredients">Ingredients <span class="recipe-submission-required" aria-hidden="true">*</span></label>
       <textarea id="recipe-submission-ingredients" name="ingredients" maxlength="12000" required rows="8" placeholder="One ingredient per line"></textarea>
       <label for="recipe-submission-recipe">Recipe <span class="recipe-submission-required" aria-hidden="true">*</span></label>
@@ -54,8 +57,10 @@
   const recipeText = [dialog.querySelector("#recipe-submission-ingredients"), dialog.querySelector("#recipe-submission-recipe")];
   const closeButton = dialog.querySelector(".recipe-submission-close");
   const sendButton = dialog.querySelector(".recipe-submission-send");
+  const fillButton = dialog.querySelector(".recipe-submission-fill");
   const status = dialog.querySelector(".recipe-submission-status");
   let turnstileToken = "";
+  let filling = false;
   let widgetId;
 
   // A valid http(s) link lets us read the ingredients and steps from that page.
@@ -63,6 +68,16 @@
     const hasLink = sourceInput.validity.valid && /^https?:\/\/\S+$/i.test(sourceInput.value.trim());
     for (const field of recipeText) field.required = !hasLink;
     for (const mark of dialog.querySelectorAll(".recipe-submission-required")) mark.hidden = hasLink;
+    fillButton.disabled = !hasLink || filling;
+  }
+
+  function setFilling(active) {
+    filling = active;
+    fillButton.textContent = active ? "Reading page…" : "Fill from link";
+    if (active) fillButton.setAttribute("aria-busy", "true");
+    else fillButton.removeAttribute("aria-busy");
+    for (const field of recipeText) field.readOnly = active;
+    syncRequired();
   }
 
   function setStatus(message) {
@@ -103,7 +118,50 @@
     dialog.querySelector("#recipe-submission-name").focus();
   }
 
+  const FILL_FAILED = "We couldn't read this page. You can still send the link.";
+  const nameInput = dialog.querySelector("#recipe-submission-name");
+  const [ingredientsInput, recipeInput] = recipeText;
+
+  // Fill reads the linked page into the boxes; the person still reviews and presses Send.
+  async function fillFromLink() {
+    const typed = recipeText.some((field) => field.value.trim());
+    if (typed && !window.confirm("Replace the ingredients and recipe you have typed with the ones from this page?")) return;
+    if (!turnstileToken) {
+      setStatus("The spam check is still loading. Please try again in a moment.");
+      return;
+    }
+    // Turnstile tokens are single-use: this one is spent on Fill, and Send gets a fresh one.
+    const token = turnstileToken;
+    resetTurnstile();
+    setFilling(true);
+    setStatus("Reading the recipe from that page…");
+    let filled = false;
+    try {
+      const response = await fetch(new URL("/fill", config.endpoint), {
+        body: JSON.stringify({ url: sourceInput.value.trim(), recipeName: nameInput.value.trim(), turnstileToken: token }),
+        headers: { "content-type": "application/json" },
+        method: "POST",
+      });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok || !Array.isArray(result.ingredients) || !Array.isArray(result.steps)) {
+        throw new Error(result.error || FILL_FAILED);
+      }
+      ingredientsInput.value = result.ingredients.join("\n");
+      recipeInput.value = result.steps.join("\n");
+      if (!nameInput.value.trim() && typeof result.title === "string") nameInput.value = result.title.slice(0, 120);
+      setStatus("Filled in from the page. Please check the ingredients and steps, then send your recipe.");
+      filled = true;
+    } catch (error) {
+      setStatus(error instanceof TypeError || !error.message ? FILL_FAILED : error.message);
+    } finally {
+      setFilling(false);
+      // The button was disabled while working, which drops keyboard focus; put it somewhere useful.
+      (filled ? ingredientsInput : fillButton).focus();
+    }
+  }
+
   sourceInput.addEventListener("input", syncRequired);
+  fillButton.addEventListener("click", fillFromLink);
   button.addEventListener("click", openDialog);
   closeButton.addEventListener("click", () => dialog.close());
   dialog.addEventListener("close", () => {
