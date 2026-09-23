@@ -1,0 +1,125 @@
+name: Draft Website Recipe Submission
+
+# Turns a website-created recipe-submission issue into a review-only PR.
+# The model runs on Azure AI Foundry; this job signs in with GitHub OIDC, so no
+# Azure key is stored. See "AI drafting for website submissions" in README.md.
+
+on:
+  issues:
+    types: [opened, labeled]
+
+concurrency:
+  group: website-recipe-${{ github.event.issue.number }}
+  cancel-in-progress: false
+
+jobs:
+  draft-recipe:
+    if: >-
+      github.event.issue.state == 'open' &&
+      contains(github.event.issue.labels.*.name, 'recipe-submission') &&
+      startsWith(github.event.issue.title, '[Website submission]') &&
+      startsWith(github.event.issue.body, '## Website recipe submission') &&
+      (github.event.action == 'opened' || github.event.label.name == 'recipe-submission')
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      id-token: write
+      issues: write
+      pull-requests: write
+
+    env:
+      BRANCH: website-recipe-${{ github.event.issue.number }}
+      ISSUE_NUMBER: ${{ github.event.issue.number }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      # Creating an issue with a label fires both opened and labeled; the second run
+      # (serialized by the concurrency group) finds the branch and stops here.
+      - name: Skip if already drafted
+        id: existing
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh api "repos/${GITHUB_REPOSITORY}/branches/${BRANCH}" --silent 2>/dev/null; then
+            echo "Branch ${BRANCH} already exists; nothing to do."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Set up Python
+        if: steps.existing.outputs.skip != 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Sign in to Azure with OIDC
+        if: steps.existing.outputs.skip != 'true'
+        uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+
+      # No GitHub token in this step. The issue is read from $GITHUB_EVENT_PATH in code.
+      - name: Draft recipe with the model
+        if: steps.existing.outputs.skip != 'true'
+        env:
+          AZURE_OPENAI_ENDPOINT: ${{ vars.AZURE_OPENAI_ENDPOINT }}
+          AZURE_OPENAI_DEPLOYMENT: ${{ vars.AZURE_OPENAI_DEPLOYMENT }}
+          INTAKE_OUT_DIR: ${{ runner.temp }}/intake
+        run: |
+          AZURE_OPENAI_TOKEN="$(az account get-access-token --resource https://cognitiveservices.azure.com --query accessToken --output tsv)"
+          echo "::add-mask::${AZURE_OPENAI_TOKEN}"
+          export AZURE_OPENAI_TOKEN
+          python .github/scripts/website_recipe.py
+
+      - name: Sign out of Azure
+        if: always() && steps.existing.outputs.skip != 'true'
+        run: az logout || true
+
+      - name: Build site
+        if: steps.existing.outputs.skip != 'true'
+        run: |
+          pip install -r requirements.txt
+          zensical build --clean
+
+      - name: Open pull request
+        if: steps.existing.outputs.skip != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BASE_BRANCH: ${{ github.event.repository.default_branch }}
+          INTAKE_OUT_DIR: ${{ runner.temp }}/intake
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898233+github-actions[bot]@users.noreply.github.com"
+          gh auth setup-git
+          git switch --create "$BRANCH"
+          git add -- docs/recipes mkdocs.yml docs/authors.md
+          git commit --file "${INTAKE_OUT_DIR}/pr-title"
+          git push origin "$BRANCH"
+          pr_url="$(gh pr create --base "$BASE_BRANCH" --head "$BRANCH" \
+            --title "$(cat "${INTAKE_OUT_DIR}/pr-title")" \
+            --body-file "${INTAKE_OUT_DIR}/pr-body.md")"
+          gh issue comment "$ISSUE_NUMBER" --body "A draft recipe page is ready for review: ${pr_url}"
+
+      - name: Comment on failure
+        if: failure() && steps.existing.outputs.skip != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          INTAKE_OUT_DIR: ${{ runner.temp }}/intake
+        run: |
+          marker="<!-- website-recipe-intake-failed -->"
+          # ponytail: one failure comment per issue; a re-label retry that fails again
+          # only shows in the Actions run.
+          if gh api "repos/${GITHUB_REPOSITORY}/issues/${ISSUE_NUMBER}/comments" --paginate --jq '.[].body' | grep -qF "$marker"; then
+            exit 0
+          fi
+          reason="$(tr -cd 'a-z-' < "${INTAKE_OUT_DIR}/failure-reason" 2>/dev/null || true)"
+          gh issue comment "$ISSUE_NUMBER" --body "${marker}
+          The automatic recipe draft could not be created (reason: \`${reason:-workflow-error}\`). This submission stays open for manual formatting. To retry, remove and re-add the \`recipe-submission\` label.
+
+          Run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"

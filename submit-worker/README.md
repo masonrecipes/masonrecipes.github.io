@@ -1,6 +1,6 @@
 # Mason Recipes submission worker
 
-This Cloudflare Worker accepts the simple recipe form on the Mason Recipes site and creates a `recipe-submission` GitHub issue. Website-created issues stay open for later AI or human formatting; turning an issue into a recipe page is a follow-up, not part of this Worker.
+This Cloudflare Worker accepts the simple recipe form on the Mason Recipes site and creates a `recipe-submission` GitHub issue. Turning an issue into a recipe page is not part of this Worker; see "AI drafting for website submissions" in the root `README.md`.
 
 The worker rejects requests from origins other than `https://masonrecipes.github.io`, requires a verified Turnstile token, caps each field, and allows a client IP only two verified submission attempts in five minutes. Failed spam checks do not count toward that limit. The Durable Object binding serializes the per-IP counter so simultaneous requests cannot exceed that limit.
 

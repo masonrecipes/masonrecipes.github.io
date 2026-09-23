@@ -100,6 +100,26 @@ zensical build
 
 The site will be available at `http://localhost:8000`.
 
+## AI drafting for website submissions
+
+When the website form creates a `recipe-submission` issue, `.github/workflows/process_website_submission.yml` drafts a recipe page and opens a pull request for review. It never merges. The model (`gpt-6-luna` on Azure AI Foundry) only tidies the recipe text and picks one of the eight categories through a strict JSON schema; it gets no tools, no repository token, and never sees the submitter's name or source link. Code in `.github/scripts/website_recipe.py` then renders the page, updates navigation, credits a named submitter (a `By Name` tag, `author` metadata, an Authors page entry, and a "Submitted by" line), links an `https` source, and flags an `http` source in the PR for review. The workflow builds the site before opening the PR. If anything looks wrong, such as changed quantities, raw HTML, or a duplicate title, it comments on the issue and leaves it open for manual formatting.
+
+### One-time Azure setup
+
+The workflow signs in to Azure with GitHub OIDC, so no Azure key is stored anywhere.
+
+1. Install the [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli) and sign in with the personal account: `az login`.
+2. Run `./scripts/setup-foundry.sh`. It only proceeds in the subscription named "Azure subscription 1". It creates a resource group and an Azure AI Foundry resource in Sweden Central, deploys `gpt-6-luna` (GlobalStandard, small capacity), and registers an Entra app. That app's only credential is a federated credential for this repository's `main` branch, and its only permission is "Cognitive Services OpenAI User" on that one resource. You can run it again safely.
+3. Run the five `gh variable set` commands the script prints. They set `AZURE_CLIENT_ID`, `AZURE_TENANT_ID`, `AZURE_SUBSCRIPTION_ID`, `AZURE_OPENAI_ENDPOINT`, and `AZURE_OPENAI_DEPLOYMENT`. These are repository variables, not secrets.
+
+To retry a submission after a failure, remove and re-add the `recipe-submission` label. If a draft branch `website-recipe-<issue number>` already exists, delete it first.
+
+### Tests
+
+```bash
+python3 -m unittest discover -s .github/scripts -p 'test_*.py'
+```
+
 ## Deployment
 
 The site is automatically deployed to GitHub Pages whenever changes are pushed to the `main` branch. The GitHub Actions workflow builds the Zensical site and publishes it to the `gh-pages` branch.
