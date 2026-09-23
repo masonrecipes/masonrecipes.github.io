@@ -17,6 +17,7 @@ import json
 import re
 import socket
 import ssl
+import threading
 import time
 import urllib.parse
 from html.parser import HTMLParser
@@ -76,30 +77,38 @@ def check_url(url):
     return parts
 
 
+def _open(conn):
+    sock = socket.create_connection((conn._ip, conn.port), conn.timeout)
+    if conn._on_socket:
+        conn._on_socket(sock)
+    return sock
+
+
 class _PinnedHTTP(http.client.HTTPConnection):
-    def __init__(self, host, ip, **kwargs):
+    def __init__(self, host, ip, on_socket=None, **kwargs):
         super().__init__(host, **kwargs)
-        self._ip = ip
+        self._ip, self._on_socket = ip, on_socket
 
     def connect(self):
-        self.sock = socket.create_connection((self._ip, self.port), self.timeout)
+        self.sock = _open(self)
 
 
 class _PinnedHTTPS(http.client.HTTPSConnection):
-    def __init__(self, host, ip, **kwargs):
+    def __init__(self, host, ip, on_socket=None, **kwargs):
         super().__init__(host, context=ssl.create_default_context(), **kwargs)
-        self._ip = ip
+        self._ip, self._on_socket = ip, on_socket
 
     def connect(self):
-        sock = socket.create_connection((self._ip, self.port), self.timeout)
+        sock = _open(self)
         # Certificate and SNI are checked against the real host name.
         self.sock = self._context.wrap_socket(sock, server_hostname=self.host)
 
 
-def send(parts, ip, timeout=TIMEOUT):
-    """GET the URL from the vetted address. Returns an http.client response."""
+def send(parts, ip, timeout=TIMEOUT, on_socket=None):
+    """GET the URL from the vetted address. Returns an http.client response.
+    `on_socket` receives the raw socket as soon as it is connected."""
     cls = _PinnedHTTPS if parts.scheme.lower() == "https" else _PinnedHTTP
-    conn = cls(parts.hostname, ip, port=parts.port, timeout=timeout)
+    conn = cls(parts.hostname, ip, on_socket=on_socket, port=parts.port, timeout=timeout)
     path = urllib.parse.urlunsplit(("", "", parts.path or "/", parts.query, ""))
     conn.request("GET", path, headers={
         "User-Agent": USER_AGENT,
@@ -134,6 +143,7 @@ def read_capped(response, deadline):
         if total > MAX_BYTES:
             raise FetchError("link-too-large")
         chunks.append(chunk)
+    remaining(deadline)
     return b"".join(chunks)
 
 
@@ -148,11 +158,32 @@ def fetch_page(url, resolver=resolve, sender=send):
 
 def _fetch(url, resolver, sender):
     deadline = time.monotonic() + DEADLINE
+    opened = []
+
+    def expire():
+        for sock in opened:
+            try:
+                sock.shutdown(socket.SHUT_RDWR)
+            except OSError:
+                pass
+
+    watchdog = threading.Timer(DEADLINE, expire)
+    watchdog.daemon = True
+    watchdog.start()
+    try:
+        return _fetch_within(url, resolver, sender, deadline, opened.append)
+    finally:
+        watchdog.cancel()
+
+
+def _fetch_within(url, resolver, sender, deadline, on_socket):
     for hop in range(MAX_REDIRECTS + 1):
+        timeout = remaining(deadline)
         # Every hop is checked again: scheme, port, DNS and address.
         parts = check_url(url)
         ip = public_address(resolver(parts.hostname))
-        response = sender(parts, ip, remaining(deadline))
+        response = sender(parts, ip, timeout, on_socket)
+        remaining(deadline)
         if response.status not in (301, 302, 303, 307, 308):
             break
         if hop == MAX_REDIRECTS:
