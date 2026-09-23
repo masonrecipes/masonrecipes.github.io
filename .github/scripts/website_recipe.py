@@ -175,6 +175,8 @@ def import_link(fields, fetch):
         return "schema.org Recipe data"
     # No recipe data: the model reads the page text, as untrusted data.
     fields["Page text"] = link_import.visible_text(page)
+    if not fields["Page text"]:
+        raise IntakeError("link-no-recipe")
     return "page text, read by the model"
 
 

@@ -8,6 +8,7 @@ import http.server
 import os
 import sys
 import threading
+import time
 import unittest
 import urllib.parse
 from unittest import mock
@@ -32,9 +33,12 @@ class FakeResponse:
     def getheader(self, name, default=None):
         return self.headers.get(name, default)
 
-    def read(self, size):
+    def read1(self, size):
         chunk, self.body = self.body[:size], self.body[size:]
         return chunk
+
+    def settimeout(self, seconds):
+        pass
 
     def close(self):
         pass
@@ -42,14 +46,14 @@ class FakeResponse:
 
 def server(pages):
     """Fake web: (host, path) -> FakeResponse. Records every connection."""
-    def sender(parts, ip):
+    def sender(parts, ip, timeout=None):
         sender.calls.append((parts.hostname, ip, parts.path))
         return pages[(parts.hostname, parts.path)]
     sender.calls = []
     return sender
 
 
-def no_network(parts, ip):
+def no_network(parts, ip, timeout=None):
     raise AssertionError(f"must not connect to {parts.hostname} at {ip}")
 
 
@@ -112,7 +116,7 @@ class FetchTest(unittest.TestCase):
                                    server({("recipes.example", "/x"): response}))
 
     def test_network_errors_become_a_reason(self):
-        def broken(parts, ip):
+        def broken(parts, ip, timeout=None):
             raise ConnectionResetError("reset")
         self.assertRefused("link-fetch-failed", "https://recipes.example/x",
                            {"recipes.example": ["93.184.215.14"]}, broken)
@@ -121,7 +125,7 @@ class FetchTest(unittest.TestCase):
         clock = [1000.0]
 
         class Drip(FakeResponse):
-            def read(self, size):
+            def read1(self, size):
                 clock[0] += 15  # each tiny chunk takes 15 seconds: under the socket timeout
                 return b"x"
 
@@ -130,6 +134,20 @@ class FetchTest(unittest.TestCase):
                                {"recipes.example": ["93.184.215.14"]},
                                server({("recipes.example", "/slow"): Drip()}))
         self.assertLess(clock[0], 1000 + 60)
+
+    def test_slow_redirect_chain_hits_the_overall_deadline(self):
+        clock = [1000.0]
+
+        def slow_redirects(parts, ip, timeout=None):
+            slow_redirects.calls += 1
+            clock[0] += 15  # each hop takes 15 seconds: under the socket timeout
+            return FakeResponse(302, {"Location": f"/hop{slow_redirects.calls}"})
+        slow_redirects.calls = 0
+
+        with mock.patch("time.monotonic", lambda: clock[0]):
+            self.assertRefused("link-fetch-failed", "https://recipes.example/slow",
+                               {"recipes.example": ["93.184.215.14"]}, slow_redirects)
+        self.assertEqual(slow_redirects.calls, 2)
 
     def test_private_ip_link_is_refused(self):
         self.assertRefused("link-refused-address", "https://recipes.example/chili",
@@ -201,6 +219,39 @@ class SendTest(unittest.TestCase):
         response = li.send(urllib.parse.urlsplit(f"http://recipe.invalid:{port}/chili?x=1#frag"), "127.0.0.1")
         self.assertEqual((response.status, response.read(100)), (200, b"<p>pinned</p>"))
         self.assertEqual(seen, {"host": f"recipe.invalid:{port}", "path": "/chili?x=1", "encoding": "identity"})
+
+    def test_real_socket_drip_cannot_outlast_the_deadline(self):
+        class Drip(http.server.BaseHTTPRequestHandler):
+            def do_GET(self):
+                self.send_response(200)
+                self.send_header("Content-Type", "text/html")
+                self.end_headers()
+                try:
+                    for _ in range(40):  # one byte every 0.1 s: never trips the socket timeout
+                        self.wfile.write(b"x")
+                        self.wfile.flush()
+                        time.sleep(0.1)
+                except OSError:
+                    pass
+
+            def log_message(self, *args):
+                pass
+
+        httpd = http.server.HTTPServer(("127.0.0.1", 0), Drip)
+        self.addCleanup(httpd.server_close)
+        threading.Thread(target=httpd.handle_request, daemon=True).start()
+        port = httpd.server_address[1]
+
+        def loopback(parts, ip, timeout=li.TIMEOUT):
+            return li.send(urllib.parse.urlsplit(f"http://recipe.invalid:{port}/"), "127.0.0.1", timeout)
+
+        start = time.monotonic()
+        with mock.patch.object(li, "DEADLINE", 1), mock.patch.object(li, "TIMEOUT", 0.5):
+            with self.assertRaises(li.FetchError) as ctx:
+                li.fetch_page("https://recipes.example/slow",
+                              resolver=resolver({"recipes.example": ["93.184.215.14"]}), sender=loopback)
+        self.assertEqual(str(ctx.exception), "link-fetch-failed")
+        self.assertLess(time.monotonic() - start, 2)
 
 
 if __name__ == "__main__":

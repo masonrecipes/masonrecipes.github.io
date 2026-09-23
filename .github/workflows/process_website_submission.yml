@@ -21,6 +21,7 @@ jobs:
       startsWith(github.event.issue.body, '## Website recipe submission') &&
       (github.event.action == 'opened' || github.event.label.name == 'recipe-submission')
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     permissions:
       contents: write

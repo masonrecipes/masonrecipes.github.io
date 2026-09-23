@@ -96,17 +96,28 @@ class _PinnedHTTPS(http.client.HTTPSConnection):
         self.sock = self._context.wrap_socket(sock, server_hostname=self.host)
 
 
-def send(parts, ip):
+def send(parts, ip, timeout=TIMEOUT):
     """GET the URL from the vetted address. Returns an http.client response."""
     cls = _PinnedHTTPS if parts.scheme.lower() == "https" else _PinnedHTTP
-    conn = cls(parts.hostname, ip, port=parts.port, timeout=TIMEOUT)
+    conn = cls(parts.hostname, ip, port=parts.port, timeout=timeout)
     path = urllib.parse.urlunsplit(("", "", parts.path or "/", parts.query, ""))
     conn.request("GET", path, headers={
         "User-Agent": USER_AGENT,
         "Accept": "text/html,application/xhtml+xml",
         "Accept-Encoding": "identity",
     })
-    return conn.getresponse()
+    sock = conn.sock
+    response = conn.getresponse()
+    response.settimeout = sock.settimeout
+    return response
+
+
+def remaining(deadline):
+    """Seconds left for the next socket wait, never more than TIMEOUT."""
+    left = deadline - time.monotonic()
+    if left <= 0:
+        raise FetchError("link-fetch-failed")
+    return min(TIMEOUT, left)
 
 
 def read_capped(response, deadline):
@@ -114,9 +125,11 @@ def read_capped(response, deadline):
     if length and length.isdigit() and int(length) > MAX_BYTES:
         raise FetchError("link-too-large")
     chunks, total = [], 0
-    while chunk := response.read(64 * 1024):
-        if time.monotonic() > deadline:
-            raise FetchError("link-fetch-failed")
+    while True:
+        response.settimeout(remaining(deadline))
+        chunk = response.read1(64 * 1024)
+        if not chunk:
+            break
         total += len(chunk)
         if total > MAX_BYTES:
             raise FetchError("link-too-large")
@@ -139,7 +152,7 @@ def _fetch(url, resolver, sender):
         # Every hop is checked again: scheme, port, DNS and address.
         parts = check_url(url)
         ip = public_address(resolver(parts.hostname))
-        response = sender(parts, ip)
+        response = sender(parts, ip, remaining(deadline))
         if response.status not in (301, 302, 303, 307, 308):
             break
         if hop == MAX_REDIRECTS:

@@ -332,6 +332,17 @@ class IntakeTest(unittest.TestCase):
         self.assertEqual(str(ctx.exception), "link-no-recipe")
         self.assertEqual(self.changed(), [])
 
+    def test_page_with_no_visible_text_never_reaches_the_model(self):
+        model = recording(output(ingredient_groups=[{"heading": "", "items": ["flour", "sugar"]}],
+                                 steps=["Mix and bake."]))
+        with self.assertRaises(wr.IntakeError) as ctx:
+            wr.process(link_issue("Fresh Lemonade"), model, root=self.root,
+                       fetch=lambda url: "<html><head><title>App</title></head>"
+                                         "<body><script>render()</script><noscript>x</noscript></body></html>")
+        self.assertEqual(str(ctx.exception), "link-no-recipe")
+        self.assertEqual(model.seen, [])
+        self.assertEqual(self.changed(), [])
+
     def test_refused_link_opens_no_pr(self):
         def refused(url):
             raise wr.link_import.FetchError("link-refused-address")
