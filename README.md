@@ -102,17 +102,17 @@ The site will be available at `http://localhost:8000`.
 
 ## AI drafting for website submissions
 
-When the website form creates a `recipe-submission` issue, `.github/workflows/process_website_submission.yml` drafts a recipe page and opens a pull request for review. It never merges. The model (`gpt-6-luna` on Azure AI Foundry) only tidies the recipe text and picks one of the eight categories through a strict JSON schema; it gets no tools, no repository token, and never sees the submitter's name or source link. Code in `.github/scripts/website_recipe.py` then renders the page, updates navigation, credits a named submitter (a `By Name` tag, `author` metadata, an Authors page entry, and a "Submitted by" line), links an `https` source, and flags an `http` source in the PR for review. The workflow builds the site before opening the PR. If anything looks wrong, such as changed quantities, raw HTML, or a duplicate title, it comments on the issue and leaves it open for manual formatting.
+When the website form creates a `recipe-submission` issue, `.github/workflows/process_website_submission.yml` drafts a recipe page and opens a pull request for review. It never merges. The model (OpenAI `gpt-5.6-luna` on Cloudflare Workers AI) only tidies the recipe text and picks one of the eight categories through a strict JSON schema; it gets no tools, no repository token, and never sees the submitter's name or source link. Code in `.github/scripts/website_recipe.py` then renders the page, updates navigation, credits a named submitter (a `By Name` tag, `author` metadata, an Authors page entry, and a "Submitted by" line), links an `https` source, and flags an `http` source in the PR for review. The workflow builds the site before opening the PR. If anything looks wrong, such as changed quantities, raw HTML, or a duplicate title, it comments on the issue and leaves it open for manual formatting.
 
 A submitter can also send just a recipe name and a link. The workflow then fetches that page from `.github/scripts/link_import.py`, which only allows `http`/`https` on the default ports. It resolves every host (including each redirect hop) and refuses private, loopback, link-local and metadata addresses. It connects to the address it checked, gives up after 5 redirects, 2 MB or 20 seconds, and never runs the page's scripts. If the page has a schema.org `Recipe` block (JSON-LD), its ingredients and steps are copied over as they are. If not, the page's visible text goes to the model as untrusted data, and every number in the draft must appear on that page. When neither works, no PR is opened and the issue gets a comment asking for the ingredients and steps as text.
 
-### One-time Azure setup
+### How the workflow reaches the model
 
-The workflow signs in to Azure with GitHub OIDC, so no Azure key is stored anywhere.
+The workflow does not call the model itself. It asks the recipe submission Worker (`submit-worker/`) to draft the recipe by POSTing the recipe text to the Worker's `/draft` endpoint. It proves who it is with a short-lived GitHub Actions OIDC token minted for the audience `mason-recipe-submissions`. The Worker checks that token's signature against GitHub's published keys and accepts it only from `masonrecipes/masonrecipes.github.io` on `refs/heads/main`. It then calls `openai/gpt-5.6-luna` through its Workers AI binding with the fixed instructions and strict schema, and returns only schema-valid JSON. No API key or cloud credential is stored in GitHub or in the Worker.
 
-1. Install the [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli) and sign in with the personal account: `az login`.
-2. Run `./scripts/setup-foundry.sh`. It only proceeds in the subscription named "Azure subscription 1". It creates a resource group and an Azure AI Foundry resource in Sweden Central, deploys `gpt-6-luna` (GlobalStandard, small capacity), and registers an Entra app. That app's only credential is a federated credential for this repository's `main` branch, and its only permission is "Cognitive Services OpenAI User" on that one resource. You can run it again safely.
-3. Run the five `gh variable set` commands the script prints. They set `AZURE_CLIENT_ID`, `AZURE_TENANT_ID`, `AZURE_SUBSCRIPTION_ID`, `AZURE_OPENAI_ENDPOINT`, and `AZURE_OPENAI_DEPLOYMENT`. These are repository variables, not secrets.
+The workflow always calls the fixed endpoint `https://mason-recipe-submissions.david-beihl.workers.dev/draft`, so the token can only go to the recipe helper.
+
+Setup is only a Worker redeploy: after a change to `submit-worker/` merges, run `npx wrangler deploy` from `submit-worker/`. The `AI` binding in `wrangler.jsonc` uses Workers AI on the same Cloudflare account, so there is nothing else to configure.
 
 To retry a submission after a failure, remove and re-add the `recipe-submission` label. If a draft branch `website-recipe-<issue number>` already exists, delete it first.
 
@@ -120,6 +120,7 @@ To retry a submission after a failure, remove and re-add the `recipe-submission`
 
 ```bash
 python3 -m unittest discover -s .github/scripts -p 'test_*.py'
+(cd submit-worker && npm test)
 ```
 
 ## Deployment
