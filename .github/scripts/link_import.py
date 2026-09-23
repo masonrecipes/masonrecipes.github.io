@@ -30,6 +30,7 @@ TIMEOUT = 10  # seconds per socket operation
 DEADLINE = 20  # seconds for the whole fetch, all hops
 MAX_PAGE_TEXT = 40_000
 USER_AGENT = "MasonRecipesBot/1.0 (+https://masonrecipes.github.io)"
+CHALLENGE_PAGE = re.compile(r"<title>\s*Just a moment\.\.\.\s*</title>|/cdn-cgi/challenge-platform/", re.I)
 
 
 class FetchError(Exception):
@@ -144,6 +145,20 @@ def read_capped(response, deadline):
     return b"".join(chunks)
 
 
+def is_challenge(response, deadline):
+    """A bot wall (Cloudflare's managed challenge and the like) that no plain fetch gets
+    past, so the submitter is asked for the text instead. Mirrored in the Worker."""
+    if response.status not in (403, 503):
+        return False
+    if "challenge" in (response.getheader("cf-mitigated") or "").lower():
+        return True
+    try:
+        body = read_capped(response, deadline)
+    except FetchError:
+        return False
+    return bool(CHALLENGE_PAGE.search(body.decode("utf-8", errors="replace")))
+
+
 def fetch_page(url, resolver=resolve, sender=send):
     """Return the HTML of a public web page as text, or raise FetchError."""
     try:
@@ -190,6 +205,8 @@ def _fetch_within(url, resolver, sender, deadline, on_socket):
         if not location:
             raise FetchError("link-fetch-failed")
         url = urllib.parse.urljoin(url, location)
+    if is_challenge(response, deadline):
+        raise FetchError("link-blocked")
     if response.status != 200:
         raise FetchError("link-fetch-failed")
     kind = (response.getheader("Content-Type") or "").split(";")[0].strip().lower()

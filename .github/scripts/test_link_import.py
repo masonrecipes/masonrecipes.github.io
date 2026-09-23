@@ -117,6 +117,21 @@ class FetchTest(unittest.TestCase):
                 self.assertRefused(reason, "https://recipes.example/x", public,
                                    server({("recipes.example", "/x"): response}))
 
+    def test_bot_challenge_is_reported_as_blocked(self):
+        public = {"recipes.example": ["93.184.215.14"]}
+        with open(os.path.join(os.path.dirname(__file__), "fixtures", "cloudflare_challenge.html"), "rb") as f:
+            page = f.read()
+        for label, response in (
+                ("403 with cf-mitigated", FakeResponse(403, {"cf-mitigated": "challenge"}, page)),
+                ("503 with cf-mitigated", FakeResponse(503, {"cf-mitigated": "challenge"}, page)),
+                ("403 challenge page without the header", FakeResponse(403, body=page))):
+            with self.subTest(label):
+                self.assertRefused("link-blocked", "https://recipes.example/x", public,
+                                   server({("recipes.example", "/x"): response}))
+        # A plain 403 is not a challenge.
+        self.assertRefused("link-fetch-failed", "https://recipes.example/x", public,
+                           server({("recipes.example", "/x"): FakeResponse(403, body=b"Forbidden")}))
+
     def test_network_errors_become_a_reason(self):
         def broken(parts, ip, timeout=None, on_socket=None):
             raise ConnectionResetError("reset")

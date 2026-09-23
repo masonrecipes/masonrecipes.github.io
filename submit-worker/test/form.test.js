@@ -68,6 +68,28 @@ describe("recipe form: fill from link", () => {
     }
   });
 
+  it("looks pressable when enabled and clearly off when disabled", () => {
+    const { window, fields, type, fillButton } = openForm();
+    const style = window.document.createElement("style");
+    style.textContent = readFileSync(new URL("../../docs/stylesheets/recipe-submission.css", import.meta.url), "utf8");
+    window.document.head.append(style);
+    const look = () => {
+      const computed = window.getComputedStyle(fillButton);
+      const background = computed.backgroundColor;
+      return { solid: background !== "" && !/^(transparent|rgba\(0, 0, 0, 0\))$/.test(background), color: computed.color, cursor: computed.cursor };
+    };
+
+    const off = look();
+    assert.equal(off.cursor, "not-allowed");
+    assert.equal(off.solid, false, "a disabled button is an outline, not a filled pill");
+
+    type(fields.link, LINK);
+    const on = look();
+    assert.equal(on.cursor, "pointer");
+    assert.equal(on.solid, true, "an enabled button has a solid fill");
+    assert.notEqual(on.color, off.color, "enabled text is not the muted disabled grey");
+  });
+
   it("fills the boxes from the page, keeps Send as the next step, and saves a fresh spam-check token for it", async () => {
     const fetch = spy(async (url) => (String(url).endsWith("/fill")
       ? Response.json({ title: "Chewy Cookies", ingredients: ["2 cups flour", "1 cup sugar"], steps: ["Mix.", "Bake 10 minutes."] })

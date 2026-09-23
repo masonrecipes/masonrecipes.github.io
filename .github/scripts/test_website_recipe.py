@@ -353,6 +353,28 @@ class IntakeTest(unittest.TestCase):
         self.assertEqual(str(ctx.exception), "link-refused-address")
         self.assertEqual(self.changed(), [])
 
+    def test_blocked_link_names_the_site_for_the_failure_comment(self):
+        def blocked(url):
+            raise wr.link_import.FetchError("link-blocked")
+        issue = link_issue("Sesame Chicken", "https://www.kitchensanctuary.com/crispy-sesame-chicken/")
+        with self.assertRaises(wr.IntakeError) as ctx:
+            wr.process(issue, recording(self.lemonade()), root=self.root, fetch=blocked)
+        self.assertEqual(str(ctx.exception), "link-blocked")
+        self.assertEqual(ctx.exception.site, "www.kitchensanctuary.com")
+        self.assertEqual(self.changed(), [])
+
+        # main() hands the reason and the site to the workflow as files.
+        out = Path(self.root) / "intake"
+        event = Path(self.root) / "event.json"
+        event.write_text(json.dumps({"issue": issue}), encoding="utf-8")
+        env = {"INTAKE_OUT_DIR": str(out), "GITHUB_EVENT_PATH": str(event),
+               "RECIPE_DRAFT_URL": "https://worker.example/draft", "RECIPE_DRAFT_TOKEN": "t"}
+        with mock.patch.dict(os.environ, env), mock.patch.object(wr, "process", side_effect=ctx.exception), \
+                self.assertRaises(SystemExit):
+            wr.main()
+        self.assertEqual((out / "failure-reason").read_text(encoding="utf-8"), "link-blocked")
+        self.assertEqual((out / "failure-site").read_text(encoding="utf-8"), "www.kitchensanctuary.com")
+
     def iced_tea(self, **overrides):
         return output(**{
             "title": "Iced Tea", "category": "Beverages",
