@@ -16,8 +16,8 @@ source:
 - 3 cloves garlic, minced
 - 1 1/4 cups ketchup
 - 1 cup red bell pepper, chopped
-- 5 Tbsp worcestershire sauce
-- 1/4 cups pack brown sugar
+- 5 Tbsp Worcestershire sauce
+- 1/4 cup pack brown sugar
 - 3 Tbsp vinegar
 - 3 Tbsp mustard
 - 2 tsp chili powder

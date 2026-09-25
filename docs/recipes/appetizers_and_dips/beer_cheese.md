@@ -19,13 +19,13 @@ source:
 - ½ cup flour
 - 1 quart chicken stock
 - 2 cups heavy cream
-- 10 oz shredded sharp cheddar cheese
-- 8 oz american cheese.
+- 10 oz shredded sharp Cheddar cheese
+- 8 oz American cheese.
 - 1 Tbsp cornstarch
-- 1 Tbsp worcestershire
+- 1 Tbsp Worcestershire
 - 24 oz beer (dry not too sweet)
 - ½ tsp yellow food coloring
-- 2 tsp tabasco
+- 2 tsp Tabasco
 - bay leaf
 - 2 sprigs of fresh thyme
 - salt and pepper
@@ -36,7 +36,7 @@ source:
 
 1. Place American Cheese in the freezer for about 30 min.
 2. Remove from the freezer and shred.
-3. Mix with cheddar and 1 Tbsp cornstarch.  Set aside.
+3. Mix with Cheddar and 1 Tbsp cornstarch.  Set aside.
 4. In a large heavy pot, melt butter.
 5. Add onion, carrot, and celery.
 6. Add bay leaf and thyme sprigs

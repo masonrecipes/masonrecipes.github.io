@@ -12,7 +12,7 @@ source:
 ## Ingredients
 
 - 2 cups flour
-- 1/2 cups powdered sugar
+- 1/2 cup powdered sugar
 - 1 cup butter
 - 2 cups sugar
 - 4 Tbsp flour

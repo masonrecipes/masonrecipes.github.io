@@ -14,7 +14,7 @@ source:
 - 1 stick butter
 - ½ cup flour
 - 6-8 cups of milk
-- worcestershire
+- Worcestershire
 - ¼ tsp nutmeg
 - biscuits
 - ¼ tsp poultry seasoning

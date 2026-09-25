@@ -14,7 +14,7 @@ source:
 
 - 1 cup (230g) unsalted butter, at [room temperature](https://sallysbakingaddiction.com/room-temperature-butter/)
 - 1 cup (200g) packed brown sugar (if keto, substitute with Swerve)
-- 1/4 cups (50g) granulated sugar (if keto, substitute with Swerve)
+- 1/4 cup (50g) granulated sugar (if keto, substitute with Swerve)
 - 2 large eggs at room temp
 - 1 Tbsp pure vanilla extract (yes, Tbsp!)
 - 1 Tbsp molasses
@@ -23,8 +23,8 @@ source:
 - 1 1/2 tsp ground cinnamon
 - 1/2 tsp salt
 - 3 cups (240g) old-fashioned rolled oats*
-- 1 cup (140g) craisins*
-- optional: 1/2 cups (64g) chopped toasted walnuts
+- 1 cup (140g) Craisins*
+- optional: 1/2 cup (64g) chopped toasted walnuts
 
 ## Instructions
 

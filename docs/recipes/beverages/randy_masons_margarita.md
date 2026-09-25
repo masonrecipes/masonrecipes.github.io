@@ -12,7 +12,7 @@ source:
 ## Ingredients
 
 - 6 oz tequila
-- 3 oz triple sec
+- 3 oz Triple Sec
 - 6 oz light beer
 - 6 oz lime aid
 - margarita salt

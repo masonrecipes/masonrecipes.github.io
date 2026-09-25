@@ -13,7 +13,7 @@ source:
 
 ## Ingredients
 
-- one yeti rambler
+- one Yeti Rambler
 - 3/4 filled with ice
 - 2 shots of good gin
 - 3/4 shot of organic lime juice

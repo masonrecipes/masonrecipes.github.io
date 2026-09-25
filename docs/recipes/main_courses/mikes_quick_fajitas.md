@@ -19,7 +19,7 @@ source:
 - 8 oz medium/hot salsa
 - tortillas
 - refried beans
-- cheddar or monterey jack cheese
+- Cheddar or Monterey Jack cheese
 
 ## Instructions
 

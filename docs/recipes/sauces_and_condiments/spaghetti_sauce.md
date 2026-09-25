@@ -22,9 +22,9 @@ source:
 - 1 large can tomato sauce
 - 2 heaping tsp tomato paste
 - oregano
-- mixed seasoning badiya or italian seasoning
+- mixed seasoning badiya or Italian seasoning
 - thyme
-- 2 dashes worcestershire
+- 2 dashes Worcestershire
 
 ## Instructions
 

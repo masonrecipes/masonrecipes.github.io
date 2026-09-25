@@ -15,7 +15,7 @@ source:
 - 1 Tbsp coconut oil
 - 2 Tbsp almond butter or nut butter of choice
 - 2 Tbsp powdered sweetener
-- 1/4 tsp-ish vanilla extract
+- 1/4 teaspoon-ish vanilla extract
 - pinch of salt
 - 2 Tbsp chopped toasted pecans
 

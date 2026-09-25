@@ -20,7 +20,7 @@ source:
 - 8 oz red snapper
 - 8 oz chorizo
 - 1 lb little neck clams
-- 1 Tbsp jamaican jerk seasoning
+- 1 Tbsp Jamaican jerk seasoning
 - 1-2 Tbsp grill type season
 - ¼ tsp cayenne
 - 2 cups white wine

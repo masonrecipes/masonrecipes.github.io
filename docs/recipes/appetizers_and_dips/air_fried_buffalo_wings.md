@@ -15,7 +15,7 @@ source:
 ## Ingredients
 
 - 1-2 lb chicken wings
-- sweet baby ray’s buffalo sauce
+- Sweet Baby Ray’s buffalo sauce
 - pork barrel barbeque dry rub
 - meat thermometer
 

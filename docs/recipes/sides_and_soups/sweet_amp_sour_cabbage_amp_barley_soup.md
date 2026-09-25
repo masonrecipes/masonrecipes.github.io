@@ -17,7 +17,7 @@ source:
 - 4 cups water or chicken broth
 - 1 small cabbage, sliced
 - 1 large carrot, sliced
-- 1/3 cups barley
+- 1/3 cup barley
 - 1 bay leaf
 - 1/2 tsp pepper
 - 1/2 tsp salt

@@ -17,7 +17,7 @@ source:
 ### Pizza Dough
 
 - 3 1/3 cups all-purpose flour, plus extra for dusting
-- 1/4 cups whole-wheat flour
+- 1/4 cup whole-wheat flour
 - 1 package quick-rise yeast
 - 1 Tbsp sugar
 - 1 Tbsp kosher salt
@@ -26,7 +26,7 @@ source:
 
 ### Pizza Sauce
 
-- 1/4 cups olive oil
+- 1/4 cup olive oil
 - 5 cloves garlic, minced
 - 1 can crushed tomatoes
 - 1 tsp dried basil
@@ -62,7 +62,7 @@ source:
 
 1. In a small frying pan, over medium heat, warm the olive oil.
 2. Add the garlic and cook, stirring frequently, until fragrant, 1-2 mins. Do not let it scorch or garlic will taste bitter.
-3. In a bowl, stir together the garlic-oil mixture, tomatoes, dried basil, oregano, thyme, pepper, 1/3 cups water, and 1 1/2 Tbsp vinegar.
+3. In a bowl, stir together the garlic-oil mixture, tomatoes, dried basil, oregano, thyme, pepper, 1/3 cup water, and 1 1/2 Tbsp vinegar.
 4. Season to taste with salt and additional vinegar.
 
 ### Pizza

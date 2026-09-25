@@ -13,7 +13,7 @@ source:
 
 - 3 1/2 to 4 lb pork ribs cut into individual ribs (spare ribs, baby back, or country-style will all work with this method)
 - 1 cup ketchup
-- 1/2 cups molasses (used half)
+- 1/2 cup molasses (used half)
 - 2 Tbsp apple cider vinegar
 - 1/2 tsp hot sauce
 - 2 tsp chili powder

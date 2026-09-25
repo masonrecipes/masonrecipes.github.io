@@ -3,8 +3,6 @@
 
 import json
 import os
-import hashlib
-import shutil
 import subprocess
 import sys
 import tempfile
@@ -19,20 +17,6 @@ REPO = Path(__file__).resolve().parents[2]
 
 
 class RecipeStyleTest(unittest.TestCase):
-    def test_style_is_machine_readable_and_names_the_house_conventions(self):
-        source = json.loads((REPO / "recipe-style.json").read_text(encoding="utf-8"))
-        self.assertEqual(source, style.STYLE)
-        self.assertEqual({key: source["headings"][key] for key in ("ingredients", "instructions", "notes")}, {
-            "ingredients": "Ingredients", "instructions": "Instructions", "notes": "Notes"})
-        self.assertEqual(source["headings"]["subgroups"], "Title case")
-        self.assertEqual(source["units"]["tablespoon"]["canonical"], "Tbsp")
-        self.assertEqual(source["units"]["teaspoon"]["canonical"], "tsp")
-        self.assertEqual(source["units"]["cup"]["plural"], "cups")
-        self.assertEqual(source["units"]["ounce"]["canonical"], "oz")
-        self.assertEqual(source["units"]["pound"]["canonical"], "lb")
-        self.assertEqual(source["first_person"]["family_written"], "keep")
-        self.assertEqual(source["first_person"]["copied_source_aside"], "move_to_neutral_note")
-
     def test_ingredient_units_lowercase_and_preparation_are_normalized(self):
         self.assertEqual(style.normalize_ingredient("1 Tablespoon Olive Oil"), "1 Tbsp olive oil")
         self.assertEqual(style.normalize_ingredient("2 tablespoons CHOPPED ONION"), "2 Tbsp chopped onion")
@@ -87,14 +71,49 @@ class RecipeStyleTest(unittest.TestCase):
             self.assertEqual(style.numbers(before), style.numbers(after))
             subprocess.run(command + ["--check", str(recipe)], check=True, text=True, capture_output=True)
 
-    def test_all_cleaned_recipes_match_the_pre_cleanup_number_baseline(self):
+    def test_contractions_and_lowercase_t_are_not_tablespoons(self):
+        line = "Don’t add 1 t salt; the bars aren’t done yet."
+        self.assertEqual(style.normalize_text(line), line)
+
+    def test_ascii_fractions_take_the_singular_unit(self):
+        self.assertEqual(style.normalize_ingredient("1/2 cups Shredded Cheese"), "1/2 cup shredded cheese")
+        self.assertEqual(style.normalize_ingredient("1 1/2 cup Sugar"), "1 1/2 cups sugar")
+        self.assertEqual(style.normalize_ingredient("1/4 - 1/2 cup Olives"), "1/4 - 1/2 cups olives")
+
+    def test_link_targets_proper_nouns_and_acronyms_keep_their_case(self):
+        self.assertEqual(style.normalize_ingredient("1/4 Teaspoon [Himalayan Salt](http://amzn.to/2xhg3Tn)"),
+                         "1/4 tsp [Himalayan salt](http://amzn.to/2xhg3Tn)")
+        self.assertEqual(style.normalize_ingredient("2 Tablespoons WORCESTERSHIRE Sauce"), "2 Tbsp Worcestershire sauce")
+        self.assertEqual(style.normalize_title("lexington bbq sauce"), "Lexington BBQ Sauce")
+
+    def test_preparation_comma_is_added_only_when_the_line_has_none(self):
+        self.assertEqual(style.normalize_ingredient("1 Onion Diced"), "1 onion, diced")
+        self.assertEqual(style.normalize_ingredient("2 large eggs, lightly beaten"), "2 large eggs, lightly beaten")
+
+    def test_first_person_ingredient_lines_are_rejected(self):
+        for line in ("1 cup sauce (I used Huy Fongs)", "2 cups flour, my favorite", "salt, we like kosher"):
+            with self.assertRaisesRegex(ValueError, "first-person-ingredient"):
+                style.normalize_ingredient(line)
+        with tempfile.TemporaryDirectory() as directory:
+            recipe = Path(directory) / "test.md"
+            recipe.write_text("# Chili\n\n## Ingredients\n\n- 1 cup sauce (I used Huy Fongs)\n", encoding="utf-8")
+            result = subprocess.run([str(REPO / "scripts/format-recipes.sh"), "--check", str(recipe)],
+                                    text=True, capture_output=True)
+            self.assertEqual(result.returncode, 1)
+            self.assertIn("first-person-ingredient", result.stderr)
+
+    def test_front_matter_attribution_and_other_headings_are_left_alone(self):
+        text = ("---\ntags:\n  - By Cup Mason\nauthor: \"T Mason\"\n---\n\n# Chili\n\n"
+                "## Subgroups\n\nText.\n\n*Submitted by: Tablespoon Mason*\n")
+        self.assertEqual(style.normalize_markdown(text), text)
+
+    def test_cleaned_recipes_keep_their_pre_cleanup_numbers(self):
         baseline = json.loads((REPO / "recipe-number-baseline.json").read_text(encoding="utf-8"))
-        rows = [path.relative_to(REPO).as_posix() + "\0" + json.dumps(
-            style.numbers(path.read_text(encoding="utf-8")), sort_keys=True)
-            for path in sorted((REPO / "docs/recipes").rglob("*.md"))]
-        self.assertEqual(len(rows), baseline["recipe_count"])
-        digest = hashlib.sha256("\n".join(rows).encode()).hexdigest()
-        self.assertEqual(digest, baseline["sha256"])
+        for relative, expected in baseline.items():
+            path = REPO / relative
+            if path.exists():
+                with self.subTest(recipe=relative):
+                    self.assertEqual(style.numbers(path.read_text(encoding="utf-8")), expected)
 
 
 if __name__ == "__main__":

@@ -18,8 +18,8 @@ source:
 - 1 1/2 tsp cinnamon
 - 3/4 tsp nutmeg
 - 1/2 tsp ground cloves
-- 2/3 cups shortening
-- 2/3 cups buttermilk (if you do not have this, use 1 cup milk with 1 Tbsp vinegar)
+- 2/3 cup shortening
+- 2/3 cup buttermilk (if you do not have this, use 1 cup milk with 1 Tbsp vinegar)
 - 1 1/4 cups mashed bananas
 - 2 eggs, unbeaten
 

@@ -15,11 +15,11 @@ source:
 
 ### Peanut Butter Mixture
 
-- 3/4 cups (170.3g) butter, melted
-- 3/4 cups (170.19) organic peanut butter, melted
-- 1/2 cups (120g) Swerve sweetener
+- 3/4 cup (170.3g) butter, melted
+- 3/4 cup (170.19) organic peanut butter, melted
+- 1/2 cup (120g) Swerve sweetener
 - 1 tsp vanilla extract
-- 2 cups (240g) peanut flour (roasted, defatted) i use pb fit
+- 2 cups (240g) peanut flour (roasted, defatted)
 - 1/4 tsp salt
 
 ### Chocolate Glaze
@@ -40,6 +40,8 @@ source:
 
 ## Notes
 
-If I use 85% dark chocolate I don’Tbsp add tsp Swerve. If I use 100% dark chocolate, I will add Swerve.
+PB fit works well as the peanut flour.
 
-If I use organic peanut butter, I don’Tbsp add all of the PB fit. Stir and see if it gets dry. You don’Tbsp want it to be dry and crumbly.
+If I use 85% dark chocolate I don’t add tsp Swerve. If I use 100% dark chocolate, I will add Swerve.
+
+If I use organic peanut butter, I don’t add all of the PB fit. Stir and see if it gets dry. You don’t want it to be dry and crumbly.

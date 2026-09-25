@@ -13,8 +13,8 @@ source:
 
 - 2 cups heavy cream powder
 - 1 cup granulated Swerve
-- 1/2 cups confectioners Swerve
-- 2/3 cups cacao
+- 1/2 cup confectioners Swerve
+- 2/3 cup cacao
 - 1/2 tsp salt
 
 ## Instructions

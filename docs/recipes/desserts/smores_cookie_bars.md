@@ -18,8 +18,8 @@ source:
 - 1/2 tsp baking soda
 - 1/2 tsp salt
 - 1 cup unsalted butter*(softened)*
-- 3/4 cups light brown sugar
-- 3/4 cups granulated sugar
+- 3/4 cup light brown sugar
+- 3/4 cup granulated sugar
 - 2 large eggs
 - 2 tsp vanilla
 - 9 (1.5 oz) regular size chocolate bars
@@ -36,4 +36,4 @@ source:
 
 ## Notes
 
-*Don’Tbsp substitute regular marshmallows for the marshmallow fluff. Marshmallows will melt in the oven and the cookie bars will not turn out well.
+*Don’t substitute regular marshmallows for the marshmallow fluff. Marshmallows will melt in the oven and the cookie bars will not turn out well.

@@ -286,11 +286,14 @@ def validate_output(output, fields):
     for group in output["ingredient_groups"]:
         if not isinstance(group, dict) or not isinstance(group.get("heading"), str):
             raise IntakeError("model-invalid-output")
-        items = [recipe_style.normalize_ingredient(item) for item in text_list(group.get("items"))]
+        try:
+            items = [recipe_style.normalize_ingredient(item) for item in text_list(group.get("items"))]
+        except ValueError as error:
+            raise IntakeError(f"model-{error}") from None
         if items:
             groups.append({"heading": recipe_style.normalize_title(" ".join(group["heading"].split())), "items": items})
-    steps = text_list(output["steps"])
-    notes = text_list(output["notes"])
+    steps = [recipe_style.normalize_text(step) for step in text_list(output["steps"])]
+    notes = [recipe_style.normalize_text(note) for note in text_list(output["notes"])]
     warnings = text_list(output["warnings"])
     if not groups or not steps:
         raise IntakeError("model-empty-recipe")

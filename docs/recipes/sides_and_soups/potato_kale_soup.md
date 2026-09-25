@@ -11,7 +11,7 @@ source:
 
 ## Ingredients
 
-- 1 lb italian sausage
+- 1 lb Italian sausage
 - 1 leek diced (white only) or 1 small onion
 - 4-5 red potatoes diced in larger pieces
 - 1 box and 1 large can of chicken broth

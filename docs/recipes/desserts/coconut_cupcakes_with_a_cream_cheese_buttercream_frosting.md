@@ -48,7 +48,7 @@ source:
 
 ## Notes
 
-*If you don’Tbsp have cake flour, you can substitute it with the following:
+*If you don’t have cake flour, you can substitute it with the following:
 
 • Measure out 3 cups of All-Purpose into a separate bowl. Remove 6 Tbsp the flour from the bowl.
 

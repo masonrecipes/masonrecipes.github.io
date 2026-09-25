@@ -15,7 +15,7 @@ source:
 ## Ingredients
 
 - can of chicken
-- 1/2 cups parmesan cheese
+- 1/2 cup Parmesan cheese
 - basil
 - oregano
 - salt

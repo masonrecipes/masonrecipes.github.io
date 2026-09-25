@@ -13,10 +13,10 @@ source:
 
 - 1 small can frozen orange juice
 - 1 large can frozen lemonade
-- 3/4 cups sugar
+- 3/4 cup sugar
 - 2 cups water
 - 3 instant tea
-- 3/4 cups dark rum
+- 3/4 cup dark rum
 - 3 1/2 cups pineapple juice
 - 7-up
 

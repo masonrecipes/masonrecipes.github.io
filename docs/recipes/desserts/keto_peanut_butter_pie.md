@@ -17,8 +17,8 @@ source:
 
 - 1 3/4 c almond flour
 - 4 Tbsp cocoa powder
-- 1/3 cups melted coconut oil (or butter)
-- 1/3 cups sweetener (like Swerve)
+- 1/3 cup melted coconut oil (or butter)
+- 1/3 cup sweetener (like Swerve)
 - 1/2 tsp vanilla
 
 ### Filling

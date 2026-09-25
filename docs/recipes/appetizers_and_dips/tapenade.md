@@ -11,9 +11,9 @@ source:
 
 ## Ingredients
 
-- 1 cup kalamata olive, pitted
+- 1 cup Kalamata olive, pitted
 - ½ cup green olive
-- ½ cup nicoise olive (or any other small cured black olive)
+- ½ cup Nicoise olive (or any other small cured black olive)
 - ½ cup ripe olive
 - 5 cloves garlic, peeled
 - 6 pepperoncini peppers

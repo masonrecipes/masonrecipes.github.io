@@ -15,8 +15,8 @@ source:
 - 1 tsp baking soda
 - 1 tsp salt
 - 1 cup (2 sticks) butter*(softened)*
-- 3/4 cups light brown sugar*packed*
-- 3/4 cups granulated sugar
+- 3/4 cup light brown sugar*packed*
+- 3/4 cup granulated sugar
 - 1 tsp vanilla extract
 - 2 eggs
 - 1 (12 oz) package of white chocolate chips******(substitute semi-sweet chocolate chips to make chocolate chip cookies)

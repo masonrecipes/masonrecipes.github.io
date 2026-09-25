@@ -2,25 +2,21 @@
   "headings": {
     "ingredients": "Ingredients",
     "instructions": "Instructions",
-    "notes": "Notes",
-    "subgroups": "Title case"
+    "notes": "Notes"
   },
   "ingredient_line": {
     "shape": "quantity, unit, lowercase ingredient, prep after a comma",
-    "preparation_separator": ", ",
-    "lowercase_ingredient": true,
     "preparation_words": ["beaten", "chopped", "cubed", "diced", "drained", "grated", "melted", "minced", "peeled", "shredded", "sliced", "softened"]
   },
   "units": {
-    "tablespoon": { "canonical": "Tbsp", "plural": "Tbsp", "aliases": ["tablespoon", "tablespoons", "tbsp", "tbs", "t"] },
+    "tablespoon": { "canonical": "Tbsp", "plural": "Tbsp", "aliases": ["tablespoon", "tablespoons", "tbsp", "tbs"] },
     "teaspoon": { "canonical": "tsp", "plural": "tsp", "aliases": ["teaspoon", "teaspoons", "tsp"] },
     "cup": { "canonical": "cup", "plural": "cups", "aliases": ["cup", "cups"] },
     "ounce": { "canonical": "oz", "plural": "oz", "aliases": ["ounce", "ounces", "oz"] },
     "pound": { "canonical": "lb", "plural": "lb", "aliases": ["pound", "pounds", "lb", "lbs"] }
   },
   "fractions": {
-    "preserve": true,
-    "accepted": ["1/2", "½", "1/4", "¼", "3/4", "¾", "1/3", "⅓", "2/3", "⅔", "1/8", "⅛"]
+    "singular": ["1/2", "½", "1/4", "¼", "3/4", "¾", "1/3", "⅓", "2/3", "⅔", "1/8", "⅛"]
   },
   "spelling": {
     "mozarella": "mozzarella",
@@ -31,18 +27,22 @@
     "huy fong": "Huy Fong",
     "jell-o": "Jell-O",
     "crisco": "Crisco",
-    "swerve": "Swerve",
-    "evoo": "EVOO"
+    "swerve": "Swerve"
   },
+  "proper_nouns": [
+    "American", "Bachan’s", "Beau Monde", "Caesar", "Cajun", "Cheddar", "Chinese", "Cointreau", "Costco", "Craisins",
+    "French", "Granny Smith", "Greek", "Haas", "Hershey", "Himalayan", "Italian", "Jamaican", "Japanese", "Kalamata",
+    "Knox", "Lexington", "Marzetti’s", "Milnot", "Monterey Jack", "Nicoise", "Old Bay", "Parmesan", "Perfect Supplements",
+    "Ro-Tel", "Roma", "Rotel", "Spanish", "Swedish", "Sweet Baby Ray’s", "Swiss", "Tabasco", "Topa Chico", "Triple Sec",
+    "Uncle Ben’s", "Velveeta", "Worcestershire", "Yeti Rambler"
+  ],
+  "acronyms": ["BBQ", "BLT", "EVOO", "PB"],
   "title": {
     "minor_words": ["a", "an", "and", "as", "at", "but", "by", "for", "from", "in", "into", "nor", "of", "on", "or", "the", "to", "with"],
-    "literal_tokens": ["and/or", "&"],
-    "parentheses": "capitalize words inside parentheses",
     "rule": "Title case; keep minor words lowercase unless first or last, retain and/or, &, and parentheses."
   },
   "first_person": {
-    "family_written": "keep",
-    "copied_source_aside": "move_to_neutral_note",
+    "rejected_in_ingredients": ["I", "my", "we"],
     "neutral_note_example": "Huy Fong chili garlic sauce works well."
   }
 }

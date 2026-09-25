@@ -14,12 +14,12 @@ source:
 ### Cupcakes
 
 - 10 Tbsp butter, room temperature
-- 3/4 cups white sugar
+- 3/4 cup white sugar
 - 3 eggs
 - 1 tsp strawberry extract
 - 1 3/4 cups self-rising flour
 - 1/4 tsp salt
-- 1/4 cups finely chopped fresh strawberries, drained
+- 1/4 cup finely chopped fresh strawberries, drained
 
 ### Whipped Cream Cheese Frosting
 

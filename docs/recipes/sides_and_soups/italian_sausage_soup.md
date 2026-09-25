@@ -11,7 +11,7 @@ source:
 
 ## Ingredients
 
-- 1 1/2 lb italian sausage (1 lb regular and 1/2 lb hot)
+- 1 1/2 lb Italian sausage (1 lb regular and 1/2 lb hot)
 - 1 whole onion, chopped
 - 4 cups beef broth
 - 1 /12 cups water
@@ -29,4 +29,4 @@ source:
 2. In a pot, add the drain sausage, onion, beef broth, tomato sauce, carrots, squash, bell peppers, oregano, and basil.
 3. Cook for the 30 mins
 4. Add the ravioli and cook for 30 mins.
-5. Serve with parmesan on top of soup.
+5. Serve with Parmesan on top of soup.

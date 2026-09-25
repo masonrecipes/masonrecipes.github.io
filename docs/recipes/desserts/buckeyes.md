@@ -14,7 +14,7 @@ source:
 - 2 lb peanut butter
 - 1 lb oleo or butter
 - 2 Tbsp vanilla
-- 3-4 large hershey bars
+- 3-4 large Hershey bars
 - a small amount of paraffin
 
 ## Instructions

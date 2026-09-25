@@ -13,17 +13,17 @@ Servings: 36 squares
 
 ## Ingredients
 
-- 1/2 cups [cacao butter](https://amzn.to/2jjltpy), finely chopped and, melted
+- 1/2 cup [cacao butter](https://amzn.to/2jjLtPY), finely chopped and melted
 - 1 cup all natural roasted almond butter, or make your own
 - 1 cup creamy coconut butter, or make your own
 - 1 cup coconut oil, firm*
-- 1/2 cups [full fat coconut milk](http://amzn.to/2ldptld), chilled overnight*
-- 1/4 cups [ghee](https://thehealthyfoodie.com/homemade-ghee/), or make your own
+- 1/2 cup [full fat coconut milk](http://amzn.to/2lDptlD), chilled overnight*
+- 1/4 cup [ghee](https://thehealthyfoodie.com/homemade-ghee/), or make your own
 - 1 Tbsp [pure vanilla extract](https://thehealthyfoodie.com/vanilla-extract/), or make your own
 - 2 tsp chai spice
-- 1/4 tsp [pure almond extract](http://www.amazon.com/gp/product/b00idxsev8/ref=as_li_tl?ie=utf8&camp=1789&creative=390957&creativeasin=b00idxsev8&linkcode=as2&tag=theheafoo03-20)
-- 1/4 tsp [himalayan salt](http://amzn.to/2xhg3tn)
-- 1/4 cups raw shelled pistachios, chopped
+- 1/4 tsp [pure almond extract](http://www.amazon.com/gp/product/B00IDXSEV8/ref=as_li_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=B00IDXSEV8&linkCode=as2&tag=theheafoo03-20)
+- 1/4 tsp [Himalayan salt](http://amzn.to/2xhg3Tn)
+- 1/4 cup raw shelled pistachios, chopped
 
 ## Instructions
 

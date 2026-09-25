@@ -13,7 +13,7 @@ source:
 
 - 1 Tbsp olive oil
 - 1 small onion, peeled chopped fine
-- 2 garlic cloves, peeled and, chopped
+- 2 garlic cloves, peeled and chopped
 - 1 medium red bell pepper, chopped fine
 - 1 lb boneless, skinless chicken breast, cut into 1-inch pieces
 - 3 15 oz can undrained white beans

@@ -15,16 +15,16 @@ source:
 
 - 1 box yellow cake mix
 - 1 small package vanilla pudding
-- 1/2 cups light rum
-- 1/2 cups water
-- 1/2 cups oil
+- 1/2 cup light rum
+- 1/2 cup water
+- 1/2 cup oil
 - 4 eggs
 
 ### Glaze
 
-- 1/4 cups water
+- 1/4 cup water
 - 1 cup sugar
-- 1/2 cups butter
+- 1/2 cup butter
 - 2 oz rum
 
 ## Instructions

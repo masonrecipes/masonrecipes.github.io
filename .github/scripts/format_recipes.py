@@ -25,9 +25,15 @@ def main():
     parser.add_argument("paths", nargs="*", default=["docs/recipes"])
     args = parser.parse_args()
     changed = []
+    failed = False
     for path in recipe_files(args.paths):
         before = path.read_text(encoding="utf-8")
-        after = normalize_markdown(before)
+        try:
+            after = normalize_markdown(before)
+        except ValueError as error:
+            print(f"{path}: {error}", file=sys.stderr)
+            failed = True
+            continue
         if before != after:
             changed.append(path)
             if not args.check:
@@ -35,7 +41,7 @@ def main():
     if changed and args.check:
         print("Recipe style check failed:", *changed, sep="\n", file=sys.stderr)
         return 1
-    return 0
+    return 1 if failed else 0
 
 
 if __name__ == "__main__":

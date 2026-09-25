@@ -14,15 +14,15 @@ source:
 ### Pie Filling
 
 - 2 1/2 Tbsp tapioca
-- 3/4 cups sugar
+- 3/4 cup sugar
 - 1/4 tsp salt
 - 4 cups sliced fresh peaches
 - 1 Tbsp lemon juice
 
 ### Topping
 
-- 1/3 cups packed brown sugar
-- 1/4 cups flour
+- 1/3 cup packed brown sugar
+- 1/4 cup flour
 - 1/2 tsp cinnamon
 - 2 1/2 Tbsp soft butter
 

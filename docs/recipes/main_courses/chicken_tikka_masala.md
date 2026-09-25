@@ -27,7 +27,7 @@ source:
 - 1 onion, diced
 - 3 cloves garlic, minced
 - 2 tsp grated fresh ginger
-- 3 serrano chiles, seeded and, diced
+- 3 serrano chiles, seeded and diced
 - 2 Tbsp tomato paste
 - 2 tsp each cumin seed, must seed, fennel seed
 

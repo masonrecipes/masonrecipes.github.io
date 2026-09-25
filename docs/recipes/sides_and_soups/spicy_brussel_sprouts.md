@@ -14,7 +14,7 @@ source:
 - 1 lb Brussels sprouts
 - 1/2 lb bacon
 - 6 Tbsp gochujang
-- 2 Tbsp bachan’s japanese barbecue sauce
+- 2 Tbsp Bachan’s Japanese barbecue sauce
 
 ## Instructions
 

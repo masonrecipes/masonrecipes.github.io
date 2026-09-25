@@ -14,7 +14,7 @@ source:
 ## Ingredients
 
 - 1 1/3 cups brown sugar
-- 1/2 cups shortening
+- 1/2 cup shortening
 - 1 egg
 - 2 cups flour
 - 1/2 tsp salt

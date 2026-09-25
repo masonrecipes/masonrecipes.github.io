@@ -17,7 +17,7 @@ source:
 - 1 cup soy sauce
 - ½ cup red wine vinegar
 - ½ cup brown sugar
-- ½ cup jamaican jerk seasoning (five star if you can get it or any other good quality seasoning)
+- ½ cup Jamaican jerk seasoning (five star if you can get it or any other good quality seasoning)
 - ½ tsp cayenne pepper
 
 ## Instructions

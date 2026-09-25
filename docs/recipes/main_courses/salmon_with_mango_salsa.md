@@ -18,7 +18,7 @@ source:
 - salt
 - cilantro
 - 2 mangos, cut in small cubes
-- bunch of cilantro, finely, chopped
+- bunch of cilantro, finely chopped
 - 1 bell pepper, diced
 - 1 cup sweet corn
 - 1/2 red onion, chopped

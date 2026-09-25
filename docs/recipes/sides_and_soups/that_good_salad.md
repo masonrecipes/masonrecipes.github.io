@@ -21,11 +21,11 @@ source:
 - ½ tsp pepper
 - 2 lb romaine lettuce, torn
 - 2 cups chopped tomatoes
-- 1 cup shredded swiss cheese
+- 1 cup shredded Swiss cheese
 - ⅔ cup slivered toasted almonds
-- ½ cup grated parmesan cheese
+- ½ cup grated Parmesan cheese
 - 8 slices bacon, crumbled
-- 1 cup caesar salad croutons
+- 1 cup Caesar salad croutons
 
 ## Instructions
 

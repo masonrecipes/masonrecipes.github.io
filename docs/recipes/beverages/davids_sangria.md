@@ -11,10 +11,10 @@ source: Family Recipe
 
 ## Ingredients
 
-- 1 bottle of medium-grade red wine (15 dollars ish), preferably spanish wine.
+- 1 bottle of medium-grade red wine (15 dollars ish), preferably Spanish wine.
 - 1 cup brandy
 - 1 cup grenadine
-- 2/3 cups orange juice
+- 2/3 cup orange juice
 - 4 Tbsp brown sugar
 - 1 orange
 - 2-3 apples

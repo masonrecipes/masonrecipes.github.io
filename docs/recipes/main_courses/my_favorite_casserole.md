@@ -19,7 +19,7 @@ source:
 - 1 can mushroom soup
 - 1 can mushrooms
 - 1.5 tsp salt
-- 1/2 cups shredded cheese
+- 1/2 cup shredded cheese
 - 3 eggs, beaten
 
 ## Instructions

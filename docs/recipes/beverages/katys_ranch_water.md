@@ -13,7 +13,7 @@ source:
 
 - 1 1/2 oz tequila
 - 1 oz organic lime juice
-- topa chico sparkling mineral water
+- Topa Chico sparkling mineral water
 - ice
 
 ## Instructions

@@ -18,7 +18,7 @@ source:
 - 1 small can crushed pineapple, well-drained
 - 1 cup sour cream
 - 2-3 Tbsp lemon juice
-- knox gelatin (just a little)
+- Knox gelatin (just a little)
 
 ## Instructions
 

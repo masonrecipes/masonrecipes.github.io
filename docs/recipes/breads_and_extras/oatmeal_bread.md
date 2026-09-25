@@ -15,7 +15,7 @@ source:
 - 1 cup cooking oats
 - 3 cups breast flour
 - 1 tsp salt
-- 1/2 cups molasses
+- 1/2 cup molasses
 - 1 Tbsp vegetable oil
 - 1 1/4 plus 1 Tbsp warm water
 

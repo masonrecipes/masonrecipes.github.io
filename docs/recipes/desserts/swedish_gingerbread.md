@@ -13,7 +13,7 @@ source:
 
 - 7 dl sugar (3 c)
 - 320 g butter (1 1/3 c)
-- 1 dl swedish light syrup (.42 c)
+- 1 dl Swedish light syrup (.42 c)
 - 2 dl water (.83 c)
 - 1 Tbsp grated lemon peel
 - 2 Tbsp brandy

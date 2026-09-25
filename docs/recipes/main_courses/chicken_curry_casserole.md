@@ -19,7 +19,7 @@ source:
 - mushrooms
 - ½ cup sharp shredded cheese
 - croutons
-- chinese noodles
+- Chinese noodles
 
 ## Instructions
 

@@ -16,17 +16,17 @@ source:
 - 2 tsp olive oil
 - 4 garlic cloves, minced
 - **mix together in bowl**
-  - 2 large eggs, lightly, beaten
+  - 2 large eggs, lightly beaten
   - 1 cup 2% milk (reduce to 1/4 c cream + 1/4c water)
   - 6 slices bread, cubed
-  - 1-1/2 cups shredded cheddar cheese
+  - 1-1/2 cups shredded Cheddar cheese
   - 2 tsp salt
   - 1 tsp pepper
   - 2 lb ground beef
   - 2 lb ground pork
 - **topping**
   - 1-1/2 cups ketchup
-  - 1/4 cups packed brown sugar
+  - 1/4 cup packed brown sugar
   - 2 tsp apple cider vinegar
 
 ## Steps

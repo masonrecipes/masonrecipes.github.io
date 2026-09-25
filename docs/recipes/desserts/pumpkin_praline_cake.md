@@ -11,10 +11,10 @@ source:
 
 ## Ingredients
 
-- 3/4 cups brown sugar
-- 1/3 cups butter
+- 3/4 cup brown sugar
+- 1/3 cup butter
 - 3 Tbsp whipping cream
-- 3/4 cups chopped pecans
+- 3/4 cup chopped pecans
 - 4 large eggs
 - 1 2/3 cups sugar
 - 1 cup vegetable oil
@@ -28,7 +28,7 @@ source:
 ## Instructions
 
 1. Preheat oven to 350 degrees
-2. Heat brown sugar, 1/3 cups butter, and whipping cream until sugar dissolves. Do not boil.
+2. Heat brown sugar, 1/3 cup butter, and whipping cream until sugar dissolves. Do not boil.
 3. Add pecans, mix and pour into 2 round cake pans.
 4. Mix eggs, sugar, oil at medium speed.
 5. Add pumpkin and vanilla and mix well.
