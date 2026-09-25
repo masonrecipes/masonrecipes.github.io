@@ -4,6 +4,7 @@ Every recipe by the person who contributed it. To add a new author, tag their re
 
 <!-- material/tags {
   include: [
+    "By Aaron Beihl",
     "By Brittany Mason",
     "By Cindy Gustafson",
     "By David Beihl",
