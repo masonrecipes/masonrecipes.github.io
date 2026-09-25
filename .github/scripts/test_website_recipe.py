@@ -285,6 +285,19 @@ Potato Topping:
                 self.assertNotIn("### ", page)
                 self.assertEqual(wr.numbers(fields["Ingredients"]), wr.numbers("\n".join(items)))
 
+    def test_dropped_note_references_are_not_quantities(self):
+        # Issue 51's steps cite "(see note 6)" for notes never submitted; the real model drops them.
+        the_issue = json.loads((FIXTURES / "issue_51.json").read_text(encoding="utf-8"))
+        fields = wr.parse_issue(the_issue["title"], the_issue["body"])
+        steps = [re.sub(r"\s*\(see note \d+[^)]*\)|\s*- see note \d+", "", step)
+                 for step in fields["Recipe"].splitlines()]
+        self.assertNotIn("note", "\n".join(steps))
+        self.run_intake(the_issue, output(title=fields["Recipe Name"], category="Desserts", steps=steps))
+
+    def test_changed_quantity_beside_a_note_reference_is_rejected(self):
+        self.assertRejected("model-changed-quantities", issue(recipe="Simmer 30 minutes (see note 2)."),
+                            output(steps=["Simmer 31 minutes (see note 2)."]))
+
     def test_ingredient_headings_markers_and_leading_ingredients_heading(self):
         groups, _ = wr.ingredient_groups(
             "Ingredients:\n1. 2 cups flour\n2. 1 tsp salt\nFor the Frosting\n- 1 cup butter\nGlaze\n* 2 Tbsp milk")

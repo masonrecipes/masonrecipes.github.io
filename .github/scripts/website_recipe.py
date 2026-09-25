@@ -254,6 +254,7 @@ UNICODE_FRACTIONS = {
     "⅜": " 3/8", "⅝": " 5/8", "⅞": " 7/8", "⅕": " 1/5", "⅙": " 1/6", "⅚": " 5/6",
 }
 NUMBER_RE = re.compile(r"\d+(?:[./]\d+)?")
+NOTE_REF_RE = re.compile(r"\bnotes?\s+\d+", re.IGNORECASE)
 INGREDIENT_MARKER_RE = re.compile(r"^\s*(?:[-*•]|\d+[.)])\s+")
 INGREDIENT_HEADING_RE = re.compile(r"^\s*(?:#{1,6}\s+)?([^\d][^:]*?):\s*$")
 BARE_HEADING_RE = re.compile(r"(?:#{1,6}\s+)?([^\d:]{1,40})")
@@ -261,8 +262,8 @@ LEADING_INGREDIENTS_RE = re.compile(r"(?:#{1,6}\s+)?ingredients:?", re.IGNORECAS
 
 
 def numbers(text):
-    """Multiset of numeric tokens, ignoring list numbering and unicode fraction spelling."""
-    text = LIST_MARKER_RE.sub("", text)
+    """Multiset of numeric tokens, ignoring list numbering, "note N" references and unicode fraction spelling."""
+    text = NOTE_REF_RE.sub("", LIST_MARKER_RE.sub("", text))
     text = text.translate(str.maketrans(UNICODE_FRACTIONS))
     text = text.replace("⁄", "/")  # fraction slash
     return collections.Counter(NUMBER_RE.findall(text))
