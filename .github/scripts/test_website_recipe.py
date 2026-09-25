@@ -286,14 +286,14 @@ Potato Topping:
                 self.assertEqual(wr.numbers(fields["Ingredients"]), wr.numbers("\n".join(items)))
 
     def test_ingredient_headings_markers_and_leading_ingredients_heading(self):
-        groups, _, _ = wr.ingredient_groups(
+        groups, _ = wr.ingredient_groups(
             "Ingredients:\n1. 2 cups flour\n2. 1 tsp salt\nFor the Frosting\n- 1 cup butter\nGlaze\n* 2 Tbsp milk")
         self.assertEqual(groups, [
             {"heading": "", "items": ["2 cups flour", "1 tsp salt"]},
             {"heading": "For the Frosting", "items": ["1 cup butter"]},
             {"heading": "Glaze", "items": ["2 Tbsp milk"]},
         ])
-        groups, _, _ = wr.ingredient_groups("For the Cake\n2 cups flour\nKosher salt\n1 cup sugar")
+        groups, _ = wr.ingredient_groups("For the Cake\n2 cups flour\nKosher salt\n1 cup sugar")
         self.assertEqual(groups, [{"heading": "For the Cake", "items": ["2 cups flour", "kosher salt", "1 cup sugar"]}])
 
     def test_unicode_fraction_matches_ascii(self):
@@ -320,13 +320,13 @@ Potato Topping:
         self.assertIn("- 1/2 cup Rotel", rendered)
         self.assertEqual(recipe_style.normalize_markdown(rendered), rendered)
 
-    def test_parenthetical_first_person_aside_moves_to_notes(self):
+    def test_first_person_ingredient_is_kept_and_flagged_for_review(self):
         the_issue = issue(ingredients="2 lb ground beef (I used Costco)\n1 can beans (15 oz)")
         fields = wr.parse_issue(the_issue["title"], the_issue["body"])
         recipe = wr.validate_output(output(), fields)
-        self.assertEqual(recipe["groups"][0]["items"][0], "2 lb ground beef")
-        self.assertEqual(recipe["notes"], ["I used Costco"])
-        self.assertEqual(recipe["warnings"], [])
+        self.assertEqual(recipe["groups"][0]["items"][0], "2 lb ground beef (I used Costco)")
+        self.assertEqual(recipe["notes"], [])
+        self.assertIn("First-person ingredient line to review: 2 lb ground beef (I used Costco)", recipe["warnings"])
 
     def test_nonparenthetical_first_person_ingredient_is_kept_and_flagged_for_review(self):
         the_issue = issue(ingredients="2 lb ground beef, my favorite\n1 can beans (15 oz)")
@@ -418,6 +418,17 @@ Potato Topping:
         page = self.page(result)
         self.assertIn("- 3 Tbsp cornstarch\n\n### Ermine Frosting\n\n- 1½ cups white granulated sugar\n", page)
         self.assertNotIn("ermine frosting", page.lower().replace("### ermine frosting", ""))
+
+    def test_page_title_may_carry_a_number_from_the_page(self):
+        html = ("<html><body><h1>30-Minute Chicken Alfredo</h1><p>1 lb fettuccine</p>"
+                "<p>2 cups cream</p><p>Simmer 10 minutes.</p></body></html>")
+        model = output(title="30-Minute Chicken Alfredo", category="Main Courses", steps=["Simmer 10 minutes."],
+                       ingredients=["1 lb fettuccine", "2 cups cream"])
+        result = wr.process(link_issue("Chicken Alfredo"), recording(model), root=self.root, fetch=lambda url: html)
+        self.assertIn("30-Minute Chicken Alfredo", self.page(result))
+
+    def test_typed_title_numbers_must_match_the_recipe_name(self):
+        self.assertRejected("model-changed-quantities", issue(), output(title="30-Minute Grandma's Chili"))
 
     def test_page_ingredients_with_a_number_not_on_the_page_are_rejected(self):
         with self.assertRaises(wr.IntakeError) as ctx:

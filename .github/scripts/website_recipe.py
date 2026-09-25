@@ -268,21 +268,6 @@ def numbers(text):
     return collections.Counter(NUMBER_RE.findall(text))
 
 
-def parenthetical_first_person_asides(item):
-    """Separate first-person parentheticals from an ingredient when it stays nonempty."""
-    asides = []
-    spans = [match.span() for match in re.finditer(r"\(([^()]*)\)", item)
-             if recipe_style.is_first_person(match.group(1))]
-    if not spans:
-        return item, asides
-    candidate = item
-    for start, end in reversed(spans):
-        asides.append(item[start + 1:end - 1].strip())
-        candidate = candidate[:start] + candidate[end:]
-    candidate = " ".join(candidate.split()).strip(" ,;")
-    return (candidate, list(reversed(asides))) if candidate else (item, [])
-
-
 def ingredient_heading(line, following):
     """The subgroup heading a line names, or None when it is an ingredient line."""
     if INGREDIENT_MARKER_RE.match(line):
@@ -300,7 +285,7 @@ def ingredient_heading(line, following):
 
 def ingredient_groups(ingredients):
     """Use submitted ingredient lines and subgroup headings, normalized only by recipe style."""
-    groups, notes, warnings = [], [], []
+    groups, warnings = [], []
     heading, items = "", []
 
     def finish_group():
@@ -317,14 +302,12 @@ def ingredient_groups(ingredients):
             heading, items = recipe_style.normalize_title(found.strip()), []
             continue
         item = INGREDIENT_MARKER_RE.sub("", line)
-        item, asides = parenthetical_first_person_asides(item)
         item = recipe_style.normalize_ingredient(item)
-        notes.extend(recipe_style.normalize_text(aside) for aside in asides)
         if recipe_style.is_first_person(item):
             warnings.append(f"First-person ingredient line to review: {item}")
         items.append(item)
     finish_group()
-    return groups, notes, warnings
+    return groups, warnings
 
 
 def from_page(fields):
@@ -358,10 +341,9 @@ def validate_output(output, fields):
         # Copied lines may carry only numbers the page itself shows.
         if numbers(ingredients) - numbers(fields["Page text"]):
             raise IntakeError("model-changed-quantities")
-    groups, aside_notes, first_person = ingredient_groups(ingredients)
+    groups, first_person = ingredient_groups(ingredients)
     steps = [recipe_style.normalize_text(step) for step in text_list(output["steps"])]
-    model_notes = [recipe_style.normalize_text(note) for note in text_list(output["notes"])]
-    notes = model_notes + aside_notes
+    notes = [recipe_style.normalize_text(note) for note in text_list(output["notes"])]
     warnings = text_list(output["warnings"]) + first_person
     if not groups or not steps:
         raise IntakeError("model-empty-recipe")
@@ -372,9 +354,12 @@ def validate_output(output, fields):
     if HTML_TAG_RE.search(joined) or FRONT_MATTER_RE.search(joined):
         raise IntakeError("model-unsafe-markup")
 
-    if numbers(title) != numbers(fields["Recipe Name"]):
+    if from_page(fields):
+        if numbers(title) - numbers(fields["Recipe Name"] + "\n" + fields["Page text"]):
+            raise IntakeError("model-changed-quantities")
+    elif numbers(title) != numbers(fields["Recipe Name"]):
         raise IntakeError("model-changed-quantities")
-    model_text = "\n".join(steps + model_notes)
+    model_text = "\n".join(steps + notes)
     submitted = fields["Recipe"]
     if fields.get("Page text"):
         # A page carries other numbers (menus, comments), so every model-written
