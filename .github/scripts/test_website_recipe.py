@@ -460,6 +460,8 @@ class IntakeTest(unittest.TestCase):
         cases = [
             (worker_error(502, b'{"error": "model-refused"}'), "model-refused"),
             (worker_error(502, b'{"error": "model-invalid-output"}'), "model-invalid-output"),
+            (worker_error(403, b'{"error": "This form can only be submitted from Mason Recipes."}'),
+             "draft-endpoint-unavailable"),
             (worker_error(502, b'{"error": "rm -rf /"}'), "model-request-failed"),
             (worker_error(502, b'{"error": {"nested": 1}}'), "model-request-failed"),
             (worker_error(401, b""), "model-request-failed"),

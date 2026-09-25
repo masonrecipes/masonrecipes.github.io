@@ -402,6 +402,10 @@ describe("recipe draft endpoint", () => {
     ]);
     assert.equal(input.input[0].role, "developer");
     assert.match(input.input[0].content, /untrusted data/);
+    assert.match(input.input[0].content, /family cookbook style/);
+    assert.match(input.input[0].content, /one ingredient per line/);
+    assert.match(input.input[0].content, /Keep the submitted unit spelling/);
+    assert.match(input.input[0].content, /Do not create a headnote/);
     assert.doesNotMatch(input.input[0].content, /Ignore previous/);
     // Untrusted text reaches the model only as the user's JSON data.
     assert.equal(input.input[1].role, "user");

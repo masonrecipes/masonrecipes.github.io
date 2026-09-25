@@ -24,10 +24,12 @@ The worker rejects requests from origins other than `https://masonrecipes.github
    npx wrangler secret put TURNSTILE_SECRET
    ```
 
-6. Deploy and copy the HTTPS Worker URL printed by Wrangler. Redeploy the same way after any change to this directory merges; the `AI` binding needs no secret.
+6. Deploy and copy the HTTPS Worker URL printed by Wrangler. After any change to this directory merges, deploy the merged `submit-worker` directory from a scratch copy, never from the repository root. The `AI` binding needs no secret.
 
    ```sh
-   npx wrangler deploy
+   scratch="$(mktemp -d)"
+   git archive HEAD submit-worker | tar -x -C "$scratch"
+   (cd "$scratch/submit-worker" && npx wrangler deploy)
    ```
 
 7. In `docs/javascripts/recipe-submission-config.js`, set `endpoint` to that Worker URL and `turnstileSiteKey` to the public Turnstile site key. Commit and deploy the site. Until both values are configured, the button is deliberately absent.

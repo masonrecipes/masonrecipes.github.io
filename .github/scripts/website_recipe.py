@@ -226,6 +226,8 @@ def call_model(fields, draft_url, token):
             return json.load(response)
     except urllib.error.HTTPError as error:
         print(f"Draft request failed with HTTP {error.code}", file=sys.stderr)
+        if error.code == 403:
+            raise IntakeError("draft-endpoint-unavailable") from None
         try:
             reason = json.load(error).get("error")
         except (ValueError, AttributeError):
