@@ -427,6 +427,16 @@ Potato Topping:
         result = wr.process(link_issue("Chicken Alfredo"), recording(model), root=self.root, fetch=lambda url: html)
         self.assertIn("30-Minute Chicken Alfredo", self.page(result))
 
+    def test_page_title_number_is_allowed_when_ingredients_are_typed(self):
+        html = ("<html><body><h1>30-Minute Chicken Alfredo</h1><p>1 lb fettuccine</p>"
+                "<p>2 cups cream</p><p>Simmer 10 minutes.</p></body></html>")
+        model = output(title="30-Minute Chicken Alfredo", category="Main Courses", steps=["Simmer 10 minutes."])
+        submission = issue(name="Chicken Alfredo", ingredients="1 lb fettuccine\n2 cups cream", recipe="",
+                           source="https://recipes.example/alfredo")
+        result = wr.process(submission, recording(model), root=self.root, fetch=lambda url: html)
+        self.assertIn("30-Minute Chicken Alfredo", self.page(result))
+        self.assertIn("- 1 lb fettuccine\n", self.page(result))
+
     def test_typed_title_numbers_must_match_the_recipe_name(self):
         self.assertRejected("model-changed-quantities", issue(), output(title="30-Minute Grandma's Chili"))
 

@@ -354,19 +354,16 @@ def validate_output(output, fields):
     if HTML_TAG_RE.search(joined) or FRONT_MATTER_RE.search(joined):
         raise IntakeError("model-unsafe-markup")
 
-    if from_page(fields):
-        if numbers(title) - numbers(fields["Recipe Name"] + "\n" + fields["Page text"]):
-            raise IntakeError("model-changed-quantities")
-    elif numbers(title) != numbers(fields["Recipe Name"]):
-        raise IntakeError("model-changed-quantities")
     model_text = "\n".join(steps + notes)
     submitted = fields["Recipe"]
     if fields.get("Page text"):
+        if numbers(title) - numbers(fields["Recipe Name"] + "\n" + fields["Page text"]):
+            raise IntakeError("model-changed-quantities")
         # A page carries other numbers (menus, comments), so every model-written
         # number must appear in the submitted steps or page text at least as often.
         if numbers(model_text) - numbers(submitted + "\n" + fields["Page text"]):
             raise IntakeError("model-changed-quantities")
-    elif numbers(model_text) != numbers(submitted):
+    elif numbers(title) != numbers(fields["Recipe Name"]) or numbers(model_text) != numbers(submitted):
         raise IntakeError("model-changed-quantities")
 
     return {
