@@ -218,7 +218,9 @@ def call_model(fields, draft_url, token):
         draft_url,
         # Name and source never reach the model; code renders both.
         data=json.dumps(model_input(fields), ensure_ascii=False).encode("utf-8"),
-        headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"},
+        # Cloudflare bans urllib's default User-Agent with a 403 (error 1010).
+        headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json",
+                 "User-Agent": link_import.USER_AGENT},
         method="POST",
     )
     try:
@@ -226,6 +228,8 @@ def call_model(fields, draft_url, token):
             return json.load(response)
     except urllib.error.HTTPError as error:
         print(f"Draft request failed with HTTP {error.code}", file=sys.stderr)
+        if error.code == 403:
+            raise IntakeError("draft-endpoint-unavailable") from None
         try:
             reason = json.load(error).get("error")
         except (ValueError, AttributeError):
@@ -405,8 +409,9 @@ def pr_body(issue_number, recipe, path, submitter, author_is_new, source,
         "## Website recipe submission",
         "",
         f"Drafted from website submission #{issue_number} by `{MODEL_NAME}` on Cloudflare "
-        "Workers AI. The model only normalized the text and picked the category; this "
-        "workflow rendered the page, navigation and attribution.",
+        "Workers AI. The model rewrote the text in house style and picked the category; "
+        "quantities remain unchanged. This workflow rendered the page, navigation and "
+        "attribution.",
         "",
         f"- **Page:** `{path}`",
         f"- **Category:** {recipe['category']}",

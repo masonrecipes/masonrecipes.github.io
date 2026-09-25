@@ -451,6 +451,7 @@ class IntakeTest(unittest.TestCase):
         self.assertEqual(request.full_url, "https://drafts.example/draft")
         self.assertEqual(request.get_method(), "POST")
         self.assertEqual(request.get_header("Authorization"), "Bearer oidc-token")
+        self.assertNotIn("Python-urllib", request.get_header("User-agent", "Python-urllib"))
         self.assertNotIn("SECRET", request.data.decode())
         self.assertEqual(json.loads(request.data), {"recipe_name": "Chili", "ingredients": "beef", "recipe": "cook"})
 
@@ -460,6 +461,8 @@ class IntakeTest(unittest.TestCase):
         cases = [
             (worker_error(502, b'{"error": "model-refused"}'), "model-refused"),
             (worker_error(502, b'{"error": "model-invalid-output"}'), "model-invalid-output"),
+            (worker_error(403, b'{"error": "This form can only be submitted from Mason Recipes."}'),
+             "draft-endpoint-unavailable"),
             (worker_error(502, b'{"error": "rm -rf /"}'), "model-request-failed"),
             (worker_error(502, b'{"error": {"nested": 1}}'), "model-request-failed"),
             (worker_error(401, b""), "model-request-failed"),

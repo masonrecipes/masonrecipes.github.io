@@ -122,6 +122,8 @@ jobs:
           elif [[ "$reason" == link-* ]]; then
             # The linked page could not be fetched safely or held no recipe.
             message="We could not read the ingredients and steps from the linked page (reason: \`${reason}\`), so no draft was opened. Please add the ingredients and recipe steps as text in a comment here, or send the recipe again through the website with them filled in. This submission stays open for manual formatting."
+          elif [[ "$reason" == draft-endpoint-unavailable ]]; then
+            message="The recipe drafting Worker did not recognize its protected \`/draft\` endpoint, so no model request was made. Redeploy the Worker, then remove and re-add the \`recipe-submission\` label to retry. This submission stays open for manual formatting."
           else
             message="The automatic recipe draft could not be created (reason: \`${reason:-workflow-error}\`). This submission stays open for manual formatting. To retry, remove and re-add the \`recipe-submission\` label."
           fi
