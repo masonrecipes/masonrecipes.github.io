@@ -36,6 +36,8 @@ class RecipeStyleTest(unittest.TestCase):
         self.assertEqual(style.normalize_title("chili with beef and/or lamb & peas (quick dinner)"),
                          "Chili with Beef and/or Lamb & Peas (Quick Dinner)")
         self.assertEqual(style.normalize_title("beef and/or pork"), "Beef and/or Pork")
+        self.assertEqual(style.normalize_title("chicken/beef tacos"), "Chicken/Beef Tacos")
+        self.assertEqual(style.normalize_title("crock pot/instant pot chili"), "Crock Pot/Instant Pot Chili")
         self.assertEqual(style.normalize_title("rum cake to die for"), "Rum Cake to Die For")
 
     def test_ingredient_subgroups_keep_the_ingredient_normalizer_active(self):
@@ -54,7 +56,7 @@ class RecipeStyleTest(unittest.TestCase):
             "## instructions\n\n1. Add 2 Tablespoons of olive oil to the Brussel sprouts.\n")
         self.assertIn("# Brussels Sprouts", formatted)
         self.assertIn("- 1 lb Brussels sprouts", formatted)
-        self.assertIn("1. Add 2 Tbsp olive oil to the Brussels sprouts.", formatted)
+        self.assertIn("1. Add 2 Tbsp of olive oil to the Brussels sprouts.", formatted)
 
     def test_format_script_checks_then_normalizes_without_changing_numbers(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -90,17 +92,34 @@ class RecipeStyleTest(unittest.TestCase):
         self.assertEqual(style.normalize_ingredient("1 Onion Diced"), "1 onion, diced")
         self.assertEqual(style.normalize_ingredient("2 large eggs, lightly beaten"), "2 large eggs, lightly beaten")
 
-    def test_first_person_ingredient_lines_are_rejected(self):
+    def test_first_person_ingredient_lines_are_kept_and_warned_about(self):
         for line in ("1 cup sauce (I used Huy Fongs)", "2 cups flour, my favorite", "salt, we like kosher"):
-            with self.assertRaisesRegex(ValueError, "first-person-ingredient"):
-                style.normalize_ingredient(line)
+            self.assertTrue(style.is_first_person(line))
+            self.assertEqual(style.normalize_ingredient(line), line.lower().replace("huy fongs", "Huy Fong").replace("(i ", "(I "))
+        self.assertFalse(style.is_first_person("2 cups flour"))
         with tempfile.TemporaryDirectory() as directory:
             recipe = Path(directory) / "test.md"
-            recipe.write_text("# Chili\n\n## Ingredients\n\n- 1 cup sauce (I used Huy Fongs)\n", encoding="utf-8")
+            text = "# Chili\n\n## Ingredients\n\n- 1 jar my mom's salsa\n"
+            recipe.write_text(text, encoding="utf-8")
             result = subprocess.run([str(REPO / "scripts/format-recipes.sh"), "--check", str(recipe)],
                                     text=True, capture_output=True)
-            self.assertEqual(result.returncode, 1)
-            self.assertIn("first-person-ingredient", result.stderr)
+            self.assertEqual(result.returncode, 0)
+            self.assertIn("test.md:5: warning: first-person ingredient line to review: - 1 jar my mom's salsa", result.stderr)
+            self.assertEqual(recipe.read_text(encoding="utf-8"), text)
+
+    def test_prose_units_change_only_after_a_quantity_and_keep_sentence_punctuation(self):
+        for line in ("Line with paper cups.", "Fill the muffin cups.", "Add a few cups of broth.",
+                     "Makes about 2½ lb.", "Heat 2 Tbsp of the lard.", "Add 1 tsp of salt."):
+            self.assertEqual(style.normalize_text(line), line)
+        self.assertEqual(style.normalize_text("Add 2 tablespoons of oil."), "Add 2 Tbsp of oil.")
+
+    def test_ingredient_lines_drop_of_after_a_spoon_measure_but_not_before_a_determiner(self):
+        self.assertEqual(style.normalize_ingredient("2 Tablespoons of Butter"), "2 Tbsp butter")
+        self.assertEqual(style.normalize_ingredient("2 Tbsp of the reserved juice"), "2 Tbsp of the reserved juice")
+        self.assertEqual(style.normalize_ingredient("1 oz. 100% agave tequila"), "1 oz 100% agave tequila")
+
+    def test_spelling_targets_are_restored_after_lowercasing(self):
+        self.assertEqual(style.normalize_ingredient("1 cup Hellmann's Mayonnaise"), "1 cup Hellmann's mayonnaise")
 
     def test_front_matter_attribution_and_other_headings_are_left_alone(self):
         text = ("---\ntags:\n  - By Cup Mason\nauthor: \"T Mason\"\n---\n\n# Chili\n\n"

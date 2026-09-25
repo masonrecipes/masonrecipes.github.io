@@ -35,7 +35,7 @@ source:
     4. Leave it for 10-15 minutes, and then repeat it on the other side.
     5. Dry the zucchini using a clean towel.
     6. Take a 9’’ round baking pan, and arrange ⅓ -¼ of the zucchini slices on the base. Set aside.
-1. Add two Tbsp olive oil into a skillet and sauté onion and garlic until fragrant (about 2 minutes). Add sliced green onion (the white part only) and stir until the onion is translucent.
+1. Add two tablespoons of olive oil into a skillet and sauté onion and garlic until fragrant (about 2 minutes). Add sliced green onion (the white part only) and stir until the onion is translucent.
 1. To the skillet, over medium heat, add heavy cream, Cheddar, and Parmesan cheese; mix until smooth and slightly thickened. Remove from heat.
 1. Season cheese mixture with ground black pepper, and add beaten eggs. Whisk to combine.
 1. Cover the zucchini slices with creamy sauce and mozzarella cheese. Repeat two to three more layers with the rest of the zucchini, the sauce, and mozzarella cheese.

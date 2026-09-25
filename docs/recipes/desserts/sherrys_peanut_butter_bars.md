@@ -42,6 +42,6 @@ source:
 
 PB fit works well as the peanut flour.
 
-If I use 85% dark chocolate I don’t add tsp Swerve. If I use 100% dark chocolate, I will add Swerve.
+If I use 85% dark chocolate I don’t add tsp of Swerve. If I use 100% dark chocolate, I will add Swerve.
 
 If I use organic peanut butter, I don’t add all of the PB fit. Stir and see if it gets dry. You don’t want it to be dry and crumbly.

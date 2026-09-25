@@ -36,4 +36,4 @@ source:
 
 ## Tips
 
-For croutons, toss 1 ½ cups small bread cubes over heat in 3 Tbsp melted butter until brown.
+For croutons, toss 1 ½ cups small bread cubes over heat in 3 Tbsp of melted butter until brown.

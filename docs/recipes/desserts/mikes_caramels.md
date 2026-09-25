@@ -12,9 +12,9 @@ source:
 ## Ingredients
 
 - 1 cup butter or margarine
-- 1, 16-oz package (2½ cups packed) brown sugar
+- 1, 16-ounce package (2½ cups packed) brown sugar
 - 1 cup light corn syrup
-- 1, 14-oz can (1½ cups) sweetened condensed milk
+- 1, 14-ounce can (1½ cups) sweetened condensed milk
 - 1 tsp vanilla
 
 ## Instructions

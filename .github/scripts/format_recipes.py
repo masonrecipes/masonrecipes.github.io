@@ -28,12 +28,15 @@ def main():
     failed = False
     for path in recipe_files(args.paths):
         before = path.read_text(encoding="utf-8")
+        first_person = []
         try:
-            after = normalize_markdown(before)
+            after = normalize_markdown(before, first_person)
         except ValueError as error:
             print(f"{path}: {error}", file=sys.stderr)
             failed = True
             continue
+        for number, line in first_person:
+            print(f"{path}:{number}: warning: first-person ingredient line to review: {line}", file=sys.stderr)
         if before != after:
             changed.append(path)
             if not args.check:

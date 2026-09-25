@@ -35,10 +35,10 @@ source:
 
 ### TO MAKE THE CUPCAKES:
 
-1. Preheat oven to 350°F. Grease a muffin pan with non-stick cooking spray or line with paper cup
+1. Preheat oven to 350°F. Grease a muffin pan with non-stick cooking spray or line with paper cups.
 2. In a small bowl, whisk together the egg whites, ½ cup of the coconut milk, and coconut flavoring.
 3. In the bowl of a stand mixer, use a paddle attachment tocombine the flour, sugar, baking powder, and salt. Add the butter and remaining coconut milk (1 cup) and combine on low speed until moistened. Increase speed to medium high and beat until light and fluffy (about 2 minutes), scraping down the sides of the bowl as needed. Add the egg white mixture in 3 additions, scraping down the sides of the bowl and mixing just long enough to incorporate between additions.
-4. Fill the muffin cup ⅔ full with batter. Bake until cupcakes bounce back when lightly pressed and just begin to turn golden, about 13-15 minutes. Let cool in the pan 5 minutes, then transfer to a wire rack to cool completely. Let pan cool to room temperature, then repeat with remaining batter.
+4. Fill the muffin cups ⅔ full with batter. Bake until cupcakes bounce back when lightly pressed and just begin to turn golden, about 13-15 minutes. Let cool in the pan 5 minutes, then transfer to a wire rack to cool completely. Let pan cool to room temperature, then repeat with remaining batter.
 
 ### TO MAKE THE BUTTERCREAM & ASSEMBLE CUPCAKES:
 
@@ -50,6 +50,6 @@ source:
 
 *If you don’t have cake flour, you can substitute it with the following:
 
-• Measure out 3 cups of All-Purpose into a separate bowl. Remove 6 Tbsp the flour from the bowl.
+• Measure out 3 cups of All-Purpose into a separate bowl. Remove 6 Tbsp of the flour from the bowl.
 
-• Add 6 Tbsp cornstarch to the flour. Whisk or sift the mixture together.
+• Add 6 Tbsp of cornstarch to the flour. Whisk or sift the mixture together.

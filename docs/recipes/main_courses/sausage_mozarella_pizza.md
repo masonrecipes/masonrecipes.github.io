@@ -49,7 +49,7 @@ source:
 1. In a food processor, combine flours, yeast, sugar, and salt.
 2. Pulse to mix the ingredients
 3. With the motor running, add the water and olive oil in a steady stream and then pulse until the dough comes together in a rough mass, about 12 seconds.
-4. If the doug does not form into a ball, sprinkle 1-2 tsp water and pulse again unitl a rough mass forms.
+4. If the doug does not form into a ball, sprinkle 1-2 tsp of water and pulse again unitl a rough mass forms.
 5. Let the dough rest for 5-10 mins.
 6. Process the dough again for 25-30 seconds, steadying the top of the food processor with one hand. The should be tacky to the touch but not sticky.
 7. Transfer the dough to a lightly floured work surface and form into a smooth ball.
@@ -62,7 +62,7 @@ source:
 
 1. In a small frying pan, over medium heat, warm the olive oil.
 2. Add the garlic and cook, stirring frequently, until fragrant, 1-2 mins. Do not let it scorch or garlic will taste bitter.
-3. In a bowl, stir together the garlic-oil mixture, tomatoes, dried basil, oregano, thyme, pepper, 1/3 cup water, and 1 1/2 Tbsp vinegar.
+3. In a bowl, stir together the garlic-oil mixture, tomatoes, dried basil, oregano, thyme, pepper, 1/3 cup water, and 1 1/2 Tbsp of vinegar.
 4. Season to taste with salt and additional vinegar.
 
 ### Pizza

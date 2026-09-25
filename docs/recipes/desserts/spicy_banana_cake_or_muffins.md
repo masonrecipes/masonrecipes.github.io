@@ -34,5 +34,5 @@ source:
 7. Pour 2, 9-inch loaf pans, greased, floured.
 8. Bake for 30-35 mins.
 9. For banana muffins:
-    1. Fill muffin cup 3/4 full.
+    1. Fill muffin cups 3/4 full.
     1. Bake for 18 mins.

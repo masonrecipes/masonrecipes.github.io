@@ -20,7 +20,7 @@ source:
 - 3 cloves garlic, minced
 - 1 large can diced tomatoes
 - 1 large can tomato sauce
-- 2 heaping tsp tomato paste
+- 2 heaping teaspoons tomato paste
 - oregano
 - mixed seasoning badiya or Italian seasoning
 - thyme

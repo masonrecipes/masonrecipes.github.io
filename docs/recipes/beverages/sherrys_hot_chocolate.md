@@ -23,7 +23,7 @@ source:
 Store in an air tight container.
 2. To use:
     1. Pour 8 oz of boiling water into a mug.
-    2. Add 3-4 Tbsp our hot chocolate mix and stir slowly.
+    2. Add 3-4 Tbsp of our hot chocolate mix and stir slowly.
 
 ### Extras
 

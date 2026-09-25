@@ -273,13 +273,18 @@ class IntakeTest(unittest.TestCase):
             ingredient_groups=[{"heading": "", "items": ["2 tablespoons oil", "1/2 cups rotel"]}],
             steps=["Add 2 tablespoons of oil."], notes=["Use 1/2 cups of Rotel."]), fields)
         rendered = wr.render_recipe(recipe, "T Mason", "")
-        self.assertIn("1. Add 2 Tbsp oil.", rendered)
+        self.assertIn("1. Add 2 Tbsp of oil.", rendered)
         self.assertIn("- 1/2 cup Rotel", rendered)
         self.assertEqual(recipe_style.normalize_markdown(rendered), rendered)
 
-    def test_first_person_ingredient_is_rejected(self):
-        self.assertRejected("model-first-person-ingredient", issue(), output(
-            ingredient_groups=[{"heading": "", "items": ["2 lb ground beef (I used Costco)", "1 can beans (15 oz)"]}]))
+    def test_first_person_ingredient_is_kept_and_flagged_for_review(self):
+        the_issue = issue()
+        fields = wr.parse_issue(the_issue["title"], the_issue["body"])
+        recipe = wr.validate_output(output(
+            ingredient_groups=[{"heading": "", "items": ["2 lb ground beef (I used Costco)", "1 can beans (15 oz)"]}]),
+            fields)
+        self.assertEqual(recipe["groups"][0]["items"][0], "2 lb ground beef (I used Costco)")
+        self.assertIn("First-person ingredient line to review: 2 lb ground beef (I used Costco)", recipe["warnings"])
 
     def test_empty_recipe_is_rejected(self):
         self.assertRejected("model-empty-recipe", issue(), output(steps=[" "]))

@@ -19,7 +19,7 @@ source:
 - 2 Tbsp pepper
 - 2 Tbsp packed brown sugar
 - 1 Tbsp salt
-- (4- to 5-lb) boneless pork butt roast, trimmed
+- (4- to 5-pound) boneless pork butt roast, trimmed
 - 4 cups wood chips, soaked in water for 15 minutes, and drained
 
 ### Lexington BBQ Sauce

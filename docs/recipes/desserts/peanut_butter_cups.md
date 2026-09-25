@@ -9,7 +9,7 @@ source:
 
 # Peanut Butter Cups
 
-This recipe makes a dozen muffin lined sized peanut butter cup
+This recipe makes a dozen muffin lined sized peanut butter cups.
 
 ## Ingredients
 
@@ -25,4 +25,4 @@ This recipe makes a dozen muffin lined sized peanut butter cup
 ## Instructions
 
 1. In a mixing bowl, mix the ingredients together
-2. Makes a dozen muffin liner sized peanut butter cup (filled half way to fill line) muffin liners.
+2. Makes a dozen muffin liner sized peanut butter cups (filled half way to fill line) muffin liners.

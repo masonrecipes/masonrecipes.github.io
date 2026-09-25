@@ -33,11 +33,11 @@ source:
 
 ### For the cupcakes
 
-1. Preheat the oven to 325 degrees F. Grease 12 cupcake pan cup or line with paper liners.
+1. Preheat the oven to 325 degrees F. Grease 12 cupcake pan cups or line with paper liners.
 2. In a mixer, cream together the butter and sugar until light and fluffy.
 3. Beat in the eggs one at a time, then stir in the strawberry extract.
 4. Combine the flour and salt in a separate bowl; stir into the batter just until blended. Fold in strawberries last.
-5. Spoon the batter into the prepared cup, dividing evenly.
+5. Spoon the batter into the prepared cups, dividing evenly.
 6. Bake until the tops spring back when lightly pressed, 20 to 25 minutes.
 7. Cool in the pan set over a wire rack. Frost.
 
