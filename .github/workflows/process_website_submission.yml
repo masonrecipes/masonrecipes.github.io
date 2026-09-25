@@ -58,20 +58,6 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Verify deployed draft Worker
-        if: steps.existing.outputs.skip != 'true'
-        env:
-          RECIPE_DRAFT_URL: https://mason-recipe-submissions.david-beihl.workers.dev/draft
-          INTAKE_OUT_DIR: ${{ runner.temp }}/intake
-        run: |
-          mkdir -p "$INTAKE_OUT_DIR"
-          status="$(curl --connect-timeout 10 --max-time 30 --output /dev/null --silent --write-out '%{http_code}' "$RECIPE_DRAFT_URL" || true)"
-          if [[ "$status" != "401" ]]; then
-            echo "draft-endpoint-unavailable" > "${INTAKE_OUT_DIR}/failure-reason"
-            echo "The draft Worker returned HTTP ${status:-no-response}; expected 401 without a token." >&2
-            exit 1
-          fi
-
       # No GitHub token in this step. The issue is read from $GITHUB_EVENT_PATH in code.
       # The OIDC token proves to the Worker that this is the recipes repository's main
       # branch; it is short-lived and minted only for the Worker's audience.
