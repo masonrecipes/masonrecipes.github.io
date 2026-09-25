@@ -218,7 +218,9 @@ def call_model(fields, draft_url, token):
         draft_url,
         # Name and source never reach the model; code renders both.
         data=json.dumps(model_input(fields), ensure_ascii=False).encode("utf-8"),
-        headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"},
+        # Cloudflare bans urllib's default User-Agent with a 403 (error 1010).
+        headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json",
+                 "User-Agent": link_import.USER_AGENT},
         method="POST",
     )
     try:

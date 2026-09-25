@@ -451,6 +451,7 @@ class IntakeTest(unittest.TestCase):
         self.assertEqual(request.full_url, "https://drafts.example/draft")
         self.assertEqual(request.get_method(), "POST")
         self.assertEqual(request.get_header("Authorization"), "Bearer oidc-token")
+        self.assertNotIn("Python-urllib", request.get_header("User-agent", "Python-urllib"))
         self.assertNotIn("SECRET", request.data.decode())
         self.assertEqual(json.loads(request.data), {"recipe_name": "Chili", "ingredients": "beef", "recipe": "cook"})
 
