@@ -128,6 +128,17 @@ class IntakeTest(unittest.TestCase):
         self.assertIn("**Category:** Main Courses", result["body"])
         self.assertEqual(result["title"], "Grandma's Chili")
 
+    def test_navigation_label_matches_page_heading_with_and_or(self):
+        title = "Chili with Beef and/or Lamb"
+        result = self.run_intake(issue(name=title), output(title=title))
+        self.assertEqual(result["title"], title)
+        self.assertEqual(result["path"], "docs/recipes/main_courses/chili_with_beef_andor_lamb.md")
+        self.assertIn(f"# {title}\n", self.page(result))
+        self.assertIn(
+            f"      - {title}: recipes/main_courses/chili_with_beef_andor_lamb.md",
+            (self.root / "mkdocs.yml").read_text(),
+        )
+
     def test_missing_optional_fields(self):
         result = self.run_intake(issue(submitter="Not provided"))
         page = self.page(result)

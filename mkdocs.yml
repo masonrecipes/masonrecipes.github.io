@@ -36,7 +36,7 @@ nav:
   - Home: index.md
   - Recipes:
     - Appetizers & Dips:
-      - Air Fried Buffalo Wings: recipes/appetizers_and_dips/air_fried_buffalo_wings.md
+      - Air-Fried Buffalo Wings: recipes/appetizers_and_dips/air_fried_buffalo_wings.md
       - Beer Cheese: recipes/appetizers_and_dips/beer_cheese.md
       - Buffalo Chicken Dip: recipes/appetizers_and_dips/buffalo_chicken_dip.md
       - Chorizo Queso: recipes/appetizers_and_dips/chorizo_queso.md
@@ -58,19 +58,19 @@ nav:
       - Chicken Cutlets: recipes/main_courses/chicken_cutlets.md
       - Chicken Tikka Masala: recipes/main_courses/chicken_tikka_masala.md
       - Chipotle Fish Tacos: recipes/main_courses/chipotle_fish_tacos.md
-      - Cindys Shrimp and Grits: recipes/main_courses/cindys_shrimp_and_grits.md
-      - Classic, Savory Shepherd's Pie (with Beef andor Lamb): recipes/main_courses/classic_savory_shepherds_pie_with_beef_andor_lamb.md
+      - Cindy’s Shrimp and Grits: recipes/main_courses/cindys_shrimp_and_grits.md
+      - Classic, Savory Shepherd's Pie (with Beef and/or Lamb): recipes/main_courses/classic_savory_shepherds_pie_with_beef_andor_lamb.md
       - Flank Steak Marinade Recipe (for Grilled Flank Steak): recipes/main_courses/flank_steak_marinade_recipe_for_grilled_flank_steak.md
       - Ground Beef & Pepper Rice Bowls: recipes/main_courses/ground_beef_pepper_rice_bowls.md
       - Italian Chorizo Shakshouka: recipes/main_courses/italian_chorizo_shakshouka.md
-      - Mikes Quick Fajitas: recipes/main_courses/mikes_quick_fajitas.md
+      - Mike's Quick Fajitas: recipes/main_courses/mikes_quick_fajitas.md
       - My Favorite Casserole: recipes/main_courses/my_favorite_casserole.md
       - Pork Carnitas: recipes/main_courses/pork_carnitas.md
       - Pork Ribs in Slow Cooker: recipes/main_courses/pork_ribs_in_slow_cooker.md
       - Salmon with Mango Salsa: recipes/main_courses/salmon_with_mango_salsa.md
       - Sausage Mozzarella Pizza: recipes/main_courses/sausage_mozarella_pizza.md
-      - Scotts Pot Roast: recipes/main_courses/scotts_pot_roast.md
-      - Sherrys Sunday Roast: recipes/main_courses/sherrys_sunday_roast.md
+      - Scott's Pot Roast: recipes/main_courses/scotts_pot_roast.md
+      - Sherry's Sunday Roast: recipes/main_courses/sherrys_sunday_roast.md
       - Simple Crockpot Chicken Fajitas: recipes/main_courses/simple_crockpot_chicken_fajitas.md
       - Slow Cooked Pork Ribs: recipes/main_courses/slow_cooked_pork_ribs.md
       - Smoked Meatloaf: recipes/main_courses/smoked_meatloaf.md
@@ -88,15 +88,15 @@ nav:
       - Greek Salad: recipes/sides_and_soups/greek_salad.md
       - Homemade Noodles: recipes/sides_and_soups/homemade_noodles.md
       - Italian Sausage Soup: recipes/sides_and_soups/italian_sausage_soup.md
-      - Julies Tortilla Soup: recipes/sides_and_soups/julies_tortilla_soup.md
-      - Kickin Turnip Greens: recipes/sides_and_soups/kickin_turnip_greens.md
-      - Mikes Mighty Meaty Soup: recipes/sides_and_soups/mikes_mighty_meaty_soup.md
+      - Julie’s Tortilla Soup: recipes/sides_and_soups/julies_tortilla_soup.md
+      - Kickin’ Turnip Greens: recipes/sides_and_soups/kickin_turnip_greens.md
+      - Mike’s Mighty Meaty Soup: recipes/sides_and_soups/mikes_mighty_meaty_soup.md
       - Potato Kale Soup: recipes/sides_and_soups/potato_kale_soup.md
       - Santa Fe Soup: recipes/sides_and_soups/santa_fe_soup.md
       - Spicy Brussels Sprouts: recipes/sides_and_soups/spicy_brussel_sprouts.md
       - Strawberry Salad: recipes/sides_and_soups/strawberry_salad.md
-      - Sweet & Sour Cabbage & Barley Soup: recipes/sides_and_soups/sweet_amp_sour_cabbage_amp_barley_soup.md
-      - Taco Soup Quick and Easy: recipes/sides_and_soups/taco_soup_quick_and_easy.md
+      - Sweet and Sour, Cabbage, and Barley Soup: recipes/sides_and_soups/sweet_amp_sour_cabbage_amp_barley_soup.md
+      - Taco Soup - Quick and Easy: recipes/sides_and_soups/taco_soup_quick_and_easy.md
       - That Good Salad: recipes/sides_and_soups/that_good_salad.md
       - Vegetable Beef and Barley Soup: recipes/sides_and_soups/vegetable_beef_and_barley_soup.md
       - Wild Rice Salad: recipes/sides_and_soups/wild_rice_salad.md
@@ -108,16 +108,16 @@ nav:
       - Buckeyes: recipes/desserts/buckeyes.md
       - Butterscotch Pie: recipes/desserts/butterscotch_pie.md
       - Chocolate Chip Cookies: recipes/desserts/chocolate_chip_cookies.md
-      - Coconut Chocolate Fat Bomb Squares: recipes/desserts/coconut_chocolate_fat_bomb_squares_like_mounds.md
-      - Coconut Cupcakes with Cream Cheese Frosting: recipes/desserts/coconut_cupcakes_with_a_cream_cheese_buttercream_frosting.md
+      - Coconut Chocolate Fat Bomb Squares (Like Mounds): recipes/desserts/coconut_chocolate_fat_bomb_squares_like_mounds.md
+      - Coconut Cupcakes with a Cream Cheese Buttercream Frosting: recipes/desserts/coconut_cupcakes_with_a_cream_cheese_buttercream_frosting.md
       - Fresh Apple Cake with Hot Caramel Sauce: recipes/desserts/fresh_apple_cake_with_hot_caramel_sauce.md
-      - Jannys Ginger Cookies: recipes/desserts/jannys_ginger_cookies.md
-      - Jans Pie Crust: recipes/desserts/jans_pie_crust.md
-      - Katys Banana Pudding: recipes/desserts/katys_banana_pudding.md
+      - Janny’s Ginger Cookies: recipes/desserts/jannys_ginger_cookies.md
+      - Jan’s Pie Crust: recipes/desserts/jans_pie_crust.md
+      - Katy’s Banana Pudding: recipes/desserts/katys_banana_pudding.md
       - Keto Chocolate Pudding: recipes/desserts/keto_chocolate_pudding.md
       - Keto Peanut Butter Pie: recipes/desserts/keto_peanut_butter_pie.md
       - Lemon Bars: recipes/desserts/lemon_bars.md
-      - Mikes Caramels: recipes/desserts/mikes_caramels.md
+      - Mike’s Caramels: recipes/desserts/mikes_caramels.md
       - Never Fail Fudge: recipes/desserts/never_fail_fudge.md
       - Peach Crumb Pie: recipes/desserts/peach_crumb_pie.md
       - Peanut Butter Cups: recipes/desserts/peanut_butter_cups.md
@@ -127,10 +127,10 @@ nav:
       - Red Velvet Cake with Ermine Frosting: recipes/desserts/red_velvet_cake_with_ermine_frosting.md
       - Rhubarb Cookies: recipes/desserts/rhubarb_cookies.md
       - Rum Cake to Die For: recipes/desserts/rum_cake_to_die_for.md
-      - Sherrys Cinnamon Rolls: recipes/desserts/sherrys_cinnamon_rolls.md
-      - Sherrys Peanut Butter Bars: recipes/desserts/sherrys_peanut_butter_bars.md
-      - Sherrys Pumpkin Cake: recipes/desserts/sherrys_pumpkin_cake.md
-      - Smores Cookie Bars: recipes/desserts/smores_cookie_bars.md
+      - Sherry’s Cinnamon Rolls: recipes/desserts/sherrys_cinnamon_rolls.md
+      - Sherry’s Peanut Butter Bars: recipes/desserts/sherrys_peanut_butter_bars.md
+      - Sherry’s Pumpkin Cake: recipes/desserts/sherrys_pumpkin_cake.md
+      - S’mores Cookie Bars: recipes/desserts/smores_cookie_bars.md
       - Spicy Banana Cake or Muffins: recipes/desserts/spicy_banana_cake_or_muffins.md
       - Strawberry Cupcakes: recipes/desserts/strawberry_cupcakes.md
       - Strawberry Scones: recipes/desserts/strawberry_scones.md
@@ -139,28 +139,28 @@ nav:
       - Toasted Pecan Brown Butter Bites: recipes/desserts/toasted_pecan_brown_butter_bites.md
     - Beverages:
       - Classic Margarita: recipes/beverages/classic_margarita.md
-      - Davids Sangria: recipes/beverages/davids_sangria.md
+      - David's Sangria: recipes/beverages/davids_sangria.md
       - Keto Margarita: recipes/beverages/keto_margarita.md
-      - Katys Ranch Water: recipes/beverages/katys_ranch_water.md
-      - Mikes Gin Fizzy: recipes/beverages/mikes_gin_fizzy.md
-      - Randy Masons Margarita: recipes/beverages/randy_masons_margarita.md
+      - Katy’s Ranch Water: recipes/beverages/katys_ranch_water.md
+      - Mike’s Gin Fizzy: recipes/beverages/mikes_gin_fizzy.md
+      - Randy Mason’s Margarita: recipes/beverages/randy_masons_margarita.md
       - Rum Punch: recipes/beverages/rum_punch.md
-      - Sherrys Hot Chocolate: recipes/beverages/sherrys_hot_chocolate.md
+      - Sherry’s Hot Chocolate: recipes/beverages/sherrys_hot_chocolate.md
     - Sauces & Condiments:
       - Caribbean Jerk Marinade: recipes/sauces_and_condiments/caribbean_jerk_marinade.md
-      - Dukes Keto Mayonnaise: recipes/sauces_and_condiments/dukes_keto_mayonnaise.md
+      - Duke’s Keto Mayonnaise: recipes/sauces_and_condiments/dukes_keto_mayonnaise.md
       - Fresh Pesto: recipes/sauces_and_condiments/fresh_pesto.md
       - Green Enchilada Sauce: recipes/sauces_and_condiments/green_enchilada_sauce.md
       - Harissa Tunisian Hot Sauce: recipes/sauces_and_condiments/harissa_tunisian_hot_sauce.md
       - Spaghetti Sauce: recipes/sauces_and_condiments/spaghetti_sauce.md
       - Taco Seasoning: recipes/sauces_and_condiments/taco_seasoning.md
     - Breakfast:
-      - Mikes Amish Aunts Sausage Gravy: recipes/breakfast/mikes_amish_aunts_sausage_gravy.md
+      - Mike’s Amish Aunts Sausage Gravy: recipes/breakfast/mikes_amish_aunts_sausage_gravy.md
       - Sausage Brunch Casserole: recipes/breakfast/sausage_brunch_casserole.md
       - Sausage Egg and Spinach Breakfast Bowl: recipes/breakfast/sausage_egg_and_spinach_breakfast_bowl.md
     - Breads & Extras:
-      - Jans Pie Crust: recipes/breads_and_extras/jans_pie_crust.md
-      - Kristas Tartine Bread: recipes/breads_and_extras/kristas_tartine_bread.md
+      - Jan’s Pie Crust: recipes/breads_and_extras/jans_pie_crust.md
+      - Krista’s Tartine Bread: recipes/breads_and_extras/kristas_tartine_bread.md
       - Oatmeal Bread: recipes/breads_and_extras/oatmeal_bread.md
       - Potato Rusks: recipes/breads_and_extras/potato_rusks.md
   - Tags: tags.md

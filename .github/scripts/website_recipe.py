@@ -392,13 +392,6 @@ def yaml_str(value):
     return '"' + value.replace("\\", "\\\\").replace('"', '\\"') + '"'
 
 
-def nav_title(title):
-    """A plain navigation label that is safe as an unquoted YAML key in mkdocs.yml."""
-    label = re.sub(r"[^\w &',.()-]", "", title)
-    label = " ".join(label.split()).lstrip("&',.()- ")
-    return label or "Untitled Recipe"
-
-
 def render_recipe(recipe, submitter, source):
     """Render the recipe page from validated data."""
     _, category_tags = CATEGORIES[recipe["category"]]
@@ -532,7 +525,7 @@ def process(issue, model, root=".", fetch=link_import.fetch_page):
     warnings += recipe["warnings"]
 
     folder, _ = CATEGORIES[recipe["category"]]
-    title = nav_title(recipe["title"])
+    title = recipe["title"]
     filename = sanitize_filename(title)
     if list(root.glob(f"docs/recipes/*/{filename}")):
         raise IntakeError("duplicate-recipe")
