@@ -58,7 +58,7 @@ OPTIONAL = ["Source link"]
 MODEL_NAME = "gpt-5.6-luna"
 # The keys of the Worker's strict recipe schema. The Worker validates the output
 # against the schema; validate_output() checks it again here.
-OUTPUT_KEYS = {"title", "category", "ingredient_groups", "steps", "notes", "warnings"}
+OUTPUT_KEYS = {"title", "category", "steps", "notes", "warnings"}
 # Fixed reasons the Worker returns; anything else is reported as a request failure.
 WORKER_REASONS = {"model-refused", "model-incomplete", "model-invalid-output", "model-request-failed"}
 
@@ -251,6 +251,8 @@ UNICODE_FRACTIONS = {
     "⅜": " 3/8", "⅝": " 5/8", "⅞": " 7/8", "⅕": " 1/5", "⅙": " 1/6", "⅚": " 5/6",
 }
 NUMBER_RE = re.compile(r"\d+(?:[./]\d+)?")
+INGREDIENT_MARKER_RE = re.compile(r"^\s*[-*•]\s+")
+INGREDIENT_HEADING_RE = re.compile(r"^\s*(?:#{1,6}\s+)?([^\d][^:]*?):\s*$")
 
 
 def numbers(text):
@@ -259,6 +261,50 @@ def numbers(text):
     text = text.translate(str.maketrans(UNICODE_FRACTIONS))
     text = text.replace("⁄", "/")  # fraction slash
     return collections.Counter(NUMBER_RE.findall(text))
+
+
+def parenthetical_first_person_asides(item):
+    """Separate first-person parentheticals from an ingredient when it stays nonempty."""
+    asides = []
+    spans = [match.span() for match in re.finditer(r"\(([^()]*)\)", item)
+             if recipe_style.is_first_person(match.group(1))]
+    if not spans:
+        return item, asides
+    candidate = item
+    for start, end in reversed(spans):
+        asides.append(item[start + 1:end - 1].strip())
+        candidate = candidate[:start] + candidate[end:]
+    candidate = " ".join(candidate.split()).strip(" ,;")
+    return (candidate, list(reversed(asides))) if candidate else (item, [])
+
+
+def ingredient_groups(ingredients):
+    """Use submitted ingredient lines and subgroup headings, normalized only by recipe style."""
+    groups, notes, warnings = [], [], []
+    heading, items = "", []
+
+    def finish_group():
+        if items:
+            groups.append({"heading": heading, "items": list(items)})
+
+    for raw in ingredients.splitlines():
+        line = raw.strip()
+        if not line:
+            continue
+        match = INGREDIENT_HEADING_RE.fullmatch(line)
+        if match and not INGREDIENT_MARKER_RE.match(line):
+            finish_group()
+            heading, items = recipe_style.normalize_title(match.group(1)), []
+            continue
+        item = INGREDIENT_MARKER_RE.sub("", line)
+        item, asides = parenthetical_first_person_asides(item)
+        item = recipe_style.normalize_ingredient(item)
+        notes.extend(recipe_style.normalize_text(aside) for aside in asides)
+        if recipe_style.is_first_person(item):
+            warnings.append(f"First-person ingredient line to review: {item}")
+        items.append(item)
+    finish_group()
+    return groups, notes, warnings
 
 
 def validate_output(output, fields):
@@ -280,19 +326,10 @@ def validate_output(output, fields):
     if not title or len(title) > MAX_LENGTHS["Recipe Name"]:
         raise IntakeError("model-invalid-output")
 
-    if not isinstance(output["ingredient_groups"], list):
-        raise IntakeError("model-invalid-output")
-    groups, first_person = [], []
-    for group in output["ingredient_groups"]:
-        if not isinstance(group, dict) or not isinstance(group.get("heading"), str):
-            raise IntakeError("model-invalid-output")
-        items = [recipe_style.normalize_ingredient(item) for item in text_list(group.get("items"))]
-        first_person += [f"First-person ingredient line to review: {item}" for item in items
-                         if recipe_style.is_first_person(item)]
-        if items:
-            groups.append({"heading": recipe_style.normalize_title(" ".join(group["heading"].split())), "items": items})
+    groups, aside_notes, first_person = ingredient_groups(fields["Ingredients"])
     steps = [recipe_style.normalize_text(step) for step in text_list(output["steps"])]
-    notes = [recipe_style.normalize_text(note) for note in text_list(output["notes"])]
+    model_notes = [recipe_style.normalize_text(note) for note in text_list(output["notes"])]
+    notes = model_notes + aside_notes
     warnings = text_list(output["warnings"]) + first_person
     if not groups or not steps:
         raise IntakeError("model-empty-recipe")
@@ -303,13 +340,16 @@ def validate_output(output, fields):
     if HTML_TAG_RE.search(joined) or FRONT_MATTER_RE.search(joined):
         raise IntakeError("model-unsafe-markup")
 
-    submitted = "\n".join([fields["Recipe Name"], fields["Ingredients"], fields["Recipe"]])
+    if numbers(title) != numbers(fields["Recipe Name"]):
+        raise IntakeError("model-changed-quantities")
+    model_text = "\n".join(steps + model_notes)
+    submitted = fields["Recipe"]
     if fields.get("Page text"):
-        # A page carries other numbers (menus, comments), so every published number
-        # must appear in the submission or page, at least as often as it is used.
-        if numbers(joined) - numbers(submitted + "\n" + fields["Page text"]):
+        # A page carries other numbers (menus, comments), so every model-written
+        # number must appear in the submitted steps or page text at least as often.
+        if numbers(model_text) - numbers(submitted + "\n" + fields["Page text"]):
             raise IntakeError("model-changed-quantities")
-    elif numbers(joined) != numbers(submitted):
+    elif numbers(model_text) != numbers(submitted):
         raise IntakeError("model-changed-quantities")
 
     return {
@@ -464,6 +504,10 @@ def process(issue, model, root=".", fetch=link_import.fetch_page):
     imported = None
     if not (fields["Ingredients"] and fields["Recipe"]):
         imported = import_link(fields, fetch)
+    if not fields["Ingredients"]:
+        # Page text has no deterministic ingredient structure. Do not ask the model
+        # to reconstruct it: ingredient lines must come from the submission or import.
+        raise IntakeError("link-no-recipe")
 
     try:
         recipe = validate_output(model(fields), fields)

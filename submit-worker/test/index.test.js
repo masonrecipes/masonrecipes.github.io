@@ -329,10 +329,17 @@ function draftModelOutput(overrides = {}) {
   return {
     title: "Grandma's Chili",
     category: "Main Courses",
-    ingredient_groups: [{ heading: "", items: ["2 lb ground beef", "1 can beans (15 oz)"] }],
     steps: ["Brown the beef.", "Add beans and simmer 30 minutes."],
     notes: [],
     warnings: [],
+    ...overrides,
+  };
+}
+
+function fillModelOutput(overrides = {}) {
+  return {
+    ...draftModelOutput(),
+    ingredient_groups: [{ heading: "", items: ["2 lb ground beef", "1 can beans (15 oz)"] }],
     ...overrides,
   };
 }
@@ -405,7 +412,11 @@ describe("recipe draft endpoint", () => {
     assert.doesNotMatch(input.input[0].content, /Ignore previous/);
     // Untrusted text reaches the model only as the user's JSON data.
     assert.equal(input.input[1].role, "user");
-    assert.deepEqual(JSON.parse(input.input[1].content), body);
+    assert.deepEqual(JSON.parse(input.input[1].content), {
+      recipe_name: body.recipe_name,
+      recipe: body.recipe,
+      page_text: body.page_text,
+    });
   });
 
   it("rejects tokens that are not a valid GitHub OIDC identity for this repository's main branch", async () => {
@@ -480,8 +491,7 @@ describe("recipe draft endpoint", () => {
       "missing field": missingSteps,
       "title not a string": draftModelOutput({ title: 7 }),
       "step not a string": draftModelOutput({ steps: ["Mix.", { html: "<b>" }] }),
-      "group extra field": draftModelOutput({ ingredient_groups: [{ heading: "", items: ["salt"], extra: 1 }] }),
-      "group items not a list": draftModelOutput({ ingredient_groups: [{ heading: "", items: "salt" }] }),
+      "ingredient groups are forbidden": { ...draftModelOutput(), ingredient_groups: [] },
       "not an object": ["title"],
     };
 
@@ -943,7 +953,7 @@ describe("fill from link endpoint", () => {
       assert.equal((await createWorker({ fetcher: webFetch() }).fetch(fillRequest({}, ORIGIN, person(200)), env)).status, 200);
     }
     for (let fill = 0; fill < 50; fill += 1) {
-      const ai = aiReturning(completed(JSON.stringify(draftModelOutput())));
+      const ai = aiReturning(completed(JSON.stringify(fillModelOutput())));
       const response = await createWorker({ fetcher: noRecipeBlock() }).fetch(fillRequest({}, ORIGIN, person(Math.floor(fill / 5))), { ...env, AI: ai });
       assert.equal(response.status, 200, `AI fill ${fill + 1}`);
     }
