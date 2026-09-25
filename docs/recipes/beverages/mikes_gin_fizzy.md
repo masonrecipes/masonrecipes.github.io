@@ -13,13 +13,13 @@ source:
 
 ## Ingredients
 
-- One Yeti Rambler
+- one Yeti Rambler
 - 3/4 filled with ice
 - 2 shots of good gin
 - 3/4 shot of organic lime juice
 - 3/4 shot of organic lemon juice
-- Top off with club soda
-- Optional: splash of simple syrup made with Swerve
+- top off with club soda
+- optional: splash of simple syrup made with Swerve
 
 ## Instructions
 

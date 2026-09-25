@@ -1,0 +1,1155 @@
+{
+ "docs/recipes/appetizers_and_dips/air_fried_buffalo_wings.md": {
+  "1": 1,
+  "165": 1,
+  "2": 1,
+  "3": 3,
+  "390": 1,
+  "4": 2
+ },
+ "docs/recipes/appetizers_and_dips/beer_cheese.md": {
+  "1": 6,
+  "1/2": 4,
+  "10": 3,
+  "12": 2,
+  "2": 4,
+  "24": 1,
+  "30": 1,
+  "5": 1,
+  "8": 1
+ },
+ "docs/recipes/appetizers_and_dips/buffalo_chicken_dip.md": {
+  "1": 2,
+  "1/2": 2,
+  "10": 1,
+  "2": 2,
+  "3/4": 1,
+  "8": 1
+ },
+ "docs/recipes/appetizers_and_dips/chorizo_queso.md": {
+  "1": 10,
+  "10": 1,
+  "12": 1,
+  "2": 7,
+  "26": 1,
+  "4": 1,
+  "6": 2,
+  "7": 2,
+  "8": 1
+ },
+ "docs/recipes/appetizers_and_dips/dill_dip.md": {
+  "1": 6
+ },
+ "docs/recipes/appetizers_and_dips/feta_bake_dip.md": {
+  "1": 4,
+  "1/8": 1,
+  "2": 2,
+  "20": 2,
+  "4": 2,
+  "400": 1,
+  "5": 1,
+  "7": 1,
+  "8": 1,
+  "9": 1
+ },
+ "docs/recipes/appetizers_and_dips/guacamole.md": {
+  "1": 5,
+  "1/2": 5,
+  "2": 1,
+  "3": 1
+ },
+ "docs/recipes/appetizers_and_dips/mexican_cream_cheese_dip.md": {
+  "1": 2,
+  "4": 1
+ },
+ "docs/recipes/appetizers_and_dips/rosemary_nuts.md": {
+  "1": 2,
+  "1/2": 2,
+  "10": 1,
+  "2": 4,
+  "3": 1,
+  "325": 1,
+  "4": 1,
+  "5": 1
+ },
+ "docs/recipes/appetizers_and_dips/spring_rolls.md": {
+  "1": 5,
+  "1/2": 2,
+  "2": 3,
+  "3": 2,
+  "350": 1,
+  "4": 1,
+  "5": 1,
+  "9": 1
+ },
+ "docs/recipes/appetizers_and_dips/tapenade.md": {
+  "1": 1,
+  "1/2": 4,
+  "1/4": 2,
+  "5": 1,
+  "6": 1
+ },
+ "docs/recipes/appetizers_and_dips/tomato_basil_bruschetta.md": {
+  "1": 2,
+  "1/2": 8,
+  "1/4": 1,
+  "10": 1,
+  "13": 1,
+  "15": 1,
+  "2": 2,
+  "3": 1,
+  "375": 1,
+  "5": 1,
+  "8": 1
+ },
+ "docs/recipes/beverages/classic_margarita.md": {
+  "1": 3,
+  "1/3": 1,
+  "100": 1
+ },
+ "docs/recipes/beverages/davids_sangria.md": {
+  "1": 4,
+  "10": 1,
+  "15": 1,
+  "2": 2,
+  "2/3": 1,
+  "20": 1,
+  "3": 2,
+  "4": 1
+ },
+ "docs/recipes/beverages/katys_ranch_water.md": {
+  "1": 2,
+  "1/2": 1
+ },
+ "docs/recipes/beverages/keto_margarita.md": {
+  "1": 1,
+  "2": 2
+ },
+ "docs/recipes/beverages/mikes_gin_fizzy.md": {
+  "2": 1,
+  "3/4": 3
+ },
+ "docs/recipes/beverages/randy_masons_margarita.md": {
+  "3": 1,
+  "6": 3
+ },
+ "docs/recipes/beverages/rum_punch.md": {
+  "1": 2,
+  "1/2": 1,
+  "2": 1,
+  "3": 2,
+  "3/4": 2,
+  "7": 2
+ },
+ "docs/recipes/beverages/sherrys_hot_chocolate.md": {
+  "1": 1,
+  "1/2": 2,
+  "2": 1,
+  "2/3": 1,
+  "3": 1,
+  "4": 1,
+  "8": 1
+ },
+ "docs/recipes/breads_and_extras/jans_pie_crust.md": {
+  "1": 4,
+  "1/3": 1,
+  "2": 1,
+  "3": 1,
+  "5": 1
+ },
+ "docs/recipes/breads_and_extras/kristas_tartine_bread.md": {
+  "1": 1,
+  "10": 2,
+  "100": 4,
+  "12": 1,
+  "15": 1,
+  "2": 1,
+  "20": 2,
+  "200": 3,
+  "205": 1,
+  "3": 1,
+  "30": 5,
+  "4": 1,
+  "40": 1,
+  "450": 1,
+  "50": 2,
+  "50/50": 1,
+  "500": 1,
+  "650": 1,
+  "700": 1,
+  "900": 1
+ },
+ "docs/recipes/breads_and_extras/oatmeal_bread.md": {
+  "1": 6,
+  "1/2": 1,
+  "1/4": 2,
+  "2": 1,
+  "3": 1
+ },
+ "docs/recipes/breads_and_extras/potato_rusks.md": {
+  "1": 5,
+  "1/2": 1,
+  "15": 1,
+  "2": 3,
+  "350": 1,
+  "4": 1,
+  "8": 1
+ },
+ "docs/recipes/breakfast/mikes_amish_aunts_sausage_gravy.md": {
+  "1": 2,
+  "1/2": 1,
+  "1/4": 2,
+  "2": 1,
+  "3": 1,
+  "4": 1,
+  "6": 2,
+  "8": 2
+ },
+ "docs/recipes/breakfast/sausage_brunch_casserole.md": {
+  "1": 3,
+  "1/2": 4,
+  "12": 1,
+  "2": 2,
+  "30": 1,
+  "350": 1,
+  "40": 1,
+  "5": 1,
+  "6": 1,
+  "8": 1
+ },
+ "docs/recipes/breakfast/sausage_egg_and_spinach_breakfast_bowl.md": {
+  "1": 1,
+  "1/3": 1,
+  "2": 1,
+  "5": 1
+ },
+ "docs/recipes/contact.md": {},
+ "docs/recipes/desserts/almond_pistachio_fat_bombs.md": {
+  "0": 2,
+  "00": 2,
+  "0000": 2,
+  "004": 2,
+  "008": 2,
+  "03": 4,
+  "1": 4,
+  "1/2": 2,
+  "1/4": 4,
+  "1789": 4,
+  "2": 8,
+  "20": 4,
+  "3": 1,
+  "36": 2,
+  "390957": 4,
+  "4": 1,
+  "8": 6,
+  "9": 1
+ },
+ "docs/recipes/desserts/beihl_oatmeal_cookies.md": {
+  "1": 10,
+  "1/2": 4,
+  "1/4": 1,
+  "10": 2,
+  "11": 1,
+  "12": 1,
+  "14": 1,
+  "140": 1,
+  "177": 1,
+  "188": 1,
+  "2": 5,
+  "200": 1,
+  "2014": 1,
+  "230": 1,
+  "240": 1,
+  "26": 1,
+  "3": 1,
+  "30": 2,
+  "350": 1,
+  "38": 1,
+  "5": 1,
+  "50": 1,
+  "60": 1,
+  "64": 1
+ },
+ "docs/recipes/desserts/best_white_chocolate_chip_cookies.md": {
+  "1": 5,
+  "1/4": 1,
+  "11": 1,
+  "12": 1,
+  "2": 3,
+  "3/4": 2,
+  "375": 1,
+  "9": 1
+ },
+ "docs/recipes/desserts/buckeyes.md": {
+  "1": 1,
+  "2": 2,
+  "3": 2,
+  "4": 1
+ },
+ "docs/recipes/desserts/butterscotch_pie.md": {
+  "1": 6,
+  "1/2": 4,
+  "10": 1,
+  "3": 3,
+  "400": 1,
+  "5": 1,
+  "6": 1,
+  "8": 1,
+  "9": 2
+ },
+ "docs/recipes/desserts/chocolate_chip_cookies.md": {
+  "1": 7,
+  "1/2": 1,
+  "1/4": 1,
+  "10": 1,
+  "12": 1,
+  "2": 2,
+  "3": 1,
+  "375": 2,
+  "4": 1,
+  "6": 1
+ },
+ "docs/recipes/desserts/coconut_chocolate_fat_bomb_squares_like_mounds.md": {
+  "1": 2,
+  "1/2": 2,
+  "2": 3,
+  "8": 2
+ },
+ "docs/recipes/desserts/coconut_cupcakes_with_a_cream_cheese_buttercream_frosting.md": {
+  "1": 7,
+  "1/2": 5,
+  "1/3": 1,
+  "13": 1,
+  "15": 1,
+  "2": 4,
+  "2/3": 1,
+  "3": 5,
+  "350": 2,
+  "4": 2,
+  "5": 3,
+  "6": 2,
+  "8": 1
+ },
+ "docs/recipes/desserts/fresh_apple_cake_with_hot_caramel_sauce.md": {
+  "1": 8,
+  "1/2": 6,
+  "1/4": 1,
+  "13": 1,
+  "2": 5,
+  "3": 2,
+  "350": 2,
+  "4": 1,
+  "45": 2,
+  "5": 1,
+  "7": 1,
+  "9": 1
+ },
+ "docs/recipes/desserts/jannys_ginger_cookies.md": {
+  "1": 4,
+  "1/2": 3,
+  "1/4": 2,
+  "12": 1,
+  "15": 1,
+  "2": 2,
+  "3/4": 1,
+  "30": 1,
+  "325": 1
+ },
+ "docs/recipes/desserts/jans_pie_crust.md": {
+  "1": 4,
+  "1/3": 1,
+  "2": 1,
+  "3": 1,
+  "5": 1
+ },
+ "docs/recipes/desserts/katys_banana_pudding.md": {
+  "1": 3,
+  "1/3": 2,
+  "1/4": 2,
+  "2": 2,
+  "3/4": 1,
+  "4": 1,
+  "5.1": 1,
+  "8": 1
+ },
+ "docs/recipes/desserts/keto_chocolate_pudding.md": {
+  "1": 2,
+  "1/2": 1,
+  "1/3": 1,
+  "1/4": 4,
+  "10": 1,
+  "2": 2,
+  "3/4": 1
+ },
+ "docs/recipes/desserts/keto_peanut_butter_pie.md": {
+  "1": 1,
+  "1/2": 3,
+  "1/3": 2,
+  "1/4": 1,
+  "2": 2,
+  "3": 1,
+  "3/4": 2,
+  "4": 1,
+  "8": 1,
+  "9": 1
+ },
+ "docs/recipes/desserts/lemon_bars.md": {
+  "1": 1,
+  "1/2": 4,
+  "13": 1,
+  "2": 3,
+  "20": 1,
+  "25": 1,
+  "350": 1,
+  "4": 2,
+  "6": 1,
+  "9": 1
+ },
+ "docs/recipes/desserts/mikes_caramels.md": {
+  "1": 7,
+  "1/2": 3,
+  "14": 1,
+  "15": 1,
+  "16": 1,
+  "2": 3,
+  "20": 1,
+  "245": 1,
+  "3": 1,
+  "9": 2
+ },
+ "docs/recipes/desserts/never_fail_fudge.md": {
+  "1": 2,
+  "1/2": 2,
+  "12": 1,
+  "2": 3,
+  "4": 2
+ },
+ "docs/recipes/desserts/peach_crumb_pie.md": {
+  "1": 1,
+  "1/2": 3,
+  "1/3": 1,
+  "1/4": 2,
+  "15": 1,
+  "2": 2,
+  "3/4": 1,
+  "30": 1,
+  "35": 1,
+  "350": 1,
+  "4": 1,
+  "425": 1,
+  "5": 1,
+  "9": 1
+ },
+ "docs/recipes/desserts/peanut_butter_cups.md": {
+  "1": 2,
+  "1.5": 1,
+  "1/2": 3,
+  "2": 2,
+  "2/3": 1
+ },
+ "docs/recipes/desserts/protein_marshmallows.md": {
+  "1/2": 2,
+  "1/4": 2,
+  "2": 1,
+  "22": 1,
+  "8": 1
+ },
+ "docs/recipes/desserts/pumpkin_praline_cake.md": {
+  "1": 4,
+  "1/3": 2,
+  "1/4": 1,
+  "15": 1,
+  "2": 4,
+  "2/3": 1,
+  "25": 1,
+  "3": 1,
+  "3/4": 2,
+  "30": 1,
+  "350": 1,
+  "4": 1
+ },
+ "docs/recipes/desserts/red_raspberry_pie.md": {
+  "1": 4,
+  "1/2": 2,
+  "1/4": 2,
+  "1/8": 1,
+  "10": 1,
+  "15": 1,
+  "2": 1,
+  "25": 1,
+  "375": 1,
+  "4": 2,
+  "425": 1,
+  "8": 1,
+  "9": 1
+ },
+ "docs/recipes/desserts/rhubarb_cookies.md": {
+  "1": 8,
+  "1/2": 4,
+  "1/3": 1,
+  "12": 1,
+  "15": 1,
+  "2": 1,
+  "3": 1,
+  "350": 2
+ },
+ "docs/recipes/desserts/rum_cake_to_die_for.md": {
+  "1": 4,
+  "1/2": 4,
+  "1/4": 1,
+  "2": 1,
+  "4": 1
+ },
+ "docs/recipes/desserts/sherrys_cinnamon_rolls.md": {
+  "1": 5,
+  "1/2": 3,
+  "1/4": 3,
+  "1/8": 2,
+  "110": 1,
+  "12": 1,
+  "15": 1,
+  "2": 11,
+  "20": 1,
+  "23": 1,
+  "25": 1,
+  "3": 1,
+  "3/4": 3,
+  "30": 1,
+  "350": 1,
+  "4": 1,
+  "5": 4,
+  "6": 1,
+  "8": 1,
+  "9": 1
+ },
+ "docs/recipes/desserts/sherrys_peanut_butter_bars.md": {
+  "1": 2,
+  "1/2": 1,
+  "1/4": 1,
+  "100": 1,
+  "120": 1,
+  "170.19": 1,
+  "170.3": 1,
+  "2": 2,
+  "240": 1,
+  "28.49": 1,
+  "3": 1,
+  "3/4": 2,
+  "85": 1,
+  "859": 1,
+  "9": 2
+ },
+ "docs/recipes/desserts/sherrys_pumpkin_cake.md": {
+  "1": 9,
+  "1/2": 1,
+  "1/4": 2,
+  "13": 1,
+  "15": 2,
+  "2": 5,
+  "2/3": 1,
+  "30": 1,
+  "35": 1,
+  "350": 1,
+  "4": 1,
+  "6": 1,
+  "8": 2,
+  "9": 1
+ },
+ "docs/recipes/desserts/smores_cookie_bars.md": {
+  "1": 3,
+  "1.5": 1,
+  "1/2": 4,
+  "13": 2,
+  "16": 1,
+  "2": 3,
+  "25": 1,
+  "3/4": 2,
+  "30": 1,
+  "350": 1,
+  "9": 3
+ },
+ "docs/recipes/desserts/spicy_banana_cake_or_muffins.md": {
+  "1": 8,
+  "1/2": 3,
+  "1/4": 3,
+  "18": 1,
+  "2": 4,
+  "2/3": 2,
+  "3/4": 2,
+  "30": 1,
+  "35": 1,
+  "350": 1,
+  "9": 1
+ },
+ "docs/recipes/desserts/strawberry_cupcakes.md": {
+  "1": 6,
+  "1/2": 1,
+  "1/4": 2,
+  "1/8": 1,
+  "10": 1,
+  "12": 1,
+  "20": 1,
+  "25": 1,
+  "3": 1,
+  "3/4": 2,
+  "325": 1,
+  "8": 1
+ },
+ "docs/recipes/desserts/strawberry_scones.md": {
+  "1": 1,
+  "1/2": 2,
+  "1/4": 1,
+  "10": 1,
+  "15": 1,
+  "2": 3,
+  "2/3": 1,
+  "3": 1,
+  "3/4": 1,
+  "400": 1,
+  "5": 1,
+  "6": 2,
+  "8": 1
+ },
+ "docs/recipes/desserts/swedish_gingerbread.md": {
+  "1": 4,
+  "1/3": 1,
+  "1/4": 2,
+  "2": 5,
+  "3": 2,
+  "320": 1,
+  "4": 1,
+  "400": 1,
+  "42": 1,
+  "7": 2,
+  "8": 1,
+  "83": 1
+ },
+ "docs/recipes/desserts/texas_chocolate_sheet_cake.md": {
+  "1": 4,
+  "1/2": 6,
+  "13": 1,
+  "2": 4,
+  "25": 1,
+  "3": 3,
+  "3/4": 1,
+  "30": 1,
+  "350": 1,
+  "6": 1,
+  "9": 1
+ },
+ "docs/recipes/desserts/toasted_pecan_brown_butter_bites.md": {
+  "1": 2,
+  "1/4": 1,
+  "2": 3,
+  "30": 1,
+  "45": 1,
+  "5": 1
+ },
+ "docs/recipes/main_courses/caribbean_paella.md": {
+  "1": 5,
+  "1/2": 2,
+  "1/4": 2,
+  "2": 4,
+  "350": 1,
+  "40": 1,
+  "5": 1,
+  "8": 4
+ },
+ "docs/recipes/main_courses/cheesy_keto_chicken_fajita_casserole.md": {
+  "1": 6,
+  "1/2": 8,
+  "1/4": 6,
+  "10": 1,
+  "1133": 1,
+  "193": 1,
+  "2": 4,
+  "25": 1,
+  "3": 4,
+  "3/4": 3,
+  "30": 1,
+  "350": 1,
+  "5": 1,
+  "543": 1,
+  "576": 1,
+  "710": 1,
+  "820": 1,
+  "834": 1,
+  "847": 1,
+  "862": 1,
+  "887": 1
+ },
+ "docs/recipes/main_courses/chicken_crust_pizza.md": {
+  "1": 1,
+  "1/2": 1,
+  "15": 1,
+  "400": 1
+ },
+ "docs/recipes/main_courses/chicken_curry_casserole.md": {
+  "1": 4,
+  "1/2": 2,
+  "1/4": 1,
+  "2": 4,
+  "25": 1,
+  "3": 1,
+  "350": 2
+ },
+ "docs/recipes/main_courses/chicken_cutlets.md": {
+  "1/4": 3,
+  "20": 1,
+  "400": 1
+ },
+ "docs/recipes/main_courses/chicken_tikka_masala.md": {
+  "1": 6,
+  "1/2": 1,
+  "10": 2,
+  "15": 1,
+  "160": 1,
+  "2": 6,
+  "3": 4,
+  "30": 1,
+  "4": 2,
+  "5": 1,
+  "6": 1,
+  "60": 1,
+  "8": 2
+ },
+ "docs/recipes/main_courses/chipotle_fish_tacos.md": {
+  "1": 4,
+  "1/2": 3,
+  "1/4": 1,
+  "2": 2,
+  "20": 1,
+  "8": 1
+ },
+ "docs/recipes/main_courses/cindys_shrimp_and_grits.md": {
+  "1": 7,
+  "1/2": 4,
+  "13": 1,
+  "15": 1,
+  "2": 1,
+  "20": 1,
+  "350": 2,
+  "9": 1
+ },
+ "docs/recipes/main_courses/ground_beef_pepper_rice_bowls.md": {
+  "1": 8,
+  "1/2": 2,
+  "1/3": 1,
+  "1/4": 2,
+  "2": 3,
+  "3": 2,
+  "4": 2,
+  "5": 1
+ },
+ "docs/recipes/main_courses/italian_chorizo_shakshouka.md": {
+  "1": 3,
+  "1.5": 1,
+  "1/2": 2,
+  "1/8": 1,
+  "10": 2,
+  "15": 1,
+  "6": 1
+ },
+ "docs/recipes/main_courses/mikes_quick_fajitas.md": {
+  "1": 1,
+  "1/2": 2,
+  "3": 1,
+  "4": 1,
+  "5": 1,
+  "8": 1
+ },
+ "docs/recipes/main_courses/my_favorite_casserole.md": {
+  "1": 6,
+  "1.5": 1,
+  "1/2": 1,
+  "2": 3,
+  "3": 1,
+  "375": 1
+ },
+ "docs/recipes/main_courses/pork_carnitas.md": {
+  "1": 4,
+  "1/4": 1,
+  "2": 9,
+  "3": 1,
+  "5": 1,
+  "6": 1
+ },
+ "docs/recipes/main_courses/pork_ribs_in_slow_cooker.md": {
+  "1": 4,
+  "1/2": 3,
+  "2": 2,
+  "3": 1,
+  "4": 1,
+  "6": 1,
+  "8": 1
+ },
+ "docs/recipes/main_courses/salmon_with_mango_salsa.md": {
+  "1": 2,
+  "1/2": 3,
+  "10": 1,
+  "2": 1,
+  "380": 1
+ },
+ "docs/recipes/main_courses/sausage_mozarella_pizza.md": {
+  "1": 11,
+  "1/2": 3,
+  "1/3": 2,
+  "1/4": 5,
+  "10": 4,
+  "12": 1,
+  "2": 5,
+  "25": 1,
+  "3": 1,
+  "3/4": 1,
+  "30": 1,
+  "5": 3,
+  "60": 1
+ },
+ "docs/recipes/main_courses/scotts_pot_roast.md": {
+  "1": 10,
+  "1/2": 4,
+  "2": 4,
+  "20": 1,
+  "3": 8,
+  "30": 1,
+  "325": 1,
+  "4": 3
+ },
+ "docs/recipes/main_courses/sherrys_sunday_roast.md": {
+  "1": 1,
+  "1/2": 2,
+  "1/4": 1,
+  "2": 5,
+  "3": 2,
+  "4": 3
+ },
+ "docs/recipes/main_courses/simple_crockpot_chicken_fajitas.md": {
+  "1": 1,
+  "2": 1,
+  "3": 5,
+  "32": 1,
+  "4": 2,
+  "6": 1
+ },
+ "docs/recipes/main_courses/slow_cooked_pork_ribs.md": {
+  "1": 4,
+  "1/2": 3,
+  "2": 2,
+  "3": 1,
+  "4": 1,
+  "6": 1,
+  "8": 1
+ },
+ "docs/recipes/main_courses/smoked_meatloaf.md": {
+  "1": 9,
+  "1/2": 2,
+  "1/4": 3,
+  "15": 2,
+  "155": 1,
+  "2": 7,
+  "225": 1,
+  "30": 1,
+  "375": 1,
+  "4": 1,
+  "5": 1,
+  "6": 1,
+  "9": 1
+ },
+ "docs/recipes/main_courses/smoked_pork_butt.md": {
+  "1": 5,
+  "1/2": 3,
+  "12": 1,
+  "15": 1,
+  "2": 5,
+  "3": 2,
+  "3/4": 1,
+  "30": 1,
+  "325": 1,
+  "4": 2,
+  "5": 2
+ },
+ "docs/recipes/main_courses/steak_tips_au_gratin.md": {
+  "1": 3,
+  "1/3": 1
+ },
+ "docs/recipes/main_courses/stephanies_super_slow_sloppy_joes.md": {
+  "1": 3,
+  "1/4": 2,
+  "2": 1,
+  "3": 4,
+  "5": 1,
+  "6": 1,
+  "8": 1,
+  "90": 1
+ },
+ "docs/recipes/main_courses/tacos_al_carbon.md": {
+  "1": 6,
+  "1/2": 2,
+  "1/4": 2,
+  "10": 1,
+  "12": 1,
+  "16": 1,
+  "2": 3,
+  "3": 2,
+  "4": 2,
+  "6": 1
+ },
+ "docs/recipes/main_courses/tatanya_with_everything.md": {
+  "1": 4,
+  "1/2": 1
+ },
+ "docs/recipes/main_courses/wedding_casserole.md": {
+  "1": 5,
+  "1/2": 2,
+  "2": 2,
+  "3": 2,
+  "3/4": 1,
+  "30": 1,
+  "350": 1,
+  "8": 1
+ },
+ "docs/recipes/main_courses/white_bean_chicken_chili.md": {
+  "1": 7,
+  "1/2": 2,
+  "10": 1,
+  "14.5": 1,
+  "15": 1,
+  "2": 3,
+  "3": 1,
+  "4": 1,
+  "5": 3,
+  "6": 1
+ },
+ "docs/recipes/sauces_and_condiments/caribbean_jerk_marinade.md": {
+  "1": 2,
+  "1/2": 5,
+  "15": 1,
+  "2": 1,
+  "4": 1,
+  "8": 1
+ },
+ "docs/recipes/sauces_and_condiments/dukes_keto_mayonnaise.md": {
+  "0": 4,
+  "1": 7,
+  "1/4": 2,
+  "1/8": 1,
+  "2": 5,
+  "3/4": 1,
+  "4": 4,
+  "5": 2,
+  "6": 2,
+  "7": 2
+ },
+ "docs/recipes/sauces_and_condiments/fresh_pesto.md": {
+  "1": 2,
+  "1/2": 1,
+  "1/4": 2,
+  "2": 1
+ },
+ "docs/recipes/sauces_and_condiments/green_enchilada_sauce.md": {
+  "2": 5,
+  "3": 4,
+  "30": 1,
+  "45": 1,
+  "5": 2
+ },
+ "docs/recipes/sauces_and_condiments/harissa_tunisian_hot_sauce.md": {
+  "1": 6,
+  "1/2": 1,
+  "10": 1,
+  "2": 2,
+  "20": 1,
+  "3": 1,
+  "4": 1,
+  "5": 1
+ },
+ "docs/recipes/sauces_and_condiments/spaghetti_sauce.md": {
+  "1": 5,
+  "2": 2,
+  "3": 1
+ },
+ "docs/recipes/sauces_and_condiments/taco_seasoning.md": {
+  "1": 6,
+  "2": 1,
+  "4": 1
+ },
+ "docs/recipes/sides_and_soups/baked_zucchini_casserole.md": {
+  "1": 5,
+  "1/2": 2,
+  "1/3": 1,
+  "1/4": 2,
+  "10": 1,
+  "15": 1,
+  "2": 5,
+  "20": 1,
+  "3": 1,
+  "4": 1,
+  "400": 1,
+  "9": 1
+ },
+ "docs/recipes/sides_and_soups/crock_pot_potato_soup.md": {
+  "1": 1,
+  "2": 1,
+  "49.5": 1,
+  "5": 1,
+  "8": 1
+ },
+ "docs/recipes/sides_and_soups/garlicky_oven_fries.md": {
+  "1": 2,
+  "1/2": 2,
+  "12": 1,
+  "2": 1,
+  "3": 2,
+  "3/4": 1,
+  "30": 1,
+  "40": 1,
+  "475": 1,
+  "5": 1,
+  "6": 3
+ },
+ "docs/recipes/sides_and_soups/greek_salad.md": {
+  "1": 3,
+  "1/2": 3,
+  "1/4": 2,
+  "2": 1
+ },
+ "docs/recipes/sides_and_soups/homemade_noodles.md": {
+  "1": 1,
+  "1/2": 1,
+  "2": 3,
+  "4": 1,
+  "5": 1,
+  "6": 2
+ },
+ "docs/recipes/sides_and_soups/italian_sausage_soup.md": {
+  "1": 6,
+  "1/2": 3,
+  "12": 2,
+  "2": 2,
+  "3": 1,
+  "30": 2,
+  "4": 1,
+  "8": 1
+ },
+ "docs/recipes/sides_and_soups/julies_tortilla_soup.md": {
+  "1": 8,
+  "1/2": 1,
+  "14.5": 1,
+  "2": 2,
+  "3": 1,
+  "6": 1
+ },
+ "docs/recipes/sides_and_soups/kickin_turnip_greens.md": {
+  "1": 2,
+  "1/2": 2,
+  "10": 1,
+  "15": 1,
+  "20": 1,
+  "28": 1,
+  "3": 1,
+  "400": 1,
+  "6": 1,
+  "8": 1
+ },
+ "docs/recipes/sides_and_soups/mikes_mighty_meaty_soup.md": {
+  "1": 5,
+  "1/2": 2,
+  "10": 1,
+  "15": 1,
+  "2": 2,
+  "20": 1,
+  "28": 1,
+  "5": 1,
+  "6": 3,
+  "7": 1
+ },
+ "docs/recipes/sides_and_soups/potato_kale_soup.md": {
+  "1": 7,
+  "1/2": 1,
+  "1/4": 1,
+  "15": 1,
+  "2": 3,
+  "20": 1,
+  "3/4": 1,
+  "4": 1,
+  "5": 2,
+  "6": 1
+ },
+ "docs/recipes/sides_and_soups/santa_fe_soup.md": {
+  "1": 7,
+  "2": 3
+ },
+ "docs/recipes/sides_and_soups/spicy_brussel_sprouts.md": {
+  "1": 2,
+  "1/2": 1,
+  "2": 1,
+  "3": 2,
+  "40": 1,
+  "400": 1,
+  "5": 1,
+  "6": 1,
+  "60": 1
+ },
+ "docs/recipes/sides_and_soups/strawberry_salad.md": {
+  "1": 3,
+  "1/2": 1,
+  "2": 4,
+  "3": 1
+ },
+ "docs/recipes/sides_and_soups/sweet_amp_sour_cabbage_amp_barley_soup.md": {
+  "1": 8,
+  "1/2": 4,
+  "1/3": 1,
+  "2": 1,
+  "3": 2,
+  "32": 1,
+  "4": 1,
+  "45": 1,
+  "60": 1,
+  "8": 1
+ },
+ "docs/recipes/sides_and_soups/taco_soup_quick_and_easy.md": {
+  "1": 5,
+  "10": 1,
+  "2": 1,
+  "3": 1
+ },
+ "docs/recipes/sides_and_soups/that_good_salad.md": {
+  "1": 2,
+  "1/2": 3,
+  "1/4": 1,
+  "2": 3,
+  "2/3": 1,
+  "3/4": 1,
+  "8": 1
+ },
+ "docs/recipes/sides_and_soups/vegetable_beef_and_barley_soup.md": {
+  "1": 5,
+  "1/2": 2,
+  "10": 1,
+  "15": 1,
+  "2": 2,
+  "40": 1,
+  "6": 2,
+  "7": 1
+ },
+ "docs/recipes/sides_and_soups/wild_rice_salad.md": {
+  "1": 4,
+  "1/2": 3,
+  "1/4": 1,
+  "2": 3,
+  "3": 1
+ },
+ "docs/recipes/sides_and_soups/wild_rice_soup.md": {
+  "1": 3,
+  "1/2": 1,
+  "1/3": 1,
+  "10.75": 1,
+  "14.5": 1,
+  "15": 1,
+  "2": 1,
+  "3": 3,
+  "3/4": 1,
+  "4": 1
+ }
+}

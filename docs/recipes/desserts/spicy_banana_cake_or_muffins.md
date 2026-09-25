@@ -20,7 +20,7 @@ source:
 - 1/2 tsp ground cloves
 - 2/3 cup shortening
 - 2/3 cup buttermilk (if you do not have this, use 1 cup milk with 1 Tbsp vinegar)
-- 1 1/4 cup mashed bananas
+- 1 1/4 cups mashed bananas
 - 2 eggs, unbeaten
 
 ## Instructions

@@ -11,12 +11,12 @@ source:
 ## Ingredients
 
 - 1 lb oven-baked fish
-- 1 ½ cup shredded sharp cheese
+- 1 ½ cups shredded sharp cheese
 - ½ cup corn
 - ¼ cup fresh cilantro
-- Lime wedges
+- lime wedges
 - 8 six-inch corn tortillas
-- Sauce
+- sauce
 - ½ cup plain yogurt
 - 2 Tbsp mayo
 - 2 tsp chipotle peppers in adobe sauce

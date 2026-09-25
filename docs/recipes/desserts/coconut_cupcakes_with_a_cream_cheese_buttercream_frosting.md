@@ -11,25 +11,25 @@ source:
 
 ## Ingredients
 
-### For the cupcakes
+### For the Cupcakes
 
 - 5 large egg whites
-- 1 ½ cup unsweetened coconut milk,*divided*
-- 1 tablespoon coconut flavoring
+- 1 ½ cups unsweetened coconut milk,*divided*
+- 1 Tbsp coconut flavoring
 - 3 cups cake flour*
 - 2 ⅓ cups granulated sugar
-- 4 ½ teaspoons baking powder
-- ½ teaspoon salt
+- 4 ½ tsp baking powder
+- ½ tsp salt
 - 1 cup unsalted butter,*room temperature*
 
-### For the cream cheese buttercream frosting
+### For the Cream Cheese Buttercream Frosting
 
-- 8 ounces cream cheese,*room temperature*
+- 8 oz cream cheese,*room temperature*
 - ½ cup unsalted butter,*room temperature*
 - 4 cups powdered sugar,*sifted*
-- 1-3 tablespoons unsweetened coconut milk or regular milk
-- 1 teaspoon coconut flavoring
-- 1 cup sweetened or unsweetened shredded coconut*(For Garnish)*
+- 1-3 Tbsp unsweetened coconut milk or regular milk
+- 1 tsp coconut flavoring
+- 1 cup sweetened or unsweetened shredded coconut*(for garnish)*
 
 ## Instructions
 
@@ -50,6 +50,6 @@ source:
 
 *If you don’t have cake flour, you can substitute it with the following:
 
-• Measure out 3 cups of All-Purpose into a separate bowl. Remove 6 tablespoons of the flour from the bowl.
+• Measure out 3 cups of All-Purpose into a separate bowl. Remove 6 Tbsp of the flour from the bowl.
 
-• Add 6 tablespoons of cornstarch to the flour. Whisk or sift the mixture together.
+• Add 6 Tbsp of cornstarch to the flour. Whisk or sift the mixture together.

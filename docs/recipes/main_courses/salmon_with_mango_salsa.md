@@ -13,17 +13,17 @@ source:
 
 ## Ingredients
 
-- Salmon
-- Butter
-- Salt
-- Cilantro
+- salmon
+- butter
+- salt
+- cilantro
 - 2 mangos, cut in small cubes
 - bunch of cilantro, finely chopped
 - 1 bell pepper, diced
-- 1 cup sweet Corn
+- 1 cup sweet corn
 - 1/2 red onion, chopped
 - 1/2 lime
-- Rice
+- rice
 
 ## Instructions
 

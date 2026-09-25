@@ -14,13 +14,13 @@ source:
 
 ## Ingredients
 
-- Can of Chicken
+- can of chicken
 - 1/2 cup Parmesan cheese
-- Basil
-- Oregano
-- Salt
-- 1 Egg
-- Your favorite pizza toppings
+- basil
+- oregano
+- salt
+- 1 egg
+- your favorite pizza toppings
 
 ## Instructions
 

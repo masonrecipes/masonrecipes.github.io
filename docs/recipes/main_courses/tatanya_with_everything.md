@@ -16,7 +16,7 @@ source:
 
 ## Ingredients
 
-- 1 lb smoked sausage sliced
+- 1 lb smoked sausage, sliced
 - 1 cup chopped onions
 - 1 cup chopped apples
 - 1 cup chopped broccoli

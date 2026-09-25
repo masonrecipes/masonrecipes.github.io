@@ -13,7 +13,7 @@ Serves 4
 
 ## Ingredients
 
-- 1 lb. lean ground beef
+- 1 lb lean ground beef
 - 1 Tbsp olive oil
 - 1 tsp sesame oil
 - ½ cup yellow onion, diced
@@ -28,8 +28,8 @@ Serves 4
 - 1 tsp chili garlic sauce (Huy Fong)
 - ½ tsp black pepper
 - ¼ tsp red pepper flakes
-- Cooked rice, for serving
-- Sliced green onions and sesame seeds, for garnish
+- cooked rice, for serving
+- sliced green onions and sesame seeds, for garnish
 
 ## Instructions
 

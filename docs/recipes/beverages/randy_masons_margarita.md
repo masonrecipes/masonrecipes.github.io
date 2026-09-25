@@ -11,12 +11,12 @@ source:
 
 ## Ingredients
 
-- 6 oz Tequila
+- 6 oz tequila
 - 3 oz Triple Sec
-- 6 oz Light Beer
-- 6 oz Lime Aid
-- Margarita Salt
-- Limes
+- 6 oz light beer
+- 6 oz lime aid
+- margarita salt
+- limes
 
 ## Instructions
 

@@ -11,7 +11,7 @@ source:
 
 ## Ingredients
 
-- 1 lb Italian Sausage
+- 1 lb Italian sausage
 - 1 leek diced (white only) or 1 small onion
 - 4-5 red potatoes diced in larger pieces
 - 1 box and 1 large can of chicken broth
@@ -19,7 +19,7 @@ source:
 - ¼ to ½ cup butter
 - 2 Tbsp flour
 - 2 packages dry original ranch dressing
-- 1 ¾ cup half and half
+- 1 ¾ cups half and half
 
 ## Instructions
 

@@ -15,14 +15,14 @@ source:
 
 - 3 cups coocked chicken breasts
 - 1/2 can milk (Milnot)
-- 2 cups cooked  rice (uncle Ben’s converted)
-- 2 teaspoons lemon juice
-- 1 teaspoon salt
+- 2 cups cooked rice (Uncle Ben’s converted)
+- 2 tsp lemon juice
+- 1 tsp salt
 - 1, 8 oz can water chestnuts, sliced
 - 3 hard boiled eggs, sliced
 - 1 can cream of chicken soup
 - 1 cup mayonaise (not miracle whip)
-- 1 Tablespoon grated onion
+- 1 Tbsp grated onion
 
 ## Instructions
 

@@ -13,14 +13,14 @@ source:
 
 - 3 lb 90% lean ground beef
 - 1 cup onion, chopped
-- 3 cloves garlic minced
-- 1 1/4 cup ketchup
+- 3 cloves garlic, minced
+- 1 1/4 cups ketchup
 - 1 cup red bell pepper, chopped
-- 5 Tablespoons Worcestershire sauce
+- 5 Tbsp Worcestershire sauce
 - 1/4 cup pack brown sugar
-- 3 Tablespoons vinegar
-- 3 Tablespoons mustard
-- 2 teaspoons chili powder
+- 3 Tbsp vinegar
+- 3 Tbsp mustard
+- 2 tsp chili powder
 
 ## Instructions
 

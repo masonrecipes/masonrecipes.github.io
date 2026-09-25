@@ -15,13 +15,13 @@ source:
 - 320 g butter (1 1/3 c)
 - 1 dl Swedish light syrup (.42 c)
 - 2 dl water (.83 c)
-- 1 Tbsp of grated lemon peel
-- 2 Tbsp of Brandy
-- 1 tsp of ground Cardamom
-- 4 Tbsp of ground Cinnamon
-- 2 Tbsp of ground Cloves
-- 3 Tbsp of ground Ginger
-- 2 Tbsp of baking soda
+- 1 Tbsp grated lemon peel
+- 2 Tbsp brandy
+- 1 tsp ground cardamom
+- 4 Tbsp ground cinnamon
+- 2 Tbsp ground cloves
+- 3 Tbsp ground ginger
+- 2 Tbsp baking soda
 - 2 liter flour 8 1/4c
 
 ## Instructions

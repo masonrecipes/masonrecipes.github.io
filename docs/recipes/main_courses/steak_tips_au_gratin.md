@@ -15,7 +15,7 @@ source:
 - 1 medium onion slivered
 - 1 head of garlic cloves halved
 - 1/3 package cream cheese
-- Salt & pepper to taste
+- salt & pepper to taste
 
 ## Instructions
 

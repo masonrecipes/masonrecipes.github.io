@@ -15,10 +15,10 @@ source: Family Recipe
 - 1 cup brandy
 - 1 cup grenadine
 - 2/3 cup orange juice
-- 4 Tbsp of brown sugar
-- 1 Orange
-- 2-3 Apples
-- 2-3 Pears
+- 4 Tbsp brown sugar
+- 1 orange
+- 2-3 apples
+- 2-3 pears
 
 ## Instructions
 

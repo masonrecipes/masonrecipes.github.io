@@ -11,13 +11,13 @@ source:
 
 ## Ingredients
 
-- 28 oz Frozen Turnip Greens'
+- 28 oz frozen turnip greens'
 - 8oz bacon
 - 6 spring onions
-- 1 Tbsp Salt (preferably free range)
-- 1/2 Tbsp Pepper
-- 1/2 Tbsp Garlic Powder
-- 1 tsp Cayenne
+- 1 Tbsp salt (preferably free range)
+- 1/2 Tbsp pepper
+- 1/2 Tbsp garlic powder
+- 1 tsp cayenne
 
 ## Instructions
 

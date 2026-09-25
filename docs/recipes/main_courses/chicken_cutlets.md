@@ -11,7 +11,7 @@ source:
 
 ## Ingredients
 
-- 1/4 cup Panko
+- 1/4 cup panko
 - Greek yogurt
 - 1/4 cup nutritional yeast
 - 1/4 cup Parmesan cheese

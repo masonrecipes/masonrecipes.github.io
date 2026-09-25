@@ -11,7 +11,7 @@ source:
 
 ## Ingredients
 
-- 2 cup uncooked noodles
+- 2 cups uncooked noodles
 - 2 onions, sliced
 - 1 lb ground beef
 - 1 cup cottage cheese

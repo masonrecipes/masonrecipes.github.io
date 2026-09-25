@@ -11,16 +11,16 @@ source:
 ## Ingredients
 
 - 1 ½ brown sugar
-- 3 Tablespoons flour
-- 1 ½ cup milk
-- 1 ½ teaspoon vanilla
+- 3 Tbsp flour
+- 1 ½ cups milk
+- 1 ½ tsp vanilla
 - 3 egg yolks, beaten
-- 5  butter,
-- ½ teaspoon salt
+- 5 butter,
+- ½ tsp salt
 - 1 baked 9” pie crust
 - 3 egg whites
-- Dash of salt
-- 6 Tablespoons sugar
+- dash of salt
+- 6 Tbsp sugar
 
 ## Instructions
 

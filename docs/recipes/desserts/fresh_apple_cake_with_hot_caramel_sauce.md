@@ -13,7 +13,7 @@ source:
 
 ### Cake
 
-- 1 1/2 cup chopped pecans
+- 1 1/2 cups chopped pecans
 - 1/2 cup butter, melted
 - 2 cups sugar
 - 2 large eggs
@@ -22,7 +22,7 @@ source:
 - 2 tsp ground cinnamon
 - 1 tsp baking soda
 - 1 tsp salt
-- 2 1/2 lb. Granny Smith apples (about 4 large), peeled and cut into 1/4 inch thick wedges
+- 2 1/2 lb Granny Smith apples (about 4 large), peeled and cut into 1/4 inch thick wedges
 
 ### Sauce
 

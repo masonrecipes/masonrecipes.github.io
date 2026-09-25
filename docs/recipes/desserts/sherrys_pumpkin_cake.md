@@ -24,13 +24,13 @@ source:
 - 1/4 tsp ginger
 - 4 large eggs
 - 1 cup vegetable oil
-- 1 2/3 cup sugar
+- 1 2/3 cups sugar
 - 1 (15 oz) can plain pumkin puree
 
 ### Frosting
 
 - 6 Tbsp unsalted butter, softened
-- 1 1/2 cup powder sugar
+- 1 1/2 cups powder sugar
 - 1 (8 oz) package cream cheese cut into 8 pieces, soft
 - 1 tsp vanilla extract
 

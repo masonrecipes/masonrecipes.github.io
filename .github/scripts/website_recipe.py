@@ -24,6 +24,7 @@ from pathlib import Path
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import link_import  # noqa: E402
+import recipe_style  # noqa: E402
 from create_recipe import sanitize_filename  # noqa: E402
 from update_mkdocs import add_recipe_to_nav  # noqa: E402
 
@@ -275,22 +276,24 @@ def validate_output(output, fields):
     title = output["title"]
     if not isinstance(title, str):
         raise IntakeError("model-invalid-output")
-    title = " ".join(title.split())
+    title = recipe_style.normalize_title(" ".join(title.split()))
     if not title or len(title) > MAX_LENGTHS["Recipe Name"]:
         raise IntakeError("model-invalid-output")
 
     if not isinstance(output["ingredient_groups"], list):
         raise IntakeError("model-invalid-output")
-    groups = []
+    groups, first_person = [], []
     for group in output["ingredient_groups"]:
         if not isinstance(group, dict) or not isinstance(group.get("heading"), str):
             raise IntakeError("model-invalid-output")
-        items = text_list(group.get("items"))
+        items = [recipe_style.normalize_ingredient(item) for item in text_list(group.get("items"))]
+        first_person += [f"First-person ingredient line to review: {item}" for item in items
+                         if recipe_style.is_first_person(item)]
         if items:
-            groups.append({"heading": " ".join(group["heading"].split()), "items": items})
-    steps = text_list(output["steps"])
-    notes = text_list(output["notes"])
-    warnings = text_list(output["warnings"])
+            groups.append({"heading": recipe_style.normalize_title(" ".join(group["heading"].split())), "items": items})
+    steps = [recipe_style.normalize_text(step) for step in text_list(output["steps"])]
+    notes = [recipe_style.normalize_text(note) for note in text_list(output["notes"])]
+    warnings = text_list(output["warnings"]) + first_person
     if not groups or not steps:
         raise IntakeError("model-empty-recipe")
 

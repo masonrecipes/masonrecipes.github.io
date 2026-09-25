@@ -17,12 +17,12 @@ source:
 - 1/2 cup shortening
 - 1 egg
 - 2 cups flour
-- 1/2 teaspoon salt
-- 1 teaspoon cinnamon
-- 1 teaspoon cloves
-- 1/2 teaspoon nutmeg
-- 1 teaspoon soda
-- 3 Tablespoons milk
+- 1/2 tsp salt
+- 1 tsp cinnamon
+- 1 tsp cloves
+- 1/2 tsp nutmeg
+- 1 tsp soda
+- 3 Tbsp milk
 - 1/2 cocunut
 - 1 cup raisins
 - 1 cup chopped rhubarb

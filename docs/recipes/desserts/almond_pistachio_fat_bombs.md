@@ -19,10 +19,10 @@ Servings: 36 squares
 - 1 cup coconut oil, firm*
 - 1/2 cup [full fat coconut milk](http://amzn.to/2lDptlD), chilled overnight*
 - 1/4 cup [ghee](https://thehealthyfoodie.com/homemade-ghee/), or make your own
-- 1 Tablespoon [pure vanilla extract](https://thehealthyfoodie.com/vanilla-extract/), or make your own
-- 2 teaspoon chai spice
-- 1/4 teaspoon [pure almond extract](http://www.amazon.com/gp/product/B00IDXSEV8/ref=as_li_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=B00IDXSEV8&linkCode=as2&tag=theheafoo03-20)
-- 1/4 teaspoon [Himalayan salt](http://amzn.to/2xhg3Tn)
+- 1 Tbsp [pure vanilla extract](https://thehealthyfoodie.com/vanilla-extract/), or make your own
+- 2 tsp chai spice
+- 1/4 tsp [pure almond extract](http://www.amazon.com/gp/product/B00IDXSEV8/ref=as_li_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=B00IDXSEV8&linkCode=as2&tag=theheafoo03-20)
+- 1/4 tsp [Himalayan salt](http://amzn.to/2xhg3Tn)
 - 1/4 cup raw shelled pistachios, chopped
 
 ## Instructions

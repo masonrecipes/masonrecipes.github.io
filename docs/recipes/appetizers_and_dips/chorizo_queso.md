@@ -17,16 +17,16 @@ source:
 - 1 small onion, diced
 - 2 jalapeños, seeded and diced
 - 4 garlic cloves, diced
-- 1 (10 ounce) can diced tomatoes and green chiles (Rotel works well)
-- 2 (7 ounce) cans mild chiles
+- 1 (10 oz) can diced tomatoes and green chiles (Rotel works well)
+- 2 (7 oz) cans mild chiles
 - 1 bunch cilantro, chopped
-- 1 (26 ounce) Velveeta cheese, cubed
-- 1 (12 ounce) can evaporated milk
+- 1 (26 oz) Velveeta cheese, cubed
+- 1 (12 oz) can evaporated milk
 - 1 cup half-and-half
 - 2 Tbsp hot sauce
 - 1 Tbsp ground cumin
 - 1 Tbsp chili powder
-- Juices of 2 limes
+- juices of 2 limes
 - 1 to 2 cups of water
 
 ## Instructions

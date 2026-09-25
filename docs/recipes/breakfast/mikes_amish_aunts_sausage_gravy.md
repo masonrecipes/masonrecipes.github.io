@@ -16,7 +16,7 @@ source:
 - 6-8 cups of milk
 - Worcestershire
 - ¼ tsp nutmeg
-- Biscuits
+- biscuits
 - ¼ tsp poultry seasoning
 
 ## Instructions

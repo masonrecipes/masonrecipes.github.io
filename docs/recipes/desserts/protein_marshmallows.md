@@ -17,7 +17,7 @@ source:
 - 2 scoops gelatin or 22 grams (Perfect Supplements)
 - 1/4 cup water
 - 1/2 cup organic powdered sugar, cane sugar, honey, maple syrup
-- Dash of Vanilla
+- dash of vanilla
 
 ## Instructions
 

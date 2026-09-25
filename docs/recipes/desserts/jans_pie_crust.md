@@ -14,7 +14,7 @@ source:
 ## Ingredients
 
 - 3 cups flour
-- 1 1/3 cup shortening (can use butter-flavored Crisco)
+- 1 1/3 cups shortening (can use butter-flavored Crisco)
 - 1 tsp salt
 - 1 egg
 - 5 Tbsp cold water

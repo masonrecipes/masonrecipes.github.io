@@ -12,11 +12,11 @@ source:
 ## Ingredients
 
 - 2 cups heavy cream (1/4 + 1 3/4)
-- 1½ tsp. unflavored gelatin
-- 1/3 c powdered Erithrytol (Swerve)
+- 1½ tsp unflavored gelatin
+- 1/3 c powdered erithrytol (Swerve)
 - 1/4 c cocoa powder
 - 1/4 tsp sea salt
-- 2 tsp Vanilla
+- 2 tsp vanilla
 
 ## Steps
 

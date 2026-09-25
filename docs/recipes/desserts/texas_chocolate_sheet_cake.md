@@ -25,7 +25,7 @@ Given to Jan Mason from Great Grandma Mason(Ester and BF) and used for all littl
 - 1/2 tsp salt
 - 2 sticks butter (1/2 lb)
 - 1 c water
-- 3 T cocoa
+- 3 t cocoa
 - 2 eggs (room temp)
 - 1 tsp baking soda
 - 1/2 c buttermilk
@@ -34,8 +34,8 @@ Given to Jan Mason from Great Grandma Mason(Ester and BF) and used for all littl
 ### Icing
 
 - 1/2 stick butter
-- 3 T cocoa
-- 6 T milk
+- 3 t cocoa
+- 6 t milk
 - 1 lb powdered sugar (3 3/4c)
 - 1/2 c chopped nuts
 - 1/2 tsp vanilla

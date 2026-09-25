@@ -16,9 +16,9 @@ source:
 - 3 Tbsp whipping cream
 - 3/4 cup chopped pecans
 - 4 large eggs
-- 1 2/3 cup sugar
+- 1 2/3 cups sugar
 - 1 cup vegetable oil
-- 1 15 oz. can pumpkin
+- 1 15 oz can pumpkin
 - 1/4 tsp vanilla
 - 2 cups flour
 - 2 tsp baking powder

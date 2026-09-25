@@ -14,20 +14,20 @@ source:
 - 1 tsp ground cumin
 - 1 tsp ground coriander
 - ½ tsp cayenne pepper
-- 1  salt
-- 2 lbs boneless, skinless chicken breast.
+- 1 salt
+- 2 lb boneless, skinless chicken breast.
 - 1 cup plain whole-milk yogurt
 - 2 Tbsp veg oil
 - 4 garlic cloves, minced
 - 2 Tbsp grated fresh ginger
 
-### MASALA SAUCE
+### Masala Sauce
 
 - 3 Tbsp veg oil
 - 1 onion, diced
 - 3 cloves garlic, minced
 - 2 tsp grated fresh ginger
-- 3 Serrano chiles, seeded and diced
+- 3 serrano chiles, seeded and diced
 - 2 Tbsp tomato paste
 - 2 tsp each cumin seed, must seed, fennel seed
 

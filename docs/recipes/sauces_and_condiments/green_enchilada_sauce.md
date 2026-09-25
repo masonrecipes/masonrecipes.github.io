@@ -11,14 +11,14 @@ source:
 
 ## Ingredients
 
-- 2 lbs tomatillo, hulled and cut in half
+- 2 lb tomatillo, hulled and cut in half
 - 2 yellow onion, peeled and quartered
 - 3-5 jalapeno
-- Chicken stock to cover (2-3 quarts)
+- chicken stock to cover (2-3 quarts)
 - 2 bunches fresh cilantro.
-- Juice of 3 limes
-- Oil for frying
-- Salt and pepper to taste
+- juice of 3 limes
+- oil for frying
+- salt and pepper to taste
 
 ## Instructions
 

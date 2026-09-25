@@ -18,7 +18,7 @@ source:
 - 2 Tbsp ground cinnamon
 - 1/8 tsp salt
 - 2 Tbsp unsalted butter, melted
-- 1 tsp. vanilla extract
+- 1 tsp vanilla extract
 
 ### Dough
 
@@ -47,7 +47,7 @@ source:
     1. Grease dark 9-inch round cake pan, line with parchment paper, and grease parchment.
     2. Pour 1/4 cup milk in a small bowl and microwave until 110 degrees, 15 to 20 seconds.
     3. Stir in yeast and 2 tsp sugar and let sit until mixture is bubbly (about 5 minutes).
-    4. Whisk flour, baking powder, salt, and the remaining 5 teaspoons of sugar together in a large bowl.
+    4. Whisk flour, baking powder, salt, and the remaining 5 tsp of sugar together in a large bowl.
     5. Stir in 2 Tbsp butter, yeast mixture, and remaining 1 c milk until dough forms (dough will be sticky).
     6. Transfer dough to a well-floured counter and knead until smooth ball forms, about 2 minutes.
     7. Roll dough into a 12 by inch rectangle, with a long side parallel to the counter edge.

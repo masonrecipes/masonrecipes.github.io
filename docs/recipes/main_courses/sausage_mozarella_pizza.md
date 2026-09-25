@@ -8,39 +8,39 @@ author: Sherry Beihl, David Beihl
 source:
 ---
 
-# Sausage Mozarella Pizza
+# Sausage Mozzarella Pizza
 
 ![sausage mozarella pizza](../../assets/sausage_mozarella_pizza.jpeg)
 
 ## Ingredients
 
-### Pizza dough
+### Pizza Dough
 
 - 3 1/3 cups all-purpose flour, plus extra for dusting
 - 1/4 cup whole-wheat flour
 - 1 package quick-rise yeast
-- 1 tablespoon sugar
-- 1 tablespoon kosher salt
+- 1 Tbsp sugar
+- 1 Tbsp kosher salt
 - 1 1/4 cups warm water, plus extra as needed
-- 2 tablespoon olive oil, plus extra as needed
+- 2 Tbsp olive oil, plus extra as needed
 
-### Pizza sauce
+### Pizza Sauce
 
 - 1/4 cup olive oil
 - 5 cloves garlic, minced
 - 1 can crushed tomatoes
-- 1 teaspoon dried basil
-- 3/4 teaspoon dried oregano
-- 1/4 teaspoon dried thyme
-- 1/4 teaspoon freshly ground pepper
-- 1 1/2 - 2 tablespoons red wind vinegar
-- Kosher salt
+- 1 tsp dried basil
+- 3/4 tsp dried oregano
+- 1/4 tsp dried thyme
+- 1/4 tsp freshly ground pepper
+- 1 1/2 - 2 Tbsp red wind vinegar
+- kosher salt
 
-### Pizza toppings
+### Pizza Toppings
 
-- Sausage
-- Shredded Mozarella
-- Pepperoni
+- sausage
+- shredded mozzarella
+- pepperoni
 
 ## Instructions
 
@@ -49,7 +49,7 @@ source:
 1. In a food processor, combine flours, yeast, sugar, and salt.
 2. Pulse to mix the ingredients
 3. With the motor running, add the water and olive oil in a steady stream and then pulse until the dough comes together in a rough mass, about 12 seconds.
-4. If the doug does not form into a ball, sprinkle 1-2 teaspoons of water and pulse again unitl a rough mass forms.
+4. If the doug does not form into a ball, sprinkle 1-2 tsp of water and pulse again unitl a rough mass forms.
 5. Let the dough rest for 5-10 mins.
 6. Process the dough again for 25-30 seconds, steadying the top of the food processor with one hand. The should be tacky to the touch but not sticky.
 7. Transfer the dough to a lightly floured work surface and form into a smooth ball.
@@ -62,7 +62,7 @@ source:
 
 1. In a small frying pan, over medium heat, warm the olive oil.
 2. Add the garlic and cook, stirring frequently, until fragrant, 1-2 mins. Do not let it scorch or garlic will taste bitter.
-3. In a bowl, stir together the garlic-oil mixture, tomatoes, dried basil, oregano, thyme, pepper, 1/3 cup water, and 1 1/2 tablespoons of vinegar.
+3. In a bowl, stir together the garlic-oil mixture, tomatoes, dried basil, oregano, thyme, pepper, 1/3 cup water, and 1 1/2 Tbsp of vinegar.
 4. Season to taste with salt and additional vinegar.
 
 ### Pizza

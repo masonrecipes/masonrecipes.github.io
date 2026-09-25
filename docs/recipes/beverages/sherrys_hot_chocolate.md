@@ -12,8 +12,8 @@ source:
 ## Ingredients
 
 - 2 cups heavy cream powder
-- 1 cup granulated swerve
-- 1/2 cup confectioners swerve
+- 1 cup granulated Swerve
+- 1/2 cup confectioners Swerve
 - 2/3 cup cacao
 - 1/2 tsp salt
 
@@ -22,8 +22,8 @@ source:
 1. Mix all ingredients together.
 Store in an air tight container.
 2. To use:
-    1. Pour 8 ounces of boiling water into a mug.
-    2. Add 3-4 tablespoons of our hot chocolate mix and stir slowly.
+    1. Pour 8 oz of boiling water into a mug.
+    2. Add 3-4 Tbsp of our hot chocolate mix and stir slowly.
 
 ### Extras
 

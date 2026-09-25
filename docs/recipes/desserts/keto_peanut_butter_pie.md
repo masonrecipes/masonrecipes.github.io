@@ -15,20 +15,20 @@ source:
 
 ### Crust
 
-- 1 3/4 c Almond flour
-- 4 Tablespoons Cocoa powder
+- 1 3/4 c almond flour
+- 4 Tbsp cocoa powder
 - 1/3 cup melted coconut oil (or butter)
-- 1/3 cup sweetener (like swerve)
-- 1/2 teaspoon vanilla
+- 1/3 cup sweetener (like Swerve)
+- 1/2 tsp vanilla
 
 ### Filling
 
 - 8 oz cream cheese
-- 3/4 c peanut butter melted
-- 1/2 c sweetener (like swerve)
+- 3/4 c peanut butter, melted
+- 1/2 c sweetener (like Swerve)
 - 2 c heavy whipping cream
 - 1/2 tsp vanilla
-- 1/4 tsp Xanthum gum
+- 1/4 tsp xanthum gum
 
 ## Instructions
 

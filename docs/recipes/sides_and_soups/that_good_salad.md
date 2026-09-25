@@ -19,13 +19,13 @@ source:
 - 2 garlic cloves, minced
 - ½ tsp salt
 - ½ tsp pepper
-- 2 lbs Romaine lettuce, torn
-- 2 cup chopped tomatoes
+- 2 lb romaine lettuce, torn
+- 2 cups chopped tomatoes
 - 1 cup shredded Swiss cheese
 - ⅔ cup slivered toasted almonds
 - ½ cup grated Parmesan cheese
 - 8 slices bacon, crumbled
-- 1 cup Caesar Salad croutons
+- 1 cup Caesar salad croutons
 
 ## Instructions
 

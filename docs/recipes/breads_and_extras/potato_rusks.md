@@ -16,9 +16,9 @@ source:
 - 2 tsp salt
 - 4 eggs (beaten)
 - 1 cake compressed yeast
-- 2 cup water
-- 8 cup flower
-- Topping
+- 2 cups water
+- 8 cups flower
+- topping
 - ½ cup butter
 - 1 cup powdered sugar
 - 2 Tbsp flour

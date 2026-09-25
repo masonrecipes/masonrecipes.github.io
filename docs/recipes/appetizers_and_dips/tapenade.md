@@ -18,8 +18,8 @@ source:
 - 5 cloves garlic, peeled
 - 6 pepperoncini peppers
 - ¼ cup basil leaves, chopped
-- Juice of ½ lemon
-- Salt and pepper to taste
+- juice of ½ lemon
+- salt and pepper to taste
 - ¼ cup extra-virgin olive oil
 
 ## Instructions

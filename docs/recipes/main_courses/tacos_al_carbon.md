@@ -11,7 +11,7 @@ source:
 
 ## Ingredients
 
-- 1 ½ lb. flank steak or sirloin
+- 1 ½ lb flank steak or sirloin
 - ½ cup fresh lime juice
 - 2 Tbsp red wine vinegar
 - 3 cloves garlic, peeled and smashed
@@ -24,9 +24,9 @@ source:
 - ¼ cup oil
 - ¼ cup chopped cilantro
 - 16 green onions, cleaned.
-- Tortillas
-- Pico de Gallo
-- Guacamole
+- tortillas
+- pico de gallo
+- guacamole
 
 ## Instructions
 

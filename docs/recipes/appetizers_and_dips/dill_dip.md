@@ -11,11 +11,11 @@ source:
 
 ## Ingredients
 
-- 1 cup Sour Cream
-- 1 cup Hellmans Mayonnaise
-- 1 tsp Dill Weed
+- 1 cup sour cream
+- 1 cup Hellmann's mayonnaise
+- 1 tsp dill weed
 - 1 tsp Beau Monde seasoning
-- 1 tsp Parsley flakes
+- 1 tsp parsley flakes
 - 1 tsp grated onion or minced dry onions
 
 ## Instructions

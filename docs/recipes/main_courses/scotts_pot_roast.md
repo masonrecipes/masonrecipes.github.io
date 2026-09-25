@@ -11,22 +11,22 @@ source:
 
 ## Ingredients
 
-- 3-3 ½ lb. boneless beef chuck roast (or 2-3 lb each beef chuck and pork butt roast)
+- 3-3 ½ lb boneless beef chuck roast (or 2-3 lb each beef chuck and pork butt roast)
 - 3 Tbsp oil
-- Salt and pepper
+- salt and pepper
 - 4 cloves garlic, peeled and smashed
 - 1 onion, diced
 - 1 carrot, diced
 - 1 stalk celery, diced
-- 1 ½ cup dry red wine
-- 3-4 cup beef stock
+- 1 ½ cups dry red wine
+- 3-4 cups beef stock
 - 2 sprig fresh thyme and parsley
 - 1 tsp black peppercorn
-- 1 ½ lb  peeled russet potatoes
+- 1 ½ lb peeled russet potatoes
 - 1 lb peeled carrots, cut into 2’’ sticks
 - 1 large yellow onion cut into chunks
 - 1 lb turnip, parsnip, or rutabaga
-- Equal parts milk and flour whisked together
+- equal parts milk and flour whisked together
 
 ## Instructions
 

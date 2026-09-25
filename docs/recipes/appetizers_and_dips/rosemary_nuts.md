@@ -12,12 +12,12 @@ source:
 ## Ingredients
 
 - 4 cups mixed nuts (used cashews)
-- 2 tablespoon chopped fresh Rosemary (about 2-3 large sprigs)
-- 2 tablespoons Maple syrup
-- 1 teaspoon Vanilla extract
-- 2 tablespoon olive oil
-- 1/2 teaspoon Smoked Paprika
-- 1 1/2 teaspoons salt
+- 2 Tbsp chopped fresh rosemary (about 2-3 large sprigs)
+- 2 Tbsp maple syrup
+- 1 tsp vanilla extract
+- 2 Tbsp olive oil
+- 1/2 tsp smoked paprika
+- 1 1/2 tsp salt
 
 ## Instructions
 

@@ -11,7 +11,7 @@ source:
 
 ## Ingredients
 
-- 2 lbs hamburger
+- 2 lb hamburger
 - 1 can of pinto beans
 - 1 can kidney beans
 - 1 can of black beans
@@ -21,7 +21,7 @@ source:
 - 1 package taco seasoning
 - 1 can white corn
 - 1 can green chilies
-- Onion
+- onion
 
 ## Instructions
 

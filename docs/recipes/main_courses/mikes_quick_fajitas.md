@@ -16,9 +16,9 @@ source:
 - ½ onion, chopped
 - 3 Tbsp oil
 - 1 tsp cumin
-- 8 oz. medium/hot salsa
-- Tortillas
-- Refried beans
+- 8 oz medium/hot salsa
+- tortillas
+- refried beans
 - Cheddar or Monterey Jack cheese
 
 ## Instructions
