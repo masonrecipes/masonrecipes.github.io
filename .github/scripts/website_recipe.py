@@ -409,8 +409,9 @@ def pr_body(issue_number, recipe, path, submitter, author_is_new, source,
         "## Website recipe submission",
         "",
         f"Drafted from website submission #{issue_number} by `{MODEL_NAME}` on Cloudflare "
-        "Workers AI. The model only normalized the text and picked the category; this "
-        "workflow rendered the page, navigation and attribution.",
+        "Workers AI. The model rewrote the text in house style and picked the category; "
+        "quantities remain unchanged. This workflow rendered the page, navigation and "
+        "attribution.",
         "",
         f"- **Page:** `{path}`",
         f"- **Category:** {recipe['category']}",
