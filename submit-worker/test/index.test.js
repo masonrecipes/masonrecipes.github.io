@@ -383,7 +383,8 @@ describe("recipe draft endpoint", () => {
   });
 
   it("drafts a recipe with Luna for the recipes repository's main branch", async () => {
-    const ai = aiReturning(completed(JSON.stringify(draftModelOutput())));
+    const pageOutput = draftModelOutput({ ingredients: ["4 tea bags"] });
+    const ai = aiReturning(completed(JSON.stringify(pageOutput)));
     const body = {
       recipe_name: "Iced Tea",
       ingredients: "",
@@ -393,11 +394,14 @@ describe("recipe draft endpoint", () => {
     const response = await draftWorker().fetch(draftRequest(await oidcToken(), body), { ...environment(), AI: ai });
 
     assert.equal(response.status, 200);
-    assert.deepEqual(await response.json(), draftModelOutput());
+    assert.deepEqual(await response.json(), pageOutput);
     assert.equal(response.headers.get("access-control-allow-origin"), null);
 
     assert.equal(ai.run.calls.length, 1);
     const [model, input] = ai.run.calls[0];
+    // Only a page-text-only import asks the model for ingredient lines.
+    assert.deepEqual(input.text.format.schema.properties.ingredients, { type: "array", items: { type: "string" } });
+    assert.ok(input.text.format.schema.required.includes("ingredients"));
     assert.equal(model, "openai/gpt-5.6-luna");
     assert.equal(input.max_output_tokens, 8000);
     assert.equal(input.tools, undefined);
@@ -492,6 +496,7 @@ describe("recipe draft endpoint", () => {
       "title not a string": draftModelOutput({ title: 7 }),
       "step not a string": draftModelOutput({ steps: ["Mix.", { html: "<b>" }] }),
       "ingredient groups are forbidden": { ...draftModelOutput(), ingredient_groups: [] },
+      "ingredients are forbidden when submitted": { ...draftModelOutput(), ingredients: [] },
       "not an object": ["title"],
     };
 
@@ -556,7 +561,7 @@ describe("recipe draft endpoint", () => {
   it("caps page text by code points like the Action does", async () => {
     const valid = { recipe_name: "Chili", ingredients: "", recipe: "" };
     for (const [length, status] of [[40_000, 200], [40_001, 400]]) {
-      const ai = aiReturning(completed(JSON.stringify(draftModelOutput())));
+      const ai = aiReturning(completed(JSON.stringify(draftModelOutput({ ingredients: [] }))));
       const page_text = "🌶".repeat(length);
       const response = await draftWorker().fetch(draftRequest(await oidcToken(), { ...valid, page_text }), { ...environment(), AI: ai });
 
