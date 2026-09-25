@@ -128,6 +128,39 @@ class IntakeTest(unittest.TestCase):
         self.assertIn("**Category:** Main Courses", result["body"])
         self.assertEqual(result["title"], "Grandma's Chili")
 
+    def test_navigation_label_matches_page_heading_with_and_or(self):
+        title = "Chili with Beef and/or Lamb"
+        result = self.run_intake(issue(name=title), output(title=title))
+        self.assertEqual(result["title"], title)
+        self.assertEqual(result["path"], "docs/recipes/main_courses/chili_with_beef_andor_lamb.md")
+        self.assertIn(f"# {title}\n", self.page(result))
+        self.assertIn(
+            f"      - {title}: recipes/main_courses/chili_with_beef_andor_lamb.md",
+            (self.root / "mkdocs.yml").read_text(),
+        )
+
+    def test_navigation_entry_stays_valid_yaml_for_yaml_syntax_in_title(self):
+        import yaml
+        cases = {
+            "Chili: Texas Style": "Chili Texas Style",
+            "Mom's #1 Chili": "Mom's 1 Chili",
+            "'Tis the Season Chili": "Tis the Season Chili",
+        }
+        for title, label in cases.items():
+            with self.subTest(title=title):
+                self.setUp()
+                result = self.run_intake(issue(name=title), output(title=title))
+                self.assertIn(f"# {title}\n", self.page(result))
+                loader = type("Loader", (yaml.SafeLoader,), {})
+                loader.add_multi_constructor("", lambda *_: None)
+                nav = yaml.load((self.root / "mkdocs.yml").read_text(), Loader=loader)["nav"]
+                entries = [entry for section in nav if isinstance(section, dict)
+                           for group in section.values() if isinstance(group, list)
+                           for category in group if isinstance(category, dict)
+                           for recipes in category.values() if isinstance(recipes, list)
+                           for entry in recipes]
+                self.assertIn({label: result["path"].removeprefix("docs/")}, entries)
+
     def test_missing_optional_fields(self):
         result = self.run_intake(issue(submitter="Not provided"))
         page = self.page(result)

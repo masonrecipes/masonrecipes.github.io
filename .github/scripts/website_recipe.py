@@ -394,8 +394,8 @@ def yaml_str(value):
 
 def nav_title(title):
     """A plain navigation label that is safe as an unquoted YAML key in mkdocs.yml."""
-    label = re.sub(r"[^\w &',.()-]", "", title)
-    label = " ".join(label.split()).lstrip("&',.()- ")
+    label = re.sub(r"[^\w &',./()-]", "", title)
+    label = " ".join(label.split()).lstrip("&',./()- ")
     return label or "Untitled Recipe"
 
 
@@ -532,7 +532,7 @@ def process(issue, model, root=".", fetch=link_import.fetch_page):
     warnings += recipe["warnings"]
 
     folder, _ = CATEGORIES[recipe["category"]]
-    title = nav_title(recipe["title"])
+    title = recipe["title"]
     filename = sanitize_filename(title)
     if list(root.glob(f"docs/recipes/*/{filename}")):
         raise IntakeError("duplicate-recipe")
@@ -540,7 +540,7 @@ def process(issue, model, root=".", fetch=link_import.fetch_page):
     (root / "docs/recipes" / folder).mkdir(parents=True, exist_ok=True)
     (root / relative).write_text(render_recipe(recipe, submitter, source), encoding="utf-8")
 
-    add_recipe_to_nav(str(root / "mkdocs.yml"), filename, title, recipe["category"], folder)
+    add_recipe_to_nav(str(root / "mkdocs.yml"), filename, nav_title(title), recipe["category"], folder)
     author_is_new = bool(submitter) and add_author(root / "docs/authors.md", submitter)
 
     return {
