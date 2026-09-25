@@ -10,11 +10,11 @@ source:
 
 ## Ingredients
 
-- 3 -4 lbs of chicken breasts (I used 3 packs of the large chicken breasts from Costco [comes in a pack of 6])
-- Whole Onion, diced
+- 3 -4 lb of chicken breasts (i used 3 packs of the large chicken breasts from costco [comes in a pack of 6])
+- whole onion, diced
 - 3 garlic bulbs; peel all garlic cloves and leave them whole
 - 1 small can of chipotle peppers
-- 4  large bell peppers, sliced
+- 4 large bell peppers, sliced
 - 32 oz chicken broth
 
 ## Instructions

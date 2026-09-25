@@ -23,7 +23,7 @@ source:
 
 1. Adjust oven rack to lowest position and heat oven to 475˚ F.
 2. Combine garlic and olive oil in a large mixing bowl and microwave until the garlic is fragrant, about 1 minute.
-3. Transfer 5 Tbsp of oil only to a rimmed baking sheet. Coat entire sheet
+3. Transfer 5 Tbsp oil only to a rimmed baking sheet. Coat entire sheet
 4. Add potatoes to bowl and toss to coat. Wrap tightly with plastic wrap and microwave for 3-6 minutes until potatoes are translucent.
 5. Shake bowl halfway through cooking to recoat potatoes
 6. Combine cornstarch, garlic, salt and pepper in a small bowl.  Sprinkle over hot potatoes, toss to coat.

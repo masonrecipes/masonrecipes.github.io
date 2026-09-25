@@ -12,11 +12,11 @@ source:
 
 ## Ingredients
 
-- 2 - 10 oz. cans chicken (drained)
-- 2 - 8 oz. packages softened cream cheese
+- 2 - 10 oz cans chicken (drained)
+- 2 - 8 oz packages softened cream cheese
 - 1 cup ranch or blue cheese dressing
 - ¾ cup hot sauce
-- 1 ½ cup shredded cheddar cheese
+- 1 ½ cups shredded cheddar cheese
 
 ## Instructions
 

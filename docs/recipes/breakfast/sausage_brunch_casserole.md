@@ -11,14 +11,14 @@ source:
 ## Ingredients
 
 - 1 package froze hash browns
-- 1 lb sausage and/or 1/2 lb bacon, cooked and drained
+- 1 lb sausage and/or 1/2 lb bacon, cooked and, drained
 - 2 1/2 slices bread (cut in 1/2” cubes)
 - 5 oz cheddar cheese
 - 6 eggs
 - 2 cups milk
-- 1/2 teaspoon dry mustard
+- 1/2 tsp dry mustard
 - 1 onion, chopped
-- Salt and pepper
+- salt and pepper
 
 ## Instructions
 

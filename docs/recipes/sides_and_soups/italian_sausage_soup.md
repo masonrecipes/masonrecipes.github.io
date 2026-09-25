@@ -11,17 +11,17 @@ source:
 
 ## Ingredients
 
-- 1 1/2 lb Italian Sausage (1 lb regular and 1/2 lb hot)
+- 1 1/2 lb italian sausage (1 lb regular and 1/2 lb hot)
 - 1 whole onion, chopped
 - 4 cups beef broth
-- 1 /12 cup water
-- 12 ounce can tomato sauce
-- 3 cup carrots, sliced
+- 1 /12 cups water
+- 12 oz can tomato sauce
+- 3 cups carrots, sliced
 - 2 1/2 cups yellow squash, diced
 - 2 bell peppers, diced
-- 1 teaspoon dried oregano
-- 1 teaspoon dried basil
-- 8 ounces cheese ravioli, cut into halves
+- 1 tsp dried oregano
+- 1 tsp dried basil
+- 8 oz cheese ravioli, cut into halves
 
 ## Instructions
 

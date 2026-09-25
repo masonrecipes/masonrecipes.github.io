@@ -11,13 +11,13 @@ source:
 
 ## Ingredients
 
-- 1 Stick Salted butter, browned
-- 1 Tablespoon Coconut Oil
-- 2 Tablespoons Almond Butter or Nut Butter of Choice
-- 2 Tablespoons Powdered Sweetener
-- 1/4 teaspoon-ish vanilla extract
-- Pinch of salt
-- 2 Tablespoons chopped toasted pecans
+- 1 stick salted butter, browned
+- 1 Tbsp coconut oil
+- 2 Tbsp almond butter or nut butter of choice
+- 2 Tbsp powdered sweetener
+- 1/4 tsp-ish vanilla extract
+- pinch of salt
+- 2 Tbsp chopped toasted pecans
 
 ## Instructions
 

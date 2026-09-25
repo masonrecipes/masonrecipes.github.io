@@ -13,12 +13,12 @@ source:
 
 - 2 small packages frozen strawberries or raspberries (ensure they are frozen hard)
 - 2 small packages strawberry jello
-- 1 1/2 cup hot water
+- 1 1/2 cups hot water
 - 2 bananas, mashed
 - 1 small can crushed pineapple, well-drained
 - 1 cup sour cream
 - 2-3 Tbsp lemon juice
-- Knox Gelatin (just a little)
+- knox gelatin (just a little)
 
 ## Instructions
 

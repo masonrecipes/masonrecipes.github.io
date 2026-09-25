@@ -20,17 +20,17 @@ source:
 - 1 red pepper, chopped
 - 1/2 medium red onion, chopped
 - 2 cucumbers, chopped
-- 1/4 - 1/2 cup kalamata olives
-- Cherry tomatoes, halved
-- Large chunk of feta (cut in cubes or crumbled)
+- 1/4 - 1/2 cups kalamata olives
+- cherry tomatoes, halved
+- large chunk of feta (cut in cubes or crumbled)
 
 ### Dressing
 
 - 1/2 c olive oil
-- Little less than 1/4 c of red wine vinegar
-- Salt
-- Pepper
-- Greek seasoning if you have it!
+- little less than 1/4 c of red wine vinegar
+- salt
+- pepper
+- greek seasoning if you have it!
 
 ## Instructions
 

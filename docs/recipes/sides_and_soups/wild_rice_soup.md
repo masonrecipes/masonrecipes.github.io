@@ -11,12 +11,12 @@ source:
 
 ## Ingredients
 
-- 1/2 cup wild rice
+- 1/2 cups wild rice
 - 1 lb bacon
 - 3 Tbsp bacon drippings
-- 3/4 cup celery, chopped
+- 3/4 cups celery, chopped
 - 1 cup onion, chopped
-- 1/3 cup chopped green pepper
+- 1/3 cups chopped green pepper
 - 2, 14.5 oz cans (ready to serve) chicken broth
 - 4 oz can mushrooms
 - 3, 10.75 oz cans cream of mushroom soup, undiluted

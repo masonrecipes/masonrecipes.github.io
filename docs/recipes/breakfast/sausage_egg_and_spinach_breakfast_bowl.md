@@ -11,9 +11,9 @@ source:
 ## Ingredients
 
 - 1 cup diced smoked sausage
-- 1/3 medium onion diced
-- Large handful of spinach
-- 5 pasture raised eggs beaten
+- 1/3 medium onion, diced
+- large handful of spinach
+- 5 pasture raised eggs, beaten
 - 2 slices sharp cheddar cheese
 
 ## Instructions

@@ -16,15 +16,15 @@ source:
 
 - 1 lb ground beef
 - 1 lb ground sausage
-- 1 medium onion chopped
-- 3 cloves garlic minced
+- 1 medium onion, chopped
+- 3 cloves garlic, minced
 - 1 large can diced tomatoes
 - 1 large can tomato sauce
-- 2 heaping teaspoons tomato paste
-- Oregano
-- Mixed seasoning badiya or Italian seasoning
-- Thyme
-- 2 dashes Worcestershire
+- 2 heaping tsp tomato paste
+- oregano
+- mixed seasoning badiya or italian seasoning
+- thyme
+- 2 dashes worcestershire
 
 ## Instructions
 

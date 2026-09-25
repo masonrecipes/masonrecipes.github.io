@@ -16,7 +16,7 @@ source:
 - 2 cups all-purpose flour
 - 2 tsp baking powder
 - ¼ tsp salt
-- 6 Tbsp butter, in cubes, slightly softened
+- 6 Tbsp butter, in cubes, slightly, softened
 - ⅔ cup half-and-half, cream, or cold buttermilk
 
 ## Instructions

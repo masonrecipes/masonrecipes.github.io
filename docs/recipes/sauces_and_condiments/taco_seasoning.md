@@ -11,14 +11,14 @@ source:
 
 ## Ingredients
 
-- 1 teaspoon Garlic powder
-- 1 teaspoon Onion powder
-- 1 teaspoon Oregano
-- 1 teaspoon Black pepper
-- 4 Tablespoon Chili powder
-- 1 Tablespoon Paprika
-- 1 Tablespoon Salt
-- 2 Tablespoons Cumin
+- 1 tsp garlic powder
+- 1 tsp onion powder
+- 1 tsp oregano
+- 1 tsp black pepper
+- 4 Tbsp chili powder
+- 1 Tbsp paprika
+- 1 Tbsp salt
+- 2 Tbsp cumin
 
 ## Instructions
 

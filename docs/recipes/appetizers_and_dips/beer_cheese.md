@@ -18,19 +18,19 @@ source:
 - 1 carrot, diced
 - ½ cup flour
 - 1 quart chicken stock
-- 2 cup heavy cream
-- 10 oz. shredded sharp cheddar cheese
-- 8 oz. American Cheese.
+- 2 cups heavy cream
+- 10 oz shredded sharp cheddar cheese
+- 8 oz american cheese.
 - 1 Tbsp cornstarch
-- 1 Tbsp Worcestershire
+- 1 Tbsp worcestershire
 - 24 oz beer (dry not too sweet)
 - ½ tsp yellow food coloring
-- 2 tsp Tabasco
-- Bay leaf
+- 2 tsp tabasco
+- bay leaf
 - 2 sprigs of fresh thyme
-- Salt and pepper
+- salt and pepper
 - ½ cup chopped fresh chives
-- Freshly popped popcorn
+- freshly popped popcorn
 
 ## Instructions
 

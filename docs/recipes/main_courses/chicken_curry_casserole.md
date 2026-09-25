@@ -16,10 +16,10 @@ source:
 - 2 cans cream of chicken soup
 - 1 cup mayonnaise
 - 1 ¼ tsp curry powder
-- Mushrooms
+- mushrooms
 - ½ cup sharp shredded cheese
-- Croutons
-- Chinese Noodles
+- croutons
+- chinese noodles
 
 ## Instructions
 
@@ -36,4 +36,4 @@ source:
 
 ## Tips
 
-For croutons, toss 1 ½ cup small bread cubes over heat in 3 Tbsp of melted butter until brown.
+For croutons, toss 1 ½ cups small bread cubes over heat in 3 Tbsp melted butter until brown.

@@ -20,7 +20,7 @@ source:
 - 1 red pepper, diced fine.
 - 2 Tbsp fresh parsley, chopped.
 - ¼ cup grated carrot
-- ½ cup or more Marzetti’s Raspberry dressing.
+- ½ cup or more marzetti’s raspberry dressing.
 - 2 Tbsp red wine vinegar
 
 ## Instructions

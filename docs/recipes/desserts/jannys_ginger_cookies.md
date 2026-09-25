@@ -13,17 +13,17 @@ source:
 
 ## Ingredients
 
-- 3/4 cup unsalted butter
-- 1/2 cup white sugar
-- 1/2 cup brown sugar
+- 3/4 cups unsalted butter
+- 1/2 cups white sugar
+- 1/2 cups brown sugar
 - 1 egg
-- 1/4 cup Molasses
-- 2 cup flour
+- 1/4 cups molasses
+- 2 cups flour
 - 1½ tsp baking soda
 - 1 tsp salt
-- 2 tsp. ground Ginger
-- 1/4 tsp ground Cloves
-- 1 tsp Cinnamon
+- 2 tsp ground ginger
+- 1/4 tsp ground cloves
+- 1 tsp cinnamon
 
 ## Instructions
 

@@ -15,7 +15,7 @@ source:
 
 ### For the Starter (Levain)
 
-- 1 tablespoon active 100 percent hydration starter
+- 1 Tbsp active 100 percent hydration starter
 - 200 grams warm water
 - 100 grams all purpose flour
 - 100 grams whole wheat flour

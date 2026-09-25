@@ -13,7 +13,7 @@ source:
 
 - 1 Tbsp olive oil
 - 1 small onion, peeled chopped fine
-- 2 garlic cloves, peeled and chopped
+- 2 garlic cloves, peeled and, chopped
 - 1 medium red bell pepper, chopped fine
 - 1 lb boneless, skinless chicken breast, cut into 1-inch pieces
 - 3 15 oz can undrained white beans
@@ -34,4 +34,4 @@ source:
 4. Bring to boil and reduce the heat.  Simmer for 10 minutes.
 5. Stir in chicken broth and simmer for 5 minutes.
 6. Stir in lime juice, cilantro, and cream.
-7. Garnish with a tablespoon of salsa if desired.
+7. Garnish with a Tbsp salsa if desired.

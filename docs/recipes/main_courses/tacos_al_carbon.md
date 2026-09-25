@@ -11,26 +11,26 @@ source:
 
 ## Ingredients
 
-- 1 ½ lb. flank steak or sirloin
+- 1 ½ lb flank steak or sirloin
 - ½ cup fresh lime juice
 - 2 Tbsp red wine vinegar
 - 3 cloves garlic, peeled and smashed
 - 1 Tbsp ground cumin
 - 1 tsp salt
 - 1 tsp pepper
-- 1 jalapeno, seeded and chopped
+- 1 jalapeno, seeded and, chopped
 - 2 tsp oregano leaf
 - 1 medium onion, minced
 - ¼ cup oil
 - ¼ cup chopped cilantro
 - 16 green onions, cleaned.
-- Tortillas
-- Pico de Gallo
-- Guacamole
+- tortillas
+- pico de gallo
+- guacamole
 
 ## Instructions
 
-1. Combine lime, vinegar, garlic, cumin, salt, pepper, jalapeno, oregano, onion, cilantro and 2 T of oil in a blender or food processor, blend until smooth.
+1. Combine lime, vinegar, garlic, cumin, salt, pepper, jalapeno, oregano, onion, cilantro and 2 Tbsp oil in a blender or food processor, blend until smooth.
 2. In a shallow baking dish, pour mixture over flank steak-coat both sides.
 3. Let marinate at room temp for 4 hours, turning a few times.
 4. Preheat grill (charcoal, gas or may be done on stove in hot skillet)

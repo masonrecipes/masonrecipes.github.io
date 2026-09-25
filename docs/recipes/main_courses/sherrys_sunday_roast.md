@@ -11,16 +11,16 @@ source:
 
 ## Ingredients
 
-- 4 lb Chuck Roast
-- 1/4 cup flour
-- 1/2 Teaspoon Salt
-- 1/2 Teaspoon Pepper
-- 2 Tablespoons Oil
+- 4 lb chuck roast
+- 1/4 cups flour
+- 1/2 tsp salt
+- 1/2 tsp pepper
+- 2 Tbsp oil
 - 1 large onion in eighths
-- 2 tablespoons beef base
-- 3 tablespoons mustard
-- 2 tablespoons Worcestershire
-- 4 teaspoons minced garlic
+- 2 Tbsp beef base
+- 3 Tbsp mustard
+- 2 Tbsp worcestershire
+- 4 tsp minced garlic
 
 ## Instructions
 

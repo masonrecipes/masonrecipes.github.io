@@ -13,14 +13,14 @@ Shrimp and Grits recipe is my super easy go-to dinner at the beach. You can comb
 ## Ingredients
 
 - 1/2 stick butter - or a little more if you want more dipping sauce for bread
-- 1 Tablespoon Old Bay seasoning
-- 1 Tablespoon of any good Cajun seasoning
-- 1 Small bunch sliced green onions
-- 1 Tablespoon minced garlic
-- 1/2 to 1 Tablespoon hot sauce
-- 1 1/2 - 2 Tablespoons Worcestershire
+- 1 Tbsp old bay seasoning
+- 1 Tbsp any good cajun seasoning
+- 1 small bunch sliced green onions
+- 1 Tbsp minced garlic
+- 1/2 to 1 Tbsp hot sauce
+- 1 1/2 - 2 Tbsp worcestershire
 - the juice of a whole lemon
-- 1/2 teaspoon black pepper
+- 1/2 tsp black pepper
 - 1 lb peeled, cleaned and deveined shrimp
 
 ## Instructions

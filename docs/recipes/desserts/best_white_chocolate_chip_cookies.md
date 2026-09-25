@@ -12,12 +12,12 @@ source:
 ## Ingredients
 
 - 2 1/4 cups all-purpose flour
-- 1 teaspoon baking soda
-- 1 teaspoon salt
+- 1 tsp baking soda
+- 1 tsp salt
 - 1 cup (2 sticks) butter*(softened)*
-- 3/4 cup light brown sugar*packed*
-- 3/4 cup granulated sugar
-- 1 teaspoons vanilla extract
+- 3/4 cups light brown sugar*packed*
+- 3/4 cups granulated sugar
+- 1 tsp vanilla extract
 - 2 eggs
 - 1 (12 oz) package of white chocolate chips******(substitute semi-sweet chocolate chips to make chocolate chip cookies)
 

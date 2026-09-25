@@ -15,11 +15,11 @@ source:
 - 1 cup shredded carrot
 - ½ cup chopped green onion
 - 3 Tbsp oyster sauce
-- Salt and pepper
+- salt and pepper
 - 1 Tbsp fish sauce
 - 2 Tbsp chopped fresh cilantro
 - 2 tsp cornstarch + some for slurry.
-- Spring roll wrappers
+- spring roll wrappers
 
 ## Instructions
 

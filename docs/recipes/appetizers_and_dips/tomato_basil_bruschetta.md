@@ -11,15 +11,15 @@ source:
 
 ## Ingredients
 
-- 8 Roma tomatoes, finely diced
-- 5 cloves garlic, finely minced
+- 8 roma tomatoes, finely, diced
+- 5 cloves garlic, finely, minced
 - ½ cup fresh basil leaves, stemmed and chopped.
-- Juice of ½ lemon
+- juice of ½ lemon
 - 2 Tbsp balsamic vinegar
 - ¼ cup extra-virgin olive oil
-- Salt and pepper to taste
+- salt and pepper to taste
 - ½ cup shredded parmesan cheese
-- 1 French baguette, sliced into ½ “ slices
+- 1 french baguette, sliced into ½ “ slices
 - 3 Tbsp olive oil
 - 2 tsp salt
 - 1 tsp pepper

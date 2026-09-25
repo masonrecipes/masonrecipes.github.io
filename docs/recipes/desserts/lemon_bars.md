@@ -11,10 +11,10 @@ source:
 
 ## Ingredients
 
-- 2 cup flour
-- 1/2 cup powdered sugar
+- 2 cups flour
+- 1/2 cups powdered sugar
 - 1 cup butter
-- 2 cup sugar
+- 2 cups sugar
 - 4 Tbsp flour
 - 1/2 tsp baking powder
 - 6 Tbsp lemon juice (use fresh)

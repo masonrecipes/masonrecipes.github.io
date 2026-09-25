@@ -11,8 +11,8 @@ source:
 
 ## Ingredients
 
-- 1 oz. 100% Agave Tequila
-- 1/3 oz Cointreau
+- 1 oz 100% agave tequila
+- 1/3 oz cointreau
 - 1 oz fresh lime juice
 - 1 oz simple syrup
 

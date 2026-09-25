@@ -18,9 +18,9 @@ source:
 - 1 1/2 tsp cinnamon
 - 3/4 tsp nutmeg
 - 1/2 tsp ground cloves
-- 2/3 cup shortening
-- 2/3 cup buttermilk (if you do not have this, use 1 cup milk with 1 Tbsp vinegar)
-- 1 1/4 cup mashed bananas
+- 2/3 cups shortening
+- 2/3 cups buttermilk (if you do not have this, use 1 cup milk with 1 Tbsp vinegar)
+- 1 1/4 cups mashed bananas
 - 2 eggs, unbeaten
 
 ## Instructions
@@ -34,5 +34,5 @@ source:
 7. Pour 2, 9-inch loaf pans, greased, floured.
 8. Bake for 30-35 mins.
 9. For banana muffins:
-    1. Fill muffin cups 3/4 full.
+    1. Fill muffin cup 3/4 full.
     1. Bake for 18 mins.

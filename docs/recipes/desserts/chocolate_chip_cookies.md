@@ -12,15 +12,15 @@ source:
 
 ## Ingredients
 
-- 1 ½ cup sugar
-- 2 ¼ cup light brown sugar
+- 1 ½ cups sugar
+- 2 ¼ cups light brown sugar
 - 1 cup corn oil
-- 2 sticks Margarine
+- 2 sticks margarine
 - 4 large eggs
 - 1 Tbsp vanilla
 - 1 Tbsp salt
 - 1 Tbsp soda
-- 6 cup flour
+- 6 cups flour
 - 1 package chocolate chips
 
 ## Instructions

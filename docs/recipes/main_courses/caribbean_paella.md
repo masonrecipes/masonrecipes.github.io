@@ -11,7 +11,7 @@ source:
 
 ## Ingredients
 
-- ¼ pound bacon, diced
+- ¼ lb bacon, diced
 - ½ cup olive oil
 - 2 onions, diced
 - 2 cloves garlic, peeled and crushed
@@ -20,13 +20,13 @@ source:
 - 8 oz red snapper
 - 8 oz chorizo
 - 1 lb little neck clams
-- 1 Tbsp Jamaican jerk seasoning
+- 1 Tbsp jamaican jerk seasoning
 - 1-2 Tbsp grill type season
 - ¼ tsp cayenne
-- 2 cup white wine
+- 2 cups white wine
 - 1 tsp saffron
 - ½ gallon chicken and clam stock, total
-- 1 pound uncooked rice
+- 1 lb uncooked rice
 
 ## Instructions
 

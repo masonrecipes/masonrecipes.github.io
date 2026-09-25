@@ -16,13 +16,13 @@ source:
 Original recipe yields 8 servings. Use with****[**Jan’s Pie Crust**](https://masoncountry.net/recipes/jans-pie-crust?rq=pie)
 
 - 4 cups raspberries (frozen or fresh)
-- 1 cup white sugar (1/2 c swerve and 1/2 c regular sugar)
-- 1 tablespoons cornstarch (or 2 1/4 tablespoons tapioca)
-- 1 tablespoon lemon juice
-- 1/4 teaspoon ground cinnamon
-- 1/8 teaspoon salt
-- 4 teaspoons butter
-- 1 tablespoon half-and-half cream
+- 1 cup white sugar (1/2 c Swerve and 1/2 c regular sugar)
+- 1 Tbsp cornstarch (or 2 1/4 Tbsp tapioca)
+- 1 Tbsp lemon juice
+- 1/4 tsp ground cinnamon
+- 1/8 tsp salt
+- 4 tsp butter
+- 1 Tbsp half-and-half cream
 
 ## Instructions
 

@@ -14,14 +14,14 @@ source:
 - 1 stick butter
 - ½ cup flour
 - 6-8 cups of milk
-- Worcestershire
+- worcestershire
 - ¼ tsp nutmeg
-- Biscuits
+- biscuits
 - ¼ tsp poultry seasoning
 
 ## Instructions
 
-1. Brown your sausage - keep 2 tsp of sausage grease for your rue.
+1. Brown your sausage - keep 2 tsp sausage grease for your rue.
 2. Melt butter in skillet with grease
 3. Slowly stir in flour.
 4. Cook until smooth and bubbly.

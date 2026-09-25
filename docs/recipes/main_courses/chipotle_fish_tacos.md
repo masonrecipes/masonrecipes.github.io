@@ -11,12 +11,12 @@ source:
 ## Ingredients
 
 - 1 lb oven-baked fish
-- 1 ½ cup shredded sharp cheese
+- 1 ½ cups shredded sharp cheese
 - ½ cup corn
 - ¼ cup fresh cilantro
-- Lime wedges
+- lime wedges
 - 8 six-inch corn tortillas
-- Sauce
+- sauce
 - ½ cup plain yogurt
 - 2 Tbsp mayo
 - 2 tsp chipotle peppers in adobe sauce
@@ -29,7 +29,7 @@ source:
 4. Then, in a small bowl, combine yogurt, mayo, and peppers.
 5. Heat tortillas on the grill for 1 min on each side.
 6. Flake fish with a fork.
-7. Top each tortilla with 1 Tbsp of chipotle sauce.
+7. Top each tortilla with 1 Tbsp chipotle sauce.
 8. Top with fish, cabbage, corn, and cilantro.
 9. Serve with lime wedges
 

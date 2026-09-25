@@ -254,6 +254,16 @@ class IntakeTest(unittest.TestCase):
     def test_unicode_fraction_matches_ascii(self):
         self.assertEqual(wr.numbers("1½ cups"), wr.numbers("1 1/2 cups"))
 
+    def test_model_output_is_normalized_by_the_shared_recipe_style(self):
+        the_issue = issue(ingredients="1 Tablespoon Olive Oil\n½ teaspoons Salt", recipe="Mix 10 minutes.")
+        fields = wr.parse_issue(the_issue["title"], the_issue["body"])
+        recipe = wr.validate_output(output(
+            title="chili with beef and/or lamb",
+            ingredient_groups=[{"heading": "sauce", "items": ["1 Tablespoon Olive Oil", "½ teaspoons Salt"]}],
+            steps=["Mix 10 minutes."]), fields)
+        self.assertEqual(recipe["title"], "Chili with Beef and/or Lamb")
+        self.assertEqual(recipe["groups"], [{"heading": "Sauce", "items": ["1 Tbsp olive oil", "½ tsp salt"]}])
+
     def test_empty_recipe_is_rejected(self):
         self.assertRejected("model-empty-recipe", issue(), output(steps=[" "]))
 

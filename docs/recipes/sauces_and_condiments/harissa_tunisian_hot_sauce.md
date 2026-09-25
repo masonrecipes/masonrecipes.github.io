@@ -11,15 +11,15 @@ source:
 
 ## Ingredients
 
-- 1 cup mixed hot dried red Chile peppers (such as arbol, ancho or new mexico)
-- 2 teaspoon salt
+- 1 cup mixed hot dried red chile peppers (such as arbol, ancho or new mexico)
+- 2 tsp salt
 - 10 clove garlic, peeled
-- 1 ½ teaspoon cumin seed
-- 1 teaspoon coriander seed
-- 1 teaspoon caraway seed
-- 1 teaspoon dried mint leaf
-- Juice of 1 lemon
-- 3 Tablespoons + extra-virgin olive oil
+- 1 ½ tsp cumin seed
+- 1 tsp coriander seed
+- 1 tsp caraway seed
+- 1 tsp dried mint leaf
+- juice of 1 lemon
+- 3 Tbsp + extra-virgin olive oil
 
 ## Instructions
 

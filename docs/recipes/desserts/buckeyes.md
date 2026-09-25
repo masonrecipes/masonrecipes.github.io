@@ -10,12 +10,12 @@ source:
 
 ## Ingredients
 
-- 3 lbs powdered sugar
-- 2 lbs peanut butter
+- 3 lb powdered sugar
+- 2 lb peanut butter
 - 1 lb oleo or butter
 - 2 Tbsp vanilla
-- 3-4 large Hershey bars
-- A small amount of paraffin
+- 3-4 large hershey bars
+- a small amount of paraffin
 
 ## Instructions
 

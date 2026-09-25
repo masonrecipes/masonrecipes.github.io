@@ -13,8 +13,8 @@ source:
 
 ### Cake
 
-- 1 1/2 cup chopped pecans
-- 1/2 cup butter, melted
+- 1 1/2 cups chopped pecans
+- 1/2 cups butter, melted
 - 2 cups sugar
 - 2 large eggs
 - 1 tsp vanilla extract
@@ -22,7 +22,7 @@ source:
 - 2 tsp ground cinnamon
 - 1 tsp baking soda
 - 1 tsp salt
-- 2 1/2 lb. Granny Smith apples (about 4 large), peeled and cut into 1/4 inch thick wedges
+- 2 1/2 lb granny smith apples (about 4 large), peeled and cut into 1/4 inch thick wedges
 
 ### Sauce
 
@@ -30,7 +30,7 @@ source:
 - 1 cup brown sugar
 - 1/2 tsp salt
 - 1 tsp vanilla
-- 1/2 cup evaporated milk
+- 1/2 cups evaporated milk
 
 ## Instructions
 
@@ -40,7 +40,7 @@ source:
 4. Spread batter into a lightly greased 13 x 9 inch pan.
 5. Bake at 350 degrees for 45 minutes or until a wooden pick inserted in the center comes out clean.
 6. Cool completely in a pan on a wire rack (about 45 minutes).
-7. Use remaining 1/2 cup pecans to sprinkle on top of sauce.
+7. Use remaining 1/2 cups pecans to sprinkle on top of sauce.
 8. For the hot caramel sauce,
     1. In a saucepan, melt the butter, brown sugar, and salt.
     2. Bring to a boil, stirring with a whisk, then remove from heat and whisk in the vanilla and milk. (The sauce can be made ahead of time, but then reheat it over hot water.) You can keep this in the refrigerator and serve on chocolate cake, apple pie, or ice cream.

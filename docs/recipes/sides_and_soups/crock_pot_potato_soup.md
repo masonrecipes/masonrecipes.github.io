@@ -12,7 +12,7 @@ source:
 ## Ingredients
 
 - 49.5 oz can of chicken broth
-- 2 lbs frozen hash browns
+- 2 lb frozen hash browns
 - 1 can cream of chicken soup
 - 8 oz of cream cheese
 

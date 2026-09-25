@@ -13,12 +13,12 @@ source:
 
 ## Ingredients
 
-- One 5.1 ounce package Jell-O Vanilla Pudding
-- 1 3/4 cup Milk
-- 1 can Sweetened Condensed Milk
-- 8 oz Heavy Cream
-- 1 box Vanilla Wafers
-- 4 Bananas sliced into 1/4-inch slices
+- one 5.1 oz package Jell-O vanilla pudding
+- 1 3/4 cups milk
+- 1 can sweetened condensed milk
+- 8 oz heavy cream
+- 1 box vanilla wafers
+- 4 bananas sliced into 1/4-inch slices
 
 ## Instructions
 

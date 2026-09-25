@@ -10,13 +10,13 @@ source:
 
 ## Ingredients
 
-- 1 Rotisserie chicken
+- 1 rotisserie chicken
 - 3 cups water
 - 2 jars of salsa (whatever kind you like)
 - 1 bag of frozen corn
 - 1 can cannelloni beans
 - 1 can low-fat chicken broth
-- Salt and pepper to taste
+- salt and pepper to taste
 
 ## Instructions
 

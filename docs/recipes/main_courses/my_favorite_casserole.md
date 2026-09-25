@@ -11,7 +11,7 @@ source:
 
 ## Ingredients
 
-- 2 cup uncooked noodles
+- 2 cups uncooked noodles
 - 2 onions, sliced
 - 1 lb ground beef
 - 1 cup cottage cheese
@@ -19,7 +19,7 @@ source:
 - 1 can mushroom soup
 - 1 can mushrooms
 - 1.5 tsp salt
-- 1/2 cup shredded cheese
+- 1/2 cups shredded cheese
 - 3 eggs, beaten
 
 ## Instructions

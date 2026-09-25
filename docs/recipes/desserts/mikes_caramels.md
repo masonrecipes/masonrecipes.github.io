@@ -12,10 +12,10 @@ source:
 ## Ingredients
 
 - 1 cup butter or margarine
-- 1, 16-ounce package (2½ cups packed) brown sugar
+- 1, 16-oz package (2½ cups packed) brown sugar
 - 1 cup light corn syrup
-- 1, 14-ounce can (1½ cups) sweetened condensed milk
-- 1 teaspoon vanilla
+- 1, 14-oz can (1½ cups) sweetened condensed milk
+- 1 tsp vanilla
 
 ## Instructions
 
@@ -28,4 +28,4 @@ source:
 7. Remove from heat; stir in vanilla.
 8. Pour into buttered pan.
 9. When cool, cut into squares with a wet, sharp knife.
-10. Wrap each piece in clear plastic wrap. Makes about 2½ pounds
+10. Wrap each piece in clear plastic wrap. Makes about 2½ lb

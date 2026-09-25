@@ -15,15 +15,15 @@ source:
 
 - 2 1/2 cups all-purpose flour
 - 1 1/2 cups graham cracker crumbs
-- 1/2 teaspoon baking soda
-- 1/2 teaspoon salt
+- 1/2 tsp baking soda
+- 1/2 tsp salt
 - 1 cup unsalted butter*(softened)*
-- 3/4 cup light brown sugar
-- 3/4 cup granulated sugar
+- 3/4 cups light brown sugar
+- 3/4 cups granulated sugar
 - 2 large eggs
-- 2 teaspoons vanilla
+- 2 tsp vanilla
 - 9 (1.5 oz) regular size chocolate bars
-- 16 ounces marshmallow fluff*(1 tub)**
+- 16 oz marshmallow fluff*(1 tub)**
 
 ## Instructions
 
@@ -36,4 +36,4 @@ source:
 
 ## Notes
 
-*Don’t substitute regular marshmallows for the marshmallow fluff. Marshmallows will melt in the oven and the cookie bars will not turn out well.
+*Don’Tbsp substitute regular marshmallows for the marshmallow fluff. Marshmallows will melt in the oven and the cookie bars will not turn out well.

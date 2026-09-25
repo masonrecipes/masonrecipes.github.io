@@ -16,9 +16,9 @@ source:
 - 2 cups chopped nuts
 - 2 Tbsp butter
 - 1 Tbsp vanilla
-- Pinch of salt
-- 4 ½ cup sugar
-- Tall can of evaporated milk
+- pinch of salt
+- 4 ½ cups sugar
+- tall can of evaporated milk
 
 ## Instructions
 

@@ -14,16 +14,16 @@ source:
 
 ## Ingredients
 
-- 3/4 cup avocado oil
+- 3/4 cups avocado oil
 - 2 egg yolks (room temperature)
 - 1 egg white
-- 1 Tablespoon white wine vinegar
-- 1 Tablespoon  apple cider vinegar
-- 1 Tablespoon  fresh squeezed lemon juice
-- ¼ teaspoon Himalayan salt
-- ⅛ teaspoon white pepper
-- 1 teaspoon yellow mustard
-- ¼ teaspoon sweet paprika (not smoked)
+- 1 Tbsp white wine vinegar
+- 1 Tbsp apple cider vinegar
+- 1 Tbsp fresh squeezed lemon juice
+- ¼ tsp himalayan salt
+- ⅛ tsp white pepper
+- 1 tsp yellow mustard
+- ¼ tsp sweet paprika (not smoked)
 
 ## Instructions
 

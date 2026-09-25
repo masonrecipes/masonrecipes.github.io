@@ -16,14 +16,14 @@ source:
 - 6 large cloves crushed garlic
 - 1/2 lb sausage
 - 6 stalks of celery
-- Half head of cauliflower
+- half head of cauliflower
 - 1 large onion
 - 6-7 carrots
 - 2 15 oz cans diced tomatoes
 - 1 28 oz can crushed tomatoes
 - 1 box organic chicken broth
-- 1 Tablespoon chicken bouillon
-- 1 cup Barley and/or wild rice
+- 1 Tbsp chicken bouillon
+- 1 cup barley and/or wild rice
 
 ## Instructions
 

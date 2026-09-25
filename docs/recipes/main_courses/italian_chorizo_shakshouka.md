@@ -19,7 +19,7 @@ source:
 - 1 lb pork sausage
 - 1/2 lb chorizo
 - 1 Tbsp minced garlic
-- Fresh mozzarella, cut into 1/8 inch disks
+- fresh mozzarella, cut into 1/8 inch disks
 
 ## Instructions
 

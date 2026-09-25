@@ -11,20 +11,20 @@ source:
 
 ## Ingredients
 
-- Large Onion, chopped
-- 6 cloves Garlic, crushed
-- 1 1/2 cup Celery, chopped
-- 1-2 lb Cubed beef (small)
-- Olive oil
-- 1 quart Chicken Stock
-- 6-7 Cubed Potatoes
+- large onion, chopped
+- 6 cloves garlic, crushed
+- 1 1/2 cups celery, chopped
+- 1-2 lb cubed beef (small)
+- olive oil
+- 1 quart chicken stock
+- 6-7 cubed potatoes
 - 2 large cans diced tomatoes
-- 1 1/2 cup Carrots
-- (Other vegetables to taste)
-- 1 cup Barley
-- Bay leaf
-- Salt & pepper
-- Rosemary (opt)
+- 1 1/2 cups carrots
+- (other vegetables to taste)
+- 1 cup barley
+- bay leaf
+- salt & pepper
+- rosemary (opt)
 
 ## Instructions
 

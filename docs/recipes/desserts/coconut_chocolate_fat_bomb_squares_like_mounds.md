@@ -13,12 +13,12 @@ These are soft, melty, chocolaty bites with a crunchy coconut finish- great for 
 
 ## Ingredients
 
-- 1/2 rounded Cup Coconut Oil
-- 1 ½ cup unsweetened shredded coconut
-- 2 Tablespoon Dark Cocoa Powder (or dark cocoa)
-- 2 Tablespoon Almond butter
-- 2 Tablespoon Powdered Sweetener
-- 1 teaspoon Vanilla Extract (beaver free)
+- 1/2 rounded cup coconut oil
+- 1 ½ cups unsweetened shredded coconut
+- 2 Tbsp dark cocoa powder (or dark cocoa)
+- 2 Tbsp almond butter
+- 2 Tbsp powdered sweetener
+- 1 tsp vanilla extract (beaver free)
 
 ## Instructions
 

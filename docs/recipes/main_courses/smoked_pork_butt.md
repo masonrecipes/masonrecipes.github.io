@@ -13,24 +13,24 @@ source:
 
 ## Ingredients
 
-### Spice Rub and pork
+### Spice Rub and Pork
 
-- 2 tablespoons paprika
-- 2 tablespoons pepper
-- 2 tablespoons packed brown sugar
-- 1 tablespoon salt
-- (4- to 5-pound) boneless pork butt roast, trimmed
-- 4 cups wood chips, soaked in water for 15 minutes, and drained
+- 2 Tbsp paprika
+- 2 Tbsp pepper
+- 2 Tbsp packed brown sugar
+- 1 Tbsp salt
+- (4- to 5-lb) boneless pork butt roast, trimmed
+- 4 cups wood chips, soaked in water for 15 minutes, and, drained
 
-### Lexington BBQ sauce
+### Lexington Bbq Sauce
 
 - 1 cup water
 - 1 cup cider vinegar
-- 12 cup ketchup
-- 1 tablespoon sugar
-- ¾ teaspoon salt
-- ½ teaspoon pepper
-- ½ teaspoon red pepper flakes
+- 12 cups ketchup
+- 1 Tbsp sugar
+- ¾ tsp salt
+- ½ tsp pepper
+- ½ tsp red pepper flakes
 
 ## Instructions
 
