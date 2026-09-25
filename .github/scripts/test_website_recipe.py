@@ -406,6 +406,19 @@ Potato Topping:
         self.assertIn("page text, read by the model", result["body"])
         self.assertIn(f"- {wr.PAGE_INGREDIENTS_NOTE}", result["body"])
 
+    def test_page_ingredient_sub_list_headings_end_with_a_colon(self):
+        # Issue 51 shape: plain page lines where a frosting sub-list follows the cake ingredients.
+        html = ("<html><body><h1>Red Velvet Cake</h1><p>2¼ cups flour</p><p>3 tbsp cornstarch</p>"
+                "<h3>Ermine Frosting</h3><p>1½ cups white granulated sugar</p><p>½ cup flour</p>"
+                "<p>Bake 30 minutes.</p></body></html>")
+        model = output(title="Red Velvet Cake", category="Desserts", steps=["Bake 30 minutes."],
+                       ingredients=["2¼ cups flour", "3 tbsp cornstarch", "Ermine Frosting:",
+                                    "1½ cups white granulated sugar", "½ cup flour"])
+        result = wr.process(link_issue("Red Velvet Cake"), recording(model), root=self.root, fetch=lambda url: html)
+        page = self.page(result)
+        self.assertIn("- 3 Tbsp cornstarch\n\n### Ermine Frosting\n\n- 1½ cups white granulated sugar\n", page)
+        self.assertNotIn("ermine frosting", page.lower().replace("### ermine frosting", ""))
+
     def test_page_ingredients_with_a_number_not_on_the_page_are_rejected(self):
         with self.assertRaises(wr.IntakeError) as ctx:
             wr.process(link_issue("Fresh Lemonade"), recording(self.lemonade(

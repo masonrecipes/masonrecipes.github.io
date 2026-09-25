@@ -32,7 +32,8 @@ function draftInstructions(style, fromPage) {
   const ingredientRule = fromPage
     ? `- ingredients: every ingredient line and sub-list heading of that recipe, copied
   character for character from page_text in page order, one per item. Do not reword,
-  reformat, convert or correct them; the site formats them itself.`
+  reformat, convert or correct them; the site formats them itself. End every sub-list
+  heading with a colon, for example "Ermine Frosting:".`
     : "  Ingredient lines and their subgroup headings are supplied separately and must never be output.";
   return `You format family recipe submissions for the Mason Recipes website.
 

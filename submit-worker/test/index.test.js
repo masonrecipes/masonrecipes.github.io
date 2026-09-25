@@ -402,6 +402,7 @@ describe("recipe draft endpoint", () => {
     // Only a page-text-only import asks the model for ingredient lines.
     assert.deepEqual(input.text.format.schema.properties.ingredients, { type: "array", items: { type: "string" } });
     assert.ok(input.text.format.schema.required.includes("ingredients"));
+    assert.match(input.input[0].content, /End every sub-list\s+heading with a colon/);
     assert.equal(model, "openai/gpt-5.6-luna");
     assert.equal(input.max_output_tokens, 8000);
     assert.equal(input.tools, undefined);
