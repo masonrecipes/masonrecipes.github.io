@@ -329,10 +329,17 @@ function draftModelOutput(overrides = {}) {
   return {
     title: "Grandma's Chili",
     category: "Main Courses",
-    ingredient_groups: [{ heading: "", items: ["2 lb ground beef", "1 can beans (15 oz)"] }],
     steps: ["Brown the beef.", "Add beans and simmer 30 minutes."],
     notes: [],
     warnings: [],
+    ...overrides,
+  };
+}
+
+function fillModelOutput(overrides = {}) {
+  return {
+    ...draftModelOutput(),
+    ingredient_groups: [{ heading: "", items: ["2 lb ground beef", "1 can beans (15 oz)"] }],
     ...overrides,
   };
 }
@@ -376,7 +383,8 @@ describe("recipe draft endpoint", () => {
   });
 
   it("drafts a recipe with Luna for the recipes repository's main branch", async () => {
-    const ai = aiReturning(completed(JSON.stringify(draftModelOutput())));
+    const pageOutput = draftModelOutput({ ingredients: ["4 tea bags"] });
+    const ai = aiReturning(completed(JSON.stringify(pageOutput)));
     const body = {
       recipe_name: "Iced Tea",
       ingredients: "",
@@ -386,11 +394,15 @@ describe("recipe draft endpoint", () => {
     const response = await draftWorker().fetch(draftRequest(await oidcToken(), body), { ...environment(), AI: ai });
 
     assert.equal(response.status, 200);
-    assert.deepEqual(await response.json(), draftModelOutput());
+    assert.deepEqual(await response.json(), pageOutput);
     assert.equal(response.headers.get("access-control-allow-origin"), null);
 
     assert.equal(ai.run.calls.length, 1);
     const [model, input] = ai.run.calls[0];
+    // Only a page-text-only import asks the model for ingredient lines.
+    assert.deepEqual(input.text.format.schema.properties.ingredients, { type: "array", items: { type: "string" } });
+    assert.ok(input.text.format.schema.required.includes("ingredients"));
+    assert.match(input.input[0].content, /End every sub-list\s+heading with a colon/);
     assert.equal(model, "openai/gpt-5.6-luna");
     assert.equal(input.max_output_tokens, 8000);
     assert.equal(input.tools, undefined);
@@ -405,7 +417,11 @@ describe("recipe draft endpoint", () => {
     assert.doesNotMatch(input.input[0].content, /Ignore previous/);
     // Untrusted text reaches the model only as the user's JSON data.
     assert.equal(input.input[1].role, "user");
-    assert.deepEqual(JSON.parse(input.input[1].content), body);
+    assert.deepEqual(JSON.parse(input.input[1].content), {
+      recipe_name: body.recipe_name,
+      recipe: body.recipe,
+      page_text: body.page_text,
+    });
   });
 
   it("rejects tokens that are not a valid GitHub OIDC identity for this repository's main branch", async () => {
@@ -480,8 +496,8 @@ describe("recipe draft endpoint", () => {
       "missing field": missingSteps,
       "title not a string": draftModelOutput({ title: 7 }),
       "step not a string": draftModelOutput({ steps: ["Mix.", { html: "<b>" }] }),
-      "group extra field": draftModelOutput({ ingredient_groups: [{ heading: "", items: ["salt"], extra: 1 }] }),
-      "group items not a list": draftModelOutput({ ingredient_groups: [{ heading: "", items: "salt" }] }),
+      "ingredient groups are forbidden": { ...draftModelOutput(), ingredient_groups: [] },
+      "ingredients are forbidden when submitted": { ...draftModelOutput(), ingredients: [] },
       "not an object": ["title"],
     };
 
@@ -546,7 +562,7 @@ describe("recipe draft endpoint", () => {
   it("caps page text by code points like the Action does", async () => {
     const valid = { recipe_name: "Chili", ingredients: "", recipe: "" };
     for (const [length, status] of [[40_000, 200], [40_001, 400]]) {
-      const ai = aiReturning(completed(JSON.stringify(draftModelOutput())));
+      const ai = aiReturning(completed(JSON.stringify(draftModelOutput({ ingredients: [] }))));
       const page_text = "🌶".repeat(length);
       const response = await draftWorker().fetch(draftRequest(await oidcToken(), { ...valid, page_text }), { ...environment(), AI: ai });
 
@@ -943,7 +959,7 @@ describe("fill from link endpoint", () => {
       assert.equal((await createWorker({ fetcher: webFetch() }).fetch(fillRequest({}, ORIGIN, person(200)), env)).status, 200);
     }
     for (let fill = 0; fill < 50; fill += 1) {
-      const ai = aiReturning(completed(JSON.stringify(draftModelOutput())));
+      const ai = aiReturning(completed(JSON.stringify(fillModelOutput())));
       const response = await createWorker({ fetcher: noRecipeBlock() }).fetch(fillRequest({}, ORIGIN, person(Math.floor(fill / 5))), { ...env, AI: ai });
       assert.equal(response.status, 200, `AI fill ${fill + 1}`);
     }

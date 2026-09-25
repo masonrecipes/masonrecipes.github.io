@@ -58,7 +58,10 @@ OPTIONAL = ["Source link"]
 MODEL_NAME = "gpt-5.6-luna"
 # The keys of the Worker's strict recipe schema. The Worker validates the output
 # against the schema; validate_output() checks it again here.
-OUTPUT_KEYS = {"title", "category", "ingredient_groups", "steps", "notes", "warnings"}
+OUTPUT_KEYS = {"title", "category", "steps", "notes", "warnings"}
+# A page-text-only import also returns the ingredient lines copied from the page.
+PAGE_OUTPUT_KEYS = OUTPUT_KEYS | {"ingredients"}
+PAGE_INGREDIENTS_NOTE = "Ingredients extracted from page text - check against the source."
 # Fixed reasons the Worker returns; anything else is reported as a request failure.
 WORKER_REASONS = {"model-refused", "model-incomplete", "model-invalid-output", "model-request-failed"}
 
@@ -251,19 +254,72 @@ UNICODE_FRACTIONS = {
     "⅜": " 3/8", "⅝": " 5/8", "⅞": " 7/8", "⅕": " 1/5", "⅙": " 1/6", "⅚": " 5/6",
 }
 NUMBER_RE = re.compile(r"\d+(?:[./]\d+)?")
+NOTE_REF_RE = re.compile(r"\bnotes?\s+\d+", re.IGNORECASE)
+INGREDIENT_MARKER_RE = re.compile(r"^\s*(?:[-*•]|\d+[.)])\s+")
+INGREDIENT_HEADING_RE = re.compile(r"^\s*(?:#{1,6}\s+)?([^\d][^:]*?):\s*$")
+BARE_HEADING_RE = re.compile(r"(?:#{1,6}\s+)?([^\d:]{1,40})")
+LEADING_INGREDIENTS_RE = re.compile(r"(?:#{1,6}\s+)?ingredients:?", re.IGNORECASE)
 
 
 def numbers(text):
-    """Multiset of numeric tokens, ignoring list numbering and unicode fraction spelling."""
-    text = LIST_MARKER_RE.sub("", text)
+    """Multiset of numeric tokens, ignoring list numbering, "note N" references and unicode fraction spelling."""
+    text = NOTE_REF_RE.sub("", LIST_MARKER_RE.sub("", text))
     text = text.translate(str.maketrans(UNICODE_FRACTIONS))
     text = text.replace("⁄", "/")  # fraction slash
     return collections.Counter(NUMBER_RE.findall(text))
 
 
+def ingredient_heading(line, following):
+    """The subgroup heading a line names, or None when it is an ingredient line."""
+    if INGREDIENT_MARKER_RE.match(line):
+        return None
+    match = INGREDIENT_HEADING_RE.fullmatch(line)
+    if match:
+        return match.group(1)
+    # A short digit-free line is a heading when list items or "For the ..." mark it as one.
+    match = BARE_HEADING_RE.fullmatch(line)
+    if match and following and len(match.group(1).split()) <= 5 and (
+            INGREDIENT_MARKER_RE.match(following) or line.lower().startswith("for ")):
+        return match.group(1)
+    return None
+
+
+def ingredient_groups(ingredients):
+    """Use submitted ingredient lines and subgroup headings, normalized only by recipe style."""
+    groups, warnings = [], []
+    heading, items = "", []
+
+    def finish_group():
+        if items:
+            groups.append({"heading": heading, "items": list(items)})
+
+    lines = [line.strip() for line in ingredients.splitlines() if line.strip()]
+    if lines and LEADING_INGREDIENTS_RE.fullmatch(lines[0]):
+        lines = lines[1:]
+    for index, line in enumerate(lines):
+        found = ingredient_heading(line, lines[index + 1] if index + 1 < len(lines) else "")
+        if found:
+            finish_group()
+            heading, items = recipe_style.normalize_title(found.strip()), []
+            continue
+        item = INGREDIENT_MARKER_RE.sub("", line)
+        item = recipe_style.normalize_ingredient(item)
+        if recipe_style.is_first_person(item):
+            warnings.append(f"First-person ingredient line to review: {item}")
+        items.append(item)
+    finish_group()
+    return groups, warnings
+
+
+def from_page(fields):
+    """Whether the model must copy the ingredient lines from page text."""
+    return bool(fields.get("Page text")) and not fields["Ingredients"]
+
+
 def validate_output(output, fields):
     """Return a cleaned recipe dict, or raise IntakeError. Never trusts the model."""
-    if not isinstance(output, dict) or set(output) != OUTPUT_KEYS:
+    keys = PAGE_OUTPUT_KEYS if from_page(fields) else OUTPUT_KEYS
+    if not isinstance(output, dict) or set(output) != keys:
         raise IntakeError("model-invalid-output")
     if output["category"] not in CATEGORIES:
         raise IntakeError("model-invalid-output")
@@ -280,17 +336,13 @@ def validate_output(output, fields):
     if not title or len(title) > MAX_LENGTHS["Recipe Name"]:
         raise IntakeError("model-invalid-output")
 
-    if not isinstance(output["ingredient_groups"], list):
-        raise IntakeError("model-invalid-output")
-    groups, first_person = [], []
-    for group in output["ingredient_groups"]:
-        if not isinstance(group, dict) or not isinstance(group.get("heading"), str):
-            raise IntakeError("model-invalid-output")
-        items = [recipe_style.normalize_ingredient(item) for item in text_list(group.get("items"))]
-        first_person += [f"First-person ingredient line to review: {item}" for item in items
-                         if recipe_style.is_first_person(item)]
-        if items:
-            groups.append({"heading": recipe_style.normalize_title(" ".join(group["heading"].split())), "items": items})
+    ingredients = fields["Ingredients"]
+    if from_page(fields):
+        ingredients = "\n".join(text_list(output["ingredients"]))
+        # Copied lines may carry only numbers the page itself shows.
+        if numbers(ingredients) - numbers(fields["Page text"]):
+            raise IntakeError("model-changed-quantities")
+    groups, first_person = ingredient_groups(ingredients)
     steps = [recipe_style.normalize_text(step) for step in text_list(output["steps"])]
     notes = [recipe_style.normalize_text(note) for note in text_list(output["notes"])]
     warnings = text_list(output["warnings"]) + first_person
@@ -303,13 +355,16 @@ def validate_output(output, fields):
     if HTML_TAG_RE.search(joined) or FRONT_MATTER_RE.search(joined):
         raise IntakeError("model-unsafe-markup")
 
-    submitted = "\n".join([fields["Recipe Name"], fields["Ingredients"], fields["Recipe"]])
+    model_text = "\n".join(steps + notes)
+    submitted = fields["Recipe"]
     if fields.get("Page text"):
-        # A page carries other numbers (menus, comments), so every published number
-        # must appear in the submission or page, at least as often as it is used.
-        if numbers(joined) - numbers(submitted + "\n" + fields["Page text"]):
+        if numbers(title) - numbers(fields["Recipe Name"] + "\n" + fields["Page text"]):
             raise IntakeError("model-changed-quantities")
-    elif numbers(joined) != numbers(submitted):
+        # A page carries other numbers (menus, comments), so every model-written
+        # number must appear in the submitted steps or page text at least as often.
+        if numbers(model_text) - numbers(submitted + "\n" + fields["Page text"]):
+            raise IntakeError("model-changed-quantities")
+    elif numbers(title) != numbers(fields["Recipe Name"]) or numbers(model_text) != numbers(submitted):
         raise IntakeError("model-changed-quantities")
 
     return {
@@ -464,6 +519,8 @@ def process(issue, model, root=".", fetch=link_import.fetch_page):
     imported = None
     if not (fields["Ingredients"] and fields["Recipe"]):
         imported = import_link(fields, fetch)
+    if from_page(fields):
+        review_notes.append(PAGE_INGREDIENTS_NOTE)
 
     try:
         recipe = validate_output(model(fields), fields)
