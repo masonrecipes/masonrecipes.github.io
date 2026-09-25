@@ -39,6 +39,7 @@
   "acronyms": ["BBQ", "BLT", "EVOO", "PB"],
   "title": {
     "minor_words": ["a", "an", "and", "as", "at", "but", "by", "for", "from", "in", "into", "nor", "of", "on", "or", "the", "to", "with"],
+    "particles": ["au", "de", "la"],
     "rule": "Title case; keep minor words lowercase unless first or last, retain and/or, &, and parentheses."
   },
   "first_person": {

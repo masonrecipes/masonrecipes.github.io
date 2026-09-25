@@ -109,7 +109,7 @@ class RecipeStyleTest(unittest.TestCase):
 
     def test_prose_units_change_only_after_a_quantity_and_keep_sentence_punctuation(self):
         for line in ("Line with paper cups.", "Fill the muffin cups.", "Add a few cups of broth.",
-                     "Makes about 2½ lb.", "Heat 2 Tbsp of the lard.", "Add 1 tsp of salt."):
+                     "Makes about 2½ lb.", "Add 1 tsp. Stir well.", "Heat 2 Tbsp of the lard.", "Add 1 tsp of salt."):
             self.assertEqual(style.normalize_text(line), line)
         self.assertEqual(style.normalize_text("Add 2 tablespoons of oil."), "Add 2 Tbsp of oil.")
 
@@ -117,6 +117,13 @@ class RecipeStyleTest(unittest.TestCase):
         self.assertEqual(style.normalize_ingredient("2 Tablespoons of Butter"), "2 Tbsp butter")
         self.assertEqual(style.normalize_ingredient("2 Tbsp of the reserved juice"), "2 Tbsp of the reserved juice")
         self.assertEqual(style.normalize_ingredient("1 oz. 100% agave tequila"), "1 oz 100% agave tequila")
+
+    def test_mixed_case_words_and_title_particles_keep_their_written_case(self):
+        self.assertEqual(style.normalize_title("mcdonald's copycat"), "Mcdonald's Copycat")
+        self.assertEqual(style.normalize_title("McDonald's copycat"), "McDonald's Copycat")
+        self.assertEqual(style.normalize_title("steak tips au gratin"), "Steak Tips au gratin")
+        self.assertEqual(style.normalize_title("Pico De Gallo"), "Pico de Gallo")
+        self.assertEqual(style.normalize_ingredient("1 cup McDonald's Sauce"), "1 cup McDonald's sauce")
 
     def test_spelling_targets_are_restored_after_lowercasing(self):
         self.assertEqual(style.normalize_ingredient("1 cup Hellmann's Mayonnaise"), "1 cup Hellmann's mayonnaise")

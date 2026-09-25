@@ -40,6 +40,7 @@ def normalize_title(value):
     if not words:
         return value
     minor_words = set(STYLE["title"]["minor_words"])
+    particles = set(STYLE["title"]["particles"])
     positions = {match.start(): index for index, match in enumerate(words)}
 
     def replace(match):
@@ -48,6 +49,10 @@ def normalize_title(value):
         index = positions[match.start()]
         if lowered in ACRONYMS:
             return ACRONYMS[lowered]
+        if _mixed_case(word) or (index > 1 and words[index - 1].group(0).lower() in particles):
+            return word
+        if lowered in particles and index > 0:
+            return lowered
         if lowered in minor_words and index not in (0, len(words) - 1):
             return lowered
         return lowered[:1].upper() + lowered[1:]
@@ -55,10 +60,19 @@ def normalize_title(value):
     return WORD_RE.sub(replace, value)
 
 
+def _mixed_case(word):
+    return word[1:] != word[1:].lower() and word != word.upper()
+
+
+def _lowercase(value):
+    return re.sub(r"[A-Za-z’']+", lambda match: match.group(0) if _mixed_case(match.group(0)) else match.group(0).lower(),
+                  value)
+
+
 def _unit_pattern():
     aliases = sorted({alias for unit in STYLE["units"].values() for alias in unit["aliases"]},
                      key=len, reverse=True)
-    return re.compile(r"\b(" + "|".join(re.escape(alias) for alias in aliases) + r")(?:\.(?=\s+[a-z\d(\[]))?(?![\w-])", re.I)
+    return re.compile(r"\b(" + "|".join(re.escape(alias) for alias in aliases) + r")(?:\.(?=(?-i:\s+[a-z\d(\[])))?(?![\w-])", re.I)
 
 
 UNIT_PATTERN = _unit_pattern()
@@ -100,7 +114,7 @@ def normalize_ingredient(value):
     if re.match(r"\s*\\?(?:[#>{\[!`]|\d+\\?[.)]\s+)", value):
         return value
     value = " ".join(value.strip().split())
-    value = _outside_links(value, lambda part: _style_units_and_spelling(re.sub(r"\bi\b(?!\.)", "I", part.lower())))
+    value = _outside_links(value, lambda part: _style_units_and_spelling(re.sub(r"\bi\b(?!\.)", "I", _lowercase(part))))
     value = re.sub(rf"^({QUANTITY}\s+(?:Tbsp|tsp))\s+of\s+(?!(?:the|a|an|each|your)\b)", r"\1 ", value)
     if "," not in value:
         value = re.sub(r"\s+(" + "|".join(PREPARATIONS) + r")$", r", \1", value)

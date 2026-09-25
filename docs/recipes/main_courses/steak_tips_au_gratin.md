@@ -7,7 +7,7 @@ author: Mike Beihl
 source:
 ---
 
-# Steak Tips Au Gratin
+# Steak Tips au gratin
 
 ## Ingredients
 
