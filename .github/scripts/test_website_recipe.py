@@ -93,6 +93,12 @@ class IntakeTest(unittest.TestCase):
         shutil.copy(REPO / "docs/authors.md", self.root / "docs/authors.md")
         self.before = snapshot(self.root)
 
+    def vacate(self, title):
+        """Drop a title the real site may already publish, so the submission fixtures never collide with merged recipes."""
+        for page in self.root.glob(f"docs/recipes/*/{wr.sanitize_filename(title)}"):
+            page.unlink()
+        self.before = snapshot(self.root)
+
     def run_intake(self, the_issue, model_output=None):
         def model(fields):
             return model_output if model_output is not None else output()
@@ -310,6 +316,7 @@ Potato Topping:
             with self.subTest(issue=number):
                 the_issue = json.loads((FIXTURES / f"issue_{number}.json").read_text(encoding="utf-8"))
                 fields = wr.parse_issue(the_issue["title"], the_issue["body"])
+                self.vacate(fields["Recipe Name"])
                 model = output(title=fields["Recipe Name"], category="Main Courses",
                                steps=fields["Recipe"].splitlines())
                 page = self.page(self.run_intake(the_issue, model))
@@ -325,6 +332,7 @@ Potato Topping:
         steps = [re.sub(r"\s*\(see note \d+[^)]*\)|\s*- see note \d+", "", step)
                  for step in fields["Recipe"].splitlines()]
         self.assertNotIn("note", "\n".join(steps))
+        self.vacate(fields["Recipe Name"])
         self.run_intake(the_issue, output(title=fields["Recipe Name"], category="Desserts", steps=steps))
 
     def test_changed_quantity_beside_a_note_reference_is_rejected(self):
