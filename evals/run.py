@@ -43,11 +43,12 @@ def main():
     env = dict(os.environ, PYTHONPATH=str(DEPS))
     code, out = run([sys.executable, "-m", "unittest", "discover", "-s", ".github/scripts", "-p", "test_*.py"], env=env)
     py_total = count(r"^Ran (\d+) tests?", out)
-    bad = count(r"failures=(\d+)", out) + count(r"errors=(\d+)", out)
+    bad = sum(count(rf"{kind}=(\d+)", out) for kind in ("failures", "errors", "skipped", "expected failures"))
     total += py_total
     passed += max(py_total - bad, 0)
     failed = failed or code != 0 or py_total == 0
 
+    failed = failed or passed < total
     rate = passed / total if total else 0.0
     if failed and rate == 1.0:
         rate = 0.0
