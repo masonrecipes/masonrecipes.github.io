@@ -42,3 +42,6 @@ node_modules/
 *.tmp
 *.bak
 .cache/
+
+# Test dependencies (evals/run.py)
+.pydeps/

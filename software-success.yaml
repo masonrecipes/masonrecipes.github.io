@@ -1,0 +1,8 @@
+evaluation:
+  command: python3 evals/run.py
+criteria:
+  outcomes:
+    required:
+      - id: OUT-001
+        metric: pass_rate
+        threshold: ">= 1.0"

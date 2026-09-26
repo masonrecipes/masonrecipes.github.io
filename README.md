@@ -122,9 +122,10 @@ To retry a submission after a failure, remove and re-add the `recipe-submission`
 ### Tests
 
 ```bash
-python3 -m unittest discover -s .github/scripts -p 'test_*.py'
-(cd submit-worker && npm ci && npm test)
+python3 evals/run.py
 ```
+
+It runs the Worker `node --test` suite and the Python unittest discovery, installing `requirements-test.txt` into gitignored `.pydeps` first, and exits nonzero on any failure.
 
 ## Deployment
 
