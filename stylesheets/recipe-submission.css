@@ -1,0 +1,172 @@
+.md-header .recipe-submission-header-trigger {
+  align-items: center;
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  gap: 0.25rem;
+  height: 2.75rem;
+  justify-content: center;
+  margin: 0;
+  min-width: 2.75rem;
+  padding: 0 0.5rem;
+  width: auto;
+}
+
+.recipe-submission-header-trigger .md-icon {
+  fill: currentcolor;
+  height: 1.2rem;
+  width: 1.2rem;
+}
+
+.recipe-submission-header-label {
+  font-size: 0.75rem;
+}
+
+.recipe-submission-dialog {
+  border: 0;
+  border-radius: 0.35rem;
+  box-shadow: 0 0.5rem 2rem rgb(0 0 0 / 35%);
+  color: var(--md-default-fg-color);
+  max-width: min(34rem, calc(100vw - 2rem));
+  padding: 0;
+  width: 100%;
+}
+
+.recipe-submission-dialog::backdrop {
+  background: rgb(0 0 0 / 55%);
+}
+
+.recipe-submission-form {
+  background: var(--md-default-bg-color);
+  padding: 1.25rem;
+}
+
+.recipe-submission-heading {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.recipe-submission-heading h2 {
+  margin: 0;
+}
+
+.recipe-submission-close {
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  font-size: 2rem;
+  line-height: 1;
+  padding: 0.2rem 0.5rem;
+}
+
+.recipe-submission-form label,
+.recipe-submission-form input,
+.recipe-submission-form textarea {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+}
+
+.recipe-submission-form label {
+  font-weight: 700;
+  margin-top: 1rem;
+}
+
+.recipe-submission-form input,
+.recipe-submission-form textarea {
+  background: var(--md-code-bg-color);
+  border: 1px solid var(--md-default-fg-color--lighter);
+  border-radius: 0.15rem;
+  color: var(--md-default-fg-color);
+  font: inherit;
+  margin-top: 0.25rem;
+  padding: 0.6rem;
+}
+
+.recipe-submission-form textarea {
+  resize: vertical;
+}
+
+.recipe-submission-link-row {
+  align-items: stretch;
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.recipe-submission-form .recipe-submission-link-row input {
+  flex: 1;
+  margin-top: 0;
+  min-width: 0;
+}
+
+/* Solid when it can be pressed, an outline when it cannot. The accent is darkened so
+   white text passes WCAG AA: the theme's orange alone gives 2.8:1. */
+.recipe-submission-fill.md-button {
+  background-color: color-mix(in srgb, var(--md-primary-fg-color) 75%, black);
+  color: var(--md-primary-bg-color);
+  cursor: pointer;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.recipe-submission-fill.md-button:focus,
+.recipe-submission-fill.md-button:hover {
+  background-color: color-mix(in srgb, var(--md-primary-fg-color) 60%, black);
+  color: var(--md-primary-bg-color);
+}
+
+.recipe-submission-fill.md-button:focus-visible {
+  outline: 2px solid var(--md-accent-fg-color);
+  outline-offset: 2px;
+}
+
+.recipe-submission-fill.md-button:disabled {
+  background-color: transparent;
+  /* The theme's buttons have no border; an inset line outlines it without moving it. */
+  box-shadow: inset 0 0 0 1px var(--md-default-fg-color--lighter);
+  color: var(--md-default-fg-color--light);
+  cursor: not-allowed;
+}
+
+.recipe-submission-fill.md-button[aria-busy="true"] {
+  cursor: wait;
+}
+
+.recipe-submission-optional {
+  font-weight: 400;
+}
+
+.recipe-submission-turnstile {
+  margin-top: 1rem;
+}
+
+.recipe-submission-status {
+  min-height: 1.5rem;
+}
+
+.recipe-submission-send:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 44.9375em) {
+  .md-header .recipe-submission-header-trigger {
+    padding: 0;
+    width: 2.75rem;
+  }
+
+  .recipe-submission-header-label {
+    display: none;
+  }
+
+  .recipe-submission-form {
+    padding: 1rem;
+  }
+}
