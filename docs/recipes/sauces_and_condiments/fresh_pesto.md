@@ -2,7 +2,8 @@
 tags:
   - sauces
   - condiments
-author:
+  - By Cindy Gustafson
+author: Cindy Gustafson
 source:
 ---
 
