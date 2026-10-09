@@ -2,7 +2,8 @@
 tags:
   - sides
   - soups
-author:
+  - By Katrina Beihl
+author: Katrina Beihl
 source:
 ---
 

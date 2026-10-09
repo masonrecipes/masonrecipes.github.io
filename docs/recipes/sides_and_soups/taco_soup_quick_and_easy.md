@@ -2,7 +2,8 @@
 tags:
   - sides
   - soups
-author:
+  - By Sherry Beihl
+author: Sherry Beihl
 source:
 ---
 

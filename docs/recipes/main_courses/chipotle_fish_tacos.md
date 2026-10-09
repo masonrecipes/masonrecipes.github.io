@@ -2,7 +2,8 @@
 tags:
   - main-course
   - entree
-author:
+  - By Sherry Beihl
+author: Sherry Beihl
 source:
 ---
 

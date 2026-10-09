@@ -2,8 +2,9 @@
 tags:
   - desserts
   - sweets
-author:
-source:
+  - By Butch Beihl
+author: Butch Beihl
+source: Sally’s Baking Addiction
 ---
 
 # Beihl Oatmeal Cookies

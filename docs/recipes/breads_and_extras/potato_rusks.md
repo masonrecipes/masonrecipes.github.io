@@ -2,7 +2,8 @@
 tags:
   - breads
   - baking
-author:
+  - By Sherry Beihl
+author: Sherry Beihl
 source:
 ---
 

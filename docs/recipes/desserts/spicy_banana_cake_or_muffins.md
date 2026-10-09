@@ -3,7 +3,10 @@ tags:
   - desserts
   - sweets
   - By Helen Brenneman
-author: Helen Brenneman
+  - By Sherry Beihl
+author:
+  - Helen Brenneman
+  - Sherry Beihl
 source:
 ---
 
