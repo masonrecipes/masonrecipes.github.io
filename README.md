@@ -62,7 +62,20 @@ We welcome contributions! To add a recipe:
 
 To build and preview the site locally, it's recommended to use a virtual environment:
 
-### Using a Virtual Environment (Recommended)
+### Quick Setup (macOS/Linux)
+
+```bash
+scripts/setup.sh
+```
+
+This creates `venv/` and installs `requirements.txt` into it. It is safe to rerun. Then activate the environment and preview the site:
+
+```bash
+source venv/bin/activate
+zensical serve
+```
+
+### Using a Virtual Environment (Manual)
 
 ```bash
 # Create a virtual environment
