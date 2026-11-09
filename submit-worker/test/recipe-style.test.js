@@ -3,7 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { test } from "node:test";
 
-import { DRAFT_INSTRUCTIONS, RECIPE_STYLE } from "../src/index.js";
+import { DRAFT_INSTRUCTIONS, RECIPE_STYLE } from "../src/prompts.js";
 
 test("the Worker prompt is built from the repository recipe style", () => {
   const file = path.resolve(import.meta.dirname, "../recipe-style.json");
