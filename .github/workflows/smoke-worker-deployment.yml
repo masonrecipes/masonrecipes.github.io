@@ -1,0 +1,23 @@
+name: Smoke test deployed recipe Worker
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'submit-worker/**'
+
+permissions:
+  contents: read
+  checks: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Wait for Workers Builds and smoke-test production
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash .github/scripts/smoke_worker_deployment.sh

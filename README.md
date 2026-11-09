@@ -128,7 +128,7 @@ The workflow does not call the model itself. It asks the recipe submission Worke
 
 The workflow always calls the fixed endpoint `https://mason-recipe-submissions.david-beihl.workers.dev/draft`, so the token can only go to the recipe helper.
 
-Setup is only a Worker redeploy after a change to `submit-worker/` merges; follow the deploy step in `submit-worker/README.md`. The `AI` binding in `wrangler.jsonc` uses Workers AI on the same Cloudflare account, so there is nothing else to configure.
+The existing `mason-recipe-submissions` Worker deploys automatically through Cloudflare Workers Builds when `submit-worker/` changes reach `main`. Follow the one-time setup and dashboard connection steps in `submit-worker/README.md`. A GitHub Actions workflow smoke-tests the live Worker after those pushes. The `AI` binding in `wrangler.jsonc` uses Workers AI on the same Cloudflare account, so there is nothing else to configure.
 
 To retry a submission after a failure, remove and re-add the `recipe-submission` label. If a draft branch `website-recipe-<issue number>` already exists, delete it first.
 
