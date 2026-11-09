@@ -6,7 +6,7 @@ This Cloudflare Worker accepts the simple recipe form on the Mason Recipes site 
 
 The worker rejects requests from origins other than `https://masonrecipes.github.io`, requires a verified Turnstile token, caps each field, and allows a client IP only two verified submission attempts in five minutes. Failed spam checks do not count toward that limit. The Durable Object binding serializes the per-IP counter so simultaneous requests cannot exceed that limit.
 
-## One-time deployment
+## One-time setup
 
 1. In Cloudflare Turnstile, create a managed widget for `masonrecipes.github.io`. Keep its site key for the public site configuration and its secret key for the Worker.
 2. Create a fine-grained GitHub personal access token owned by an account that can create issues in `masonrecipes/masonrecipes.github.io`. Limit its repository access to that one repository and grant only **Issues: Read and write**. Do not grant Contents, Actions, or administration access.
@@ -17,22 +17,27 @@ The worker rejects requests from origins other than `https://masonrecipes.github
    npx wrangler login
    ```
 
-5. Store the two secrets. Paste each value only into Wrangler's secret prompt; never add either value to this repository or the site configuration.
+5. Store the two Worker secrets. Paste each value only into Wrangler's secret prompt; never add either value to this repository or the site configuration. Keep the existing values when enabling automated deployments.
 
    ```sh
    npx wrangler secret put GITHUB_TOKEN
    npx wrangler secret put TURNSTILE_SECRET
    ```
 
-6. Deploy and copy the HTTPS Worker URL printed by Wrangler. After any change to this directory merges, deploy the merged `submit-worker` directory from a scratch copy, never from the repository root. The `AI` binding needs no secret.
+6. Connect the existing Worker to Cloudflare Workers Builds:
 
-   ```sh
-   scratch="$(mktemp -d)"
-   git archive HEAD submit-worker | tar -x -C "$scratch"
-   (cd "$scratch/submit-worker" && npx wrangler deploy)
-   ```
+   1. In the Cloudflare dashboard, open **Workers & Pages** and select the existing `mason-recipe-submissions` Worker.
+   2. Open **Settings**, then **Build** (shown as **Builds** in some dashboard views), and select **Connect**.
+   3. Authorize the GitHub connection if prompted, then choose `masonrecipes/masonrecipes.github.io`.
+   4. Set the production branch to `main` and the root directory to `submit-worker`.
+   5. Leave the build command blank. Set the deploy command to `npm ci && npm test && npx wrangler deploy`.
+   6. Save the settings. Cloudflare Workers Builds will run the Worker test suite before deploying on pushes to `main`; a failed test stops that deploy. The Worker name in `wrangler.jsonc` must remain `mason-recipe-submissions`.
 
-7. In `docs/javascripts/recipe-submission-config.js`, set `endpoint` to that Worker URL and `turnstileSiteKey` to the public Turnstile site key. Commit and deploy the site. Until both values are configured, the button is deliberately absent.
+   The `AI` binding in `wrangler.jsonc` needs no secret. `GITHUB_TOKEN` and `TURNSTILE_SECRET` remain stored as Worker secrets in Cloudflare and are not needed in the repository or build command. Workers Builds deploys are not gated by the GitHub Actions pipeline.
+
+7. In `docs/javascripts/recipe-submission-config.js`, set `endpoint` to `https://mason-recipe-submissions.david-beihl.workers.dev` and `turnstileSiteKey` to the public Turnstile site key. Commit and deploy the site. Until both values are configured, the button is deliberately absent.
+
+After a push to `main` that changes `submit-worker/`, `.github/workflows/smoke-worker-deployment.yml` waits for the successful `Workers Builds: mason-recipe-submissions` check run for that commit, then checks the live endpoint. It verifies a request from a wrong origin receives 403 and `/draft` without an OIDC token receives 401. The checks need no Worker secret or Cloudflare credential.
 
 `wrangler.jsonc` restricts the Worker to the production site origin and expects Turnstile tokens for the `recipe_submit` action on `masonrecipes.github.io`. Change those values only when intentionally adding another deployed site hostname.
 
