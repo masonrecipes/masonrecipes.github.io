@@ -31,7 +31,7 @@ The worker rejects requests from origins other than `https://masonrecipes.github
    3. Authorize the GitHub connection if prompted, then choose `masonrecipes/masonrecipes.github.io`.
    4. Set the production branch to `main` and the root directory to `submit-worker`.
    5. Leave the build command blank. Set the deploy command to `npm ci && npm test && npx wrangler deploy`.
-   6. Save the settings. Cloudflare Workers Builds will run the Worker test suite before deploying on pushes to `main`; a failed test stops that deploy. The Worker name in `wrangler.jsonc` must remain `mason-recipe-submissions`.
+   6. Save the settings. Cloudflare Workers Builds will run the Worker test suite before deploying on pushes to `main`; a failed test stops that deploy. Workers Builds reads the Node version from `submit-worker/.node-version`, the same file PR CI uses. The Worker name in `wrangler.jsonc` must remain `mason-recipe-submissions`.
 
    The `AI` binding in `wrangler.jsonc` needs no secret. `GITHUB_TOKEN` and `TURNSTILE_SECRET` remain stored as Worker secrets in Cloudflare and are not needed in the repository or build command. Workers Builds deploys are not gated by the GitHub Actions pipeline.
 

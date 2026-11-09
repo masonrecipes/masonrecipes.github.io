@@ -18,7 +18,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '24'
+          node-version-file: submit-worker/.node-version
 
       - name: Run all tests
         run: python3 evals/run.py
